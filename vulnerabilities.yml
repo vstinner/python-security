@@ -5,10 +5,9 @@
       Reported by Team Oststrom
   fixed-in:
     # 2.7.12
-    - 2.7: b3ce713fb9be
+    - 2.7.x: 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f
     # 3.4.5
-    - 3.4: d590114c2394
-    # - 3.5.2: xxx
+    - 3.4.x: 46b32f307c48bcb999b22eebf65ffe8ed5cca544
 
 # FIXME: 'Issue #26657' ignores '#xxx', treated as a comment!
 - name: Issue 26657
@@ -16,8 +15,10 @@
     - http://bugs.python.org/issue26657
   disclosure: 2016-03-28
   fixed-in:
-    - 2.7.12: 92 days
-    - 3.5.2: 91 days
+    # 2.7.12
+    - 2.7.12: 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb
+    # 3.5.2
+    - 3.5.2: d274b3f1f1e2d8811733fb952c9f18d7da3a376a
   description: >
     Fix directory traversal vulnerability with http.server and SimpleHTTPServer
     on Windows.
@@ -25,13 +26,16 @@
 
 - name: CVE-2015-1283
   links:
-    -  http://bugs.python.org/issue26556
+    - http://bugs.python.org/issue26556
     - https://sourceforge.net/p/expat/bugs/528/
     - https://www.mozilla.org/en-US/security/advisories/mfsa2015-54/
     - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-1283
   disclosure: 2015-07-24
   fixed-in:
-    - 2.7.12: d8a0a016d8d4 (340 days)
+    # 2.7.12
+    - 2.7.12: d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e
+    # 3.4
+    - 3.4.x: 196d7db3956f4c0b03e87b570771b3460a61bab5
   description: >
     Multiple integer overflows have been discovered in Expat, an XML parsing C
     library, which may result in denial of service or the execution of
@@ -44,23 +48,27 @@
     - https://bugs.python.org/issue22928
   disclosure: 2014-11-24
   fixed-in:
-    - 2.7.10: 180 days
-    - 3.4.4: 392 days
+    # 2.7.10
+    - 2.7.10: 59bdf6392de446de8a19bfa37cee52981612830e
+    # 3.4.4
+    - 3.4.4: a112a8ae47813f75aa8ad27ee8c42a7c2e937d13
+    # 3.5
+    - 3.5.x: b669bfc2bed1f5487ac2762bff53b55f6155bb60
   description: >
     HTTP header injection in urrlib2/urllib/httplib/http.client
 
 - name: Hash DoS
   disclosure: 2011-12-28
   links:
+# FIXME: add title to links
+   - http://bugs.python.org/issue13703
+   - https://www.python.org/dev/peps/pep-0456/
    - http://www.ocert.org/advisories/ocert-2011-003.html
-# FIXME: format these links
-#   - "Issue #13703: Hash collision security issue" http://bugs.python.org/issue13703
-#   - "PEP 456: Secure and interchangeable hash algorithm" https://www.python.org/dev/peps/pep-0456/
   fixed-in:
-    - 2.6.8: 104 days
-    - 2.7.3: 103 days
-    - 3.1.5: 102 days
-    - 3.2.3: 104 days
+    # 2.6.8
+    - 2.6.8: 1e13eb084f72d5993cbb726e45b36bdb69c83a24
+    # 3.1.5
+    - 3.1.5: 2daf6ae2495c862adf8bc717bfe9964081ea0b10
   description: >
     Hash collision denial of service.
 
@@ -74,8 +82,9 @@
     - https://bugs.python.org/issue26171
   disclosure: 2016-01-21
   fixed-in:
-   - 2.7.12: 159 days
-   - 3.4.5: 158 days
-   - 3.5.2: 158 days
+   # 2.7.12
+   - 2.7.12: 64ea192b73e39e877d8b39ce6584fa580eb0e9b4
+   # 3.4.5
+   - 3.4.5: c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf
   description: >
     Heap overflow in zipimporter module.
