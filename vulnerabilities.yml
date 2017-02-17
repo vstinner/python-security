@@ -1,0 +1,81 @@
+- name: CVE-2016-0772
+  disclosure: 2016-06-11
+  description: >
+      Fix smtplib TLS stripping.
+      Reported by Team Oststrom
+  fixed-in:
+    # 2.7.12
+    - 2.7: b3ce713fb9be
+    # 3.4.5
+    - 3.4: d590114c2394
+    # - 3.5.2: xxx
+
+# FIXME: '#26657' is treated as a comment!
+- name: Issue #26657
+  links:
+    - http://bugs.python.org/issue26657
+  disclosure: 2016-03-28
+  fixed-in:
+    - 2.7.12: 92 days
+    - 3.5.2: 91 days
+  description: >
+    Fix directory traversal vulnerability with http.server and SimpleHTTPServer
+    on Windows.
+    Regression of Python 3.3.5.
+
+- name: CVE-2015-1283
+  links:
+    -  http://bugs.python.org/issue26556
+    - https://sourceforge.net/p/expat/bugs/528/
+    - https://www.mozilla.org/en-US/security/advisories/mfsa2015-54/
+    - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-1283
+  disclosure: 2015-07-24
+  fixed-in:
+    - 2.7.12: d8a0a016d8d4 (340 days)
+  description: >
+    Multiple integer overflows have been discovered in Expat, an XML parsing C
+    library, which may result in denial of service or the execution of
+    arbitrary code if a malformed XML file is processed.
+
+    Update Expat to 2.1.1.
+
+- name: CVE-2016-5699
+  links:
+    - https://bugs.python.org/issue22928
+  disclosure: 2014-11-24
+  fixed-in:
+    - 2.7.10: 180 days
+    - 3.4.4: 392 days
+  description: >
+    HTTP header injection in urrlib2/urllib/httplib/http.client
+
+- name: Hash DoS
+  disclosure: 2011-12-28
+  links:
+   - http://www.ocert.org/advisories/ocert-2011-003.html
+# FIXME: format these links
+#   - "Issue #13703: Hash collision security issue" http://bugs.python.org/issue13703
+#   - "PEP 456: Secure and interchangeable hash algorithm" https://www.python.org/dev/peps/pep-0456/
+  fixed-in:
+    - 2.6.8: 104 days
+    - 2.7.3: 103 days
+    - 3.1.5: 102 days
+    - 3.2.3: 104 days
+  description: >
+    Hash collision denial of service.
+
+    Python 2 requires -R option to enable the fix.
+
+    "Effective Denial of Service attacks against web application platforms"
+    talk at the CCC: 2011-12-28
+
+- name: CVE-2016-5636
+  links:
+    - https://bugs.python.org/issue26171
+  disclosure: 2016-01-21
+  fixed-in:
+   - 2.7.12: 159 days
+   - 3.4.5: 158 days
+   - 3.5.2: 158 days
+  description: >
+    Heap overflow in zipimporter module.
