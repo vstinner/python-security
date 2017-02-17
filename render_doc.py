@@ -13,6 +13,18 @@ def format_date(date):
     return date
 
 
+def run(cmd, cwd):
+    proc = subprocess.run(cmd,
+                          stdout=subprocess.PIPE,
+                          universal_newlines=True,
+                          cwd=cwd)
+    if proc.returncode:
+        print("Command failed with exit code %s"
+              % (' '.join(cmd), proc.returncode))
+        sys.exit(proc.returncode)
+    return proc
+
+
 class Commit:
     def __init__(self, commit, date):
         self.commit = commit
@@ -26,17 +38,17 @@ class Commit:
         return self.commit[:7]
 
 
-class GitRepository:
-    def __init__(self, date_filename):
-        self.date_filename = date_filename
+class CommitDates:
+    def __init__(self, python_path, cache_filename):
+        self.python_path = python_path
+        self.cache_filename = cache_filename
         # commit (sha1) => date
-        self.date_cache = {}
-        self.read_date_cache()
-        self.directory = None
+        self.cache = {}
+        self.read_cache()
 
-    def read_date_cache(self):
+    def read_cache(self):
         try:
-            fp = open(self.date_filename, encoding="utf-8")
+            fp = open(self.cache_filename, encoding="utf-8")
         except FileNotFoundError:
             return
 
@@ -49,27 +61,21 @@ class GitRepository:
                 commit = commit.strip()
                 date = date.strip()
                 date = parse_date(date)
-                self.date_cache[commit] = date
+                self.cache[commit] = date
 
-    def write_date_cache(self):
-        commits = list(self.date_cache.items())
+    def write_cache(self):
+        commits = list(self.cache.items())
         commits.sort()
 
-        with open(self.date_filename, "w", encoding="utf-8") as fp:
+        with open(self.cache_filename, "w", encoding="utf-8") as fp:
             for commit, date in commits:
                 print("%s: %s" % (commit, date), file=fp)
 
     def _get_commit_date(self, commit):
-        cmd = ["git", "show", commit]
-        proc = subprocess.run(cmd,
-                              stdout=subprocess.PIPE,
-                              universal_newlines=True,
-                              cwd=self.directory)
-        if proc.returncode:
-            print("Command failed with exit code %s"
-                  % (' '.join(cmd), proc.returncode))
-            sys.exit(proc.returncode)
+        print("Get %s date" % commit)
 
+        cmd = ["git", "show", commit]
+        proc = run(cmd, self.python_path)
         for line in proc.stdout.splitlines():
             if not line.startswith('Date:'):
                 continue
@@ -80,27 +86,110 @@ class GitRepository:
         sys.exit(1)
 
     def get_commit_date(self, commit):
-        if commit in self.date_cache:
-            return self.date_cache[commit]
+        if commit in self.cache:
+            return self.cache[commit]
 
         date = self._get_commit_date(commit)
-        self.date_cache[commit] = date
-        self.write_date_cache()
+        self.cache[commit] = date
+        self.write_cache()
         return date
 
 
+class CommitTags:
+    def __init__(self, python_path, cache_filename):
+        self.python_path = python_path
+        self.cache_filename = cache_filename
+        # commit (sha1) => tag list
+        # tag list: list of (version: tuple, tag: str)
+        self.cache = {}
+        self.read_cache()
+
+    def read_cache(self):
+        try:
+            fp = open(self.cache_filename, encoding="utf-8")
+        except FileNotFoundError:
+            return
+
+        with fp:
+            commit = None
+            tags = []
+            for line in fp:
+                line = line.rstrip()
+                if not line:
+                    continue
+                if line.startswith(' ') and commit:
+                    tag = line[1:]
+                    tags.append(tag)
+                else:
+                    if commit and tags:
+                        self.cache[commit] = tags
+                    commit = line
+                    tags = []
+
+            if commit and tags:
+                self.cache[commit] = tags
+
+    def write_cache(self):
+        with open(self.cache_filename, "w", encoding="utf-8") as fp:
+            items = sorted(self.cache.items())
+            for commit, tags in items:
+                print(commit, file=fp)
+                for tag in tags:
+                    print(" %s" % tag, file=fp)
+
+    def _get_tags(self, commit):
+        print("Get %s tags" % commit)
+
+        cmd = ["git", "tag", "--contains", commit]
+        proc = run(cmd, self.python_path)
+        tags = {}
+        for line in proc.stdout.splitlines():
+            line = line.rstrip()
+            if not line.startswith("v"):
+                continue
+            tag = line[1:]
+            if 'rc' in tag:
+                tag = tag.partition('rc')[0]
+            parts = tag.split(".")
+            key = (int(parts[0]), int(parts[1]))
+            if key in tags:
+                continue
+            tags[key] = tag
+
+        tags = sorted(tags.items())
+        tags = [tag for key, tag in tags]
+        self.cache[commit] = tags
+        self.write_cache()
+        return tags
+
+    def get_tags(self, commit):
+        if commit in self.cache:
+            return self.cache[commit]
+
+        tags = self._get_tags(commit)
+        self.cache[commit] = tags
+        return self.cache
+
+
 class Vulnerability:
-    def __init__(self, repo, data):
+    def __init__(self, commit_dates, commit_tags, data):
         self.name = data['name']
         self.disclosure = parse_date(data['disclosure'])
         self.description = data['description'].rstrip()
         self.links = data.get('links')
         self.fixed_in = []
-        for item in data['fixed-in']:
-            for version, commit in item.items():
-                date = repo.get_commit_date(commit)
-                commit = Commit(commit, date)
-                self.fixed_in.append((version, commit))
+
+        commits = data['fixed-in']
+        for commit in commits:
+            versions = commit_tags.get_tags(commit)
+
+        if 0:
+            date = commit_dates.get_commit_date(commit)
+            versions = commit_tags.get_tags(commit)
+            # FIXME: use versions
+            commit = Commit(commit, date)
+            self.fixed_in.append((version, commit))
+
         self.fixed_in.sort()
 
 
@@ -110,16 +199,15 @@ class Vulnerability:
 
 
 class RenderDoc:
-    def __init__(self):
-        self.repo = GitRepository('commit_dates.txt')
+    def __init__(self, python_path, date_filename, tags_filename):
+        self.commit_dates = CommitDates(python_path, date_filename)
+        self.commit_tags = CommitTags(python_path, tags_filename)
 
-    def main(self, filename, python_path):
-        self.repo.directory = python_path
-
+    def main(self, filename):
         vulnerabilities = []
         with open("vulnerabilities.yml", encoding="utf-8") as fp:
             for data in yaml.load(fp):
-                vuln = Vulnerability(self.repo, data)
+                vuln = Vulnerability(self.commit_dates, self.commit_tags, data)
                 vulnerabilities.append(vuln)
 
         vulnerabilities.sort(key=Vulnerability.sort_key)
@@ -185,5 +273,9 @@ class RenderDoc:
 
 if __name__ == "__main__":
     filename = 'test.rst'
+    date_filename = 'commit_dates.txt'
+    tags_filename = 'commit_tags.txt'
     python_path = '/home/haypo/prog/python/master'
-    RenderDoc().main(filename, python_path)
+
+    app = RenderDoc(python_path, date_filename, tags_filename)
+    app.main(filename)

@@ -4,10 +4,8 @@
       Fix smtplib TLS stripping.
       Reported by Team Oststrom
   fixed-in:
-    # 2.7.12
-    - 2.7.x: 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f
-    # 3.4.5
-    - 3.4.x: 46b32f307c48bcb999b22eebf65ffe8ed5cca544
+    - 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f # 2.7.12
+    - 46b32f307c48bcb999b22eebf65ffe8ed5cca544 # 3.4.5
 
 # FIXME: 'Issue #26657' ignores '#xxx', treated as a comment!
 - name: Issue 26657
@@ -15,10 +13,8 @@
     - http://bugs.python.org/issue26657
   disclosure: 2016-03-28
   fixed-in:
-    # 2.7.12
-    - 2.7.12: 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb
-    # 3.5.2
-    - 3.5.2: d274b3f1f1e2d8811733fb952c9f18d7da3a376a
+    - 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb # 2.7.12
+    - d274b3f1f1e2d8811733fb952c9f18d7da3a376a # 3.5.2
   description: >
     Fix directory traversal vulnerability with http.server and SimpleHTTPServer
     on Windows.
@@ -32,10 +28,8 @@
     - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-1283
   disclosure: 2015-07-24
   fixed-in:
-    # 2.7.12
-    - 2.7.12: d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e
-    # 3.4
-    - 3.4.x: 196d7db3956f4c0b03e87b570771b3460a61bab5
+    - d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e # 2.7.12
+    - 196d7db3956f4c0b03e87b570771b3460a61bab5 # 3.4.5
   description: >
     Multiple integer overflows have been discovered in Expat, an XML parsing C
     library, which may result in denial of service or the execution of
@@ -48,12 +42,9 @@
     - https://bugs.python.org/issue22928
   disclosure: 2014-11-24
   fixed-in:
-    # 2.7.10
-    - 2.7.10: 59bdf6392de446de8a19bfa37cee52981612830e
-    # 3.4.4
-    - 3.4.4: a112a8ae47813f75aa8ad27ee8c42a7c2e937d13
-    # 3.5
-    - 3.5.x: b669bfc2bed1f5487ac2762bff53b55f6155bb60
+    - 59bdf6392de446de8a19bfa37cee52981612830e # 2.7.10
+    - a112a8ae47813f75aa8ad27ee8c42a7c2e937d13 # 3.4.4
+    - b669bfc2bed1f5487ac2762bff53b55f6155bb60 # 3.5.0
   description: >
     HTTP header injection in urrlib2/urllib/httplib/http.client
 
@@ -65,10 +56,8 @@
    - https://www.python.org/dev/peps/pep-0456/
    - http://www.ocert.org/advisories/ocert-2011-003.html
   fixed-in:
-    # 2.6.8
-    - 2.6.8: 1e13eb084f72d5993cbb726e45b36bdb69c83a24
-    # 3.1.5
-    - 3.1.5: 2daf6ae2495c862adf8bc717bfe9964081ea0b10
+    - 1e13eb084f72d5993cbb726e45b36bdb69c83a24 # 2.6.8
+    - 2daf6ae2495c862adf8bc717bfe9964081ea0b10 # 2.7.10, 3.1.5, 3.2.3, 3.3.0
   description: >
     Hash collision denial of service.
 
@@ -82,9 +71,7 @@
     - https://bugs.python.org/issue26171
   disclosure: 2016-01-21
   fixed-in:
-   # 2.7.12
-   - 2.7.12: 64ea192b73e39e877d8b39ce6584fa580eb0e9b4
-   # 3.4.5
-   - 3.4.5: c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf
+   - 64ea192b73e39e877d8b39ce6584fa580eb0e9b4 # 2.7.12
+   - c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf # 3.4.5, 3.5.2, 3.6.0
   description: >
     Heap overflow in zipimporter module.
