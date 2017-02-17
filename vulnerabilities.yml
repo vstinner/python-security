@@ -10,8 +10,8 @@
     - 3.4: d590114c2394
     # - 3.5.2: xxx
 
-# FIXME: '#26657' is treated as a comment!
-- name: Issue #26657
+# FIXME: 'Issue #26657' ignores '#xxx', treated as a comment!
+- name: Issue 26657
   links:
     - http://bugs.python.org/issue26657
   disclosure: 2016-03-28

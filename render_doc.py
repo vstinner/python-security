@@ -38,10 +38,17 @@ def main(filename):
         # FIXME: support multilines
         description = description.replace("\n", " ")
 
+        name = "`%s`_" % name
+
         row = [name, format_date(disclosure), fixed_in, vulnerable, description]
         table.append(row)
 
     with open(filename, 'w', encoding='utf-8') as fp:
+        title = 'Security vulnerabilities'
+        print(title, file=fp)
+        print("=" * len(title), file=fp)
+        print(file=fp)
+
         print(tabulate.tabulate(table, headers, tablefmt="grid"), file=fp)
 
         for vuln in vulnerabilities:
