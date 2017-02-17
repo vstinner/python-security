@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import argparse
+import datetime
+import re
 import subprocess
 import sys
 import tabulate
@@ -7,10 +9,19 @@ import yaml
 
 
 def parse_date(text):
-    return text
+    if isinstance(text, datetime.date):
+        return text
+
+    try:
+        dt = datetime.datetime.strptime(text, "%Y-%m-%d")
+    except ValueError:
+        # Mon Apr 18 03:45:18 2016 +0000
+        dt = datetime.datetime.strptime(text, "%a %b %d %H:%M:%S %Y %z")
+    return dt.date()
+
 
 def format_date(date):
-    return date
+    return date.strftime("%Y-%m-%d")
 
 
 def run(cmd, cwd):
@@ -31,12 +42,11 @@ class Commit:
         self.commit = commit
         self.date = date
 
-    def url(self):
-        return 'https://github.com/python/cpython/commit/' + self.commit
+def commit_url(commit):
+    return 'https://github.com/python/cpython/commit/' + commit
 
-    @property
-    def short(self):
-        return self.commit[:7]
+def short_commit(commit):
+    return commit[:7]
 
 
 class CommitDates:
@@ -96,6 +106,11 @@ class CommitDates:
         return date
 
 
+def python_major_version(version):
+    parts = version.split(".")
+    return (int(parts[0]), int(parts[1]))
+
+
 class CommitTags:
     def __init__(self, python_path, cache_filename):
         self.python_path = python_path
@@ -149,8 +164,7 @@ class CommitTags:
             if not line.startswith("v"):
                 continue
             tag = line[1:]
-            parts = tag.split(".")
-            key = (int(parts[0]), int(parts[1]))
+            key = python_major_version(tag)
             if key in tags:
                 continue
             tags[key] = tag
@@ -171,16 +185,15 @@ class CommitTags:
 
 
 class Fix:
-    def __init__(self, commit, commit_date):
+    def __init__(self, commit, commit_date, python_version, release_date):
         self.commit = commit
         self.commit_date = commit_date
-        self.python_versions = []
+        self.python_version = python_version
+        self.release_date = release_date
 
-
-class PythonVersion:
-    def __init__(self, version, date):
-        self.version = version
-        self.date = date
+    @staticmethod
+    def sort_key(fix):
+        return tuple(map(int, fix.python_version.split(".")))
 
 
 class Vulnerability:
@@ -189,28 +202,27 @@ class Vulnerability:
         self.disclosure = parse_date(data['disclosure'])
         self.description = data['description'].rstrip()
         self.links = data.get('links')
-        self.fixed_in = []
 
         fixes = []
         commits = data['fixed-in']
         for commit in commits:
             commit_date = app.commit_dates.get_commit_date(commit)
             versions = app.commit_tags.get_tags(commit)
-
-            fix = Fix(commit, commit_date)
             for version in versions:
-                version_date = app.python_releases.get_date(version)
-                pyver = PythonVersion(version, version_date)
-                fix.python_versions.append(pyver)
-            fixes.append(fix)
+                release_date = app.python_releases.get_date(version)
+                fix = Fix(commit, commit_date, version, release_date)
+                fixes.append(fix)
 
-        if 0:
-            date = app.commit_dates.get_commit_date(commit)
-            # FIXME: use versions
-            commit = Commit(commit, date)
-            self.fixed_in.append((version, commit))
+        fixes.sort(key=Fix.sort_key)
 
-        self.fixed_in.sort()
+        self.fixes = []
+        seen = set()
+        for fix in fixes:
+            key = python_major_version(fix.python_version)
+            if key in seen:
+                continue
+            self.fixes.append(fix)
+            seen.add(key)
 
 
     @staticmethod
@@ -227,8 +239,9 @@ class PythonReleases:
                 if not line:
                     continue
                 parts = line.split(":", 1)
-                version = parts[0]
-                date = parts[1]
+                version = parts[0].strip()
+                date = parts[1].strip()
+                date = parse_date(date)
                 self.dates[version] = date
 
     def get_date(self, version):
@@ -256,10 +269,11 @@ class RenderDoc:
 
 
         for vuln in vulnerabilities:
-            fixed_in = ['{}: {}'.format(version, commit.short)
-                        for version, commit in vuln.fixed_in]
+            fixes = ['{}: {}'.format(fix.python_version,
+                                     format_date(fix.release_date))
+                     for fix in vuln.fixes]
             # FIXME: one per line, support multilines
-            fixed_in = ', '.join(fixed_in)
+            fixes = ', '.join(fixes)
 
             name = "`%s`_" % vuln.name
             disclosure = format_date(vuln.disclosure)
@@ -267,7 +281,7 @@ class RenderDoc:
             # FIXME: support multilines
             description = vuln.description.replace("\n", " ")
 
-            row = [name, disclosure, fixed_in, vulnerable, description]
+            row = [name, disclosure, fixes, vulnerable, description]
             table.append(row)
 
         with open(filename, 'w', encoding='utf-8') as fp:
@@ -287,16 +301,18 @@ class RenderDoc:
                 print(name, file=fp)
                 print("=" * len(name), file=fp)
                 print(file=fp)
+                print("Discolure date: {}".format(format_date(vuln.disclosure)), file=fp)
+                print(file=fp)
                 print(vuln.description, file=fp)
 
-                if vuln.fixed_in:
+                if vuln.fixes:
                     print(file=fp)
                     print("Fixed In:", file=fp)
-                    for version, commit in vuln.fixed_in:
-                        short = commit.short
-                        date = format_date(commit.date)
-                        url = commit.url()
-                        print("* {}: {}, `commit {} <{}>`_".format(version, date, short, url),
+                    for fix in vuln.fixes:
+                        short = short_commit(fix.commit)
+                        date = format_date(fix.release_date)
+                        url = commit_url(fix.commit)
+                        print("* {}: {}, `commit {} <{}>`_".format(fix.python_version, date, short, url),
                               file=fp)
 
                 links = vuln.links
