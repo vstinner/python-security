@@ -25,6 +25,7 @@ def run(cmd, cwd):
     return proc
 
 
+# FIXME: remove this class?
 class Commit:
     def __init__(self, commit, date):
         self.commit = commit
@@ -148,8 +149,6 @@ class CommitTags:
             if not line.startswith("v"):
                 continue
             tag = line[1:]
-            if 'rc' in tag:
-                tag = tag.partition('rc')[0]
             parts = tag.split(".")
             key = (int(parts[0]), int(parts[1]))
             if key in tags:
@@ -168,24 +167,45 @@ class CommitTags:
 
         tags = self._get_tags(commit)
         self.cache[commit] = tags
-        return self.cache
+        return tags
+
+
+class Fix:
+    def __init__(self, commit, commit_date):
+        self.commit = commit
+        self.commit_date = commit_date
+        self.python_versions = []
+
+
+class PythonVersion:
+    def __init__(self, version, date):
+        self.version = version
+        self.date = date
 
 
 class Vulnerability:
-    def __init__(self, commit_dates, commit_tags, data):
+    def __init__(self, app, data):
         self.name = data['name']
         self.disclosure = parse_date(data['disclosure'])
         self.description = data['description'].rstrip()
         self.links = data.get('links')
         self.fixed_in = []
 
+        fixes = []
         commits = data['fixed-in']
         for commit in commits:
-            versions = commit_tags.get_tags(commit)
+            commit_date = app.commit_dates.get_commit_date(commit)
+            versions = app.commit_tags.get_tags(commit)
+
+            fix = Fix(commit, commit_date)
+            for version in versions:
+                version_date = app.python_releases.get_date(version)
+                pyver = PythonVersion(version, version_date)
+                fix.python_versions.append(pyver)
+            fixes.append(fix)
 
         if 0:
-            date = commit_dates.get_commit_date(commit)
-            versions = commit_tags.get_tags(commit)
+            date = app.commit_dates.get_commit_date(commit)
             # FIXME: use versions
             commit = Commit(commit, date)
             self.fixed_in.append((version, commit))
@@ -198,16 +218,34 @@ class Vulnerability:
         return vuln.disclosure
 
 
+class PythonReleases:
+    def __init__(self):
+        self.dates = {}
+        with open("python_releases.txt", encoding="utf-8") as fp:
+            for line in fp:
+                line = line.strip()
+                if not line:
+                    continue
+                parts = line.split(":", 1)
+                version = parts[0]
+                date = parts[1]
+                self.dates[version] = date
+
+    def get_date(self, version):
+        return self.dates[version]
+
+
 class RenderDoc:
     def __init__(self, python_path, date_filename, tags_filename):
         self.commit_dates = CommitDates(python_path, date_filename)
         self.commit_tags = CommitTags(python_path, tags_filename)
+        self.python_releases = PythonReleases()
 
     def main(self, filename):
         vulnerabilities = []
         with open("vulnerabilities.yml", encoding="utf-8") as fp:
             for data in yaml.load(fp):
-                vuln = Vulnerability(self.commit_dates, self.commit_tags, data)
+                vuln = Vulnerability(self, data)
                 vulnerabilities.append(vuln)
 
         vulnerabilities.sort(key=Vulnerability.sort_key)
