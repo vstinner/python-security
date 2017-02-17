@@ -106,9 +106,12 @@ class CommitDates:
         return date
 
 
+def version_info(version):
+    return tuple(map(int, version.split('.')))
+
+
 def python_major_version(version):
-    parts = version.split(".")
-    return (int(parts[0]), int(parts[1]))
+    return version_info(version)[:2]
 
 
 class CommitTags:
@@ -218,11 +221,14 @@ class Vulnerability:
         self.fixes = []
         seen = set()
         for fix in fixes:
+            pyver_info = version_info(fix.python_version)
             key = python_major_version(fix.python_version)
             if key in seen:
                 continue
-            self.fixes.append(fix)
             seen.add(key)
+            if pyver_info >= (3, 0) and pyver_info[2] == 0:
+                break
+            self.fixes.append(fix)
 
 
     @staticmethod
@@ -261,30 +267,33 @@ class RenderDoc:
                 vuln = Vulnerability(self, data)
                 vulnerabilities.append(vuln)
 
-        vulnerabilities.sort(key=Vulnerability.sort_key)
+        vulnerabilities.sort(key=Vulnerability.sort_key, reverse=True)
 
-        headers = ['Bug', 'Disclosure', 'Fixed In', 'Vulnerable', 'Comment']
+        headers = ['Vulnerability', 'Disclosure', 'Fixed In', 'Description']
         table = []
         sections = []
 
 
         for vuln in vulnerabilities:
-            fixes = ['{}: {}'.format(fix.python_version,
-                                     format_date(fix.release_date))
-                     for fix in vuln.fixes]
+            fixes = [fix.python_version for fix in vuln.fixes]
             # FIXME: one per line, support multilines
             fixes = ', '.join(fixes)
 
             name = "`%s`_" % vuln.name
             disclosure = format_date(vuln.disclosure)
-            vulnerable = 'XXX'
             # FIXME: support multilines
             description = vuln.description.replace("\n", " ")
 
-            row = [name, disclosure, fixes, vulnerable, description]
+            row = [name, disclosure, fixes, description]
             table.append(row)
 
         with open(filename, 'w', encoding='utf-8') as fp:
+            title = 'Security vulnerabilities'
+            print("+" * len(title), file=fp)
+            print(title, file=fp)
+            print("+" * len(title), file=fp)
+            print(file=fp)
+
             title = 'Security vulnerabilities'
             print(title, file=fp)
             print("=" * len(title), file=fp)
@@ -301,24 +310,27 @@ class RenderDoc:
                 print(name, file=fp)
                 print("=" * len(name), file=fp)
                 print(file=fp)
-                print("Discolure date: {}".format(format_date(vuln.disclosure)), file=fp)
+                print("Disclosure date: {}.".format(format_date(vuln.disclosure)), file=fp)
                 print(file=fp)
                 print(vuln.description, file=fp)
 
                 if vuln.fixes:
                     print(file=fp)
                     print("Fixed In:", file=fp)
+                    print(file=fp)
                     for fix in vuln.fixes:
                         short = short_commit(fix.commit)
                         date = format_date(fix.release_date)
                         url = commit_url(fix.commit)
-                        print("* {}: {}, `commit {} <{}>`_".format(fix.python_version, date, short, url),
+                        days = (fix.release_date - vuln.disclosure).days
+                        print("* {} ({} days): {}, `commit {} <{}>`_".format(fix.python_version, days, date, short, url),
                               file=fp)
 
                 links = vuln.links
                 if links:
                     print(file=fp)
                     print("Links:", file=fp)
+                    print(file=fp)
                     for link in links:
                         print("* %s" % link, file=fp)
 
@@ -326,7 +338,7 @@ class RenderDoc:
 
 
 if __name__ == "__main__":
-    filename = 'test.rst'
+    filename = 'vulnerabilities.rst'
     date_filename = 'commit_dates.txt'
     tags_filename = 'commit_tags.txt'
     python_path = '/home/haypo/prog/python/master'
