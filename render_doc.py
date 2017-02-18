@@ -161,19 +161,31 @@ class CommitTags:
 
         cmd = ["git", "tag", "--contains", commit]
         proc = run(cmd, self.python_path)
-        tags = {}
+
+        tags = []
         for line in proc.stdout.splitlines():
             line = line.rstrip()
             if not line.startswith("v"):
                 continue
             tag = line[1:]
-            key = python_major_version(tag)
-            if key in tags:
-                continue
-            tags[key] = tag
+            # strip alpha part
+            for suffix in ('a', 'b', 'rc'):
+                if suffix in tag:
+                    tag = tag.partition(suffix)[0]
+            tags.append(version_info(tag))
 
-        tags = sorted(tags.items())
-        tags = [tag for key, tag in tags]
+        tags.sort()
+        tags2 = []
+        seen = set()
+        for tag_info in tags:
+            key = tag_info[:2]
+            if key in seen:
+                continue
+            seen.add(key)
+            tag = '.'.join(map(str, tag_info))
+            tags2.append(tag)
+        tags = tags2
+
         self.cache[commit] = tags
         self.write_cache()
         return tags
@@ -300,6 +312,9 @@ class RenderDoc:
             print(file=fp)
 
             print(tabulate.tabulate(table, headers, tablefmt="grid"), file=fp)
+            print(file=fp)
+            print("* Vulnerabilities sorted by the Disclosure column", file=fp)
+            print("* Disclosure: Disclosure date, first time that the vulnerability was public", file=fp)
 
             for vuln in vulnerabilities:
                 print(file=fp)
