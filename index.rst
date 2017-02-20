@@ -14,6 +14,7 @@ Pages
    vulnerabilities
    python_releases
 
+
 Python branches
 ===============
 
@@ -23,8 +24,9 @@ Python branches
 * See `Status of Python branches
   <https://docs.python.org/devguide/#status-of-python-branches>`_
 
-Bases
-=====
+
+Dangerous functions
+===================
 
 * Python 2 input()
 * Python 2 execfile()
@@ -67,6 +69,58 @@ Ok, understood, but I want a sandbox in Python. Well...
 * For Linux, search for SECCOMP
 
 
+Validate TLS certificates
+=========================
+
+* Python 3.4
+* `PEP 466 <https://www.python.org/dev/peps/pep-0466/>`_: Python 2.7.9
+* Version matrix?
+
+  - HTTP
+  - SMTP
+  - FTP
+  - IMAP
+  - POP3
+  - XML-RPC
+  - NNTP
+
+
+RNG
+===
+
+* CSPRNG:
+
+  * ``os.urandom()``
+  * ``random.SystemRandom``
+  * `secrets module <https://docs.python.org/dev/library/secrets.html>`_
+    (Python 3.6)
+
+* ``os.urandom()`` uses:
+
+  * Python 3.6: ``CryptGenRandom()``, ``getentropy()``,
+    ``getrandom(0)`` (blocking) or ``/dev/urandom``
+  * Python 3.5: ``CryptGenRandom()``, ``getentropy()``,
+    ``getrandom(GRND_NONBLOCK)`` (non-blocking) or ``/dev/urandom``
+  * Python 2.7: ``CryptGenRandom()``, ``getentropy()`` or ``/dev/urandom``
+  * `PEP 524: Make os.urandom() blocking on Linux
+    <https://www.python.org/dev/peps/pep-0524/>`_: Python 3.6
+
+
+* ``ssl.RAND_bytes()`` fork issue:
+
+  - Python issue: `Re-seed OpenSSL's PRNG after fork
+    <http://bugs.python.org/issue18747>`_
+  - `OpenSSL Random fork-safety
+    <https://wiki.openssl.org/index.php/Random_fork-safety>`_
+
+
+CPython Security Experts
+========================
+
+* Alex Gaynor
+* Christian Heimes
+* Donald Stufft
+
 Misc
 ====
 
@@ -85,6 +139,13 @@ Misc
   - `analysis of 2012 by Coverity Software resulted in CPython receiving their
     highest quality rating
     <http://www.coverity.com/press-releases/coverity-finds-python-sets-new-level-of-quality-for-open-source-software/>`_.
+
+* Windows: ASLR and DEP protections enabled since Python 3.4 (and Python 2.7.11
+  if built using ``PCbuild/`` directory)
+* sys.path:
+
+  * CVE-2008-5983: http://bugs.python.org/issue5753 added ``PySys_SetArgvEx()``
+  * ``python -E``, ``python -I``
 
 Links
 =====
