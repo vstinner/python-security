@@ -135,6 +135,44 @@
 
     Reported by Christian Heimes.
 
+- name: "Issue #16040"
+  summary: >
+    nntplib readline
+  links:
+    - http://bugs.python.org/issue16040
+  disclosure: "2012-09-25 (issue #16040 reported)"
+  fixed-in:
+   - 42faa55124abcbb132c57745dec9e0489ac74406 # 2.7
+   - b3ac84322fe6dd542aa755779cdbc155edca8064 # 3.2
+  description: >
+    Unlimited read from connection in nntplib.
+
+- name: "Issue #16041"
+  summary: >
+    poplib readline
+  links:
+    - http://bugs.python.org/issue16041
+  disclosure: "2012-09-25 (iIssue #16041 reported)"
+  fixed-in:
+   - faad6bbea6c86e30c770eb0a3648e2cd52b2e55e # 2.7
+   - eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e # 3.2
+  description: >
+    poplib: unlimited readline() from connection.
+
+- name: "Issue #16043"
+  summary: >
+    xmlrpc unlimited read
+  links:
+    - http://bugs.python.org/issue16043
+  disclosure: "2012-09-25 (issue #16043 reported)"
+  fixed-in:
+   - 9e8f523c5b1c354097753084054eadf14d33238d # 2.7
+   - 4e9cefaf86035f8014e09049328d197b6506532f # 3.2
+  description: >
+    Add a default limit for the amount of data xmlrpclib.gzip_decode will
+    return.
+
+
 # Template:
 # - name: ""
 #   summary: >

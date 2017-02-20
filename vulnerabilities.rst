@@ -18,9 +18,15 @@ Security vulnerabilities
 +----------------------------+----------------------------------+--------------+----------------------------+
 | `CVE-2016-5699`_           | HTTP header                      | 2014-11-24   | 2.7.10, 3.4.4              |
 +----------------------------+----------------------------------+--------------+----------------------------+
+| `CVE-2013-1752 (ftplib)`_  | ftplib readline                  | 2012-09-25   | 2.7.6, 3.2.6, 3.3.3        |
++----------------------------+----------------------------------+--------------+----------------------------+
 | `CVE-2013-1752 (smtplib)`_ | smtplib readline                 | 2012-09-25   | 2.7.9, 3.2.6, 3.4.3        |
 +----------------------------+----------------------------------+--------------+----------------------------+
-| `CVE-2013-1752 (ftplib)`_  | ftplib readline                  | 2012-09-25   | 2.7.6, 3.2.6, 3.3.3        |
+| `Issue #16040`_            | nntplib readline                 | 2012-09-25   | 2.6.9, 2.7.6, 3.2.6, 3.4.3 |
++----------------------------+----------------------------------+--------------+----------------------------+
+| `Issue #16041`_            | poplib readline                  | 2012-09-25   | 2.7.9, 3.2.6, 3.4.3        |
++----------------------------+----------------------------------+--------------+----------------------------+
+| `Issue #16043`_            | xmlrpc unlimited read            | 2012-09-25   | 2.7.9, 3.4.3               |
 +----------------------------+----------------------------------+--------------+----------------------------+
 | `Hash DoS`_                | Hash collision denial of service | 2011-12-28   | 2.6.8, 2.7.3, 3.1.5, 3.2.3 |
 +----------------------------+----------------------------------+--------------+----------------------------+
@@ -124,6 +130,25 @@ Links:
 * https://bugs.python.org/issue22928
 
 
+CVE-2013-1752 (ftplib)
+======================
+
+Disclosure date: 2012-09-25 (issue #16038 reported).
+
+ftplib: unlimited readline() from connection.
+Reported by Christian Heimes.
+
+Fixed In:
+
+* 2.7.6 (411 days): 2013-11-10, `commit 2585e1e <https://github.com/python/cpython/commit/2585e1e48abb3013abeb8a1fe9dccb5f79ac4091>`_ (2013-10-20, 390 days)
+* 3.2.6 (746 days): 2014-10-11, `commit c9cb18d <https://github.com/python/cpython/commit/c9cb18d3f7e5bf03220c213183ff0caa75905bdd>`_ (2014-09-30, 735 days)
+* 3.3.3 (418 days): 2013-11-17, `commit c30b178 <https://github.com/python/cpython/commit/c30b178cbc92e62c22527cd7e1af2f02723ba679>`_ (2013-10-20, 390 days)
+
+Links:
+
+* http://bugs.python.org/issue16038
+
+
 CVE-2013-1752 (smtplib)
 =======================
 
@@ -142,23 +167,58 @@ Links:
 * http://bugs.python.org/issue16042
 
 
-CVE-2013-1752 (ftplib)
-======================
+Issue #16040
+============
 
-Disclosure date: 2012-09-25 (issue #16038 reported).
+Disclosure date: 2012-09-25 (issue #16040 reported).
 
-ftplib: unlimited readline() from connection.
-Reported by Christian Heimes.
+Unlimited read from connection in nntplib.
 
 Fixed In:
 
-* 2.7.6 (411 days): 2013-11-10, `commit 2585e1e <https://github.com/python/cpython/commit/2585e1e48abb3013abeb8a1fe9dccb5f79ac4091>`_ (2013-10-20, 390 days)
-* 3.2.6 (746 days): 2014-10-11, `commit c9cb18d <https://github.com/python/cpython/commit/c9cb18d3f7e5bf03220c213183ff0caa75905bdd>`_ (2014-09-30, 735 days)
-* 3.3.3 (418 days): 2013-11-17, `commit c30b178 <https://github.com/python/cpython/commit/c30b178cbc92e62c22527cd7e1af2f02723ba679>`_ (2013-10-20, 390 days)
+* 2.6.9 (399 days): 2013-10-29, `commit 42faa55 <https://github.com/python/cpython/commit/42faa55124abcbb132c57745dec9e0489ac74406>`_ (2013-09-30, 370 days)
+* 2.7.6 (411 days): 2013-11-10, `commit 42faa55 <https://github.com/python/cpython/commit/42faa55124abcbb132c57745dec9e0489ac74406>`_ (2013-09-30, 370 days)
+* 3.2.6 (746 days): 2014-10-11, `commit b3ac843 <https://github.com/python/cpython/commit/b3ac84322fe6dd542aa755779cdbc155edca8064>`_ (2014-10-12, 747 days)
+* 3.4.3 (881 days): 2015-02-23, `commit b3ac843 <https://github.com/python/cpython/commit/b3ac84322fe6dd542aa755779cdbc155edca8064>`_ (2014-10-12, 747 days)
 
 Links:
 
-* http://bugs.python.org/issue16038
+* http://bugs.python.org/issue16040
+
+
+Issue #16041
+============
+
+Disclosure date: 2012-09-25 (iIssue #16041 reported).
+
+poplib: unlimited readline() from connection.
+
+Fixed In:
+
+* 2.7.9 (806 days): 2014-12-10, `commit faad6bb <https://github.com/python/cpython/commit/faad6bbea6c86e30c770eb0a3648e2cd52b2e55e>`_ (2014-12-05, 801 days)
+* 3.2.6 (746 days): 2014-10-11, `commit eaca861 <https://github.com/python/cpython/commit/eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e>`_ (2014-09-30, 735 days)
+* 3.4.3 (881 days): 2015-02-23, `commit eaca861 <https://github.com/python/cpython/commit/eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e>`_ (2014-09-30, 735 days)
+
+Links:
+
+* http://bugs.python.org/issue16041
+
+
+Issue #16043
+============
+
+Disclosure date: 2012-09-25 (issue #16043 reported).
+
+Add a default limit for the amount of data xmlrpclib.gzip_decode will return.
+
+Fixed In:
+
+* 2.7.9 (806 days): 2014-12-10, `commit 9e8f523 <https://github.com/python/cpython/commit/9e8f523c5b1c354097753084054eadf14d33238d>`_ (2014-12-05, 801 days)
+* 3.4.3 (881 days): 2015-02-23, `commit 4e9cefa <https://github.com/python/cpython/commit/4e9cefaf86035f8014e09049328d197b6506532f>`_ (2014-12-05, 801 days)
+
+Links:
+
+* http://bugs.python.org/issue16043
 
 
 Hash DoS
