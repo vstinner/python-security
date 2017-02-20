@@ -17,6 +17,7 @@ def parse_date(text):
     except ValueError:
         # Mon Apr 18 03:45:18 2016 +0000
         dt = datetime.datetime.strptime(text, "%a %b %d %H:%M:%S %Y %z")
+        dt = (dt - dt.utcoffset()).replace(tzinfo=datetime.timezone.utc)
     return dt.date()
 
 
