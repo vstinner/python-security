@@ -92,12 +92,13 @@ class CommitDates:
 
     def get_commit_date(self, commit):
         if commit in self.cache:
-            return self.cache[commit]
+            date = self.cache[commit]
+            return parse_date(date)
 
         date = self._get_commit_date(commit)
         self.cache[commit] = date
         self.write_cache()
-        return date
+        return parse_date(date)
 
 
 def version_info(version):
@@ -246,7 +247,8 @@ class Vulnerability:
             if key in seen:
                 continue
             seen.add(key)
-            if pyver_info >= (3, 0) and pyver_info[2] == 0:
+            if (pyver_info >= (3, 0)
+               and (len(pyver_info) < 3 or pyver_info[2] == 0)):
                 break
             self.fixes.append(fix)
 
@@ -271,7 +273,10 @@ class PythonReleases:
                 self.dates[version] = date
 
     def get_date(self, version):
-        return self.dates[version]
+        try:
+            return self.dates[version]
+        except KeyError:
+            raise KeyError("missing release date of Python %s" % version)
 
 
 class RenderDoc:
@@ -349,7 +354,9 @@ class RenderDoc:
                         date = format_date(fix.release_date)
                         url = commit_url(fix.commit)
                         days = (fix.release_date - vuln.disclosure_date).days
-                        print("* {} ({} days): {}, `commit {} <{}>`_".format(fix.python_version, days, date, short, url),
+                        commit_date = format_date(fix.commit_date)
+                        commit_days = (fix.commit_date - vuln.disclosure_date).days
+                        print("* {} ({} days): {}, `commit {} <{}>`_ ({}, {} days)".format(fix.python_version, days, date, short, url, commit_date, commit_days),
                               file=fp)
 
                 links = vuln.links

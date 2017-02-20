@@ -1,3 +1,5 @@
+# Vulnerabilities: http://www.itsecdb.com/oval/definitions/product-18230/0/Python-Python.html?class=5
+
 - name: CVE-2016-0772
   disclosure: 2016-06-11 (commit date)
   links:
@@ -64,7 +66,7 @@
   description: >
     Hash collision denial of service.
 
-    Python 2 requires -R option to enable the fix.
+    Python 2 requires ``-R`` option to enable the fix.
 
     "Effective Denial of Service attacks against web application platforms"
     talk at the CCC: 2011-12-28
@@ -78,3 +80,15 @@
    - c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf # 3.4.5, 3.5.2, 3.6.0
   description: >
     Heap overflow in zipimporter module.
+
+- name: CVE-2013-1752
+  links:
+    - http://bugs.python.org/issue16042
+  disclosure: 2012-09-25 (issue reported)
+  fixed-in:
+    - dabfc56b57f5086eb5522d8e6cd7670c62d2482d # 2.7
+    - 210ee47e3340d8e689d8cce584e7c918d368f16b # 3.2
+  description: >
+    The smtplib module doesn't limit the amount of read data in its call to
+    readline(). An erroneous or malicious SMTP server can trick the smtplib
+    module to consume large amounts of memory.
