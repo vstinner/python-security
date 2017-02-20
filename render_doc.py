@@ -214,7 +214,21 @@ class Fix:
 class Vulnerability:
     def __init__(self, app, data):
         self.name = data['name']
-        self.disclosure = parse_date(data['disclosure'])
+        disclosure = data['disclosure']
+        if isinstance(disclosure, str):
+            disclosure_date, _, comment = disclosure.partition('(')
+            disclosure_date = disclosure_date.strip()
+            if comment:
+                if not comment.endswith(')'):
+                    raise ValueError("disclosure comment must be written in (...)")
+                comment = comment[:-1]
+            else:
+                comment = None
+        else:
+            disclosure_date = disclosure
+            comment = None
+        self.disclosure_date = parse_date(disclosure_date)
+        self.disclosure_comment = comment
         self.description = data['description'].rstrip()
         self.links = data.get('links')
 
@@ -245,7 +259,7 @@ class Vulnerability:
 
     @staticmethod
     def sort_key(vuln):
-        return vuln.disclosure
+        return vuln.disclosure_date
 
 
 class PythonReleases:
@@ -292,7 +306,7 @@ class RenderDoc:
             fixes = ', '.join(fixes)
 
             name = "`%s`_" % vuln.name
-            disclosure = format_date(vuln.disclosure)
+            disclosure = format_date(vuln.disclosure_date)
             # FIXME: support multilines
             description = vuln.description.replace("\n", " ")
 
@@ -325,7 +339,10 @@ class RenderDoc:
                 print(name, file=fp)
                 print("=" * len(name), file=fp)
                 print(file=fp)
-                print("Disclosure date: {}.".format(format_date(vuln.disclosure)), file=fp)
+                disclosure = format_date(vuln.disclosure_date)
+                if vuln.disclosure_comment:
+                    disclosure = '%s (%s)' % (disclosure, vuln.disclosure_comment)
+                print("Disclosure date: {}.".format(disclosure), file=fp)
                 print(file=fp)
                 print(vuln.description, file=fp)
 
@@ -337,7 +354,7 @@ class RenderDoc:
                         short = short_commit(fix.commit)
                         date = format_date(fix.release_date)
                         url = commit_url(fix.commit)
-                        days = (fix.release_date - vuln.disclosure).days
+                        days = (fix.release_date - vuln.disclosure_date).days
                         print("* {} ({} days): {}, `commit {} <{}>`_".format(fix.python_version, days, date, short, url),
                               file=fp)
 

@@ -8,9 +8,9 @@ Security vulnerabilities
 +------------------+--------------+----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Vulnerability    | Disclosure   | Fixed In                   | Description                                                                                                                                                                                                               |
 +==================+==============+============================+===========================================================================================================================================================================================================================+
-| `CVE-2016-0772`_ | 2016-06-11   | 2.7.12, 3.4.5, 3.5.2       | Fix smtplib TLS stripping. Reported by Team Oststrom                                                                                                                                                                      |
+| `CVE-2016-0772`_ | 2016-06-11   | 2.7.12, 3.4.5, 3.5.2       | Fix smtplib TLS stripping. Reported by Tin (Team Oststrom).                                                                                                                                                               |
 +------------------+--------------+----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `Issue 26657`_   | 2016-03-28   | 2.7.12, 3.5.2              | Fix directory traversal vulnerability with http.server and SimpleHTTPServer on Windows. Regression of Python 3.3.5.                                                                                                       |
+| `Issue #26657`_  | 2016-03-28   | 2.7.12, 3.5.2              | Fix directory traversal vulnerability with http.server and SimpleHTTPServer on Windows. Regression of Python 3.3.5.                                                                                                       |
 +------------------+--------------+----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | `CVE-2016-5636`_ | 2016-01-21   | 2.7.12, 3.4.5, 3.5.2       | Heap overflow in zipimporter module.                                                                                                                                                                                      |
 +------------------+--------------+----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -28,9 +28,9 @@ Security vulnerabilities
 CVE-2016-0772
 =============
 
-Disclosure date: 2016-06-11.
+Disclosure date: 2016-06-11 (commit date).
 
-Fix smtplib TLS stripping. Reported by Team Oststrom
+Fix smtplib TLS stripping. Reported by Tin (Team Oststrom).
 
 Fixed In:
 
@@ -38,11 +38,16 @@ Fixed In:
 * 3.4.5 (16 days): 2016-06-27, `commit 46b32f3 <https://github.com/python/cpython/commit/46b32f307c48bcb999b22eebf65ffe8ed5cca544>`_
 * 3.5.2 (16 days): 2016-06-27, `commit 46b32f3 <https://github.com/python/cpython/commit/46b32f307c48bcb999b22eebf65ffe8ed5cca544>`_
 
+Links:
 
-Issue 26657
-===========
+* http://seclists.org/oss-sec/2016/q2/541
+* https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2016-0772
 
-Disclosure date: 2016-03-28.
+
+Issue #26657
+============
+
+Disclosure date: 2016-03-28 (issue reported).
 
 Fix directory traversal vulnerability with http.server and SimpleHTTPServer on Windows. Regression of Python 3.3.5.
 
@@ -59,7 +64,7 @@ Links:
 CVE-2016-5636
 =============
 
-Disclosure date: 2016-01-21.
+Disclosure date: 2016-01-21 (issue reported).
 
 Heap overflow in zipimporter module.
 
@@ -77,7 +82,7 @@ Links:
 CVE-2015-1283
 =============
 
-Disclosure date: 2015-07-24.
+Disclosure date: 2015-07-24 (expat issue reported).
 
 Multiple integer overflows have been discovered in Expat, an XML parsing C library, which may result in denial of service or the execution of arbitrary code if a malformed XML file is processed.
 Update Expat to 2.1.1.
@@ -99,7 +104,7 @@ Links:
 CVE-2016-5699
 =============
 
-Disclosure date: 2014-11-24.
+Disclosure date: 2014-11-24 (issue reported).
 
 HTTP header injection in urrlib2/urllib/httplib/http.client
 
@@ -116,7 +121,7 @@ Links:
 Hash DoS
 ========
 
-Disclosure date: 2011-12-28.
+Disclosure date: 2011-12-28 (CCC talk).
 
 Hash collision denial of service.
 Python 2 requires -R option to enable the fix.
@@ -132,5 +137,6 @@ Fixed In:
 Links:
 
 * http://bugs.python.org/issue13703
+* https://events.ccc.de/congress/2011/Fahrplan/events/4680.en.html
 * https://www.python.org/dev/peps/pep-0456/
 * http://www.ocert.org/advisories/ocert-2011-003.html

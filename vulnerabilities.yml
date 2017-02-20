@@ -1,17 +1,19 @@
 - name: CVE-2016-0772
-  disclosure: 2016-06-11
+  disclosure: 2016-06-11 (commit date)
+  links:
+    - http://seclists.org/oss-sec/2016/q2/541
+    - https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2016-0772
   description: >
       Fix smtplib TLS stripping.
-      Reported by Team Oststrom
+      Reported by Tin (Team Oststrom).
   fixed-in:
     - 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f # 2.7.12
     - 46b32f307c48bcb999b22eebf65ffe8ed5cca544 # 3.4.5
 
-# FIXME: 'Issue #26657' ignores '#xxx', treated as a comment!
-- name: Issue 26657
+- name: "Issue #26657"
   links:
     - http://bugs.python.org/issue26657
-  disclosure: 2016-03-28
+  disclosure: 2016-03-28 (issue reported)
   fixed-in:
     - 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb # 2.7.12
     - d274b3f1f1e2d8811733fb952c9f18d7da3a376a # 3.5.2
@@ -26,7 +28,7 @@
     - https://sourceforge.net/p/expat/bugs/528/
     - https://www.mozilla.org/en-US/security/advisories/mfsa2015-54/
     - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-1283
-  disclosure: 2015-07-24
+  disclosure: 2015-07-24 (expat issue reported)
   fixed-in:
     - d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e # 2.7.12
     - 196d7db3956f4c0b03e87b570771b3460a61bab5 # 3.4.5
@@ -40,7 +42,7 @@
 - name: CVE-2016-5699
   links:
     - https://bugs.python.org/issue22928
-  disclosure: 2014-11-24
+  disclosure: 2014-11-24 (issue reported)
   fixed-in:
     - 59bdf6392de446de8a19bfa37cee52981612830e # 2.7.10
     - a112a8ae47813f75aa8ad27ee8c42a7c2e937d13 # 3.4.4
@@ -49,10 +51,11 @@
     HTTP header injection in urrlib2/urllib/httplib/http.client
 
 - name: Hash DoS
-  disclosure: 2011-12-28
+  disclosure: 2011-12-28 (CCC talk)
   links:
 # FIXME: add title to links
    - http://bugs.python.org/issue13703
+   - https://events.ccc.de/congress/2011/Fahrplan/events/4680.en.html
    - https://www.python.org/dev/peps/pep-0456/
    - http://www.ocert.org/advisories/ocert-2011-003.html
   fixed-in:
@@ -69,7 +72,7 @@
 - name: CVE-2016-5636
   links:
     - https://bugs.python.org/issue26171
-  disclosure: 2016-01-21
+  disclosure: 2016-01-21 (issue reported)
   fixed-in:
    - 64ea192b73e39e877d8b39ce6584fa580eb0e9b4 # 2.7.12
    - c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf # 3.4.5, 3.5.2, 3.6.0
