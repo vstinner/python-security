@@ -250,6 +250,57 @@
     Reported by Alexander Kruppa.
   # Vulnerable: fix commited to 3.1 but never released
 
+- name: "CVE-2013-2099"
+  summary: >
+    ``ssl.match_hostname()`` wildcard
+  links:
+    - http://bugs.python.org/issue17980
+  disclosure: "2013-05-15 (issue #17980 reported)"
+  fixed-in:
+   - 636f93c63ba286249c1207e3a903f8429efb2041 # 3.3
+  description: >
+    If the name in the certificate contains many "*" characters, matching the
+    compiled regular expression against the host name can take a very long
+    time.
+
+    Certificate validation happens before host name checking, so I think this
+    is a minor issue only because it can only be triggered in cooperation with
+    a CA (which seems unlikely).
+
+    Reported by Florian Weimer.
+
+- name: "CVE-2012-2135"
+  summary: >
+    UTF-16 decoder
+  links:
+    - http://bugs.python.org/issue14579
+  disclosure: "2012-04-14"
+  fixed-in:
+   - 715a63b78349952ccc0fb3dd3139e2d822006d35 # 2.7
+   - b4bbee25b1e3f4bccac222f806b3138fb72439d6 # 3.3
+  description: >
+    Vulnerability in the UTF-16 decoder after error handling.
+
+    Reported by Serhiy Storchaka.
+
+- name: "CVE-2012-0845"
+  summary: >
+    XML-RPC DoS
+  links:
+    - http://bugs.python.org/issue14001
+  disclosure: "2012-02-13 (issue #14001 reported)"
+  fixed-in:
+   - 66f3cc6f8de83c447d937160e4a1630c4482b5f5 # 2.6
+   - ec1712a1662282c909b4cd4cc0c7486646bc9246 # 3.2
+  description: >
+    A denial of service flaw was found in the way Simple XML-RPC Server module
+    of Python processed client connections, that were closed prior the complete
+    request body has been received. A remote attacker could use this flaw to
+    cause Python Simple XML-RPC based server process to consume excessive
+    amount of CPU.
+
+    Reported by Jan Lieskovsky.
+
 # Template:
 # - name: ""
 #   summary: >

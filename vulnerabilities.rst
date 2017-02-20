@@ -28,6 +28,8 @@ Security vulnerabilities
 +----------------------------+--------------------------------------------+--------------+----------------------------+
 | `Issue #19435`_            | CGIHTTPRequestHandler directory traversal  | 2013-10-29   | 2.7.6, 3.2.6, 3.3.4        |
 +----------------------------+--------------------------------------------+--------------+----------------------------+
+| `CVE-2013-2099`_           | ``ssl.match_hostname()`` wildcard          | 2013-05-15   | 3.3.3                      |
++----------------------------+--------------------------------------------+--------------+----------------------------+
 | `CVE-2013-1752 (ftplib)`_  | ftplib readline                            | 2012-09-25   | 2.7.6, 3.2.6, 3.3.3        |
 +----------------------------+--------------------------------------------+--------------+----------------------------+
 | `CVE-2013-1752 (smtplib)`_ | smtplib readline                           | 2012-09-25   | 2.7.9, 3.2.6, 3.4.3        |
@@ -37,6 +39,10 @@ Security vulnerabilities
 | `Issue #16041`_            | poplib readline                            | 2012-09-25   | 2.7.9, 3.2.6, 3.4.3        |
 +----------------------------+--------------------------------------------+--------------+----------------------------+
 | `Issue #16043`_            | xmlrpc unlimited read                      | 2012-09-25   | 2.7.9, 3.4.3               |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `CVE-2012-2135`_           | UTF-16 decoder                             | 2012-04-14   | 2.7.4, 3.2.4               |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `CVE-2012-0845`_           | XML-RPC DoS                                | 2012-02-13   | 2.6.8, 2.7.3, 3.1.5, 3.2.3 |
 +----------------------------+--------------------------------------------+--------------+----------------------------+
 | `Hash DoS`_                | Hash collision denial of service           | 2011-12-28   | 2.6.8, 2.7.3, 3.1.5, 3.2.3 |
 +----------------------------+--------------------------------------------+--------------+----------------------------+
@@ -237,6 +243,24 @@ Links:
 * http://bugs.python.org/issue19435
 
 
+CVE-2013-2099
+=============
+
+Disclosure date: 2013-05-15 (issue #17980 reported).
+
+If the name in the certificate contains many "*" characters, matching the compiled regular expression against the host name can take a very long time.
+Certificate validation happens before host name checking, so I think this is a minor issue only because it can only be triggered in cooperation with a CA (which seems unlikely).
+Reported by Florian Weimer.
+
+Fixed In:
+
+* 3.3.3 (186 days): 2013-11-17, `commit 636f93c <https://github.com/python/cpython/commit/636f93c63ba286249c1207e3a903f8429efb2041>`_ (2013-05-18, 3 days)
+
+Links:
+
+* http://bugs.python.org/issue17980
+
+
 CVE-2013-1752 (ftplib)
 ======================
 
@@ -326,6 +350,44 @@ Fixed In:
 Links:
 
 * http://bugs.python.org/issue16043
+
+
+CVE-2012-2135
+=============
+
+Disclosure date: 2012-04-14.
+
+Vulnerability in the UTF-16 decoder after error handling.
+Reported by Serhiy Storchaka.
+
+Fixed In:
+
+* 2.7.4 (357 days): 2013-04-06, `commit 715a63b <https://github.com/python/cpython/commit/715a63b78349952ccc0fb3dd3139e2d822006d35>`_ (2012-07-20, 97 days)
+* 3.2.4 (358 days): 2013-04-07, `commit 715a63b <https://github.com/python/cpython/commit/715a63b78349952ccc0fb3dd3139e2d822006d35>`_ (2012-07-20, 97 days)
+
+Links:
+
+* http://bugs.python.org/issue14579
+
+
+CVE-2012-0845
+=============
+
+Disclosure date: 2012-02-13 (issue #14001 reported).
+
+A denial of service flaw was found in the way Simple XML-RPC Server module of Python processed client connections, that were closed prior the complete request body has been received. A remote attacker could use this flaw to cause Python Simple XML-RPC based server process to consume excessive amount of CPU.
+Reported by Jan Lieskovsky.
+
+Fixed In:
+
+* 2.6.8 (57 days): 2012-04-10, `commit 66f3cc6 <https://github.com/python/cpython/commit/66f3cc6f8de83c447d937160e4a1630c4482b5f5>`_ (2012-02-18, 5 days)
+* 2.7.3 (56 days): 2012-04-09, `commit 66f3cc6 <https://github.com/python/cpython/commit/66f3cc6f8de83c447d937160e4a1630c4482b5f5>`_ (2012-02-18, 5 days)
+* 3.1.5 (55 days): 2012-04-08, `commit ec1712a <https://github.com/python/cpython/commit/ec1712a1662282c909b4cd4cc0c7486646bc9246>`_ (2012-02-18, 5 days)
+* 3.2.3 (57 days): 2012-04-10, `commit ec1712a <https://github.com/python/cpython/commit/ec1712a1662282c909b4cd4cc0c7486646bc9246>`_ (2012-02-18, 5 days)
+
+Links:
+
+* http://bugs.python.org/issue14001
 
 
 Hash DoS
