@@ -8,15 +8,21 @@ Security vulnerabilities
 +----------------------------+----------------------------------+--------------+----------------------------+
 | Vulnerability              | Summary                          | Disclosure   | Fixed In                   |
 +============================+==================================+==============+============================+
+| `Issue #28563`_            | ``gettext.c2py()``               | 2016-10-30   | 2.7.13, 3.4.6, 3.5.3       |
++----------------------------+----------------------------------+--------------+----------------------------+
+| `CVE-2016-1000110`_        | HTTPoxy attack                   | 2016-07-18   | 2.7.13, 3.4.6, 3.5.3       |
++----------------------------+----------------------------------+--------------+----------------------------+
 | `CVE-2016-0772`_           | smtplib TLS stripping            | 2016-06-11   | 2.7.12, 3.4.5, 3.5.2       |
 +----------------------------+----------------------------------+--------------+----------------------------+
 | `Issue #26657`_            | HTTP directory traversal         | 2016-03-28   | 2.7.12, 3.5.2              |
 +----------------------------+----------------------------------+--------------+----------------------------+
-| `CVE-2016-5636`_           | zipimporter                      | 2016-01-21   | 2.7.12, 3.4.5, 3.5.2       |
+| `CVE-2016-5636`_           | zipimporter heap overflow        | 2016-01-21   | 2.7.12, 3.4.5, 3.5.2       |
 +----------------------------+----------------------------------+--------------+----------------------------+
 | `CVE-2015-1283`_           | expat 2.1.1                      | 2015-07-24   | 2.7.12, 3.4.5, 3.5.2       |
 +----------------------------+----------------------------------+--------------+----------------------------+
 | `CVE-2016-5699`_           | HTTP header                      | 2014-11-24   | 2.7.10, 3.4.4              |
++----------------------------+----------------------------------+--------------+----------------------------+
+| `CVE-2014-4616`_           | JSON arbitrary memory access     | 2014-04-13   | 2.7.7, 3.2.6, 3.3.6, 3.4.1 |
 +----------------------------+----------------------------------+--------------+----------------------------+
 | `CVE-2013-1752 (ftplib)`_  | ftplib readline                  | 2012-09-25   | 2.7.6, 3.2.6, 3.3.3        |
 +----------------------------+----------------------------------+--------------+----------------------------+
@@ -35,6 +41,45 @@ Security vulnerabilities
 
 * Vulnerabilities sorted by the Disclosure column
 * Disclosure: Disclosure date, first time that the vulnerability was public
+
+
+Issue #28563
+============
+
+Disclosure date: 2016-10-30 (issue #28563 reported).
+
+Arbitrary code execution in ``gettext.c2py()``.
+
+Fixed In:
+
+* 2.7.13 (48 days): 2016-12-17, `commit a876027 <https://github.com/python/cpython/commit/a8760275bd59fb8d8be1f1bf05313fed31c08321>`_ (2016-11-08, 9 days)
+* 3.4.6 (79 days): 2017-01-17, `commit 07bcf05 <https://github.com/python/cpython/commit/07bcf05fcf3fd1d4001e8e3489162e6d67638285>`_ (2016-11-08, 9 days)
+* 3.5.3 (79 days): 2017-01-17, `commit 07bcf05 <https://github.com/python/cpython/commit/07bcf05fcf3fd1d4001e8e3489162e6d67638285>`_ (2016-11-08, 9 days)
+
+Links:
+
+* http://bugs.python.org/issue28563
+
+
+CVE-2016-1000110
+================
+
+Disclosure date: 2016-07-18 (issue #27568 reported).
+
+Prevent HTTPoxy attack (CVE-2016-1000110).
+Ignore the HTTP_PROXY variable when REQUEST_METHOD environment is set, which indicates that the script is in CGI mode.
+Issue #27568 Reported and patch contributed by Rémi Rampin.
+
+Fixed In:
+
+* 2.7.13 (152 days): 2016-12-17, `commit 75d7b61 <https://github.com/python/cpython/commit/75d7b615ba70fc5759d16dee95bbd8f0474d8a9c>`_ (2016-07-30, 12 days)
+* 3.4.6 (183 days): 2017-01-17, `commit 4cbb23f <https://github.com/python/cpython/commit/4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d>`_ (2016-07-30, 12 days)
+* 3.5.3 (183 days): 2017-01-17, `commit 4cbb23f <https://github.com/python/cpython/commit/4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d>`_ (2016-07-30, 12 days)
+
+Links:
+
+* http://bugs.python.org/issue27568
+* https://httpoxy.org/
 
 
 CVE-2016-0772
@@ -128,6 +173,22 @@ Fixed In:
 Links:
 
 * https://bugs.python.org/issue22928
+
+
+CVE-2014-4616
+=============
+
+Disclosure date: 2014-04-13 (commit).
+
+Fix arbitrary memory access in JSONDecoder.raw_decode with a negative second parameter.
+Bug reported by Guido Vranken.
+
+Fixed In:
+
+* 2.7.7 (48 days): 2014-05-31, `commit 6c939cb <https://github.com/python/cpython/commit/6c939cb6f6dfbd273609577b0022542d31ae2802>`_ (2014-04-13, 0 days)
+* 3.2.6 (181 days): 2014-10-11, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-13, 0 days)
+* 3.3.6 (181 days): 2014-10-11, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-13, 0 days)
+* 3.4.1 (35 days): 2014-05-18, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-13, 0 days)
 
 
 CVE-2013-1752 (ftplib)

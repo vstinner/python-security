@@ -83,7 +83,7 @@
 
 - name: CVE-2016-5636
   summary: >
-    zipimporter
+    zipimporter heap overflow
   links:
     - https://bugs.python.org/issue26171
   disclosure: "2016-01-21 (issue #26171 reported)"
@@ -172,6 +172,49 @@
     Add a default limit for the amount of data xmlrpclib.gzip_decode will
     return.
 
+- name: "CVE-2014-4616"
+  summary: >
+    JSON arbitrary memory access
+  disclosure: "2014-04-13 (commit)"
+  fixed-in:
+   - 6c939cb6f6dfbd273609577b0022542d31ae2802 # 2.7
+   - 99b5afab74428e5ddfd877bdf3aa8a8c479696b1 # 3.2
+   # Add CVE in Misc/NEWS: 5e621176c4ec3cbd5102b9ca7441695832544123 # 3.2
+  description: >
+    Fix arbitrary memory access in JSONDecoder.raw_decode with a negative second
+    parameter.
+
+    Bug reported by Guido Vranken.
+
+- name: "Issue #28563"
+  summary: >
+    ``gettext.c2py()``
+  links:
+    - http://bugs.python.org/issue28563
+  disclosure: "2016-10-30 (issue #28563 reported)"
+  fixed-in:
+   - a8760275bd59fb8d8be1f1bf05313fed31c08321 # 2.7
+   - 07bcf05fcf3fd1d4001e8e3489162e6d67638285 # 3.3
+  description: >
+    Arbitrary code execution in ``gettext.c2py()``.
+
+- name: "CVE-2016-1000110"
+  summary: >
+    HTTPoxy attack
+  links:
+    - http://bugs.python.org/issue27568
+    - https://httpoxy.org/
+  disclosure: "2016-07-18 (issue #27568 reported)"
+  fixed-in:
+   - 75d7b615ba70fc5759d16dee95bbd8f0474d8a9c # 2.7
+   - 4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d # 3.3
+  description: >
+    Prevent HTTPoxy attack (CVE-2016-1000110).
+
+    Ignore the HTTP_PROXY variable when REQUEST_METHOD environment is set, which
+    indicates that the script is in CGI mode.
+
+    Issue #27568 Reported and patch contributed by Rémi Rampin.
 
 # Template:
 # - name: ""
