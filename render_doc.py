@@ -255,7 +255,8 @@ class Vulnerability:
 
     @staticmethod
     def sort_key(vuln):
-        return vuln.disclosure_date
+        date = datetime.date.min - vuln.disclosure_date
+        return (date, vuln.name, vuln.summary)
 
 
 class PythonReleases:
@@ -292,7 +293,7 @@ class RenderDoc:
                 vuln = Vulnerability(self, data)
                 vulnerabilities.append(vuln)
 
-        vulnerabilities.sort(key=Vulnerability.sort_key, reverse=True)
+        vulnerabilities.sort(key=Vulnerability.sort_key)
 
         headers = ['Vulnerability', 'Summary', 'Disclosure', 'Fixed In']
         table = []
