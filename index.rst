@@ -118,6 +118,7 @@ CPython Security Experts
 ========================
 
 * Alex Gaynor
+* Antoine Pitrou
 * Christian Heimes
 * Donald Stufft
 

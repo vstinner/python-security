@@ -163,8 +163,9 @@ class CommitTags:
             if not line.startswith("v"):
                 continue
             tag = line[1:]
-            # strip alpha part
-            for suffix in ('a', 'b', 'rc'):
+            # strip alpha part,
+            # 'c' is needed for v2.5.6c1
+            for suffix in ('a', 'b', 'rc', 'c'):
                 if suffix in tag:
                     tag = tag.partition(suffix)[0]
             tags.append(version_info(tag))

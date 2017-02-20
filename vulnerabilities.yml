@@ -65,7 +65,6 @@
     Hash collision denial of service
   disclosure: 2011-12-28 (CCC talk)
   links:
-# FIXME: add title to links
    - http://bugs.python.org/issue13703
    - https://events.ccc.de/congress/2011/Fahrplan/events/4680.en.html
    - https://www.python.org/dev/peps/pep-0456/
@@ -300,6 +299,52 @@
     amount of CPU.
 
     Reported by Jan Lieskovsky.
+
+- name: "CVE-2013-4238"
+  summary: >
+    ssl: NUL in subjectAltNames
+  links:
+    - http://bugs.python.org/issue18709
+  disclosure: "2013-08-12 (issue #18709 reported)"
+  fixed-in:
+   - 82f88283171933127f20f866a7f98694b29cca56 # 2.7
+   - 824f7f366d1b54d2d3100c3130c04cf1dfb4b47c # 3.x
+  description: >
+    SSL module fails to handle NULL bytes inside subjectAltNames general names.
+
+    Reported by Christian Heimes.
+
+- name: "CVE-2011-3389"
+  summary: >
+    ssl CBC IV attack
+  links:
+    - http://bugs.python.org/issue13885
+  disclosure: "2012-01-27 (issue #13885 reported)"
+  fixed-in:
+   - d358e0554bc520768041652676ec8e6076f221a9 # 2.x
+   - f2bf8a6ac51530e14d798a03c8e950dd934d85cd # 3.x
+  description: >
+    The ssl module would always disable the CBC IV attack countermeasure.
+    Disable OpenSSL ``SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS`` option.
+
+    Reported by Antoine Pitrou.
+
+- name: "CVE-2011-1521"
+  summary: >
+    urllib redirect vulnerability
+  links:
+    - http://bugs.python.org/issue11662
+  disclosure: "2011-03-24 (issue #11662 reported)"
+  fixed-in:
+   - 60a4a90c8dd2972eb4bb977e70835be9593cbbac # 2.5
+   - a119df91f33724f64e6bc1ecb484eeaa30ace014 # 3.1
+  description: >
+    The Python urllib and urllib2 modules are typically used to fetch web pages
+    but by default also contains handlers for ``ftp://`` and ``file://`` URL
+    schemes.
+
+    Now unfortunately it appears that it is possible for a web server to
+    redirect (HTTP 302) a urllib request to any of the supported schemes.
 
 # Template:
 # - name: ""
