@@ -36,12 +36,6 @@ def run(cmd, cwd):
     return proc
 
 
-# FIXME: remove this class?
-class Commit:
-    def __init__(self, commit, date):
-        self.commit = commit
-        self.date = date
-
 def commit_url(commit):
     return 'https://github.com/python/cpython/commit/' + commit
 
