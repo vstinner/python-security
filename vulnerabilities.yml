@@ -93,7 +93,7 @@
   description: >
     Heap overflow in zipimporter module.
 
-- name: CVE-2013-1752
+- name: CVE-2013-1752 (smtplib)
   summary: >
     smtplib readline
   links:
@@ -103,9 +103,9 @@
     - dabfc56b57f5086eb5522d8e6cd7670c62d2482d # 2.7
     - 210ee47e3340d8e689d8cce584e7c918d368f16b # 3.2
   description: >
-    The smtplib module doesn't limit the amount of read data in its call to
-    readline(). An erroneous or malicious SMTP server can trick the smtplib
-    module to consume large amounts of memory.
+    CVE-2013-1752: The smtplib module doesn't limit the amount of read data in
+    its call to readline(). An erroneous or malicious SMTP server can trick the
+    smtplib module to consume large amounts of memory.
 
 - name: "Issue #6791"
   summary: >
@@ -119,3 +119,28 @@
     - 5466bf1c94d38e75bc053b0cfc163e2f948fe345 # 3.3
   description: >
     Limit the HTTP header readline. Reported by sumar (m.sucajtys).
+
+- name: "CVE-2013-1752 (ftplib)"
+  summary: >
+    ftplib readline
+  links:
+    - http://bugs.python.org/issue16038
+  disclosure: "2012-09-25 (issue #16038 reported)"
+  fixed-in:
+   - 2585e1e48abb3013abeb8a1fe9dccb5f79ac4091 # 2.7
+   - c9cb18d3f7e5bf03220c213183ff0caa75905bdd # 3.2
+   - c30b178cbc92e62c22527cd7e1af2f02723ba679 # 3
+  description: >
+    ftplib: unlimited readline() from connection.
+
+    Reported by Christian Heimes.
+
+# Template:
+# - name: ""
+#   summary: >
+#   links:
+#     -
+#   disclosure: ""
+#   fixed-in:
+#    -
+#   description: >
