@@ -5,39 +5,43 @@ Security vulnerabilities
 Security vulnerabilities
 ========================
 
-+----------------------------+----------------------------------+--------------+----------------------------+
-| Vulnerability              | Summary                          | Disclosure   | Fixed In                   |
-+============================+==================================+==============+============================+
-| `Issue #28563`_            | ``gettext.c2py()``               | 2016-10-30   | 2.7.13, 3.4.6, 3.5.3       |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `CVE-2016-1000110`_        | HTTPoxy attack                   | 2016-07-18   | 2.7.13, 3.4.6, 3.5.3       |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `CVE-2016-0772`_           | smtplib TLS stripping            | 2016-06-11   | 2.7.12, 3.4.5, 3.5.2       |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `Issue #26657`_            | HTTP directory traversal         | 2016-03-28   | 2.7.12, 3.5.2              |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `CVE-2016-5636`_           | zipimporter heap overflow        | 2016-01-21   | 2.7.12, 3.4.5, 3.5.2       |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `CVE-2015-1283`_           | expat 2.1.1                      | 2015-07-24   | 2.7.12, 3.4.5, 3.5.2       |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `CVE-2016-5699`_           | HTTP header                      | 2014-11-24   | 2.7.10, 3.4.4              |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `CVE-2014-4616`_           | JSON arbitrary memory access     | 2014-04-13   | 2.7.7, 3.2.6, 3.3.6, 3.4.1 |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `CVE-2013-1752 (ftplib)`_  | ftplib readline                  | 2012-09-25   | 2.7.6, 3.2.6, 3.3.3        |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `CVE-2013-1752 (smtplib)`_ | smtplib readline                 | 2012-09-25   | 2.7.9, 3.2.6, 3.4.3        |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `Issue #16040`_            | nntplib readline                 | 2012-09-25   | 2.6.9, 2.7.6, 3.2.6, 3.4.3 |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `Issue #16041`_            | poplib readline                  | 2012-09-25   | 2.7.9, 3.2.6, 3.4.3        |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `Issue #16043`_            | xmlrpc unlimited read            | 2012-09-25   | 2.7.9, 3.4.3               |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `Hash DoS`_                | Hash collision denial of service | 2011-12-28   | 2.6.8, 2.7.3, 3.1.5, 3.2.3 |
-+----------------------------+----------------------------------+--------------+----------------------------+
-| `Issue #6791`_             | httplib readline                 | 2009-08-28   | 2.7.2, 3.1.4               |
-+----------------------------+----------------------------------+--------------+----------------------------+
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| Vulnerability              | Summary                                    | Disclosure   | Fixed In                   |
++============================+============================================+==============+============================+
+| `Issue #28563`_            | ``gettext.c2py()``                         | 2016-10-30   | 2.7.13, 3.4.6, 3.5.3       |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `CVE-2016-1000110`_        | HTTPoxy attack                             | 2016-07-18   | 2.7.13, 3.4.6, 3.5.3       |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `CVE-2016-0772`_           | smtplib TLS stripping                      | 2016-06-11   | 2.7.12, 3.4.5, 3.5.2       |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `Issue #26657`_            | HTTP directory traversal                   | 2016-03-28   | 2.7.12, 3.5.2              |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `CVE-2016-5636`_           | zipimporter heap overflow                  | 2016-01-21   | 2.7.12, 3.4.5, 3.5.2       |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `CVE-2015-1283`_           | expat 2.1.1                                | 2015-07-24   | 2.7.12, 3.4.5, 3.5.2       |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `CVE-2016-5699`_           | HTTP header                                | 2014-11-24   | 2.7.10, 3.4.4              |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `CVE-2014-4616`_           | JSON arbitrary memory access               | 2014-04-13   | 2.7.7, 3.2.6, 3.3.6, 3.4.1 |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `CVE-2014-1912`_           | ``socket.recvfrom_into()`` buffer overflow | 2014-01-14   | 2.7.7, 3.2.6, 3.3.4        |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `Issue #19435`_            | CGIHTTPRequestHandler directory traversal  | 2013-10-29   | 2.7.6, 3.2.6, 3.3.4        |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `CVE-2013-1752 (ftplib)`_  | ftplib readline                            | 2012-09-25   | 2.7.6, 3.2.6, 3.3.3        |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `CVE-2013-1752 (smtplib)`_ | smtplib readline                           | 2012-09-25   | 2.7.9, 3.2.6, 3.4.3        |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `Issue #16040`_            | nntplib readline                           | 2012-09-25   | 2.6.9, 2.7.6, 3.2.6, 3.4.3 |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `Issue #16041`_            | poplib readline                            | 2012-09-25   | 2.7.9, 3.2.6, 3.4.3        |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `Issue #16043`_            | xmlrpc unlimited read                      | 2012-09-25   | 2.7.9, 3.4.3               |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `Hash DoS`_                | Hash collision denial of service           | 2011-12-28   | 2.6.8, 2.7.3, 3.1.5, 3.2.3 |
++----------------------------+--------------------------------------------+--------------+----------------------------+
+| `Issue #6791`_             | httplib readline                           | 2009-08-28   | 2.7.2, 3.1.4               |
++----------------------------+--------------------------------------------+--------------+----------------------------+
 
 * Vulnerabilities sorted by the Disclosure column
 * Disclosure: Disclosure date, first time that the vulnerability was public
@@ -73,8 +77,8 @@ Issue #27568 Reported and patch contributed by Rémi Rampin.
 Fixed In:
 
 * 2.7.13 (152 days): 2016-12-17, `commit 75d7b61 <https://github.com/python/cpython/commit/75d7b615ba70fc5759d16dee95bbd8f0474d8a9c>`_ (2016-07-30, 12 days)
-* 3.4.6 (183 days): 2017-01-17, `commit 4cbb23f <https://github.com/python/cpython/commit/4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d>`_ (2016-07-30, 12 days)
-* 3.5.3 (183 days): 2017-01-17, `commit 4cbb23f <https://github.com/python/cpython/commit/4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d>`_ (2016-07-30, 12 days)
+* 3.4.6 (183 days): 2017-01-17, `commit 4cbb23f <https://github.com/python/cpython/commit/4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d>`_ (2016-07-31, 13 days)
+* 3.5.3 (183 days): 2017-01-17, `commit 4cbb23f <https://github.com/python/cpython/commit/4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d>`_ (2016-07-31, 13 days)
 
 Links:
 
@@ -127,9 +131,9 @@ Heap overflow in zipimporter module.
 
 Fixed In:
 
-* 2.7.12 (159 days): 2016-06-28, `commit 64ea192 <https://github.com/python/cpython/commit/64ea192b73e39e877d8b39ce6584fa580eb0e9b4>`_ (2016-01-20, -1 days)
-* 3.4.5 (158 days): 2016-06-27, `commit c4032da <https://github.com/python/cpython/commit/c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf>`_ (2016-01-20, -1 days)
-* 3.5.2 (158 days): 2016-06-27, `commit c4032da <https://github.com/python/cpython/commit/c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf>`_ (2016-01-20, -1 days)
+* 2.7.12 (159 days): 2016-06-28, `commit 64ea192 <https://github.com/python/cpython/commit/64ea192b73e39e877d8b39ce6584fa580eb0e9b4>`_ (2016-01-21, 0 days)
+* 3.4.5 (158 days): 2016-06-27, `commit c4032da <https://github.com/python/cpython/commit/c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf>`_ (2016-01-21, 0 days)
+* 3.5.2 (158 days): 2016-06-27, `commit c4032da <https://github.com/python/cpython/commit/c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf>`_ (2016-01-21, 0 days)
 
 Links:
 
@@ -185,10 +189,52 @@ Bug reported by Guido Vranken.
 
 Fixed In:
 
-* 2.7.7 (48 days): 2014-05-31, `commit 6c939cb <https://github.com/python/cpython/commit/6c939cb6f6dfbd273609577b0022542d31ae2802>`_ (2014-04-13, 0 days)
-* 3.2.6 (181 days): 2014-10-11, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-13, 0 days)
-* 3.3.6 (181 days): 2014-10-11, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-13, 0 days)
-* 3.4.1 (35 days): 2014-05-18, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-13, 0 days)
+* 2.7.7 (48 days): 2014-05-31, `commit 6c939cb <https://github.com/python/cpython/commit/6c939cb6f6dfbd273609577b0022542d31ae2802>`_ (2014-04-14, 1 days)
+* 3.2.6 (181 days): 2014-10-11, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-14, 1 days)
+* 3.3.6 (181 days): 2014-10-11, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-14, 1 days)
+* 3.4.1 (35 days): 2014-05-18, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-14, 1 days)
+
+Links:
+
+* http://bugs.python.org/issue21529
+
+
+CVE-2014-1912
+=============
+
+Disclosure date: 2014-01-14 (issue #20246 reported).
+
+``socket.recvfrom_into()`` fails to check that the supplied buffer object is big enough for the requested read and so will happily write off the end.
+Reported by Ryan Smith-Roberts.
+
+Fixed In:
+
+* 2.7.7 (137 days): 2014-05-31, `commit 28cf368 <https://github.com/python/cpython/commit/28cf368c1baba3db1f01010e921f63017af74c8f>`_ (2014-01-14, 0 days)
+* 3.2.6 (270 days): 2014-10-11, `commit fbf648e <https://github.com/python/cpython/commit/fbf648ebba32bbc5aa571a4b09e2062a65fd2492>`_ (2014-01-14, 0 days)
+* 3.3.4 (26 days): 2014-02-09, `commit fbf648e <https://github.com/python/cpython/commit/fbf648ebba32bbc5aa571a4b09e2062a65fd2492>`_ (2014-01-14, 0 days)
+
+Links:
+
+* http://bugs.python.org/issue20246
+
+
+Issue #19435
+============
+
+Disclosure date: 2013-10-29 (issue #19435 reported).
+
+An error in separating the path and filename of the CGI script to run in http.server.CGIHTTPRequestHandler allows running arbitrary executables in the directory under which the server was started.
+Reported by Alexander Kruppa.
+
+Fixed In:
+
+* 2.7.6 (12 days): 2013-11-10, `commit 1ef959a <https://github.com/python/cpython/commit/1ef959ac3ddc4d96dfa1a613db5cb206cdaeb662>`_ (2013-10-30, 1 days)
+* 3.2.6 (347 days): 2014-10-11, `commit 04e9de4 <https://github.com/python/cpython/commit/04e9de40f380b2695f955d68f2721d57cecbf858>`_ (2013-10-30, 1 days)
+* 3.3.4 (103 days): 2014-02-09, `commit 04e9de4 <https://github.com/python/cpython/commit/04e9de40f380b2695f955d68f2721d57cecbf858>`_ (2013-10-30, 1 days)
+
+Links:
+
+* http://bugs.python.org/issue19435
 
 
 CVE-2013-1752 (ftplib)
@@ -219,7 +265,7 @@ CVE-2013-1752: The smtplib module doesn't limit the amount of read data in its c
 
 Fixed In:
 
-* 2.7.9 (806 days): 2014-12-10, `commit dabfc56 <https://github.com/python/cpython/commit/dabfc56b57f5086eb5522d8e6cd7670c62d2482d>`_ (2014-12-05, 801 days)
+* 2.7.9 (806 days): 2014-12-10, `commit dabfc56 <https://github.com/python/cpython/commit/dabfc56b57f5086eb5522d8e6cd7670c62d2482d>`_ (2014-12-06, 802 days)
 * 3.2.6 (746 days): 2014-10-11, `commit 210ee47 <https://github.com/python/cpython/commit/210ee47e3340d8e689d8cce584e7c918d368f16b>`_ (2014-09-30, 735 days)
 * 3.4.3 (881 days): 2015-02-23, `commit 210ee47 <https://github.com/python/cpython/commit/210ee47e3340d8e689d8cce584e7c918d368f16b>`_ (2014-09-30, 735 days)
 
@@ -256,7 +302,7 @@ poplib: unlimited readline() from connection.
 
 Fixed In:
 
-* 2.7.9 (806 days): 2014-12-10, `commit faad6bb <https://github.com/python/cpython/commit/faad6bbea6c86e30c770eb0a3648e2cd52b2e55e>`_ (2014-12-05, 801 days)
+* 2.7.9 (806 days): 2014-12-10, `commit faad6bb <https://github.com/python/cpython/commit/faad6bbea6c86e30c770eb0a3648e2cd52b2e55e>`_ (2014-12-06, 802 days)
 * 3.2.6 (746 days): 2014-10-11, `commit eaca861 <https://github.com/python/cpython/commit/eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e>`_ (2014-09-30, 735 days)
 * 3.4.3 (881 days): 2015-02-23, `commit eaca861 <https://github.com/python/cpython/commit/eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e>`_ (2014-09-30, 735 days)
 
@@ -274,8 +320,8 @@ Add a default limit for the amount of data xmlrpclib.gzip_decode will return.
 
 Fixed In:
 
-* 2.7.9 (806 days): 2014-12-10, `commit 9e8f523 <https://github.com/python/cpython/commit/9e8f523c5b1c354097753084054eadf14d33238d>`_ (2014-12-05, 801 days)
-* 3.4.3 (881 days): 2015-02-23, `commit 4e9cefa <https://github.com/python/cpython/commit/4e9cefaf86035f8014e09049328d197b6506532f>`_ (2014-12-05, 801 days)
+* 2.7.9 (806 days): 2014-12-10, `commit 9e8f523 <https://github.com/python/cpython/commit/9e8f523c5b1c354097753084054eadf14d33238d>`_ (2014-12-06, 802 days)
+* 3.4.3 (881 days): 2015-02-23, `commit 4e9cefa <https://github.com/python/cpython/commit/4e9cefaf86035f8014e09049328d197b6506532f>`_ (2014-12-06, 802 days)
 
 Links:
 
@@ -293,8 +339,8 @@ Python 2 requires ``-R`` option to enable the fix.
 
 Fixed In:
 
-* 2.6.8 (104 days): 2012-04-10, `commit 1e13eb0 <https://github.com/python/cpython/commit/1e13eb084f72d5993cbb726e45b36bdb69c83a24>`_ (2012-02-20, 54 days)
-* 2.7.3 (103 days): 2012-04-09, `commit 1e13eb0 <https://github.com/python/cpython/commit/1e13eb084f72d5993cbb726e45b36bdb69c83a24>`_ (2012-02-20, 54 days)
+* 2.6.8 (104 days): 2012-04-10, `commit 1e13eb0 <https://github.com/python/cpython/commit/1e13eb084f72d5993cbb726e45b36bdb69c83a24>`_ (2012-02-21, 55 days)
+* 2.7.3 (103 days): 2012-04-09, `commit 1e13eb0 <https://github.com/python/cpython/commit/1e13eb084f72d5993cbb726e45b36bdb69c83a24>`_ (2012-02-21, 55 days)
 * 3.1.5 (102 days): 2012-04-08, `commit 2daf6ae <https://github.com/python/cpython/commit/2daf6ae2495c862adf8bc717bfe9964081ea0b10>`_ (2012-02-20, 54 days)
 * 3.2.3 (104 days): 2012-04-10, `commit 2daf6ae <https://github.com/python/cpython/commit/2daf6ae2495c862adf8bc717bfe9964081ea0b10>`_ (2012-02-20, 54 days)
 

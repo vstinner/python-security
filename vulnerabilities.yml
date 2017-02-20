@@ -173,6 +173,8 @@
     return.
 
 - name: "CVE-2014-4616"
+  links:
+   - http://bugs.python.org/issue21529
   summary: >
     JSON arbitrary memory access
   disclosure: "2014-04-13 (commit)"
@@ -215,6 +217,38 @@
     indicates that the script is in CGI mode.
 
     Issue #27568 Reported and patch contributed by Rémi Rampin.
+
+- name: "CVE-2014-1912"
+  summary: >
+    ``socket.recvfrom_into()`` buffer overflow
+  links:
+    - http://bugs.python.org/issue20246
+  disclosure: "2014-01-14 (issue #20246 reported)"
+  fixed-in:
+   - 28cf368c1baba3db1f01010e921f63017af74c8f # 2.7
+   - fbf648ebba32bbc5aa571a4b09e2062a65fd2492 # 3.3
+  description: >
+    ``socket.recvfrom_into()`` fails to check that the supplied buffer object
+    is big enough for the requested read and so will happily write off the end.
+
+    Reported by Ryan Smith-Roberts.
+
+- name: "Issue #19435"
+  summary: >
+    CGIHTTPRequestHandler directory traversal
+  links:
+    - http://bugs.python.org/issue19435
+  disclosure: "2013-10-29 (issue #19435 reported)"
+  fixed-in:
+   - 1ef959ac3ddc4d96dfa1a613db5cb206cdaeb662 # 2.7
+   - 04e9de40f380b2695f955d68f2721d57cecbf858 # 3.2
+  description: >
+    An error in separating the path and filename of the CGI script to run in
+    http.server.CGIHTTPRequestHandler allows running arbitrary executables in
+    the directory under which the server was started.
+
+    Reported by Alexander Kruppa.
+  # Vulnerable: fix commited to 3.1 but never released
 
 # Template:
 # - name: ""
