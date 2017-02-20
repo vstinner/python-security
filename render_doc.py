@@ -65,7 +65,6 @@ class CommitDates:
                 commit, date = line.split(':', 1)
                 commit = commit.strip()
                 date = date.strip()
-                date = parse_date(date)
                 self.cache[commit] = date
 
     def write_cache(self):
@@ -224,6 +223,7 @@ class Vulnerability:
             comment = None
         self.disclosure_date = parse_date(disclosure_date)
         self.disclosure_comment = comment
+        self.summary = data['summary'].rstrip()
         self.description = data['description'].rstrip()
         self.links = data.get('links')
 
@@ -294,7 +294,7 @@ class RenderDoc:
 
         vulnerabilities.sort(key=Vulnerability.sort_key, reverse=True)
 
-        headers = ['Vulnerability', 'Disclosure', 'Fixed In', 'Description']
+        headers = ['Vulnerability', 'Summary', 'Disclosure', 'Fixed In']
         table = []
         sections = []
 
@@ -306,10 +306,8 @@ class RenderDoc:
 
             name = "`%s`_" % vuln.name
             disclosure = format_date(vuln.disclosure_date)
-            # FIXME: support multilines
-            description = vuln.description.replace("\n", " ")
 
-            row = [name, disclosure, fixes, description]
+            row = [name, vuln.summary, disclosure, fixes]
             table.append(row)
 
         with open(filename, 'w', encoding='utf-8') as fp:

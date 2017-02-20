@@ -1,6 +1,8 @@
 # Vulnerabilities: http://www.itsecdb.com/oval/definitions/product-18230/0/Python-Python.html?class=5
 
 - name: CVE-2016-0772
+  summary: >
+    smtplib TLS stripping
   disclosure: 2016-06-11 (commit date)
   links:
     - http://seclists.org/oss-sec/2016/q2/541
@@ -13,9 +15,11 @@
     - 46b32f307c48bcb999b22eebf65ffe8ed5cca544 # 3.4.5
 
 - name: "Issue #26657"
+  summary: >
+    HTTP directory traversal
   links:
     - http://bugs.python.org/issue26657
-  disclosure: 2016-03-28 (issue reported)
+  disclosure: "2016-03-28 (issue #26657 reported)"
   fixed-in:
     - 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb # 2.7.12
     - d274b3f1f1e2d8811733fb952c9f18d7da3a376a # 3.5.2
@@ -25,6 +29,8 @@
     Regression of Python 3.3.5.
 
 - name: CVE-2015-1283
+  summary: >
+    expat 2.1.1
   links:
     - http://bugs.python.org/issue26556
     - https://sourceforge.net/p/expat/bugs/528/
@@ -42,9 +48,11 @@
     Update Expat to 2.1.1.
 
 - name: CVE-2016-5699
+  summary: >
+    HTTP header
   links:
     - https://bugs.python.org/issue22928
-  disclosure: 2014-11-24 (issue reported)
+  disclosure: "2014-11-24 (issue #22928 reported)"
   fixed-in:
     - 59bdf6392de446de8a19bfa37cee52981612830e # 2.7.10
     - a112a8ae47813f75aa8ad27ee8c42a7c2e937d13 # 3.4.4
@@ -53,6 +61,8 @@
     HTTP header injection in urrlib2/urllib/httplib/http.client
 
 - name: Hash DoS
+  summary: >
+    Hash collision denial of service
   disclosure: 2011-12-28 (CCC talk)
   links:
 # FIXME: add title to links
@@ -72,9 +82,11 @@
     talk at the CCC: 2011-12-28
 
 - name: CVE-2016-5636
+  summary: >
+    zipimporter
   links:
     - https://bugs.python.org/issue26171
-  disclosure: 2016-01-21 (issue reported)
+  disclosure: "2016-01-21 (issue #26171 reported)"
   fixed-in:
    - 64ea192b73e39e877d8b39ce6584fa580eb0e9b4 # 2.7.12
    - c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf # 3.4.5, 3.5.2, 3.6.0
@@ -82,9 +94,11 @@
     Heap overflow in zipimporter module.
 
 - name: CVE-2013-1752
+  summary: >
+    smtplib readline
   links:
     - http://bugs.python.org/issue16042
-  disclosure: 2012-09-25 (issue reported)
+  disclosure: "2012-09-25 (issue #16042 reported)"
   fixed-in:
     - dabfc56b57f5086eb5522d8e6cd7670c62d2482d # 2.7
     - 210ee47e3340d8e689d8cce584e7c918d368f16b # 3.2
@@ -92,3 +106,16 @@
     The smtplib module doesn't limit the amount of read data in its call to
     readline(). An erroneous or malicious SMTP server can trick the smtplib
     module to consume large amounts of memory.
+
+- name: "Issue #6791"
+  summary: >
+    httplib readline
+  links:
+    - http://bugs.python.org/issue6791
+  disclosure: "2009-08-28 (issue #6791 reported)"
+  fixed-in:
+    - d7b6ac66c1b81d13f2efa8d9ebba69e17c158c0a # 2.7
+    - ff1bbba92aad261df1ebd8fd8cc189c104e113b0 # 3.2
+    - 5466bf1c94d38e75bc053b0cfc163e2f948fe345 # 3.3
+  description: >
+    Limit the HTTP header readline. Reported by sumar (m.sucajtys).
