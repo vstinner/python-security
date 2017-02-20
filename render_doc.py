@@ -346,6 +346,14 @@ class RenderDoc:
                 print(file=fp)
                 print(vuln.description, file=fp)
 
+                links = vuln.links
+                if links:
+                    print(file=fp)
+                    print("Links:", file=fp)
+                    print(file=fp)
+                    for link in links:
+                        print("* %s" % link, file=fp)
+
                 if vuln.fixes:
                     print(file=fp)
                     print("Fixed In:", file=fp)
@@ -359,14 +367,6 @@ class RenderDoc:
                         commit_days = (fix.commit_date - vuln.disclosure_date).days
                         print("* {} ({} days): {}, `commit {} <{}>`_ ({}, {} days)".format(fix.python_version, days, date, short, url, commit_date, commit_days),
                               file=fp)
-
-                links = vuln.links
-                if links:
-                    print(file=fp)
-                    print("Links:", file=fp)
-                    print(file=fp)
-                    for link in links:
-                        print("* %s" % link, file=fp)
 
         print("{} generated".format(filename))
 
