@@ -76,7 +76,7 @@ Misc
   isolated mode, also implies ``-E`` and ``-s``
 * Python 3.7 adds a ``is_safe`` attribute to uuid.UUID objects:
   http://bugs.python.org/issue22807
-* XML: `defusedxml https://pypi.python.org/pypi/defusedxml>`_, XML bomb
+* XML: `defusedxml <https://pypi.python.org/pypi/defusedxml>`_, XML bomb
   protection for Python stdlib modules
 * Coverity:
 
