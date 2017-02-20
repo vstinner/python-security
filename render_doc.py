@@ -304,7 +304,6 @@ class RenderDoc:
 
         for vuln in vulnerabilities:
             fixes = [fix.python_version for fix in vuln.fixes]
-            # FIXME: one per line, support multilines
             fixes = ', '.join(fixes)
 
             name = "`%s`_" % vuln.name
