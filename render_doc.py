@@ -8,6 +8,10 @@ import tabulate
 import yaml
 
 
+CVE_REGEX = re.compile('^CVE-[0-9]+-[0-9]+$')
+CVE_URL = 'http://www.cvedetails.com/cve/%s/'
+
+
 def parse_date(text):
     if isinstance(text, datetime.date):
         return text
@@ -228,6 +232,13 @@ class Vulnerability:
         self.summary = data['summary'].rstrip()
         self.description = data['description'].rstrip()
         self.links = data.get('links')
+        if CVE_REGEX.match(self.name):
+            url = CVE_URL % self.name
+            if not self.links:
+                self.links = []
+            self.links.append(url)
+        self.cvss_score = data.get('cvss-score')
+        self.redhat_impact = data.get('redhat-impact')
 
         fixes = []
         commits = data['fixed-in']
@@ -297,7 +308,7 @@ class RenderDoc:
 
         vulnerabilities.sort(key=Vulnerability.sort_key)
 
-        headers = ['Vulnerability', 'Summary', 'Disclosure', 'Fixed In']
+        headers = ['Vulnerability', 'Summary', 'Disclosure', 'Score', 'Fixed In']
         table = []
         sections = []
 
@@ -308,8 +319,9 @@ class RenderDoc:
 
             name = "`%s`_" % vuln.name
             disclosure = format_date(vuln.disclosure_date)
+            score = vuln.cvss_score or vuln.redhat_impact or '?'
 
-            row = [name, vuln.summary, disclosure, fixes]
+            row = [name, vuln.summary, disclosure, score, fixes]
             table.append(row)
 
         with open(filename, 'w', encoding='utf-8') as fp:
@@ -328,6 +340,8 @@ class RenderDoc:
             print(file=fp)
             print("* Vulnerabilities sorted by the Disclosure column", file=fp)
             print("* Disclosure: Disclosure date, first time that the vulnerability was public", file=fp)
+            print("* `CVSS Score <https://nvd.nist.gov/cvss.cfm>`_", file=fp)
+            print("* `Red Hat impact <https://access.redhat.com/security/updates/classification/>`_", file=fp)
 
             for vuln in vulnerabilities:
                 print(file=fp)
@@ -343,6 +357,12 @@ class RenderDoc:
                     disclosure = '%s (%s)' % (disclosure, vuln.disclosure_comment)
                 print("Disclosure date: {}.".format(disclosure), file=fp)
                 print(file=fp)
+                if vuln.cvss_score:
+                    print("`CVSS Score`_: {}.".format(vuln.cvss_score), file=fp)
+                    print(file=fp)
+                if vuln.redhat_impact:
+                    print("`Red Hat impact`_: {}.".format(vuln.redhat_impact), file=fp)
+                    print(file=fp)
                 print(vuln.description, file=fp)
 
                 links = vuln.links

@@ -4,12 +4,19 @@
   summary: >
     smtplib TLS stripping
   disclosure: 2016-06-11 (commit date)
+  cvss-score: "5.8"
   links:
     - http://seclists.org/oss-sec/2016/q2/541
     - https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2016-0772
   description: >
-      Fix smtplib TLS stripping.
-      Reported by Tin (Team Oststrom).
+    A vulnerability in smtplib allowing MITM attacker to perform a startTLS
+    stripping attack. smtplib does not seem to raise an exception when the
+    remote end (SMTP server) is capable of negotiating starttls but fails to
+    respond with 220 (ok) to an explicit call of SMTP.starttls(). This may
+    allow a malicious MITM to perform a startTLS stripping attack if the client
+    code does not explicitly check the response code for startTLS.
+
+    Reported by Tin (Team Oststrom).
   fixed-in:
     - 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f # 2.7.12
     - 46b32f307c48bcb999b22eebf65ffe8ed5cca544 # 3.4.5
@@ -37,6 +44,7 @@
     - https://www.mozilla.org/en-US/security/advisories/mfsa2015-54/
     - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-1283
   disclosure: 2015-07-24 (expat issue reported)
+  cvss-score: "6.8"
   fixed-in:
     - d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e # 2.7.12
     - 196d7db3956f4c0b03e87b570771b3460a61bab5 # 3.4.5
@@ -49,16 +57,23 @@
 
 - name: CVE-2016-5699
   summary: >
-    HTTP header
+    HTTP header injection
   links:
     - https://bugs.python.org/issue22928
+    - https://access.redhat.com/security/cve/cve-2014-4616
   disclosure: "2014-11-24 (issue #22928 reported)"
+  cvss-score: "4.3"
   fixed-in:
     - 59bdf6392de446de8a19bfa37cee52981612830e # 2.7.10
     - a112a8ae47813f75aa8ad27ee8c42a7c2e937d13 # 3.4.4
     - b669bfc2bed1f5487ac2762bff53b55f6155bb60 # 3.5.0
   description: >
-    HTTP header injection in urrlib2/urllib/httplib/http.client
+    HTTP header injection in urllib, urrlib2, httplib and http.client.
+
+    CRLF injection vulnerability in the HTTPConnection.putheader function in
+    urllib2 and urllib in CPython (aka Python) before 2.7.10 and 3.x before
+    3.4.4 allows remote attackers to inject arbitrary HTTP headers via CRLF
+    sequences in a URL.
 
 - name: Hash DoS
   summary: >
@@ -67,7 +82,6 @@
   links:
    - http://bugs.python.org/issue13703
    - https://events.ccc.de/congress/2011/Fahrplan/events/4680.en.html
-   - https://www.python.org/dev/peps/pep-0456/
    - http://www.ocert.org/advisories/ocert-2011-003.html
   fixed-in:
     - 1e13eb084f72d5993cbb726e45b36bdb69c83a24 # 2.6.8
@@ -75,10 +89,15 @@
   description: >
     Hash collision denial of service.
 
-    Python 2 requires ``-R`` option to enable the fix.
+    Python 2.6 and 2.7 require the ``-R`` command line option to enable the
+    fix.
 
     "Effective Denial of Service attacks against web application platforms"
     talk at the CCC: 2011-12-28
+
+    See also the `PEP 456: Secure and interchangeable hash algorithm
+    <https://www.python.org/dev/peps/pep-0456/>`_: Python 3.4 switched to
+    `SipHash <https://131002.net/siphash/>`_.
 
 - name: CVE-2016-5636
   summary: >
@@ -86,6 +105,7 @@
   links:
     - https://bugs.python.org/issue26171
   disclosure: "2016-01-21 (issue #26171 reported)"
+  cvss-score: "10.0"
   fixed-in:
    - 64ea192b73e39e877d8b39ce6584fa580eb0e9b4 # 2.7.12
    - c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf # 3.4.5, 3.5.2, 3.6.0
@@ -94,10 +114,12 @@
 
 - name: CVE-2013-1752 (smtplib)
   summary: >
-    smtplib readline
+    smtplib unlimited read
   links:
     - http://bugs.python.org/issue16042
+    - https://access.redhat.com/security/cve/cve-2013-1752
   disclosure: "2012-09-25 (issue #16042 reported)"
+  redhat-impact: "Moderate"
   fixed-in:
     - dabfc56b57f5086eb5522d8e6cd7670c62d2482d # 2.7
     - 210ee47e3340d8e689d8cce584e7c918d368f16b # 3.2
@@ -108,7 +130,7 @@
 
 - name: "Issue #6791"
   summary: >
-    httplib readline
+    httplib unlimited read
   links:
     - http://bugs.python.org/issue6791
   disclosure: "2009-08-28 (issue #6791 reported)"
@@ -121,10 +143,12 @@
 
 - name: "CVE-2013-1752 (ftplib)"
   summary: >
-    ftplib readline
+    ftplib unlimited read
   links:
     - http://bugs.python.org/issue16038
+    - https://access.redhat.com/security/cve/cve-2013-1752
   disclosure: "2012-09-25 (issue #16038 reported)"
+  redhat-impact: "Moderate"
   fixed-in:
    - 2585e1e48abb3013abeb8a1fe9dccb5f79ac4091 # 2.7
    - c9cb18d3f7e5bf03220c213183ff0caa75905bdd # 3.2
@@ -134,36 +158,42 @@
 
     Reported by Christian Heimes.
 
-- name: "Issue #16040"
+- name: "CVE-2013-1752 (nntplib)"
   summary: >
-    nntplib readline
+    nntplib unlimited read
   links:
     - http://bugs.python.org/issue16040
+    - https://access.redhat.com/security/cve/cve-2013-1752
   disclosure: "2012-09-25 (issue #16040 reported)"
+  redhat-impact: "Moderate"
   fixed-in:
    - 42faa55124abcbb132c57745dec9e0489ac74406 # 2.7
    - b3ac84322fe6dd542aa755779cdbc155edca8064 # 3.2
   description: >
     Unlimited read from connection in nntplib.
 
-- name: "Issue #16041"
+- name: "CVE-2013-1752 (poplib)"
   summary: >
-    poplib readline
+    poplib unlimited read
   links:
     - http://bugs.python.org/issue16041
+    - https://access.redhat.com/security/cve/cve-2013-1752
   disclosure: "2012-09-25 (iIssue #16041 reported)"
+  redhat-impact: "Moderate"
   fixed-in:
    - faad6bbea6c86e30c770eb0a3648e2cd52b2e55e # 2.7
    - eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e # 3.2
   description: >
     poplib: unlimited readline() from connection.
 
-- name: "Issue #16043"
+- name: "CVE-2013-1753"
   summary: >
     xmlrpc unlimited read
   links:
     - http://bugs.python.org/issue16043
+    - https://access.redhat.com/security/cve/cve-2013-1753
   disclosure: "2012-09-25 (issue #16043 reported)"
+  redhat-impact: "Moderate"
   fixed-in:
    - 9e8f523c5b1c354097753084054eadf14d33238d # 2.7
    - 4e9cefaf86035f8014e09049328d197b6506532f # 3.2
@@ -177,6 +207,7 @@
   summary: >
     JSON arbitrary memory access
   disclosure: "2014-04-13 (commit)"
+  redhat-impact: "Moderate"
   fixed-in:
    - 6c939cb6f6dfbd273609577b0022542d31ae2802 # 2.7
    - 99b5afab74428e5ddfd877bdf3aa8a8c479696b1 # 3.2
@@ -205,7 +236,9 @@
   links:
     - http://bugs.python.org/issue27568
     - https://httpoxy.org/
+    - https://access.redhat.com/security/cve/cve-2016-1000110
   disclosure: "2016-07-18 (issue #27568 reported)"
+  cvss-score: "5.0 (CVSS v3)"
   fixed-in:
    - 75d7b615ba70fc5759d16dee95bbd8f0474d8a9c # 2.7
    - 4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d # 3.3
@@ -223,6 +256,7 @@
   links:
     - http://bugs.python.org/issue20246
   disclosure: "2014-01-14 (issue #20246 reported)"
+  cvss-score: "7.5"
   fixed-in:
    - 28cf368c1baba3db1f01010e921f63017af74c8f # 2.7
    - fbf648ebba32bbc5aa571a4b09e2062a65fd2492 # 3.3
@@ -255,6 +289,7 @@
   links:
     - http://bugs.python.org/issue17980
   disclosure: "2013-05-15 (issue #17980 reported)"
+  cvss-score: "4.3"
   fixed-in:
    - 636f93c63ba286249c1207e3a903f8429efb2041 # 3.3
   description: >
@@ -274,6 +309,7 @@
   links:
     - http://bugs.python.org/issue14579
   disclosure: "2012-04-14"
+  cvss-score: "6.4"
   fixed-in:
    - 715a63b78349952ccc0fb3dd3139e2d822006d35 # 2.7
    - b4bbee25b1e3f4bccac222f806b3138fb72439d6 # 3.3
@@ -288,6 +324,7 @@
   links:
     - http://bugs.python.org/issue14001
   disclosure: "2012-02-13 (issue #14001 reported)"
+  cvss-score: "5.0"
   fixed-in:
    - 66f3cc6f8de83c447d937160e4a1630c4482b5f5 # 2.6
    - ec1712a1662282c909b4cd4cc0c7486646bc9246 # 3.2
@@ -306,6 +343,7 @@
   links:
     - http://bugs.python.org/issue18709
   disclosure: "2013-08-12 (issue #18709 reported)"
+  cvss-score: "4.3"
   fixed-in:
    - 82f88283171933127f20f866a7f98694b29cca56 # 2.7
    - 824f7f366d1b54d2d3100c3130c04cf1dfb4b47c # 3.x
@@ -320,6 +358,7 @@
   links:
     - http://bugs.python.org/issue13885
   disclosure: "2012-01-27 (issue #13885 reported)"
+  cvss-score: "4.3"
   fixed-in:
    - d358e0554bc520768041652676ec8e6076f221a9 # 2.x
    - f2bf8a6ac51530e14d798a03c8e950dd934d85cd # 3.x
@@ -335,6 +374,7 @@
   links:
     - http://bugs.python.org/issue11662
   disclosure: "2011-03-24 (issue #11662 reported)"
+  cvss-score: "6.4"
   fixed-in:
    - 60a4a90c8dd2972eb4bb977e70835be9593cbbac # 2.5
    - a119df91f33724f64e6bc1ecb484eeaa30ace014 # 3.1
@@ -352,6 +392,7 @@
 #   links:
 #     -
 #   disclosure: ""
+#   cvss-score: ""
 #   fixed-in:
 #    -
 #   description: >

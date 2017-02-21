@@ -159,3 +159,5 @@ Links
   <https://github.com/openstack/bandit>`_
 * `cryptography  (cryptography.io) <https://cryptography.io/>`_: Python library
   which exposes cryptographic recipes and primitives
+* `Python CVEs (cvedetails.com)
+  <http://www.cvedetails.com/product/18230/Python-Python.html?vendor_id=10210>`_
