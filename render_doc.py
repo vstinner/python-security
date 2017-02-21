@@ -305,6 +305,8 @@ class PythonReleases:
                 self.dates[version] = date
 
     def get_date(self, version):
+        if version.count('.') == 1:
+            version += '.0'
         try:
             return self.dates[version]
         except KeyError:
