@@ -260,11 +260,10 @@ class Vulnerability:
             if key in seen:
                 continue
             seen.add(key)
+            self.fixes.append(fix)
             if (pyver_info >= (3, 0)
                and (len(pyver_info) < 3 or pyver_info[2] == 0)):
                 break
-            self.fixes.append(fix)
-
 
     @staticmethod
     def sort_key(vuln):
@@ -377,14 +376,26 @@ class RenderDoc:
                     print(file=fp)
                     print("Fixed In:", file=fp)
                     print(file=fp)
-                    for fix in vuln.fixes:
+                    for index, fix in enumerate(vuln.fixes):
                         short = short_commit(fix.commit)
                         date = format_date(fix.release_date)
                         url = commit_url(fix.commit)
                         days = (fix.release_date - vuln.disclosure_date).days
                         commit_date = format_date(fix.commit_date)
                         commit_days = (fix.commit_date - vuln.disclosure_date).days
-                        print("* {} ({} days): {}, `commit {} <{}>`_ ({}, {} days)".format(fix.python_version, days, date, short, url, commit_date, commit_days),
+                        pyver_info = version_info(fix.python_version)
+
+                        version = fix.python_version
+                        commit = "`commit {} <{}>`_".format(short, url)
+
+                        # Don't show the date/days fort 3.x.0 releases, except
+                        # if it's the first (and so the only) version having
+                        # the fix (ex: CVE-2013-7040)
+                        if not(pyver_info >= (3, 0)
+                               and (len(pyver_info) < 3 or pyver_info[2] == 0)) or index == 0:
+                            version = "{} ({} days)".format(version, days)
+                            commit = "{} ({}, {} days)".format(commit, commit_date, commit_days)
+                        print("* {}: {}, {}".format(version, date, commit),
                               file=fp)
 
         print("{} generated".format(filename))
