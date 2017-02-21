@@ -330,12 +330,9 @@ class RenderDoc:
             print("+" * len(title), file=fp)
             print(file=fp)
 
-            title = 'Security vulnerabilities'
-            print(title, file=fp)
-            print("=" * len(title), file=fp)
-            print(file=fp)
-
             print(tabulate.tabulate(table, headers, tablefmt="grid"), file=fp)
+            print(file=fp)
+            print("Total: %s vulnerabilities" % len(table), file=fp)
             print(file=fp)
             print("* Vulnerabilities sorted by the Disclosure column", file=fp)
             print("* Disclosure: Disclosure date, first time that the vulnerability was public", file=fp)
