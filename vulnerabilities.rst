@@ -72,6 +72,8 @@ Security vulnerabilities
 +----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
 | `Issue #6791`_             | httplib unlimited read                            | 2009-08-28   | ?             | 2.7.2, 3.1.4, 3.2                        |
 +----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2011-1015`_           | CGIHTTPServer directory traversal                 | 2008-03-07   | 5.0           | 2.7, 3.2.4, 3.3.1, 3.4.0                 |
++----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
 
 * Vulnerabilities sorted by the Disclosure column
 * Disclosure: Disclosure date, first time that the vulnerability was public
@@ -807,3 +809,25 @@ Fixed In:
 * 2.7.2 (652 days): 2011-06-11, `commit d7b6ac6 <https://github.com/python/cpython/commit/d7b6ac66c1b81d13f2efa8d9ebba69e17c158c0a>`_ (2010-12-18, 477 days)
 * 3.1.4 (652 days): 2011-06-11, `commit ff1bbba <https://github.com/python/cpython/commit/ff1bbba92aad261df1ebd8fd8cc189c104e113b0>`_ (2010-12-18, 477 days)
 * 3.2: 2011-02-20, `commit 5466bf1 <https://github.com/python/cpython/commit/5466bf1c94d38e75bc053b0cfc163e2f948fe345>`_
+
+
+CVE-2011-1015
+=============
+
+Disclosure date: 2008-03-07 (issue #2254 reported).
+
+`CVSS Score`_: 5.0.
+
+The ``is_cgi()`` method in ``CGIHTTPServer.py`` in the ``CGIHTTPServer`` module in Python 2.5, 2.6, and 3.0 allows remote attackers to read script source code via an HTTP GET request that lacks a ``/`` (slash) character at the beginning of the URI.
+
+Links:
+
+* http://bugs.python.org/issue2254
+* http://www.cvedetails.com/cve/CVE-2011-1015/
+
+Fixed In:
+
+* 2.7 (848 days): 2010-07-03, `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_ (2009-04-06, 395 days)
+* 3.2.4 (1857 days): 2013-04-07, `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_ (2009-04-06, 395 days)
+* 3.3.1 (1857 days): 2013-04-07, `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_ (2009-04-06, 395 days)
+* 3.4.0: 2014-03-16, `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_

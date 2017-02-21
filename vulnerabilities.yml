@@ -550,6 +550,21 @@
     makes it easier for remote attackers to conduct cross-site scripting (XSS)
     attacks against Internet Explorer 7 via UTF-7 encoding.
 
+- name: "CVE-2011-1015"
+  summary: >
+    CGIHTTPServer directory traversal
+  links:
+    - http://bugs.python.org/issue2254
+  disclosure: "2008-03-07 (issue #2254 reported)"
+  cvss-score: "5.0"
+  fixed-in:
+   - 923ba361d8f757f0656cfd216525aca4848e02aa # 2.7
+  description: >
+    The ``is_cgi()`` method in ``CGIHTTPServer.py`` in the ``CGIHTTPServer``
+    module in Python 2.5, 2.6, and 3.0 allows remote attackers to read script
+    source code via an HTTP GET request that lacks a ``/`` (slash) character at
+    the beginning of the URI.
+
 # Template:
 # - name: ""
 #   summary: >
