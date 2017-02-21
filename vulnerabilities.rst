@@ -79,7 +79,7 @@ Security vulnerabilities
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2008-3143`_           | multiple integer overflows          | 2008-04-11   | 7.5           | 2.5.3, 2.6, 3.0                          |
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2008-5031`_           | expandtab() integer overflow        | 2008-03-11   | 10.0          | 2.5.3, 2.6, 3.0                          |
+| `CVE-2008-5031`_           | ``expandtab()`` integer overflow    | 2008-03-11   | 10.0          | 2.5.3, 2.6, 3.0                          |
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2011-1015`_           | CGI directory traversal             | 2008-03-07   | 5.0           | 2.7, 3.2.4, 3.3.1, 3.4.0                 |
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
@@ -517,6 +517,7 @@ Links:
 
 * http://bugs.python.org/issue16038
 * https://access.redhat.com/security/cve/cve-2013-1752
+* http://www.cvedetails.com/cve/CVE-2013-1752/
 
 Fixed In:
 
@@ -539,6 +540,7 @@ Links:
 
 * http://bugs.python.org/issue16040
 * https://access.redhat.com/security/cve/cve-2013-1752
+* http://www.cvedetails.com/cve/CVE-2013-1752/
 
 Fixed In:
 
@@ -562,6 +564,7 @@ Links:
 
 * http://bugs.python.org/issue16041
 * https://access.redhat.com/security/cve/cve-2013-1752
+* http://www.cvedetails.com/cve/CVE-2013-1752/
 
 Fixed In:
 
@@ -584,6 +587,7 @@ Links:
 
 * http://bugs.python.org/issue16042
 * https://access.redhat.com/security/cve/cve-2013-1752
+* http://www.cvedetails.com/cve/CVE-2013-1752/
 
 Fixed In:
 
@@ -943,7 +947,8 @@ Disclosure date: 2008-03-11 (commit date).
 
 `CVSS Score`_: 10.0.
 
-Multiple integer overflows in Python 2.2.3 through 2.5.1, and 2.6, allow context-dependent attackers to have an unknown impact via a large integer value in the tabsize argument to the expandtabs method, as implemented by (1) the string_expandtabs function in Objects/stringobject.c and (2) the unicode_expandtabs function in Objects/unicodeobject.c. NOTE: this vulnerability reportedly exists because of an incomplete fix for CVE-2008-2315.
+Multiple integer overflows in Python 2.2.3 through 2.5.1, and 2.6, allow context-dependent attackers to have an unknown impact via a large integer value in the tabsize argument to the expandtabs method, as implemented by (1) the string_expandtabs function in Objects/stringobject.c and (2) the unicode_expandtabs function in Objects/unicodeobject.c.
+NOTE: this vulnerability reportedly exists because of an incomplete fix for `CVE-2008-2315`_.
 Reported by Chris Evans.
 
 Links:
@@ -998,6 +1003,9 @@ Links:
 * http://bugs.python.org/issue8678
 * https://bugzilla.redhat.com/show_bug.cgi?id=541698
 * http://www.cvedetails.com/cve/CVE-2007-4965/
+* http://www.cvedetails.com/cve/CVE-2009-4134/
+* http://www.cvedetails.com/cve/CVE-2010-1449/
+* http://www.cvedetails.com/cve/CVE-2010-1450/
 
 Fixed In:
 

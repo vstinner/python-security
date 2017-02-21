@@ -8,7 +8,7 @@ import tabulate
 import yaml
 
 
-CVE_REGEX = re.compile('^CVE-[0-9]+-[0-9]+$')
+CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
 CVE_URL = 'http://www.cvedetails.com/cve/%s/'
 
 
@@ -238,14 +238,23 @@ class Vulnerability:
         self.summary = data['summary'].rstrip()
         self.description = data['description'].rstrip()
         self.links = data.get('links')
-        if CVE_REGEX.match(self.name):
-            url = CVE_URL % self.name
-            if not self.links:
-                self.links = []
-            self.links.append(url)
         self.cvss_score = data.get('cvss-score')
         self.redhat_impact = data.get('redhat-impact')
 
+        cves = set()
+        for text in (self.name, self.description):
+            for cve in CVE_REGEX.findall(text):
+                cves.add(cve)
+
+        for cve in sorted(cves):
+            url = CVE_URL % cve
+            if not self.links:
+                self.links = []
+            self.links.append(url)
+
+        self.find_fixes(data)
+
+    def find_fixes(self, data):
         fixes = []
         ignore_python3 = data.get('ignore-python3')
         commits = data['fixed-in']
