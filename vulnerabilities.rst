@@ -123,7 +123,9 @@ Disclosure date: 2016-08-24 (issue #27850 reported).
 `CVSS Score`_: 5.0.
 
 Remove 3DES from ssl default cipher list.
-Sweet32 vulnerability found by Karthik Bhargavan and Gaetan Leurent from the `INRIA <https://www.inria.fr/>`_.
+
+Sweet32 vulnerability found by Karthik Bhargavan and Gaetan Leurent from
+the `INRIA <https://www.inria.fr/>`_.
 
 Links:
 
@@ -146,9 +148,12 @@ Disclosure date: 2016-07-18 (issue #27568 reported).
 
 `CVSS Score`_: 5.0 (CVSS v3).
 
-Prevent HTTPoxy attack (CVE-2016-1000110).
-Ignore the HTTP_PROXY variable when REQUEST_METHOD environment is set, which indicates that the script is in CGI mode.
-Issue #27568 Reported and patch contributed by Rémi Rampin.
+Prevent HTTPoxy attack.
+
+Ignore the HTTP_PROXY variable when REQUEST_METHOD environment is set, which
+indicates that the script is in CGI mode.
+
+Reported and patch contributed by Rémi Rampin.
 
 Links:
 
@@ -172,7 +177,13 @@ Disclosure date: 2016-06-11 (commit date).
 
 `CVSS Score`_: 5.8.
 
-A vulnerability in smtplib allowing MITM attacker to perform a startTLS stripping attack. smtplib does not seem to raise an exception when the remote end (SMTP server) is capable of negotiating starttls but fails to respond with 220 (ok) to an explicit call of SMTP.starttls(). This may allow a malicious MITM to perform a startTLS stripping attack if the client code does not explicitly check the response code for startTLS.
+A vulnerability in smtplib allowing MITM attacker to perform a startTLS
+stripping attack. smtplib does not seem to raise an exception when the
+remote end (SMTP server) is capable of negotiating starttls but fails to
+respond with 220 (ok) to an explicit call of SMTP.starttls(). This may
+allow a malicious MITM to perform a startTLS stripping attack if the client
+code does not explicitly check the response code for startTLS.
+
 Reported by Tin (Team Oststrom).
 
 Links:
@@ -194,7 +205,10 @@ Issue #26657
 
 Disclosure date: 2016-03-28 (issue #26657 reported).
 
-Fix directory traversal vulnerability with http.server and SimpleHTTPServer on Windows. Regression of Python 3.3.5.
+Fix directory traversal vulnerability with ``http.server`` and
+``SimpleHTTPServer`` on Windows.
+
+Regression of Python 3.3.5.
 
 Links:
 
@@ -214,7 +228,7 @@ Disclosure date: 2016-01-21 (issue #26171 reported).
 
 `CVSS Score`_: 10.0.
 
-Heap overflow in zipimporter module.
+Heap overflow in ``zipimporter`` module.
 
 Links:
 
@@ -236,7 +250,10 @@ Disclosure date: 2015-07-24 (expat issue reported).
 
 `CVSS Score`_: 6.8.
 
-Multiple integer overflows have been discovered in Expat, an XML parsing C library, which may result in denial of service or the execution of arbitrary code if a malformed XML file is processed.
+Multiple integer overflows have been discovered in Expat, an XML parsing C
+library, which may result in denial of service or the execution of
+arbitrary code if a malformed XML file is processed.
+
 Update Expat to 2.1.1.
 
 Links:
@@ -262,8 +279,13 @@ Disclosure date: 2014-11-24 (issue #22928 reported).
 
 `CVSS Score`_: 4.3.
 
-HTTP header injection in urllib, urrlib2, httplib and http.client.
-CRLF injection vulnerability in the HTTPConnection.putheader function in urllib2 and urllib in CPython (aka Python) before 2.7.10 and 3.x before 3.4.4 allows remote attackers to inject arbitrary HTTP headers via CRLF sequences in a URL.
+HTTP header injection in ``urllib``, ``urrlib2``, ``httplib`` and
+``http.client`` modules.
+
+CRLF injection vulnerability in the ``HTTPConnection.putheader()`` function
+in ``urllib2`` and ``urllib`` in CPython before 2.7.10 and 3.x before 3.4.4
+allows remote attackers to inject arbitrary HTTP headers via CRLF sequences
+in a URL.
 
 Links:
 
@@ -285,7 +307,10 @@ Disclosure date: 2014-06-24 (issue #21831 reported).
 
 `CVSS Score`_: 6.4.
 
-Integer overflow in bufferobject.c in Python before 2.7.8 allows context-dependent attackers to obtain sensitive information from process memory via a large size and offset in a ``buffer`` type.
+Integer overflow in ``bufferobject.c`` in Python before 2.7.8 allows
+context-dependent attackers to obtain sensitive information from process
+memory via a large size and offset in a ``buffer`` type.
+
 Reported by Chris Foster on the Python security list:
 
 Links:
@@ -305,7 +330,10 @@ Disclosure date: 2014-04-19 (issue #21308 reported).
 
 `CVSS Score`_: 5.8.
 
-[Python 2] backport many ssl features from Python 3. A contribution of Alex Gaynor and David Reid with the generous support of Rackspace. May God have mercy on their souls.
+Python 2.7 backport of many ssl features from Python 3.
+
+A contribution of Alex Gaynor and David Reid with the generous support of
+Rackspace. May God have mercy on their souls.
 
 Links:
 
@@ -329,7 +357,9 @@ Disclosure date: 2014-04-13 (commit).
 
 `Red Hat impact`_: Moderate.
 
-Fix arbitrary memory access in JSONDecoder.raw_decode with a negative second parameter.
+Fix arbitrary memory access in ``JSONDecoder.raw_decode`` with a negative
+second parameter.
+
 Bug reported by Guido Vranken.
 
 Links:
@@ -353,8 +383,11 @@ Disclosure date: 2014-03-28 (issue #21082 reported).
 
 `CVSS Score`_: 3.3.
 
-``os.makedirs(exist_ok=True)`` is not thread-safe: umask is set temporary to ``0``, serious security problem.
+``os.makedirs(exist_ok=True)`` is not thread-safe: umask is set temporary
+to ``0``, serious security problem.
+
 Remove directory mode check from ``os.makedirs()``.
+
 Reported by Ryan Lortie.
 
 Links:
@@ -377,7 +410,9 @@ Disclosure date: 2014-01-14 (issue #20246 reported).
 
 `CVSS Score`_: 7.5.
 
-``socket.recvfrom_into()`` fails to check that the supplied buffer object is big enough for the requested read and so will happily write off the end.
+``socket.recvfrom_into()`` fails to check that the supplied buffer object
+is big enough for the requested read and so will happily write off the end.
+
 Reported by Ryan Smith-Roberts.
 
 Links:
@@ -400,10 +435,19 @@ Disclosure date: 2013-12-27 (issue #20078 reported).
 
 `CVSS Score`_: 7.1.
 
-Python before 3.3.4 RC1 allows remote attackers to cause a denial of service (infinite loop and CPU consumption) via a file size value larger than the size of the zip file to the functions:
-* ``ZipExtFile.read()`` * ``ZipExtFile.readlines()`` * ``ZipFile.extract()`` * ``ZipFile.extractall()``
+Python before 3.3.4 RC1 allows remote attackers to cause a denial of
+service (infinite loop and CPU consumption) via a file size value larger
+than the size of the zip file to the functions:
+
+* ``ZipExtFile.read()``
+* ``ZipExtFile.readlines()``
+* ``ZipFile.extract()``
+* ``ZipFile.extractall()``
+
 Reading malformed zipfiles no longer hangs with 100% CPU consumption.
+
 Python 2.7 is not affected.
+
 Reported by Nandiya.
 
 Links:
@@ -422,7 +466,10 @@ Issue #19435
 
 Disclosure date: 2013-10-29 (issue #19435 reported).
 
-An error in separating the path and filename of the CGI script to run in http.server.CGIHTTPRequestHandler allows running arbitrary executables in the directory under which the server was started.
+An error in separating the path and filename of the CGI script to run in
+``http.server.CGIHTTPRequestHandler`` allows running arbitrary executables in
+the directory under which the server was started.
+
 Reported by Alexander Kruppa.
 
 Links:
@@ -445,6 +492,7 @@ Disclosure date: 2013-08-12 (issue #18709 reported).
 `CVSS Score`_: 4.3.
 
 SSL module fails to handle NULL bytes inside subjectAltNames general names.
+
 Reported by Christian Heimes.
 
 Links:
@@ -468,7 +516,11 @@ Disclosure date: 2013-05-17 (issue #17997 reported).
 `CVSS Score`_: 4.3.
 
 ``ssl.match_hostname()``: sub string wildcard should not match IDNA prefix.
-Change behavior of ``ssl.match_hostname()`` to follow RFC 6125, for security reasons.  It now doesn't match multiple wildcards nor wildcards inside IDN fragments.
+
+Change behavior of ``ssl.match_hostname()`` to follow RFC 6125, for
+security reasons.  It now doesn't match multiple wildcards nor wildcards
+inside IDN fragments.
+
 Reported by Christian Heimes.
 
 Links:
@@ -490,8 +542,14 @@ Disclosure date: 2013-05-15 (issue #17980 reported).
 
 `CVSS Score`_: 4.3.
 
-If the name in the certificate contains many ``*`` characters (wildcard), matching the compiled regular expression against the host name can take a very long time.
-Certificate validation happens before host name checking, so I think this is a minor issue only because it can only be triggered in cooperation with a CA (which seems unlikely).
+If the name in the certificate contains many ``*`` characters (wildcard),
+matching the compiled regular expression against the host name can take a
+very long time.
+
+Certificate validation happens before host name checking, so I think this
+is a minor issue only because it can only be triggered in cooperation with
+a CA (which seems unlikely).
+
 Reported by Florian Weimer.
 
 Links:
@@ -512,7 +570,8 @@ Disclosure date: 2012-09-25 (issue #16038 reported).
 
 `Red Hat impact`_: Moderate.
 
-ftplib: unlimited readline() from connection.
+ftplib: unlimited read from connection.
+
 Reported by Christian Heimes.
 
 Links:
@@ -560,7 +619,7 @@ Disclosure date: 2012-09-25 (iIssue #16041 reported).
 
 `Red Hat impact`_: Moderate.
 
-poplib: unlimited readline() from connection.
+poplib: unlimited read from connection.
 
 Links:
 
@@ -583,7 +642,9 @@ Disclosure date: 2012-09-25 (issue #16042 reported).
 
 `Red Hat impact`_: Moderate.
 
-CVE-2013-1752: The smtplib module doesn't limit the amount of read data in its call to readline(). An erroneous or malicious SMTP server can trick the smtplib module to consume large amounts of memory.
+CVE-2013-1752: The smtplib module doesn't limit the amount of read data in
+its call to readline(). An erroneous or malicious SMTP server can trick the
+smtplib module to consume large amounts of memory.
 
 Links:
 
@@ -606,7 +667,8 @@ Disclosure date: 2012-09-25 (issue #16043 reported).
 
 `Red Hat impact`_: Moderate.
 
-Add a default limit for the amount of data xmlrpclib.gzip_decode will return.
+Add a default limit for the amount of data ``xmlrpclib.gzip_decode()`` will
+return.
 
 Links:
 
@@ -629,8 +691,11 @@ Disclosure date: 2012-04-19 (issue #14621 reported).
 `CVSS Score`_: 4.3.
 
 Hash function is not randomized properly.
+
 Python 3.4 now used SipHash (PEP 456).
+
 Python 3.3 and Python 2.7 are still affected.
+
 Reported by Vlado Boza.
 
 Links:
@@ -651,6 +716,7 @@ Disclosure date: 2012-04-14.
 `CVSS Score`_: 6.4.
 
 Vulnerability in the UTF-16 decoder after error handling.
+
 Reported by Serhiy Storchaka.
 
 Links:
@@ -672,7 +738,12 @@ Disclosure date: 2012-02-13 (issue #14001 reported).
 
 `CVSS Score`_: 5.0.
 
-A denial of service flaw was found in the way Simple XML-RPC Server module of Python processed client connections, that were closed prior the complete request body has been received. A remote attacker could use this flaw to cause Python Simple XML-RPC based server process to consume excessive amount of CPU.
+A denial of service flaw was found in the way Simple XML-RPC Server module
+of Python processed client connections, that were closed prior the complete
+request body has been received. A remote attacker could use this flaw to
+cause Python Simple XML-RPC based server process to consume excessive
+amount of CPU.
+
 Reported by Jan Lieskovsky.
 
 Links:
@@ -696,7 +767,9 @@ Disclosure date: 2012-01-27 (issue #13885 reported).
 
 `CVSS Score`_: 4.3.
 
-The ssl module would always disable the CBC IV attack countermeasure. Disable OpenSSL ``SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS`` option.
+The ssl module would always disable the CBC IV attack countermeasure.
+Disable OpenSSL ``SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS`` option.
+
 Reported by Antoine Pitrou.
 
 Links:
@@ -721,9 +794,16 @@ Disclosure date: 2011-12-28 (CCC talk).
 `CVSS Score`_: 5.0.
 
 Hash collision denial of service.
-Python 2.6 and 2.7 require the ``-R`` command line option to enable the fix.
-"Effective Denial of Service attacks against web application platforms" talk at the CCC: 2011-12-28
-See also the `PEP 456: Secure and interchangeable hash algorithm <https://www.python.org/dev/peps/pep-0456/>`_: Python 3.4 switched to `SipHash <https://131002.net/siphash/>`_.
+
+Python 2.6 and 2.7 require the ``-R`` command line option to enable the
+fix.
+
+"Effective Denial of Service attacks against web application platforms"
+talk at the CCC: 2011-12-28
+
+See also the `PEP 456: Secure and interchangeable hash algorithm
+<https://www.python.org/dev/peps/pep-0456/>`_: Python 3.4 switched to
+`SipHash <https://131002.net/siphash/>`_.
 
 Links:
 
@@ -748,7 +828,10 @@ Disclosure date: 2011-11-30 (issue #13512 reported).
 
 `CVSS Score`_: 1.9.
 
-Python 2.6 through 3.2 creates ``~/.pypirc`` configuration file with world-readable permissions before changing them after data has been written, which introduces a race condition that allows local users to obtain a username and password by reading this file.
+Python 2.6 through 3.2 creates ``~/.pypirc`` configuration file with
+world-readable permissions before changing them after data has been
+written, which introduces a race condition that allows local users to
+obtain a username and password by reading this file.
 
 Links:
 
@@ -770,8 +853,12 @@ Disclosure date: 2011-03-24 (issue #11662 reported).
 
 `CVSS Score`_: 6.4.
 
-The Python urllib and urllib2 modules are typically used to fetch web pages but by default also contains handlers for ``ftp://`` and ``file://`` URL schemes.
-Now unfortunately it appears that it is possible for a web server to redirect (HTTP 302) a urllib request to any of the supported schemes.
+The Python urllib and urllib2 modules are typically used to fetch web pages
+but by default also contains handlers for ``ftp://`` and ``file://`` URL
+schemes.
+
+Now unfortunately it appears that it is possible for a web server to
+redirect (HTTP 302) a urllib request to any of the supported schemes.
 
 Links:
 
@@ -795,7 +882,12 @@ Disclosure date: 2011-03-08 (issue #11442 reported).
 
 `CVSS Score`_: 2.6.
 
-The list_directory function in Lib/SimpleHTTPServer.py in SimpleHTTPServer in Python before 2.5.6c1, 2.6.x before 2.6.7 rc2, and 2.7.x before 2.7.2 does not place a charset parameter in the Content-Type HTTP header, which makes it easier for remote attackers to conduct cross-site scripting (XSS) attacks against Internet Explorer 7 via UTF-7 encoding.
+The ``list_directory()`` function in ``Lib/SimpleHTTPServer.py`` in
+``SimpleHTTPServer`` in Python before 2.5.6c1, 2.6.x before 2.6.7 rc2, and
+2.7.x before 2.7.2 does not place a charset parameter in the Content-Type
+HTTP header, which makes it easier for remote attackers to conduct
+cross-site scripting (XSS) attacks against Internet Explorer 7 via UTF-7
+encoding.
 
 Links:
 
@@ -819,8 +911,14 @@ Disclosure date: 2010-05-10 (issue #8674 reported).
 
 `CVSS Score`_: 5.0.
 
-Multiple integer overflows in audioop.c in the audioop module in Python 2.6, 2.7, 3.1, and 3.2 allow context-dependent attackers to cause a denial of service (application crash) via a large fragment, as demonstrated by a call to audioop.lin2lin with a long string in the first argument, leading to a buffer overflow.
-NOTE: this vulnerability exists because of an incorrect fix for `CVE-2008-3143`_.
+Multiple integer overflows in ``audioop.c`` in the ``audioop`` module in Python
+2.6, 2.7, 3.1, and 3.2 allow context-dependent attackers to cause a denial
+of service (application crash) via a large fragment, as demonstrated by a
+call to audioop.lin2lin with a long string in the first argument, leading
+to a buffer overflow.
+
+NOTE: this vulnerability exists because of an incorrect fix for
+`CVE-2008-3143`_.
 
 Links:
 
@@ -842,7 +940,13 @@ Disclosure date: 2010-01-11 (issue #7673 reported).
 
 `CVSS Score`_: 5.0.
 
-The audioop module in Python 2.7 and 3.2 does not verify the relationships between size arguments and byte string lengths, which allows context-dependent attackers to cause a denial of service (memory corruption and application crash) via crafted arguments, as demonstrated by a call to audioop.reverse with a one-byte string, a different vulnerability than `CVE-2010-1634`_.
+The ``audioop`` module in Python 2.7 and 3.2 does not verify the relationships
+between size arguments and byte string lengths, which allows
+context-dependent attackers to cause a denial of service (memory corruption
+and application crash) via crafted arguments, as demonstrated by a call to
+``audioop.reverse()`` with a one-byte string, a different vulnerability
+than `CVE-2010-1634`_.
+
 Reported by STINNER Victor.
 
 Links:
@@ -883,7 +987,13 @@ Disclosure date: 2009-08-14 (issue #6706 reported).
 
 `CVSS Score`_: 5.0.
 
-The asyncore module in Python before 3.2 does not properly handle unsuccessful calls to the accept function, and does not have accompanying documentation describing how daemon applications should handle unsuccessful calls to the accept function, which makes it easier for remote attackers to conduct denial of service attacks that terminate these applications via network connections.
+The ``asyncore`` module in Python before 3.2 does not properly handle
+unsuccessful calls to the accept function, and does not have accompanying
+documentation describing how daemon applications should handle unsuccessful
+calls to the accept function, which makes it easier for remote attackers to
+conduct denial of service attacks that terminate these applications via
+network connections.
+
 Reported by Giampaolo Rodola.
 
 Links:
@@ -904,7 +1014,14 @@ Disclosure date: 2009-08-14 (issue #6706 reported).
 
 `CVSS Score`_: 4.3.
 
-Multiple race conditions in smtpd.py in the smtpd module in Python 2.6, 2.7, 3.1, and 3.2 alpha allow remote attackers to cause a denial of service (daemon outage) by establishing and then immediately closing a TCP connection, leading to the accept function having an unexpected return value of None, an unexpected value of None for the address, or an ECONNABORTED, EAGAIN, or EWOULDBLOCK error, or the getpeername function having an ENOTCONN error, a related issue to `CVE-2010-3492`_.
+Multiple race conditions in ``smtpd.py`` in the ``smtpd`` module in Python 2.6,
+2.7, 3.1, and 3.2 alpha allow remote attackers to cause a denial of
+service (daemon outage) by establishing and then immediately closing a TCP
+connection, leading to the accept function having an unexpected return
+value of None, an unexpected value of None for the address, or an
+ECONNABORTED, EAGAIN, or EWOULDBLOCK error, or the getpeername function
+having an ENOTCONN error, a related issue to `CVE-2010-3492`_.
+
 Reported by Giampaolo Rodola.
 
 Links:
@@ -927,9 +1044,19 @@ Disclosure date: 2008-07-31 (commit).
 
 `CVSS Score`_: 7.5.
 
-Security patches from Apple: prevent int overflow when allocating memory.
+Security patches from Apple: prevent integer overflows when allocating
+memory.
+
 CVE-ID:
-* CVE-2008-1679 * CVE-2008-1721 * CVE-2008-1887 * CVE-2008-2315 * CVE-2008-2316 * CVE-2008-3142 * CVE-2008-3144 * CVE-2008-4864
+
+* CVE-2008-1679 (``imageop``)
+* CVE-2008-1721 (``zlib``)
+* CVE-2008-1887 (``PyString_FromStringAndSize()``)
+* CVE-2008-2315
+* CVE-2008-2316 (``hashlib``)
+* CVE-2008-3142 (``unicode_resize()``, ``PyMem_RESIZE()``)
+* CVE-2008-3144 (``PyOS_vsnprintf()``)
+* CVE-2008-4864 (``imageop``)
 
 Links:
 
@@ -956,7 +1083,42 @@ Disclosure date: 2008-04-11 (issue #2620 reported).
 
 `CVSS Score`_: 7.5.
 
-Multiple integer overflows in Python before 2.5.2 might allow context-dependent attackers to have an unknown impact via vectors related to (1) Include/pymem.h; (2) _csv.c, (3) _struct.c, (4) arraymodule.c, (5) audioop.c, (6) binascii.c, (7) cPickle.c, (8) cStringIO.c, (9) cjkcodecs/multibytecodec.c, (10) datetimemodule.c, (11) md5.c, (12) rgbimgmodule.c, and (13) stropmodule.c in Modules/; (14) bufferobject.c, (15) listobject.c, and (16) obmalloc.c in Objects/; (17) Parser/node.c; and (18) asdl.c, (19) ast.c, (20) bltinmodule.c, and (21) compile.c in Python/, as addressed by "checks for integer overflows, contributed by Google."
+Multiple integer overflows in Python before 2.5.2 might allow
+context-dependent attackers to have an unknown impact via vectors related
+to:
+
+* ``Include/pymem.h``
+* ``Modules/``:
+
+  - ``_csv.c``
+  - ``_struct.c``
+  - ``arraymodule.c``
+  - ``audioop.c``
+  - ``binascii.c``
+  - ``cPickle.c``
+  - ``cStringIO.c``
+  - ``datetimemodule.c``
+  - ``md5.c``
+  - ``rgbimgmodule.c``
+  - ``stropmodule.c``
+
+* ``Modules/cjkcodecs/multibytecodec.c``
+* ``Objects/``:
+
+  - ``bufferobject.c``
+  - ``listobject.c``
+  - ``obmalloc.c``
+
+* ``Parser/node.c``
+* ``Python/``:
+
+  - ``asdl.c``
+  - ``ast.c``
+  - ``bltinmodule.c``
+  - ``compile``
+
+as addressed by "checks for integer overflows, contributed by Google."
+
 Reported by Justin Ferguson.
 
 Links:
@@ -978,8 +1140,16 @@ Disclosure date: 2008-03-11 (commit date).
 
 `CVSS Score`_: 10.0.
 
-Multiple integer overflows in Python 2.2.3 through 2.5.1, and 2.6, allow context-dependent attackers to have an unknown impact via a large integer value in the tabsize argument to the expandtabs method, as implemented by (1) the string_expandtabs function in Objects/stringobject.c and (2) the unicode_expandtabs function in Objects/unicodeobject.c.
-NOTE: this vulnerability reportedly exists because of an incomplete fix for `CVE-2008-2315`_.
+Multiple integer overflows in Python 2.2.3 through 2.5.1, and 2.6, allow
+context-dependent attackers to have an unknown impact via a large integer
+value in the tabsize argument to the expandtabs method, as implemented by:
+
+* the ``string_expandtabs()`` function in ``Objects/stringobject.c``
+* the ``unicode_expandtabs()`` function in ``Objects/unicodeobject.c``
+
+NOTE: this vulnerability reportedly exists because of an incomplete
+fix for `CVE-2008-2315`_.
+
 Reported by Chris Evans.
 
 Links:
@@ -1001,7 +1171,10 @@ Disclosure date: 2008-03-07 (issue #2254 reported).
 
 `CVSS Score`_: 5.0.
 
-The ``is_cgi()`` method in ``CGIHTTPServer.py`` in the ``CGIHTTPServer`` module in Python 2.5, 2.6, and 3.0 allows remote attackers to read script source code via an HTTP GET request that lacks a ``/`` (slash) character at the beginning of the URI.
+The ``is_cgi()`` method in ``CGIHTTPServer.py`` in the ``CGIHTTPServer``
+module in Python 2.5, 2.6, and 3.0 allows remote attackers to read script
+source code via an HTTP GET request that lacks a ``/`` (slash) character at
+the beginning of the URI.
 
 Links:
 
@@ -1023,9 +1196,19 @@ Disclosure date: 2007-09-16 (full-disclosure email).
 
 `CVSS Score`_: 5.8.
 
-Multiple integer overflows in the imageop module in Python 2.5.1 and earlier allow context-dependent attackers to cause a denial of service (application crash) and possibly obtain sensitive information (memory contents) via crafted arguments to (1) the ``tovideo()`` method, and unspecified other vectors related to (2) imageop.c, (3) rbgimgmodule.c, and other files, which trigger heap-based buffer overflows.
+Multiple integer overflows in the ``imageop`` module in Python 2.5.1 and
+earlier allow context-dependent attackers to cause a denial of service
+(application crash) and possibly obtain sensitive information (memory
+contents) via crafted arguments to (1) the ``tovideo()`` method, and
+unspecified other vectors related to (2) ``imageop.c``, (3)
+``rbgimgmodule.c``, and other files, which trigger heap-based buffer
+overflows.
+
 Reported by Slythers Bro on the full-disclosure mailing list.
-CVE-2009-4134, CVE-2010-1449 and CVE-2010-1450 are similar reports of the same vulnerability. Reported by Marc Schoenefeld in the Red Hat bugzilla (2009-11-26).
+
+CVE-2009-4134, CVE-2010-1449 and CVE-2010-1450 are similar reports of the
+same vulnerability. Reported by Marc Schoenefeld in the Red Hat bugzilla
+(2009-11-26).
 
 Links:
 
