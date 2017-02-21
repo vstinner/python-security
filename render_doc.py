@@ -106,7 +106,10 @@ class CommitDates:
 
 
 def version_info(version):
-    return tuple(map(int, version.split('.')))
+    info = tuple(map(int, version.split('.')))
+    if len(info) == 2:
+        info += (0,)
+    return info
 
 
 def python_major_version(version):
@@ -259,16 +262,18 @@ class Vulnerability:
 
         self.fixes = []
         seen = set()
+        major = None
         for fix in fixes:
             pyver_info = version_info(fix.python_version)
             key = python_major_version(fix.python_version)
             if key in seen:
                 continue
             seen.add(key)
+            if pyver_info[2] == 0:
+                if pyver_info[0] == major:
+                    continue
+                major = pyver_info[0]
             self.fixes.append(fix)
-            if (pyver_info >= (3, 0)
-               and (len(pyver_info) < 3 or pyver_info[2] == 0)):
-                break
 
     @staticmethod
     def sort_key(vuln):
@@ -393,8 +398,7 @@ class RenderDoc:
                         # Don't show the date/days fort 3.x.0 releases, except
                         # if it's the first (and so the only) version having
                         # the fix (ex: CVE-2013-7040)
-                        if not(pyver_info >= (3, 0)
-                               and (len(pyver_info) < 3 or pyver_info[2] == 0)) or index == 0:
+                        if pyver_info[2] != 0 or index == 0:
                             version = "{} ({} days)".format(version, days)
                             commit = "{} ({}, {} days)".format(commit, commit_date, commit_days)
                         else:

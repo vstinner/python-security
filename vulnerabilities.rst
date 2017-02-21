@@ -77,13 +77,13 @@ Security vulnerabilities
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2010-3493`_           | smtpd race conditions               | 2009-08-14   | 4.3           | 2.7.1, 3.1.3, 3.2.1, 3.3.0               |
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2008-3143`_           | multiple integer overflows          | 2008-04-11   | 7.5           | 2.5.3, 2.6, 2.7, 3.0                     |
+| `CVE-2008-3143`_           | multiple integer overflows          | 2008-04-11   | 7.5           | 2.5.3, 2.6, 3.0                          |
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2008-5031`_           | expandtab() integer overflow        | 2008-03-11   | 10.0          | 2.5.3, 2.6, 2.7, 3.0                     |
+| `CVE-2008-5031`_           | expandtab() integer overflow        | 2008-03-11   | 10.0          | 2.5.3, 2.6, 3.0                          |
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2011-1015`_           | CGI directory traversal             | 2008-03-07   | 5.0           | 2.7, 3.2.4, 3.3.1, 3.4.0                 |
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2007-4965`_           | rgbimg and imageop overflows        | 2007-09-16   | 5.8           | 2.5.3, 2.6, 2.7                          |
+| `CVE-2007-4965`_           | rgbimg and imageop overflows        | 2007-09-16   | 5.8           | 2.5.3, 2.6                               |
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
 
 Total: 40 vulnerabilities
@@ -824,7 +824,7 @@ Links:
 Fixed In:
 
 * 2.6.6 (106 days): 2010-08-24, `commit 7ceb497 <https://github.com/python/cpython/commit/7ceb497ae6f554274399bd9916ea5a21de443208>`_ (2010-05-11, 1 days)
-* 2.7 (54 days): 2010-07-03, `commit 11bb2cd <https://github.com/python/cpython/commit/11bb2cdc6aa8db142a87de281b83293d500847b2>`_ (2010-05-11, 1 days)
+* 2.7: 2010-07-03, `commit 11bb2cd <https://github.com/python/cpython/commit/11bb2cdc6aa8db142a87de281b83293d500847b2>`_ (2010-05-11)
 * 3.1.3 (201 days): 2010-11-27, `commit ee289e6 <https://github.com/python/cpython/commit/ee289e6cd5c009e641ee970cfc67996d8f871221>`_ (2010-05-11, 1 days)
 * 3.2: 2011-02-20, `commit 393b97a <https://github.com/python/cpython/commit/393b97a7b61583f3e0401f385da8b741ef1684d6>`_ (2010-05-11)
 
@@ -932,8 +932,7 @@ Links:
 Fixed In:
 
 * 2.5.3 (252 days): 2008-12-19, `commit 83ac014 <https://github.com/python/cpython/commit/83ac0144fa3041556aa4f3952ebd979e0189a19c>`_ (2008-07-28, 108 days)
-* 2.6 (173 days): 2008-10-01, `commit 0470bab <https://github.com/python/cpython/commit/0470bab69783c13447cb634fa403ef1067fe56d1>`_ (2008-07-22, 102 days)
-* 2.7 (813 days): 2010-07-03, `commit 0470bab <https://github.com/python/cpython/commit/0470bab69783c13447cb634fa403ef1067fe56d1>`_ (2008-07-22, 102 days)
+* 2.6: 2008-10-01, `commit 0470bab <https://github.com/python/cpython/commit/0470bab69783c13447cb634fa403ef1067fe56d1>`_ (2008-07-22)
 * 3.0: 2008-12-03, `commit d492ad8 <https://github.com/python/cpython/commit/d492ad80c872d264ed46bec71e31a00f174ac819>`_ (2008-07-23)
 
 
@@ -955,8 +954,7 @@ Links:
 Fixed In:
 
 * 2.5.3 (283 days): 2008-12-19, `commit 44a93e5 <https://github.com/python/cpython/commit/44a93e54f4b0f90634d16d53c437fabb6946ea9d>`_ (2008-03-11, 0 days)
-* 2.6 (204 days): 2008-10-01, `commit 5bdff60 <https://github.com/python/cpython/commit/5bdff60617e6fc1d2e387a0b165cb23b82d7dae6>`_ (2008-03-11, 0 days)
-* 2.7 (844 days): 2010-07-03, `commit 5bdff60 <https://github.com/python/cpython/commit/5bdff60617e6fc1d2e387a0b165cb23b82d7dae6>`_ (2008-03-11, 0 days)
+* 2.6: 2008-10-01, `commit 5bdff60 <https://github.com/python/cpython/commit/5bdff60617e6fc1d2e387a0b165cb23b82d7dae6>`_ (2008-03-11)
 * 3.0: 2008-12-03, `commit dd15f6c <https://github.com/python/cpython/commit/dd15f6c315f20c1a9a540dd757cd63e27dbe9f3c>`_ (2008-03-16)
 
 
@@ -1001,5 +999,4 @@ Links:
 Fixed In:
 
 * 2.5.3 (460 days): 2008-12-19, `commit 4df1b6d <https://github.com/python/cpython/commit/4df1b6d478020ac51c84467f47e42083f53adbad>`_ (2008-08-19, 338 days)
-* 2.6 (381 days): 2008-10-01, `commit 93ebfb1 <https://github.com/python/cpython/commit/93ebfb154456daa841aa223bd296422787b3074c>`_ (2008-08-19, 338 days)
-* 2.7 (1021 days): 2010-07-03, `commit 93ebfb1 <https://github.com/python/cpython/commit/93ebfb154456daa841aa223bd296422787b3074c>`_ (2008-08-19, 338 days)
+* 2.6: 2008-10-01, `commit 93ebfb1 <https://github.com/python/cpython/commit/93ebfb154456daa841aa223bd296422787b3074c>`_ (2008-08-19)
