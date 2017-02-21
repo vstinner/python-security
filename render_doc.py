@@ -381,21 +381,13 @@ class RenderDoc:
 
                 print("Information:", file=fp)
                 print(file=fp)
-                print("* Disclosure date: {}.".format(disclosure), file=fp)
+                print("* Disclosure date: {}".format(disclosure), file=fp)
                 if vuln.reported_by:
-                    print("* Reported by: {}.".format(vuln.reported_by), file=fp)
+                    print("* Reported by: {}".format(vuln.reported_by), file=fp)
                 if vuln.cvss_score:
-                    print("* `CVSS Score`_: {}.".format(vuln.cvss_score), file=fp)
+                    print("* `CVSS Score`_: {}".format(vuln.cvss_score), file=fp)
                 if vuln.redhat_impact:
-                    print("* `Red Hat impact`_: {}.".format(vuln.redhat_impact), file=fp)
-
-                links = vuln.links
-                if links:
-                    print(file=fp)
-                    print("Links:", file=fp)
-                    print(file=fp)
-                    for link in links:
-                        print("* %s" % link, file=fp)
+                    print("* `Red Hat impact`_: {}".format(vuln.redhat_impact), file=fp)
 
                 if vuln.fixes:
                     print(file=fp)
@@ -417,12 +409,20 @@ class RenderDoc:
                         # if it's the first (and so the only) version having
                         # the fix (ex: CVE-2013-7040)
                         if pyver_info[2] != 0 or index == 0:
-                            version = "{} ({} days)".format(version, days)
+                            date = "{} ({} days)".format(date, days)
                             commit = "{} ({}, {} days)".format(commit, commit_date, commit_days)
                         else:
                             commit = "{} ({})".format(commit, commit_date)
                         print("* {}: {}, {}".format(version, date, commit),
                               file=fp)
+
+                links = vuln.links
+                if links:
+                    print(file=fp)
+                    print("Links:", file=fp)
+                    print(file=fp)
+                    for link in links:
+                        print("* %s" % link, file=fp)
 
         print("{} generated".format(filename))
 
