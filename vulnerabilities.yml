@@ -75,10 +75,11 @@
     3.4.4 allows remote attackers to inject arbitrary HTTP headers via CRLF
     sequences in a URL.
 
-- name: Hash DoS
+- name: CVE-2012-1150
   summary: >
     Hash collision denial of service
   disclosure: 2011-12-28 (CCC talk)
+  cvss-score: "5.0"
   links:
    - http://bugs.python.org/issue13703
    - https://events.ccc.de/congress/2011/Fahrplan/events/4680.en.html
@@ -293,9 +294,9 @@
   fixed-in:
    - 636f93c63ba286249c1207e3a903f8429efb2041 # 3.3
   description: >
-    If the name in the certificate contains many "*" characters, matching the
-    compiled regular expression against the host name can take a very long
-    time.
+    If the name in the certificate contains many ``*`` characters (wildcard),
+    matching the compiled regular expression against the host name can take a
+    very long time.
 
     Certificate validation happens before host name checking, so I think this
     is a minor issue only because it can only be triggered in cooperation with
@@ -422,6 +423,132 @@
     Gaynor and David Reid with the generous support of Rackspace. May God have
     mercy on their souls.
 
+- name: "CVE-2014-7185"
+  summary: >
+    buffer integer overflow
+  links:
+    - http://bugs.python.org/issue21831
+  disclosure: "2014-06-24 (issue #21831 reported)"
+  cvss-score: "6.4"
+  fixed-in:
+   - 550b945fd66f1c6837a53fbf29dc8e524297b8c3 # 2.7
+  description: >
+    Integer overflow in bufferobject.c in Python before 2.7.8 allows
+    context-dependent attackers to obtain sensitive information from process
+    memory via a large size and offset in a ``buffer`` type.
+
+    Reported by Chris Foster on the Python security list:
+
+- name: "CVE-2014-2667"
+  summary: >
+      ``os.makedirs(exist_ok=True)`` is not thread-safe
+  links:
+    - http://bugs.python.org/issue21082
+  disclosure: "2014-03-28 (issue #21082 reported)"
+  cvss-score: "3.3"
+  fixed-in:
+   - ee5f1c13d1ea21c628068fdf142823177f5526c2 # 3.2
+  description: >
+    ``os.makedirs(exist_ok=True)`` is not thread-safe: umask is set temporary
+    to ``0``, serious security problem.
+
+    Remove directory mode check from ``os.makedirs()``.
+
+    Reported by Ryan Lortie.
+
+- name: "CVE-2013-7440"
+  summary: >
+    ``ssl.match_hostname()`` vuln with IDNA prefix
+  links:
+    - https://bugs.python.org/issue17997
+    - https://tools.ietf.org/html/rfc6125
+  disclosure: "2013-05-17 (issue #17997 reported)"
+  cvss-score: "4.3"
+  fixed-in:
+   - 72c98d3a761457a4f2b8054458b19f051dfb5886 # 3.3
+  description: >
+    ``ssl.match_hostname()``: sub string wildcard should not match IDNA prefix.
+
+    Change behavior of ``ssl.match_hostname()`` to follow RFC 6125, for
+    security reasons.  It now doesn't match multiple wildcards nor wildcards
+    inside IDN fragments.
+
+    Reported by Christian Heimes.
+
+- name: "CVE-2013-7338"
+  summary: >
+    zipfile DoS using malformed file
+  links:
+    - http://bugs.python.org/issue20078
+  disclosure: "2013-12-27 (issue #20078 reported)"
+  cvss-score: "7.1"
+  fixed-in:
+   - 5ce3f10aeea711bb912e948fa5d9f63736df1327 # 3.x
+  description: >
+    Python before 3.3.4 RC1 allows remote attackers to cause a denial of
+    service (infinite loop and CPU consumption) via a file size value larger
+    than the size of the zip file to the functions:
+
+    * ``ZipExtFile.read()``
+    * ``ZipExtFile.readlines()``
+    * ``ZipFile.extract()``
+    * ``ZipFile.extractall()``
+
+    Reading malformed zipfiles no longer hangs with 100% CPU consumption.
+
+    Python 2.7 is not affected.
+
+    Reported by Nandiya.
+
+- name: "CVE-2013-7040"
+  summary: >
+    Hash not randomized properly
+  links:
+    - http://bugs.python.org/issue14621
+  disclosure: "2012-04-19 (issue #14621 reported)"
+  cvss-score: "4.3"
+  fixed-in:
+   - 985ecdcfc29adfc36ce2339acf03f819ad414869 # 3.4
+  description: >
+    Hash function is not randomized properly.
+
+    Python 3.4 now used SipHash (PEP 456).
+
+    Python 3.3 and Python 2.7 are still affected.
+
+    Reported by Vlado Boza.
+
+- name: "CVE-2011-4944"
+  summary: >
+    ``~/.pypirc`` created insecurely
+  links:
+    - http://bugs.python.org/issue13512
+  disclosure: "2011-11-30 (issue #13512 reported)"
+  cvss-score: "1.9"
+  fixed-in:
+   - e5567ccc863cadb68f5e57a2760e021e0d3807cf # 2.6
+   - d61926e6bef6c4d8105a2848362377dce91d7fc8 # 3.3
+  description: >
+    Python 2.6 through 3.2 creates ``~/.pypirc`` configuration file with
+    world-readable permissions before changing them after data has been
+    written, which introduces a race condition that allows local users to
+    obtain a username and password by reading this file.
+
+- name: "CVE-2011-4940"
+  summary: >
+    SimpleHTTPServer UTF-7 vulnerability
+  links:
+    - http://bugs.python.org/issue11442
+  disclosure: "2011-03-08 (issue #11442 reported)"
+  cvss-score: "2.6"
+  fixed-in:
+   - 3853586e0caa0d5c4342ac8bd7e78cb5766fa8cc # 2.x
+  description: >
+    The list_directory function in Lib/SimpleHTTPServer.py in SimpleHTTPServer
+    in Python before 2.5.6c1, 2.6.x before 2.6.7 rc2, and 2.7.x before 2.7.2
+    does not place a charset parameter in the Content-Type HTTP header, which
+    makes it easier for remote attackers to conduct cross-site scripting (XSS)
+    attacks against Internet Explorer 7 via UTF-7 encoding.
 
 # Template:
 # - name: ""
