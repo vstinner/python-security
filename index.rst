@@ -12,6 +12,7 @@ Pages
    :maxdepth: 2
 
    vulnerabilities
+   ssl
    python_releases
 
 
@@ -69,26 +70,6 @@ Ok, understood, but I want a sandbox in Python. Well...
   (Ned Batchelder, June 2012)
 * `PyPy sandboxing <http://pypy.org/features.html#sandboxing>`_
 * For Linux, search for SECCOMP
-
-
-Validate TLS certificates
-=========================
-
-* CVE-2014-9365
-* Python 2.7.9
-* Python 3.4.3
-* `PEP 476: Enabling certificate verification by default for stdlib http
-  clients <https://www.python.org/dev/peps/pep-0476/>`_: Python 3.4.3, 3.5
-* `PEP 466 <https://www.python.org/dev/peps/pep-0466/>`_: Python 2.7.9
-* Version matrix?
-
-  - HTTP
-  - SMTP
-  - FTP
-  - IMAP
-  - POP3
-  - XML-RPC
-  - NNTP
 
 
 RNG
@@ -170,16 +151,12 @@ Links
 
 * `The Python security response team
   <https://lwn.net/Articles/691308/>`_ (June, 2016)
-* `The future of the Python ssl module
-  <https://lwn.net/Articles/688974/>`_ (June, 2016 )
 * `Reporting security issues in Python
   <https://www.python.org/news/security/>`_
 * `OWASP Python Security Project (pythonsecurity.org)
   <http://www.pythonsecurity.org/>`_
 * `bandit: Python AST-based static analyzer from OpenStack Security Group
   <https://github.com/openstack/bandit>`_
-* `cryptography  (cryptography.io) <https://cryptography.io/>`_: Python library
-  which exposes cryptographic recipes and primitives
 * `Python CVEs (cvedetails.com)
   <http://www.cvedetails.com/product/18230/Python-Python.html?vendor_id=10210>`_
 * https://github.com/pyupio/safety-db and https://pyup.io/
