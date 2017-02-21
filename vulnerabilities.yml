@@ -386,6 +386,24 @@
     Now unfortunately it appears that it is possible for a web server to
     redirect (HTTP 302) a urllib request to any of the supported schemes.
 
+- name: "CVE-2016-2183"
+  summary: >
+    Sweet32 attack (DES, 3DES)
+  links:
+    - http://bugs.python.org/issue27850
+    - https://sweet32.info/
+    - https://www.openssl.org/blog/blog/2016/08/24/sweet32/
+  disclosure: "2016-08-24 (issue #27850 reported)"
+  cvss-score: "5.0"
+  fixed-in:
+   - d988f429fe43808345812ef63dfa8da170c61871 # 2.7
+   - 03d13c0cbfe912eb0f9b9a02987b9e569f25fe19 # 3.x
+  description: >
+    Remove 3DES from ssl default cipher list.
+
+    Sweet32 vulnerability found by Karthik Bhargavan and Gaetan Leurent from
+    the `INRIA <https://www.inria.fr/>`_.
+
 # Template:
 # - name: ""
 #   summary: >

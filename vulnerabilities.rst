@@ -10,6 +10,8 @@ Security vulnerabilities
 +============================+============================================+==============+===============+===================================+
 | `Issue #28563`_            | ``gettext.c2py()``                         | 2016-10-30   | ?             | 2.7.13, 3.4.6, 3.5.3              |
 +----------------------------+--------------------------------------------+--------------+---------------+-----------------------------------+
+| `CVE-2016-2183`_           | Sweet32 attack (DES, 3DES)                 | 2016-08-24   | 5.0           | 2.7.13, 3.5.3                     |
++----------------------------+--------------------------------------------+--------------+---------------+-----------------------------------+
 | `CVE-2016-1000110`_        | HTTPoxy attack                             | 2016-07-18   | 5.0 (CVSS v3) | 2.7.13, 3.4.6, 3.5.3              |
 +----------------------------+--------------------------------------------+--------------+---------------+-----------------------------------+
 | `CVE-2016-0772`_           | smtplib TLS stripping                      | 2016-06-11   | 5.8           | 2.7.12, 3.4.5, 3.5.2              |
@@ -77,6 +79,29 @@ Fixed In:
 * 2.7.13 (48 days): 2016-12-17, `commit a876027 <https://github.com/python/cpython/commit/a8760275bd59fb8d8be1f1bf05313fed31c08321>`_ (2016-11-08, 9 days)
 * 3.4.6 (79 days): 2017-01-17, `commit 07bcf05 <https://github.com/python/cpython/commit/07bcf05fcf3fd1d4001e8e3489162e6d67638285>`_ (2016-11-08, 9 days)
 * 3.5.3 (79 days): 2017-01-17, `commit 07bcf05 <https://github.com/python/cpython/commit/07bcf05fcf3fd1d4001e8e3489162e6d67638285>`_ (2016-11-08, 9 days)
+
+
+CVE-2016-2183
+=============
+
+Disclosure date: 2016-08-24 (issue #27850 reported).
+
+`CVSS Score`_: 5.0.
+
+Remove 3DES from ssl default cipher list.
+Sweet32 vulnerability found by Karthik Bhargavan and Gaetan Leurent from the `INRIA <https://www.inria.fr/>`_.
+
+Links:
+
+* http://bugs.python.org/issue27850
+* https://sweet32.info/
+* https://www.openssl.org/blog/blog/2016/08/24/sweet32/
+* http://www.cvedetails.com/cve/CVE-2016-2183/
+
+Fixed In:
+
+* 2.7.13 (115 days): 2016-12-17, `commit d988f42 <https://github.com/python/cpython/commit/d988f429fe43808345812ef63dfa8da170c61871>`_ (2016-09-06, 13 days)
+* 3.5.3 (146 days): 2017-01-17, `commit 03d13c0 <https://github.com/python/cpython/commit/03d13c0cbfe912eb0f9b9a02987b9e569f25fe19>`_ (2016-09-06, 13 days)
 
 
 CVE-2016-1000110

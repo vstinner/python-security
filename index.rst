@@ -48,6 +48,8 @@ execute arbitrary bytecode, we consider that the security of the bytecode is
 the least important issue: using bytecode, sensitive code can be imported and
 executed.
 
+For example, the ``marshal`` doesn't validate inputs.
+
 Sandbox
 -------
 
@@ -113,6 +115,9 @@ RNG
   - `OpenSSL Random fork-safety
     <https://wiki.openssl.org/index.php/Random_fork-safety>`_
 
+The ``random`` module must not be used in security sensitive code, except of
+the ``random.SystemRandom`` class.
+
 
 CPython Security Experts
 ========================
@@ -125,6 +130,8 @@ CPython Security Experts
 Misc
 ====
 
+* The ``pickle`` module executes arbitrary Python code: never use it with
+  untrusted data.
 * `python3 -E <https://docs.python.org/3/using/cmdline.html#cmdoption-E>`_:
   ignore ``PYTHON*`` environment variables like ``PYTHONPATH``
 * `python3 -I <https://docs.python.org/3/using/cmdline.html#cmdoption-I>`_:
@@ -151,6 +158,10 @@ Misc
 Links
 =====
 
+* `The Python security response team
+  <https://lwn.net/Articles/691308/>`_ (June, 2016)
+* `The future of the Python ssl module
+  <https://lwn.net/Articles/688974/>`_ (June, 2016 )
 * `Reporting security issues in Python
   <https://www.python.org/news/security/>`_
 * `OWASP Python Security Project (pythonsecurity.org)
