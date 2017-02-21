@@ -646,7 +646,7 @@
     to a buffer overflow.
 
     NOTE: this vulnerability exists because of an incorrect fix for
-    CVE-2008-3143.5.
+    `CVE-2008-3143`_.
 
 - name: "CVE-2007-4965"
   summary: >

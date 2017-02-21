@@ -814,7 +814,7 @@ Disclosure date: 2010-05-10 (issue #8674 reported).
 `CVSS Score`_: 5.0.
 
 Multiple integer overflows in audioop.c in the audioop module in Python 2.6, 2.7, 3.1, and 3.2 allow context-dependent attackers to cause a denial of service (application crash) via a large fragment, as demonstrated by a call to audioop.lin2lin with a long string in the first argument, leading to a buffer overflow.
-NOTE: this vulnerability exists because of an incorrect fix for CVE-2008-3143.5.
+NOTE: this vulnerability exists because of an incorrect fix for `CVE-2008-3143`_.
 
 Links:
 
