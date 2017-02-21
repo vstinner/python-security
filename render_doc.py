@@ -155,7 +155,7 @@ class CommitTags:
                 for tag in tags:
                     print(" %s" % tag, file=fp)
 
-    def _get_tags(self, commit):
+    def _get_tags(self, commit, ignore_python3):
         print("Get %s tags" % commit)
 
         cmd = ["git", "tag", "--contains", commit]
@@ -172,7 +172,10 @@ class CommitTags:
             for suffix in ('a', 'b', 'rc', 'c'):
                 if suffix in tag:
                     tag = tag.partition(suffix)[0]
-            tags.append(version_info(tag))
+            tag = version_info(tag)
+            if ignore_python3 and tag >= (3,):
+                continue
+            tags.append(tag)
 
         tags.sort()
         tags2 = []
@@ -190,11 +193,11 @@ class CommitTags:
         self.write_cache()
         return tags
 
-    def get_tags(self, commit):
+    def get_tags(self, commit, ignore_python3=False):
         if commit in self.cache:
             return self.cache[commit]
 
-        tags = self._get_tags(commit)
+        tags = self._get_tags(commit, ignore_python3)
         self.cache[commit] = tags
         return tags
 
@@ -241,10 +244,12 @@ class Vulnerability:
         self.redhat_impact = data.get('redhat-impact')
 
         fixes = []
+        ignore_python3 = data.get('ignore-python3')
         commits = data['fixed-in']
         for commit in commits:
             commit_date = app.commit_dates.get_commit_date(commit)
-            versions = app.commit_tags.get_tags(commit)
+            versions = app.commit_tags.get_tags(commit,
+                                                ignore_python3=ignore_python3)
             for version in versions:
                 release_date = app.python_releases.get_date(version)
                 fix = Fix(commit, commit_date, version, release_date)
@@ -392,6 +397,8 @@ class RenderDoc:
                                and (len(pyver_info) < 3 or pyver_info[2] == 0)) or index == 0:
                             version = "{} ({} days)".format(version, days)
                             commit = "{} ({}, {} days)".format(commit, commit_date, commit_days)
+                        else:
+                            commit = "{} ({})".format(commit, commit_date)
                         print("* {}: {}, {}".format(version, date, commit),
                               file=fp)
 
