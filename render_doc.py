@@ -240,6 +240,9 @@ class Vulnerability:
         self.links = data.get('links')
         self.cvss_score = data.get('cvss-score')
         self.redhat_impact = data.get('redhat-impact')
+        self.reported_by = data.get('reported-by')
+        if self.reported_by is not None:
+            self.reported_by = self.reported_by.strip()
 
         cves = set()
         for text in (self.name, self.description):
@@ -379,11 +382,12 @@ class RenderDoc:
                 print("Information:", file=fp)
                 print(file=fp)
                 print("* Disclosure date: {}.".format(disclosure), file=fp)
+                if vuln.reported_by:
+                    print("* Reported by: {}.".format(vuln.reported_by), file=fp)
                 if vuln.cvss_score:
                     print("* `CVSS Score`_: {}.".format(vuln.cvss_score), file=fp)
                 if vuln.redhat_impact:
                     print("* `Red Hat impact`_: {}.".format(vuln.redhat_impact), file=fp)
-                print(file=fp)
 
                 links = vuln.links
                 if links:

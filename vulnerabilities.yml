@@ -4,6 +4,7 @@
   summary: >
     smtplib TLS stripping
   disclosure: 2016-06-11 (commit date)
+  reported-by: Tin (Team Oststrom)
   cvss-score: "5.8"
   links:
     - http://seclists.org/oss-sec/2016/q2/541
@@ -16,7 +17,6 @@
     allow a malicious MITM to perform a startTLS stripping attack if the client
     code does not explicitly check the response code for startTLS.
 
-    Reported by Tin (Team Oststrom).
   fixed-in:
     - 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f # 2.7.12
     - 46b32f307c48bcb999b22eebf65ffe8ed5cca544 # 3.4.5
@@ -137,12 +137,13 @@
   links:
     - http://bugs.python.org/issue6791
   disclosure: "2009-08-28 (issue #6791 reported)"
+  reported-by: sumar (m.sucajtys)
   fixed-in:
     - d7b6ac66c1b81d13f2efa8d9ebba69e17c158c0a # 2.7
     - ff1bbba92aad261df1ebd8fd8cc189c104e113b0 # 3.2
     - 5466bf1c94d38e75bc053b0cfc163e2f948fe345 # 3.3
   description: |
-    Limit the HTTP header readline. Reported by sumar (m.sucajtys).
+    Limit the HTTP header readline.
 
 - name: "CVE-2013-1752 (ftplib)"
   summary: >
@@ -151,6 +152,7 @@
     - http://bugs.python.org/issue16038
     - https://access.redhat.com/security/cve/cve-2013-1752
   disclosure: "2012-09-25 (issue #16038 reported)"
+  reported-by: Christian Heimes
   redhat-impact: "Moderate"
   fixed-in:
    - 2585e1e48abb3013abeb8a1fe9dccb5f79ac4091 # 2.7
@@ -158,8 +160,6 @@
    - c30b178cbc92e62c22527cd7e1af2f02723ba679 # 3
   description: |
     ftplib: unlimited read from connection.
-
-    Reported by Christian Heimes.
 
 - name: "CVE-2013-1752 (nntplib)"
   summary: >
@@ -215,11 +215,10 @@
    - 6c939cb6f6dfbd273609577b0022542d31ae2802 # 2.7
    - 99b5afab74428e5ddfd877bdf3aa8a8c479696b1 # 3.2
    # Add CVE in Misc/NEWS: 5e621176c4ec3cbd5102b9ca7441695832544123 # 3.2
+  reported-by: Guido Vranken
   description: |
     Fix arbitrary memory access in ``JSONDecoder.raw_decode`` with a negative
     second parameter.
-
-    Bug reported by Guido Vranken.
 
 - name: "Issue #28563"
   summary: >
@@ -242,6 +241,7 @@
     - https://access.redhat.com/security/cve/cve-2016-1000110
   disclosure: "2016-07-18 (issue #27568 reported)"
   cvss-score: "5.0 (CVSS v3)"
+  reported-by: Rémi Rampin
   fixed-in:
    - 75d7b615ba70fc5759d16dee95bbd8f0474d8a9c # 2.7
    - 4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d # 3.3
@@ -251,14 +251,13 @@
     Ignore the HTTP_PROXY variable when REQUEST_METHOD environment is set, which
     indicates that the script is in CGI mode.
 
-    Reported and patch contributed by Rémi Rampin.
-
 - name: "CVE-2014-1912"
   summary: >
     ``socket.recvfrom_into()`` overflow
   links:
     - http://bugs.python.org/issue20246
   disclosure: "2014-01-14 (issue #20246 reported)"
+  reported-by: Ryan Smith-Roberts
   cvss-score: "7.5"
   fixed-in:
    - 28cf368c1baba3db1f01010e921f63017af74c8f # 2.7
@@ -267,14 +266,13 @@
     ``socket.recvfrom_into()`` fails to check that the supplied buffer object
     is big enough for the requested read and so will happily write off the end.
 
-    Reported by Ryan Smith-Roberts.
-
 - name: "Issue #19435"
   summary: >
     CGI directory traversal
   links:
     - http://bugs.python.org/issue19435
   disclosure: "2013-10-29 (issue #19435 reported)"
+  reported-by: Alexander Kruppa
   fixed-in:
    - 1ef959ac3ddc4d96dfa1a613db5cb206cdaeb662 # 2.7
    - 04e9de40f380b2695f955d68f2721d57cecbf858 # 3.2
@@ -283,15 +281,13 @@
     ``http.server.CGIHTTPRequestHandler`` allows running arbitrary executables in
     the directory under which the server was started.
 
-    Reported by Alexander Kruppa.
-  # Vulnerable: fix commited to 3.1 but never released
-
 - name: "CVE-2013-2099"
   summary: >
     ``ssl.match_hostname()`` wildcard
   links:
     - http://bugs.python.org/issue17980
   disclosure: "2013-05-15 (issue #17980 reported)"
+  reported-by: Florian Weimer
   cvss-score: "4.3"
   fixed-in:
    - 636f93c63ba286249c1207e3a903f8429efb2041 # 3.3
@@ -304,14 +300,13 @@
     is a minor issue only because it can only be triggered in cooperation with
     a CA (which seems unlikely).
 
-    Reported by Florian Weimer.
-
 - name: "CVE-2012-2135"
   summary: >
     UTF-16 decoder
   links:
     - http://bugs.python.org/issue14579
   disclosure: "2012-04-14"
+  reported-by: Serhiy Storchaka
   cvss-score: "6.4"
   fixed-in:
    - 715a63b78349952ccc0fb3dd3139e2d822006d35 # 2.7
@@ -319,14 +314,13 @@
   description: |
     Vulnerability in the UTF-16 decoder after error handling.
 
-    Reported by Serhiy Storchaka.
-
 - name: "CVE-2012-0845"
   summary: >
     XML-RPC DoS
   links:
     - http://bugs.python.org/issue14001
   disclosure: "2012-02-13 (issue #14001 reported)"
+  reported-by: Jan Lieskovsky
   cvss-score: "5.0"
   fixed-in:
    - 66f3cc6f8de83c447d937160e4a1630c4482b5f5 # 2.6
@@ -338,14 +332,13 @@
     cause Python Simple XML-RPC based server process to consume excessive
     amount of CPU.
 
-    Reported by Jan Lieskovsky.
-
 - name: "CVE-2013-4238"
   summary: >
     ssl: NUL in subjectAltNames
   links:
     - http://bugs.python.org/issue18709
   disclosure: "2013-08-12 (issue #18709 reported)"
+  reported-by: Christian Heimes
   cvss-score: "4.3"
   fixed-in:
    - 82f88283171933127f20f866a7f98694b29cca56 # 2.7
@@ -353,14 +346,13 @@
   description: |
     SSL module fails to handle NULL bytes inside subjectAltNames general names.
 
-    Reported by Christian Heimes.
-
 - name: "CVE-2011-3389"
   summary: >
     ssl CBC IV attack
   links:
     - http://bugs.python.org/issue13885
   disclosure: "2012-01-27 (issue #13885 reported)"
+  reported-by: Antoine Pitrou
   cvss-score: "4.3"
   fixed-in:
    - d358e0554bc520768041652676ec8e6076f221a9 # 2.x
@@ -368,8 +360,6 @@
   description: |
     The ssl module would always disable the CBC IV attack countermeasure.
     Disable OpenSSL ``SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS`` option.
-
-    Reported by Antoine Pitrou.
 
 - name: "CVE-2011-1521"
   summary: >
@@ -397,6 +387,8 @@
     - https://sweet32.info/
     - https://www.openssl.org/blog/blog/2016/08/24/sweet32/
   disclosure: "2016-08-24 (issue #27850 reported)"
+  reported-by: >
+    Karthik Bhargavan and Gaetan Leurent
   cvss-score: "5.0"
   fixed-in:
    - d988f429fe43808345812ef63dfa8da170c61871 # 2.7
@@ -432,6 +424,7 @@
   links:
     - http://bugs.python.org/issue21831
   disclosure: "2014-06-24 (issue #21831 reported)"
+  reported-by: Chris Foster (on the Python security list)
   cvss-score: "6.4"
   fixed-in:
    - 550b945fd66f1c6837a53fbf29dc8e524297b8c3 # 2.7
@@ -440,14 +433,13 @@
     context-dependent attackers to obtain sensitive information from process
     memory via a large size and offset in a ``buffer`` type.
 
-    Reported by Chris Foster on the Python security list:
-
 - name: "CVE-2014-2667"
   summary: >
       ``os.makedirs()`` not thread-safe
   links:
     - http://bugs.python.org/issue21082
   disclosure: "2014-03-28 (issue #21082 reported)"
+  reported-by: Ryan Lortie
   cvss-score: "3.3"
   fixed-in:
    - ee5f1c13d1ea21c628068fdf142823177f5526c2 # 3.2
@@ -457,8 +449,6 @@
 
     Remove directory mode check from ``os.makedirs()``.
 
-    Reported by Ryan Lortie.
-
 - name: "CVE-2013-7440"
   summary: >
     ``ssl.match_hostname()`` IDNA issue
@@ -466,6 +456,7 @@
     - https://bugs.python.org/issue17997
     - https://tools.ietf.org/html/rfc6125
   disclosure: "2013-05-17 (issue #17997 reported)"
+  reported-by: Christian Heimes
   cvss-score: "4.3"
   fixed-in:
    - 72c98d3a761457a4f2b8054458b19f051dfb5886 # 3.3
@@ -476,14 +467,13 @@
     security reasons.  It now doesn't match multiple wildcards nor wildcards
     inside IDN fragments.
 
-    Reported by Christian Heimes.
-
 - name: "CVE-2013-7338"
   summary: >
     zipfile DoS using malformed file
   links:
     - http://bugs.python.org/issue20078
   disclosure: "2013-12-27 (issue #20078 reported)"
+  reported-by: Nandiya
   cvss-score: "7.1"
   fixed-in:
    - 5ce3f10aeea711bb912e948fa5d9f63736df1327 # 3.x
@@ -501,14 +491,13 @@
 
     Python 2.7 is not affected.
 
-    Reported by Nandiya.
-
 - name: "CVE-2013-7040"
   summary: >
     Hash not randomized properly
   links:
     - http://bugs.python.org/issue14621
   disclosure: "2012-04-19 (issue #14621 reported)"
+  reported-by: Vlado Boza
   cvss-score: "4.3"
   fixed-in:
    - 985ecdcfc29adfc36ce2339acf03f819ad414869 # 3.4
@@ -518,8 +507,6 @@
     Python 3.4 now used SipHash (PEP 456).
 
     Python 3.3 and Python 2.7 are still affected.
-
-    Reported by Vlado Boza.
 
 - name: "CVE-2011-4944"
   summary: >
@@ -575,6 +562,7 @@
   links:
     - http://bugs.python.org/issue6706
   disclosure: "2009-08-14 (issue #6706 reported)"
+  reported-by: Giampaolo Rodola
   cvss-score: "4.3"
   fixed-in:
    - 19e9fefc660d623ce7c31fb008cde1157ae12aba # 2.x
@@ -588,14 +576,13 @@
     ECONNABORTED, EAGAIN, or EWOULDBLOCK error, or the getpeername function
     having an ENOTCONN error, a related issue to `CVE-2010-3492`_.
 
-    Reported by Giampaolo Rodola.
-
 - name: "CVE-2010-3492"
   summary: >
     smtpd accept bug
   links:
     - http://bugs.python.org/issue6706
   disclosure: "2009-08-14 (issue #6706 reported)"
+  reported-by: Giampaolo Rodola
   cvss-score: "5.0"
   fixed-in:
    - 977c707b425ee753d54f3e9010f07ec77ef61274 # 3.2
@@ -607,14 +594,13 @@
     conduct denial of service attacks that terminate these applications via
     network connections.
 
-    Reported by Giampaolo Rodola.
-
 - name: "CVE-2010-2089"
   summary: >
     audioop input validation
   links:
     - http://bugs.python.org/issue7673
   disclosure: "2010-01-11 (issue #7673 reported)"
+  reported-by: STINNER Victor
   cvss-score: "5.0"
   fixed-in:
    - e9123efa21a16584758b5ce7da93d3966cf0cd81 # 2.6
@@ -627,8 +613,6 @@
     and application crash) via crafted arguments, as demonstrated by a call to
     ``audioop.reverse()`` with a one-byte string, a different vulnerability
     than `CVE-2010-1634`_.
-
-    Reported by STINNER Victor.
 
 - name: "CVE-2010-1634"
   summary: >
@@ -661,6 +645,7 @@
     - http://bugs.python.org/issue8678
     - https://bugzilla.redhat.com/show_bug.cgi?id=541698
   disclosure: "2007-09-16 (full-disclosure email)"
+  reported-by: Slythers Bro (on the full-disclosure mailing list)
   cvss-score: "5.8"
   # imageop module was removed in Python 3
   ignore-python3: true
@@ -676,11 +661,9 @@
     ``rbgimgmodule.c``, and other files, which trigger heap-based buffer
     overflows.
 
-    Reported by Slythers Bro on the full-disclosure mailing list.
-
     CVE-2009-4134, CVE-2010-1449 and CVE-2010-1450 are similar reports of the
-    same vulnerability. Reported by Marc Schoenefeld in the Red Hat bugzilla
-    (2009-11-26).
+    same vulnerability. Reported again by Marc Schoenefeld in the Red Hat
+    bugzilla at 2009-11-26.
 
 - name: "CVE-2008-3143"
   summary: >
@@ -688,6 +671,7 @@
   links:
     - http://bugs.python.org/issue2620
   disclosure: "2008-04-11 (issue #2620 reported)"
+  reported-by: Justin Ferguson
   cvss-score: "7.5"
   fixed-in:
    - 83ac0144fa3041556aa4f3952ebd979e0189a19c # 2.5
@@ -730,14 +714,13 @@
 
     as addressed by "checks for integer overflows, contributed by Google."
 
-    Reported by Justin Ferguson.
-
 - name: "CVE-2008-5031"
   summary: >
     ``expandtab()`` integer overflow
   links:
    - http://scary.beasts.org/security/CESA-2008-008.html
   disclosure: "2008-03-11 (commit date)"
+  reported-by: Chris Evans
   cvss-score: "10.0"
   fixed-in:
    - 44a93e54f4b0f90634d16d53c437fabb6946ea9d # 2.5
@@ -753,8 +736,6 @@
 
     NOTE: this vulnerability reportedly exists because of an incomplete
     fix for `CVE-2008-2315`_.
-
-    Reported by Chris Evans.
 
 - name: "CVE-2008-2315"
   summary: >
@@ -787,6 +768,7 @@
 #   links:
 #     -
 #   disclosure: ""
+#   reported-by: ""
 #   cvss-score: ""
 #   fixed-in:
 #    -

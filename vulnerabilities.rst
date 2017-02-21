@@ -105,7 +105,6 @@ Information:
 
 * Disclosure date: 2016-10-30 (issue #28563 reported).
 
-
 Links:
 
 * http://bugs.python.org/issue28563
@@ -129,8 +128,8 @@ the `INRIA <https://www.inria.fr/>`_.
 Information:
 
 * Disclosure date: 2016-08-24 (issue #27850 reported).
+* Reported by: Karthik Bhargavan and Gaetan Leurent.
 * `CVSS Score`_: 5.0.
-
 
 Links:
 
@@ -154,13 +153,11 @@ Prevent HTTPoxy attack.
 Ignore the HTTP_PROXY variable when REQUEST_METHOD environment is set, which
 indicates that the script is in CGI mode.
 
-Reported and patch contributed by Rémi Rampin.
-
 Information:
 
 * Disclosure date: 2016-07-18 (issue #27568 reported).
+* Reported by: Rémi Rampin.
 * `CVSS Score`_: 5.0 (CVSS v3).
-
 
 Links:
 
@@ -187,13 +184,11 @@ respond with 220 (ok) to an explicit call of SMTP.starttls(). This may
 allow a malicious MITM to perform a startTLS stripping attack if the client
 code does not explicitly check the response code for startTLS.
 
-Reported by Tin (Team Oststrom).
-
 Information:
 
 * Disclosure date: 2016-06-11 (commit date).
+* Reported by: Tin (Team Oststrom).
 * `CVSS Score`_: 5.8.
-
 
 Links:
 
@@ -221,7 +216,6 @@ Information:
 
 * Disclosure date: 2016-03-28 (issue #26657 reported).
 
-
 Links:
 
 * http://bugs.python.org/issue26657
@@ -242,7 +236,6 @@ Information:
 
 * Disclosure date: 2016-01-21 (issue #26171 reported).
 * `CVSS Score`_: 10.0.
-
 
 Links:
 
@@ -270,7 +263,6 @@ Information:
 
 * Disclosure date: 2015-07-24 (expat issue reported).
 * `CVSS Score`_: 6.8.
-
 
 Links:
 
@@ -304,7 +296,6 @@ Information:
 * Disclosure date: 2014-11-24 (issue #22928 reported).
 * `CVSS Score`_: 4.3.
 
-
 Links:
 
 * https://bugs.python.org/issue22928
@@ -325,13 +316,11 @@ Integer overflow in ``bufferobject.c`` in Python before 2.7.8 allows
 context-dependent attackers to obtain sensitive information from process
 memory via a large size and offset in a ``buffer`` type.
 
-Reported by Chris Foster on the Python security list:
-
 Information:
 
 * Disclosure date: 2014-06-24 (issue #21831 reported).
+* Reported by: Chris Foster (on the Python security list).
 * `CVSS Score`_: 6.4.
-
 
 Links:
 
@@ -356,7 +345,6 @@ Information:
 * Disclosure date: 2014-04-19 (issue #21308 reported).
 * `CVSS Score`_: 5.8.
 
-
 Links:
 
 * http://bugs.python.org/issue21308
@@ -378,13 +366,11 @@ CVE-2014-4616
 Fix arbitrary memory access in ``JSONDecoder.raw_decode`` with a negative
 second parameter.
 
-Bug reported by Guido Vranken.
-
 Information:
 
 * Disclosure date: 2014-04-13 (commit).
+* Reported by: Guido Vranken.
 * `Red Hat impact`_: Moderate.
-
 
 Links:
 
@@ -408,13 +394,11 @@ to ``0``, serious security problem.
 
 Remove directory mode check from ``os.makedirs()``.
 
-Reported by Ryan Lortie.
-
 Information:
 
 * Disclosure date: 2014-03-28 (issue #21082 reported).
+* Reported by: Ryan Lortie.
 * `CVSS Score`_: 3.3.
-
 
 Links:
 
@@ -435,13 +419,11 @@ CVE-2014-1912
 ``socket.recvfrom_into()`` fails to check that the supplied buffer object
 is big enough for the requested read and so will happily write off the end.
 
-Reported by Ryan Smith-Roberts.
-
 Information:
 
 * Disclosure date: 2014-01-14 (issue #20246 reported).
+* Reported by: Ryan Smith-Roberts.
 * `CVSS Score`_: 7.5.
-
 
 Links:
 
@@ -472,13 +454,11 @@ Reading malformed zipfiles no longer hangs with 100% CPU consumption.
 
 Python 2.7 is not affected.
 
-Reported by Nandiya.
-
 Information:
 
 * Disclosure date: 2013-12-27 (issue #20078 reported).
+* Reported by: Nandiya.
 * `CVSS Score`_: 7.1.
-
 
 Links:
 
@@ -498,12 +478,10 @@ An error in separating the path and filename of the CGI script to run in
 ``http.server.CGIHTTPRequestHandler`` allows running arbitrary executables in
 the directory under which the server was started.
 
-Reported by Alexander Kruppa.
-
 Information:
 
 * Disclosure date: 2013-10-29 (issue #19435 reported).
-
+* Reported by: Alexander Kruppa.
 
 Links:
 
@@ -522,13 +500,11 @@ CVE-2013-4238
 
 SSL module fails to handle NULL bytes inside subjectAltNames general names.
 
-Reported by Christian Heimes.
-
 Information:
 
 * Disclosure date: 2013-08-12 (issue #18709 reported).
+* Reported by: Christian Heimes.
 * `CVSS Score`_: 4.3.
-
 
 Links:
 
@@ -552,13 +528,11 @@ Change behavior of ``ssl.match_hostname()`` to follow RFC 6125, for
 security reasons.  It now doesn't match multiple wildcards nor wildcards
 inside IDN fragments.
 
-Reported by Christian Heimes.
-
 Information:
 
 * Disclosure date: 2013-05-17 (issue #17997 reported).
+* Reported by: Christian Heimes.
 * `CVSS Score`_: 4.3.
-
 
 Links:
 
@@ -583,13 +557,11 @@ Certificate validation happens before host name checking, so I think this
 is a minor issue only because it can only be triggered in cooperation with
 a CA (which seems unlikely).
 
-Reported by Florian Weimer.
-
 Information:
 
 * Disclosure date: 2013-05-15 (issue #17980 reported).
+* Reported by: Florian Weimer.
 * `CVSS Score`_: 4.3.
-
 
 Links:
 
@@ -607,13 +579,11 @@ CVE-2013-1752 (ftplib)
 
 ftplib: unlimited read from connection.
 
-Reported by Christian Heimes.
-
 Information:
 
 * Disclosure date: 2012-09-25 (issue #16038 reported).
+* Reported by: Christian Heimes.
 * `Red Hat impact`_: Moderate.
-
 
 Links:
 
@@ -639,7 +609,6 @@ Information:
 * Disclosure date: 2012-09-25 (issue #16040 reported).
 * `Red Hat impact`_: Moderate.
 
-
 Links:
 
 * http://bugs.python.org/issue16040
@@ -664,7 +633,6 @@ Information:
 
 * Disclosure date: 2012-09-25 (iIssue #16041 reported).
 * `Red Hat impact`_: Moderate.
-
 
 Links:
 
@@ -692,7 +660,6 @@ Information:
 * Disclosure date: 2012-09-25 (issue #16042 reported).
 * `Red Hat impact`_: Moderate.
 
-
 Links:
 
 * http://bugs.python.org/issue16042
@@ -718,7 +685,6 @@ Information:
 * Disclosure date: 2012-09-25 (issue #16043 reported).
 * `Red Hat impact`_: Moderate.
 
-
 Links:
 
 * http://bugs.python.org/issue16043
@@ -741,13 +707,11 @@ Python 3.4 now used SipHash (PEP 456).
 
 Python 3.3 and Python 2.7 are still affected.
 
-Reported by Vlado Boza.
-
 Information:
 
 * Disclosure date: 2012-04-19 (issue #14621 reported).
+* Reported by: Vlado Boza.
 * `CVSS Score`_: 4.3.
-
 
 Links:
 
@@ -764,13 +728,11 @@ CVE-2012-2135
 
 Vulnerability in the UTF-16 decoder after error handling.
 
-Reported by Serhiy Storchaka.
-
 Information:
 
 * Disclosure date: 2012-04-14.
+* Reported by: Serhiy Storchaka.
 * `CVSS Score`_: 6.4.
-
 
 Links:
 
@@ -793,13 +755,11 @@ request body has been received. A remote attacker could use this flaw to
 cause Python Simple XML-RPC based server process to consume excessive
 amount of CPU.
 
-Reported by Jan Lieskovsky.
-
 Information:
 
 * Disclosure date: 2012-02-13 (issue #14001 reported).
+* Reported by: Jan Lieskovsky.
 * `CVSS Score`_: 5.0.
-
 
 Links:
 
@@ -821,13 +781,11 @@ CVE-2011-3389
 The ssl module would always disable the CBC IV attack countermeasure.
 Disable OpenSSL ``SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS`` option.
 
-Reported by Antoine Pitrou.
-
 Information:
 
 * Disclosure date: 2012-01-27 (issue #13885 reported).
+* Reported by: Antoine Pitrou.
 * `CVSS Score`_: 4.3.
-
 
 Links:
 
@@ -863,7 +821,6 @@ Information:
 * Disclosure date: 2011-12-28 (CCC talk).
 * `CVSS Score`_: 5.0.
 
-
 Links:
 
 * http://bugs.python.org/issue13703
@@ -893,7 +850,6 @@ Information:
 * Disclosure date: 2011-11-30 (issue #13512 reported).
 * `CVSS Score`_: 1.9.
 
-
 Links:
 
 * http://bugs.python.org/issue13512
@@ -921,7 +877,6 @@ Information:
 
 * Disclosure date: 2011-03-24 (issue #11662 reported).
 * `CVSS Score`_: 6.4.
-
 
 Links:
 
@@ -952,7 +907,6 @@ Information:
 
 * Disclosure date: 2011-03-08 (issue #11442 reported).
 * `CVSS Score`_: 2.6.
-
 
 Links:
 
@@ -986,7 +940,6 @@ Information:
 * Disclosure date: 2010-05-10 (issue #8674 reported).
 * `CVSS Score`_: 5.0.
 
-
 Links:
 
 * http://bugs.python.org/issue8674
@@ -1010,13 +963,11 @@ and application crash) via crafted arguments, as demonstrated by a call to
 ``audioop.reverse()`` with a one-byte string, a different vulnerability
 than `CVE-2010-1634`_.
 
-Reported by STINNER Victor.
-
 Information:
 
 * Disclosure date: 2010-01-11 (issue #7673 reported).
+* Reported by: STINNER Victor.
 * `CVSS Score`_: 5.0.
-
 
 Links:
 
@@ -1034,12 +985,12 @@ Fixed In:
 Issue #6791
 ===========
 
-Limit the HTTP header readline. Reported by sumar (m.sucajtys).
+Limit the HTTP header readline.
 
 Information:
 
 * Disclosure date: 2009-08-28 (issue #6791 reported).
-
+* Reported by: sumar (m.sucajtys).
 
 Links:
 
@@ -1062,13 +1013,11 @@ calls to the accept function, which makes it easier for remote attackers to
 conduct denial of service attacks that terminate these applications via
 network connections.
 
-Reported by Giampaolo Rodola.
-
 Information:
 
 * Disclosure date: 2009-08-14 (issue #6706 reported).
+* Reported by: Giampaolo Rodola.
 * `CVSS Score`_: 5.0.
-
 
 Links:
 
@@ -1092,13 +1041,11 @@ value of None, an unexpected value of None for the address, or an
 ECONNABORTED, EAGAIN, or EWOULDBLOCK error, or the getpeername function
 having an ENOTCONN error, a related issue to `CVE-2010-3492`_.
 
-Reported by Giampaolo Rodola.
-
 Information:
 
 * Disclosure date: 2009-08-14 (issue #6706 reported).
+* Reported by: Giampaolo Rodola.
 * `CVSS Score`_: 4.3.
-
 
 Links:
 
@@ -1134,7 +1081,6 @@ Information:
 
 * Disclosure date: 2008-07-31 (commit).
 * `CVSS Score`_: 7.5.
-
 
 Links:
 
@@ -1193,13 +1139,11 @@ to:
 
 as addressed by "checks for integer overflows, contributed by Google."
 
-Reported by Justin Ferguson.
-
 Information:
 
 * Disclosure date: 2008-04-11 (issue #2620 reported).
+* Reported by: Justin Ferguson.
 * `CVSS Score`_: 7.5.
-
 
 Links:
 
@@ -1226,13 +1170,11 @@ value in the tabsize argument to the expandtabs method, as implemented by:
 NOTE: this vulnerability reportedly exists because of an incomplete
 fix for `CVE-2008-2315`_.
 
-Reported by Chris Evans.
-
 Information:
 
 * Disclosure date: 2008-03-11 (commit date).
+* Reported by: Chris Evans.
 * `CVSS Score`_: 10.0.
-
 
 Links:
 
@@ -1259,7 +1201,6 @@ Information:
 * Disclosure date: 2008-03-07 (issue #2254 reported).
 * `CVSS Score`_: 5.0.
 
-
 Links:
 
 * http://bugs.python.org/issue2254
@@ -1284,17 +1225,15 @@ unspecified other vectors related to (2) ``imageop.c``, (3)
 ``rbgimgmodule.c``, and other files, which trigger heap-based buffer
 overflows.
 
-Reported by Slythers Bro on the full-disclosure mailing list.
-
 CVE-2009-4134, CVE-2010-1449 and CVE-2010-1450 are similar reports of the
-same vulnerability. Reported by Marc Schoenefeld in the Red Hat bugzilla
-(2009-11-26).
+same vulnerability. Reported again by Marc Schoenefeld in the Red Hat
+bugzilla at 2009-11-26.
 
 Information:
 
 * Disclosure date: 2007-09-16 (full-disclosure email).
+* Reported by: Slythers Bro (on the full-disclosure mailing list).
 * `CVSS Score`_: 5.8.
-
 
 Links:
 
