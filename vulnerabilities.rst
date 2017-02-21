@@ -77,6 +77,8 @@ Security vulnerabilities
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2010-3493`_           | smtpd race conditions               | 2009-08-14   | 4.3           | 2.7.1, 3.1.3, 3.2.1, 3.3.0               |
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2008-2315`_           | Multiple integer overflows          | 2008-07-31   | 7.5           | 2.6.0, 3.0.0                             |
++----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2008-3143`_           | multiple integer overflows          | 2008-04-11   | 7.5           | 2.5.3, 2.6, 3.0                          |
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2008-5031`_           | ``expandtab()`` integer overflow    | 2008-03-11   | 10.0          | 2.5.3, 2.6, 3.0                          |
@@ -86,7 +88,7 @@ Security vulnerabilities
 | `CVE-2007-4965`_           | rgbimg and imageop overflows        | 2007-09-16   | 5.8           | 2.5.3, 2.6                               |
 +----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
 
-Total: 40 vulnerabilities
+Total: 41 vulnerabilities
 
 * Vulnerabilities sorted by the Disclosure column
 * Disclosure: Disclosure date, first time that the vulnerability was public
@@ -916,6 +918,35 @@ Fixed In:
 * 3.1.3 (470 days): 2010-11-27, `commit 5ea3d0f <https://github.com/python/cpython/commit/5ea3d0f95b51009fa1c3409e7dd1c12006427ccc>`_ (2010-11-01, 444 days)
 * 3.2.1 (695 days): 2011-07-10, `commit 5ea3d0f <https://github.com/python/cpython/commit/5ea3d0f95b51009fa1c3409e7dd1c12006427ccc>`_ (2010-11-01, 444 days)
 * 3.3.0: 2012-09-29, `commit 5ea3d0f <https://github.com/python/cpython/commit/5ea3d0f95b51009fa1c3409e7dd1c12006427ccc>`_ (2010-11-01)
+
+
+CVE-2008-2315
+=============
+
+Disclosure date: 2008-07-31 (commit).
+
+`CVSS Score`_: 7.5.
+
+Security patches from Apple: prevent int overflow when allocating memory.
+CVE-ID:
+* CVE-2008-1679 * CVE-2008-1721 * CVE-2008-1887 * CVE-2008-2315 * CVE-2008-2316 * CVE-2008-3142 * CVE-2008-3144 * CVE-2008-4864
+
+Links:
+
+* https://lists.apple.com/archives/security-announce/2009/Feb/msg00000.html
+* http://www.cvedetails.com/cve/CVE-2008-1679/
+* http://www.cvedetails.com/cve/CVE-2008-1721/
+* http://www.cvedetails.com/cve/CVE-2008-1887/
+* http://www.cvedetails.com/cve/CVE-2008-2315/
+* http://www.cvedetails.com/cve/CVE-2008-2316/
+* http://www.cvedetails.com/cve/CVE-2008-3142/
+* http://www.cvedetails.com/cve/CVE-2008-3144/
+* http://www.cvedetails.com/cve/CVE-2008-4864/
+
+Fixed In:
+
+* 2.6.0 (62 days): 2008-10-01, `commit e7d8be8 <https://github.com/python/cpython/commit/e7d8be80ba634fa15ece6f503c33592e0d333361>`_ (2008-07-31, 0 days)
+* 3.0.0: 2008-12-03, `commit 3ce5d92 <https://github.com/python/cpython/commit/3ce5d9207e66d61d4b0502cf47ed2d2bcdd2212f>`_ (2008-08-24)
 
 
 CVE-2008-3143

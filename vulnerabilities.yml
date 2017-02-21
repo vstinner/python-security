@@ -724,6 +724,30 @@
 
     Reported by Chris Evans.
 
+- name: "CVE-2008-2315"
+  summary: >
+    Multiple integer overflows
+  links:
+    - https://lists.apple.com/archives/security-announce/2009/Feb/msg00000.html
+  disclosure: "2008-07-31 (commit)"
+  cvss-score: "7.5"
+  fixed-in:
+   - e7d8be80ba634fa15ece6f503c33592e0d333361 # 2.x
+   - 3ce5d9207e66d61d4b0502cf47ed2d2bcdd2212f # 3.x
+  description: >
+    Security patches from Apple: prevent int overflow when allocating memory.
+
+    CVE-ID:
+
+    * CVE-2008-1679
+    * CVE-2008-1721
+    * CVE-2008-1887
+    * CVE-2008-2315
+    * CVE-2008-2316
+    * CVE-2008-3142
+    * CVE-2008-3144
+    * CVE-2008-4864
+
 # Template:
 # - name: ""
 #   summary: >
