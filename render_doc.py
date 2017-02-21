@@ -369,18 +369,21 @@ class RenderDoc:
                 print(name, file=fp)
                 print("=" * len(name), file=fp)
                 print(file=fp)
+                print(vuln.description, file=fp)
+
                 disclosure = format_date(vuln.disclosure_date)
                 if vuln.disclosure_comment:
                     disclosure = '%s (%s)' % (disclosure, vuln.disclosure_comment)
-                print("Disclosure date: {}.".format(disclosure), file=fp)
                 print(file=fp)
+
+                print("Information:", file=fp)
+                print(file=fp)
+                print("* Disclosure date: {}.".format(disclosure), file=fp)
                 if vuln.cvss_score:
-                    print("`CVSS Score`_: {}.".format(vuln.cvss_score), file=fp)
-                    print(file=fp)
+                    print("* `CVSS Score`_: {}.".format(vuln.cvss_score), file=fp)
                 if vuln.redhat_impact:
-                    print("`Red Hat impact`_: {}.".format(vuln.redhat_impact), file=fp)
-                    print(file=fp)
-                print(vuln.description, file=fp)
+                    print("* `Red Hat impact`_: {}.".format(vuln.redhat_impact), file=fp)
+                print(file=fp)
 
                 links = vuln.links
                 if links:
