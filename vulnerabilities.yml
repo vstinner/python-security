@@ -565,6 +565,158 @@
     source code via an HTTP GET request that lacks a ``/`` (slash) character at
     the beginning of the URI.
 
+- name: "CVE-2010-3493"
+  summary: >
+    smtpd race conditions
+  links:
+    - http://bugs.python.org/issue6706
+  disclosure: "2009-08-14 (issue #6706 reported)"
+  cvss-score: "4.3"
+  fixed-in:
+   - 19e9fefc660d623ce7c31fb008cde1157ae12aba # 2.x
+   - 5ea3d0f95b51009fa1c3409e7dd1c12006427ccc # 3.1
+  description: >
+    Multiple race conditions in smtpd.py in the smtpd module in Python 2.6,
+    2.7, 3.1, and 3.2 alpha allow remote attackers to cause a denial of
+    service (daemon outage) by establishing and then immediately closing a TCP
+    connection, leading to the accept function having an unexpected return
+    value of None, an unexpected value of None for the address, or an
+    ECONNABORTED, EAGAIN, or EWOULDBLOCK error, or the getpeername function
+    having an ENOTCONN error, a related issue to `CVE-2010-3492`_.
+
+    Reported by Giampaolo Rodola.
+
+- name: "CVE-2010-3492"
+  summary: >
+    smtpd accept bug
+  links:
+    - http://bugs.python.org/issue6706
+  disclosure: "2009-08-14 (issue #6706 reported)"
+  cvss-score: "5.0"
+  fixed-in:
+   - 977c707b425ee753d54f3e9010f07ec77ef61274 # 3.2
+  description: >
+    The asyncore module in Python before 3.2 does not properly handle
+    unsuccessful calls to the accept function, and does not have accompanying
+    documentation describing how daemon applications should handle unsuccessful
+    calls to the accept function, which makes it easier for remote attackers to
+    conduct denial of service attacks that terminate these applications via
+    network connections.
+
+    Reported by Giampaolo Rodola.
+
+- name: "CVE-2010-2089"
+  summary: >
+    audioop input validation
+  links:
+    - http://bugs.python.org/issue7673
+  disclosure: "2010-01-11 (issue #7673 reported)"
+  cvss-score: "5.0"
+  fixed-in:
+   - e9123efa21a16584758b5ce7da93d3966cf0cd81 # 2.6
+   - 8e42fb7ada3198e66d3f060c5c87c52465a86e36 # 3.1
+   - bc5c54bca24fdb1fcf7fa055831ec997a65f3ce8 # 3.2
+  description: >
+    The audioop module in Python 2.7 and 3.2 does not verify the relationships
+    between size arguments and byte string lengths, which allows
+    context-dependent attackers to cause a denial of service (memory corruption
+    and application crash) via crafted arguments, as demonstrated by a call to
+    audioop.reverse with a one-byte string, a different vulnerability than
+    `CVE-2010-1634`_.
+
+    Reported by STINNER Victor.
+
+- name: "CVE-2010-1634"
+  summary: >
+    audioop integer overflows
+  links:
+    - http://bugs.python.org/issue8674
+  disclosure: "2010-05-10 (issue #8674 reported)"
+  cvss-score: "5.0"
+  fixed-in:
+   - 7ceb497ae6f554274399bd9916ea5a21de443208 # 2.6
+   - 11bb2cdc6aa8db142a87de281b83293d500847b2 # 2.7
+   - ee289e6cd5c009e641ee970cfc67996d8f871221 # 3.1
+   - 393b97a7b61583f3e0401f385da8b741ef1684d6 # 3.2
+  description: >
+    Multiple integer overflows in audioop.c in the audioop module in Python
+    2.6, 2.7, 3.1, and 3.2 allow context-dependent attackers to cause a denial
+    of service (application crash) via a large fragment, as demonstrated by a
+    call to audioop.lin2lin with a long string in the first argument, leading
+    to a buffer overflow.
+
+    NOTE: this vulnerability exists because of an incorrect fix for
+    CVE-2008-3143.5.
+
+- name: "CVE-2007-4965"
+  summary: >
+    rgbimg and imageop integer overflows
+  links:
+    - http://bugs.python.org/issue1179
+    - http://seclists.org/fulldisclosure/2007/Sep/279
+  disclosure: "2007-09-16 (full-disclosure email)"
+  cvss-score: "5.8"
+  # imageop module was removed in Python 3
+  ignore-python3: true
+  fixed-in:
+   - 4df1b6d478020ac51c84467f47e42083f53adbad # 2.5
+   - 93ebfb154456daa841aa223bd296422787b3074c # 2.6
+  description: >
+    Multiple integer overflows in the imageop module in Python 2.5.1 and
+    earlier allow context-dependent attackers to cause a denial of service
+    (application crash) and possibly obtain sensitive information (memory
+    contents) via crafted arguments to (1) the ``tovideo()`` method, and
+    unspecified other vectors related to (2) imageop.c, (3) rbgimgmodule.c, and
+    other files, which trigger heap-based buffer overflows.
+
+    Reported by Slythers Bro on the full-disclosure mailing list.
+
+- name: "CVE-2008-3143"
+  summary: >
+    multiple integer overflows
+  links:
+    - http://bugs.python.org/issue2620
+  disclosure: "2008-04-11 (issue #2620 reported)"
+  cvss-score: "7.5"
+  fixed-in:
+   - 83ac0144fa3041556aa4f3952ebd979e0189a19c # 2.5
+   - 0470bab69783c13447cb634fa403ef1067fe56d1 # 2.6
+   - d492ad80c872d264ed46bec71e31a00f174ac819 # 3.1
+  description: >
+    Multiple integer overflows in Python before 2.5.2 might allow
+    context-dependent attackers to have an unknown impact via vectors related
+    to (1) Include/pymem.h; (2) _csv.c, (3) _struct.c, (4) arraymodule.c, (5)
+    audioop.c, (6) binascii.c, (7) cPickle.c, (8) cStringIO.c, (9)
+    cjkcodecs/multibytecodec.c, (10) datetimemodule.c, (11) md5.c, (12)
+    rgbimgmodule.c, and (13) stropmodule.c in Modules/; (14) bufferobject.c,
+    (15) listobject.c, and (16) obmalloc.c in Objects/; (17) Parser/node.c; and
+    (18) asdl.c, (19) ast.c, (20) bltinmodule.c, and (21) compile.c in Python/,
+    as addressed by "checks for integer overflows, contributed by Google."
+
+    Reported by Justin Ferguson.
+
+- name: "CVE-2008-5031"
+  summary: >
+    expandtab() integer overflow
+  links:
+   - http://scary.beasts.org/security/CESA-2008-008.html
+  disclosure: "2008-03-11 (commit date)"
+  cvss-score: "10.0"
+  fixed-in:
+   - 44a93e54f4b0f90634d16d53c437fabb6946ea9d # 2.5
+   - 5bdff60617e6fc1d2e387a0b165cb23b82d7dae6 # 2.6
+   - dd15f6c315f20c1a9a540dd757cd63e27dbe9f3c # 3.0
+  description: >
+    Multiple integer overflows in Python 2.2.3 through 2.5.1, and 2.6, allow
+    context-dependent attackers to have an unknown impact via a large integer
+    value in the tabsize argument to the expandtabs method, as implemented by
+    (1) the string_expandtabs function in Objects/stringobject.c and (2) the
+    unicode_expandtabs function in Objects/unicodeobject.c. NOTE: this
+    vulnerability reportedly exists because of an incomplete fix for
+    CVE-2008-2315.
+
+    Reported by Chris Evans.
+
 # Template:
 # - name: ""
 #   summary: >
@@ -575,6 +727,8 @@
 #   fixed-in:
 #    -
 #   description: >
+#
+# Other tag: "ignore-python3: true", used for modules removed from Python 3
 
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa

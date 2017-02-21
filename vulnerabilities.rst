@@ -67,12 +67,26 @@ Security vulnerabilities
 +----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2011-4940`_           | SimpleHTTPServer UTF-7 vulnerability              | 2011-03-08   | 2.6           | 2.5.6, 2.6.7, 2.7.2, 3.2.4, 3.3.1, 3.4.0 |
 +----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2010-1634`_           | audioop integer overflows                         | 2010-05-10   | 5.0           | 2.6.6, 2.7, 3.1.3, 3.2                   |
++----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2010-2089`_           | audioop input validation                          | 2010-01-11   | 5.0           | 2.6.6, 2.7.2, 3.1.3, 3.2                 |
++----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
 | `Issue #6791`_             | httplib unlimited read                            | 2009-08-28   | ?             | 2.7.2, 3.1.4, 3.2                        |
++----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2010-3492`_           | smtpd accept bug                                  | 2009-08-14   | 5.0           | 2.7.4, 3.2                               |
++----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2010-3493`_           | smtpd race conditions                             | 2009-08-14   | 4.3           | 2.7.1, 3.1.3, 3.2.1, 3.3.0               |
++----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2008-3143`_           | multiple integer overflows                        | 2008-04-11   | 7.5           | 2.5.3, 2.6, 2.7, 3.0                     |
++----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2008-5031`_           | expandtab() integer overflow                      | 2008-03-11   | 10.0          | 2.5.3, 2.6, 2.7, 3.0                     |
 +----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2011-1015`_           | CGIHTTPServer directory traversal                 | 2008-03-07   | 5.0           | 2.7, 3.2.4, 3.3.1, 3.4.0                 |
 +----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2007-4965`_           | rgbimg and imageop integer overflows              | 2007-09-16   | 5.8           | 2.5.3, 2.6, 2.7                          |
++----------------------------+---------------------------------------------------+--------------+---------------+------------------------------------------+
 
-Total: 33 vulnerabilities
+Total: 40 vulnerabilities
 
 * Vulnerabilities sorted by the Disclosure column
 * Disclosure: Disclosure date, first time that the vulnerability was public
@@ -96,7 +110,7 @@ Fixed In:
 * 2.7.13 (48 days): 2016-12-17, `commit a876027 <https://github.com/python/cpython/commit/a8760275bd59fb8d8be1f1bf05313fed31c08321>`_ (2016-11-08, 9 days)
 * 3.4.6 (79 days): 2017-01-17, `commit 07bcf05 <https://github.com/python/cpython/commit/07bcf05fcf3fd1d4001e8e3489162e6d67638285>`_ (2016-11-08, 9 days)
 * 3.5.3 (79 days): 2017-01-17, `commit 07bcf05 <https://github.com/python/cpython/commit/07bcf05fcf3fd1d4001e8e3489162e6d67638285>`_ (2016-11-08, 9 days)
-* 3.6.0: 2016-12-23, `commit 07bcf05 <https://github.com/python/cpython/commit/07bcf05fcf3fd1d4001e8e3489162e6d67638285>`_
+* 3.6.0: 2016-12-23, `commit 07bcf05 <https://github.com/python/cpython/commit/07bcf05fcf3fd1d4001e8e3489162e6d67638285>`_ (2016-11-08)
 
 
 CVE-2016-2183
@@ -120,7 +134,7 @@ Fixed In:
 
 * 2.7.13 (115 days): 2016-12-17, `commit d988f42 <https://github.com/python/cpython/commit/d988f429fe43808345812ef63dfa8da170c61871>`_ (2016-09-06, 13 days)
 * 3.5.3 (146 days): 2017-01-17, `commit 03d13c0 <https://github.com/python/cpython/commit/03d13c0cbfe912eb0f9b9a02987b9e569f25fe19>`_ (2016-09-06, 13 days)
-* 3.6.0: 2016-12-23, `commit 03d13c0 <https://github.com/python/cpython/commit/03d13c0cbfe912eb0f9b9a02987b9e569f25fe19>`_
+* 3.6.0: 2016-12-23, `commit 03d13c0 <https://github.com/python/cpython/commit/03d13c0cbfe912eb0f9b9a02987b9e569f25fe19>`_ (2016-09-06)
 
 
 CVE-2016-1000110
@@ -146,7 +160,7 @@ Fixed In:
 * 2.7.13 (152 days): 2016-12-17, `commit 75d7b61 <https://github.com/python/cpython/commit/75d7b615ba70fc5759d16dee95bbd8f0474d8a9c>`_ (2016-07-30, 12 days)
 * 3.4.6 (183 days): 2017-01-17, `commit 4cbb23f <https://github.com/python/cpython/commit/4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d>`_ (2016-07-31, 13 days)
 * 3.5.3 (183 days): 2017-01-17, `commit 4cbb23f <https://github.com/python/cpython/commit/4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d>`_ (2016-07-31, 13 days)
-* 3.6.0: 2016-12-23, `commit 4cbb23f <https://github.com/python/cpython/commit/4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d>`_
+* 3.6.0: 2016-12-23, `commit 4cbb23f <https://github.com/python/cpython/commit/4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d>`_ (2016-07-31)
 
 
 CVE-2016-0772
@@ -170,7 +184,7 @@ Fixed In:
 * 2.7.12 (17 days): 2016-06-28, `commit 2e1b7fc <https://github.com/python/cpython/commit/2e1b7fc998e1744eeb3bb31b131eba0145b88a2f>`_ (2016-06-11, 0 days)
 * 3.4.5 (16 days): 2016-06-27, `commit 46b32f3 <https://github.com/python/cpython/commit/46b32f307c48bcb999b22eebf65ffe8ed5cca544>`_ (2016-06-11, 0 days)
 * 3.5.2 (16 days): 2016-06-27, `commit 46b32f3 <https://github.com/python/cpython/commit/46b32f307c48bcb999b22eebf65ffe8ed5cca544>`_ (2016-06-11, 0 days)
-* 3.6.0: 2016-12-23, `commit 46b32f3 <https://github.com/python/cpython/commit/46b32f307c48bcb999b22eebf65ffe8ed5cca544>`_
+* 3.6.0: 2016-12-23, `commit 46b32f3 <https://github.com/python/cpython/commit/46b32f307c48bcb999b22eebf65ffe8ed5cca544>`_ (2016-06-11)
 
 
 Issue #26657
@@ -188,7 +202,7 @@ Fixed In:
 
 * 2.7.12 (92 days): 2016-06-28, `commit 0cf2cf2 <https://github.com/python/cpython/commit/0cf2cf2b7d726d12a6046441e4067d32c7dd4feb>`_ (2016-04-18, 21 days)
 * 3.5.2 (91 days): 2016-06-27, `commit d274b3f <https://github.com/python/cpython/commit/d274b3f1f1e2d8811733fb952c9f18d7da3a376a>`_ (2016-04-18, 21 days)
-* 3.6.0: 2016-12-23, `commit d274b3f <https://github.com/python/cpython/commit/d274b3f1f1e2d8811733fb952c9f18d7da3a376a>`_
+* 3.6.0: 2016-12-23, `commit d274b3f <https://github.com/python/cpython/commit/d274b3f1f1e2d8811733fb952c9f18d7da3a376a>`_ (2016-04-18)
 
 
 CVE-2016-5636
@@ -210,7 +224,7 @@ Fixed In:
 * 2.7.12 (159 days): 2016-06-28, `commit 64ea192 <https://github.com/python/cpython/commit/64ea192b73e39e877d8b39ce6584fa580eb0e9b4>`_ (2016-01-21, 0 days)
 * 3.4.5 (158 days): 2016-06-27, `commit c4032da <https://github.com/python/cpython/commit/c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf>`_ (2016-01-21, 0 days)
 * 3.5.2 (158 days): 2016-06-27, `commit c4032da <https://github.com/python/cpython/commit/c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf>`_ (2016-01-21, 0 days)
-* 3.6.0: 2016-12-23, `commit c4032da <https://github.com/python/cpython/commit/c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf>`_
+* 3.6.0: 2016-12-23, `commit c4032da <https://github.com/python/cpython/commit/c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf>`_ (2016-01-21)
 
 
 CVE-2015-1283
@@ -236,7 +250,7 @@ Fixed In:
 * 2.7.12 (340 days): 2016-06-28, `commit d244a8f <https://github.com/python/cpython/commit/d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e>`_ (2016-06-11, 323 days)
 * 3.4.5 (339 days): 2016-06-27, `commit 196d7db <https://github.com/python/cpython/commit/196d7db3956f4c0b03e87b570771b3460a61bab5>`_ (2016-06-11, 323 days)
 * 3.5.2 (339 days): 2016-06-27, `commit 196d7db <https://github.com/python/cpython/commit/196d7db3956f4c0b03e87b570771b3460a61bab5>`_ (2016-06-11, 323 days)
-* 3.6.0: 2016-12-23, `commit 196d7db <https://github.com/python/cpython/commit/196d7db3956f4c0b03e87b570771b3460a61bab5>`_
+* 3.6.0: 2016-12-23, `commit 196d7db <https://github.com/python/cpython/commit/196d7db3956f4c0b03e87b570771b3460a61bab5>`_ (2016-06-11)
 
 
 CVE-2016-5699
@@ -259,7 +273,7 @@ Fixed In:
 
 * 2.7.10 (180 days): 2015-05-23, `commit 59bdf63 <https://github.com/python/cpython/commit/59bdf6392de446de8a19bfa37cee52981612830e>`_ (2015-03-12, 108 days)
 * 3.4.4 (392 days): 2015-12-21, `commit a112a8a <https://github.com/python/cpython/commit/a112a8ae47813f75aa8ad27ee8c42a7c2e937d13>`_ (2015-03-12, 108 days)
-* 3.5.0: 2015-09-09, `commit a112a8a <https://github.com/python/cpython/commit/a112a8ae47813f75aa8ad27ee8c42a7c2e937d13>`_
+* 3.5.0: 2015-09-09, `commit a112a8a <https://github.com/python/cpython/commit/a112a8ae47813f75aa8ad27ee8c42a7c2e937d13>`_ (2015-03-12)
 
 
 CVE-2014-7185
@@ -303,7 +317,7 @@ Fixed In:
 
 * 2.7.9 (235 days): 2014-12-10, `commit daeb925 <https://github.com/python/cpython/commit/daeb925cc88cc8fed2030166ade641de28edb396>`_ (2014-08-20, 123 days)
 * 3.4.3 (310 days): 2015-02-23, `commit 4ffb075 <https://github.com/python/cpython/commit/4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd>`_ (2014-11-03, 198 days)
-* 3.5.0: 2015-09-09, `commit 4ffb075 <https://github.com/python/cpython/commit/4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd>`_
+* 3.5.0: 2015-09-09, `commit 4ffb075 <https://github.com/python/cpython/commit/4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd>`_ (2014-11-03)
 
 
 CVE-2014-4616
@@ -327,7 +341,7 @@ Fixed In:
 * 3.2.6 (181 days): 2014-10-11, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-14, 1 days)
 * 3.3.6 (181 days): 2014-10-11, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-14, 1 days)
 * 3.4.1 (35 days): 2014-05-18, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-14, 1 days)
-* 3.5.0: 2015-09-09, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_
+* 3.5.0: 2015-09-09, `commit 99b5afa <https://github.com/python/cpython/commit/99b5afab74428e5ddfd877bdf3aa8a8c479696b1>`_ (2014-04-14)
 
 
 CVE-2014-2667
@@ -351,7 +365,7 @@ Fixed In:
 * 3.2.6 (197 days): 2014-10-11, `commit ee5f1c1 <https://github.com/python/cpython/commit/ee5f1c13d1ea21c628068fdf142823177f5526c2>`_ (2014-04-01, 4 days)
 * 3.3.6 (197 days): 2014-10-11, `commit ee5f1c1 <https://github.com/python/cpython/commit/ee5f1c13d1ea21c628068fdf142823177f5526c2>`_ (2014-04-01, 4 days)
 * 3.4.1 (51 days): 2014-05-18, `commit ee5f1c1 <https://github.com/python/cpython/commit/ee5f1c13d1ea21c628068fdf142823177f5526c2>`_ (2014-04-01, 4 days)
-* 3.5.0: 2015-09-09, `commit ee5f1c1 <https://github.com/python/cpython/commit/ee5f1c13d1ea21c628068fdf142823177f5526c2>`_
+* 3.5.0: 2015-09-09, `commit ee5f1c1 <https://github.com/python/cpython/commit/ee5f1c13d1ea21c628068fdf142823177f5526c2>`_ (2014-04-01)
 
 
 CVE-2014-1912
@@ -374,7 +388,7 @@ Fixed In:
 * 2.7.7 (137 days): 2014-05-31, `commit 28cf368 <https://github.com/python/cpython/commit/28cf368c1baba3db1f01010e921f63017af74c8f>`_ (2014-01-14, 0 days)
 * 3.2.6 (270 days): 2014-10-11, `commit fbf648e <https://github.com/python/cpython/commit/fbf648ebba32bbc5aa571a4b09e2062a65fd2492>`_ (2014-01-14, 0 days)
 * 3.3.4 (26 days): 2014-02-09, `commit fbf648e <https://github.com/python/cpython/commit/fbf648ebba32bbc5aa571a4b09e2062a65fd2492>`_ (2014-01-14, 0 days)
-* 3.4.0: 2014-03-16, `commit fbf648e <https://github.com/python/cpython/commit/fbf648ebba32bbc5aa571a4b09e2062a65fd2492>`_
+* 3.4.0: 2014-03-16, `commit fbf648e <https://github.com/python/cpython/commit/fbf648ebba32bbc5aa571a4b09e2062a65fd2492>`_ (2014-01-14)
 
 
 CVE-2013-7338
@@ -398,7 +412,7 @@ Links:
 Fixed In:
 
 * 3.3.4 (44 days): 2014-02-09, `commit 5ce3f10 <https://github.com/python/cpython/commit/5ce3f10aeea711bb912e948fa5d9f63736df1327>`_ (2014-01-09, 13 days)
-* 3.4.0: 2014-03-16, `commit 5ce3f10 <https://github.com/python/cpython/commit/5ce3f10aeea711bb912e948fa5d9f63736df1327>`_
+* 3.4.0: 2014-03-16, `commit 5ce3f10 <https://github.com/python/cpython/commit/5ce3f10aeea711bb912e948fa5d9f63736df1327>`_ (2014-01-09)
 
 
 Issue #19435
@@ -418,7 +432,7 @@ Fixed In:
 * 2.7.6 (12 days): 2013-11-10, `commit 1ef959a <https://github.com/python/cpython/commit/1ef959ac3ddc4d96dfa1a613db5cb206cdaeb662>`_ (2013-10-30, 1 days)
 * 3.2.6 (347 days): 2014-10-11, `commit 04e9de4 <https://github.com/python/cpython/commit/04e9de40f380b2695f955d68f2721d57cecbf858>`_ (2013-10-30, 1 days)
 * 3.3.4 (103 days): 2014-02-09, `commit 04e9de4 <https://github.com/python/cpython/commit/04e9de40f380b2695f955d68f2721d57cecbf858>`_ (2013-10-30, 1 days)
-* 3.4.0: 2014-03-16, `commit 04e9de4 <https://github.com/python/cpython/commit/04e9de40f380b2695f955d68f2721d57cecbf858>`_
+* 3.4.0: 2014-03-16, `commit 04e9de4 <https://github.com/python/cpython/commit/04e9de40f380b2695f955d68f2721d57cecbf858>`_ (2013-10-30)
 
 
 CVE-2013-4238
@@ -441,7 +455,7 @@ Fixed In:
 * 2.6.9 (78 days): 2013-10-29, `commit 82f8828 <https://github.com/python/cpython/commit/82f88283171933127f20f866a7f98694b29cca56>`_ (2013-08-23, 11 days)
 * 2.7.6 (90 days): 2013-11-10, `commit 82f8828 <https://github.com/python/cpython/commit/82f88283171933127f20f866a7f98694b29cca56>`_ (2013-08-23, 11 days)
 * 3.3.3 (97 days): 2013-11-17, `commit 824f7f3 <https://github.com/python/cpython/commit/824f7f366d1b54d2d3100c3130c04cf1dfb4b47c>`_ (2013-08-16, 4 days)
-* 3.4.0: 2014-03-16, `commit 824f7f3 <https://github.com/python/cpython/commit/824f7f366d1b54d2d3100c3130c04cf1dfb4b47c>`_
+* 3.4.0: 2014-03-16, `commit 824f7f3 <https://github.com/python/cpython/commit/824f7f366d1b54d2d3100c3130c04cf1dfb4b47c>`_ (2013-08-16)
 
 
 CVE-2013-7440
@@ -464,7 +478,7 @@ Links:
 Fixed In:
 
 * 3.3.3 (184 days): 2013-11-17, `commit 72c98d3 <https://github.com/python/cpython/commit/72c98d3a761457a4f2b8054458b19f051dfb5886>`_ (2013-10-27, 163 days)
-* 3.4.0: 2014-03-16, `commit 72c98d3 <https://github.com/python/cpython/commit/72c98d3a761457a4f2b8054458b19f051dfb5886>`_
+* 3.4.0: 2014-03-16, `commit 72c98d3 <https://github.com/python/cpython/commit/72c98d3a761457a4f2b8054458b19f051dfb5886>`_ (2013-10-27)
 
 
 CVE-2013-2099
@@ -486,7 +500,7 @@ Links:
 Fixed In:
 
 * 3.3.3 (186 days): 2013-11-17, `commit 636f93c <https://github.com/python/cpython/commit/636f93c63ba286249c1207e3a903f8429efb2041>`_ (2013-05-18, 3 days)
-* 3.4.0: 2014-03-16, `commit 636f93c <https://github.com/python/cpython/commit/636f93c63ba286249c1207e3a903f8429efb2041>`_
+* 3.4.0: 2014-03-16, `commit 636f93c <https://github.com/python/cpython/commit/636f93c63ba286249c1207e3a903f8429efb2041>`_ (2013-05-18)
 
 
 CVE-2013-1752 (ftplib)
@@ -509,7 +523,7 @@ Fixed In:
 * 2.7.6 (411 days): 2013-11-10, `commit 2585e1e <https://github.com/python/cpython/commit/2585e1e48abb3013abeb8a1fe9dccb5f79ac4091>`_ (2013-10-20, 390 days)
 * 3.2.6 (746 days): 2014-10-11, `commit c9cb18d <https://github.com/python/cpython/commit/c9cb18d3f7e5bf03220c213183ff0caa75905bdd>`_ (2014-09-30, 735 days)
 * 3.3.3 (418 days): 2013-11-17, `commit c30b178 <https://github.com/python/cpython/commit/c30b178cbc92e62c22527cd7e1af2f02723ba679>`_ (2013-10-20, 390 days)
-* 3.4.0: 2014-03-16, `commit c30b178 <https://github.com/python/cpython/commit/c30b178cbc92e62c22527cd7e1af2f02723ba679>`_
+* 3.4.0: 2014-03-16, `commit c30b178 <https://github.com/python/cpython/commit/c30b178cbc92e62c22527cd7e1af2f02723ba679>`_ (2013-10-20)
 
 
 CVE-2013-1752 (nntplib)
@@ -532,7 +546,7 @@ Fixed In:
 * 2.7.6 (411 days): 2013-11-10, `commit 42faa55 <https://github.com/python/cpython/commit/42faa55124abcbb132c57745dec9e0489ac74406>`_ (2013-09-30, 370 days)
 * 3.2.6 (746 days): 2014-10-11, `commit b3ac843 <https://github.com/python/cpython/commit/b3ac84322fe6dd542aa755779cdbc155edca8064>`_ (2014-10-12, 747 days)
 * 3.4.3 (881 days): 2015-02-23, `commit b3ac843 <https://github.com/python/cpython/commit/b3ac84322fe6dd542aa755779cdbc155edca8064>`_ (2014-10-12, 747 days)
-* 3.5.0: 2015-09-09, `commit b3ac843 <https://github.com/python/cpython/commit/b3ac84322fe6dd542aa755779cdbc155edca8064>`_
+* 3.5.0: 2015-09-09, `commit b3ac843 <https://github.com/python/cpython/commit/b3ac84322fe6dd542aa755779cdbc155edca8064>`_ (2014-10-12)
 
 
 CVE-2013-1752 (poplib)
@@ -554,7 +568,7 @@ Fixed In:
 * 2.7.9 (806 days): 2014-12-10, `commit faad6bb <https://github.com/python/cpython/commit/faad6bbea6c86e30c770eb0a3648e2cd52b2e55e>`_ (2014-12-06, 802 days)
 * 3.2.6 (746 days): 2014-10-11, `commit eaca861 <https://github.com/python/cpython/commit/eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e>`_ (2014-09-30, 735 days)
 * 3.4.3 (881 days): 2015-02-23, `commit eaca861 <https://github.com/python/cpython/commit/eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e>`_ (2014-09-30, 735 days)
-* 3.5.0: 2015-09-09, `commit eaca861 <https://github.com/python/cpython/commit/eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e>`_
+* 3.5.0: 2015-09-09, `commit eaca861 <https://github.com/python/cpython/commit/eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e>`_ (2014-09-30)
 
 
 CVE-2013-1752 (smtplib)
@@ -576,7 +590,7 @@ Fixed In:
 * 2.7.9 (806 days): 2014-12-10, `commit dabfc56 <https://github.com/python/cpython/commit/dabfc56b57f5086eb5522d8e6cd7670c62d2482d>`_ (2014-12-06, 802 days)
 * 3.2.6 (746 days): 2014-10-11, `commit 210ee47 <https://github.com/python/cpython/commit/210ee47e3340d8e689d8cce584e7c918d368f16b>`_ (2014-09-30, 735 days)
 * 3.4.3 (881 days): 2015-02-23, `commit 210ee47 <https://github.com/python/cpython/commit/210ee47e3340d8e689d8cce584e7c918d368f16b>`_ (2014-09-30, 735 days)
-* 3.5.0: 2015-09-09, `commit 210ee47 <https://github.com/python/cpython/commit/210ee47e3340d8e689d8cce584e7c918d368f16b>`_
+* 3.5.0: 2015-09-09, `commit 210ee47 <https://github.com/python/cpython/commit/210ee47e3340d8e689d8cce584e7c918d368f16b>`_ (2014-09-30)
 
 
 CVE-2013-1753
@@ -598,7 +612,7 @@ Fixed In:
 
 * 2.7.9 (806 days): 2014-12-10, `commit 9e8f523 <https://github.com/python/cpython/commit/9e8f523c5b1c354097753084054eadf14d33238d>`_ (2014-12-06, 802 days)
 * 3.4.3 (881 days): 2015-02-23, `commit 4e9cefa <https://github.com/python/cpython/commit/4e9cefaf86035f8014e09049328d197b6506532f>`_ (2014-12-06, 802 days)
-* 3.5.0: 2015-09-09, `commit 4e9cefa <https://github.com/python/cpython/commit/4e9cefaf86035f8014e09049328d197b6506532f>`_
+* 3.5.0: 2015-09-09, `commit 4e9cefa <https://github.com/python/cpython/commit/4e9cefaf86035f8014e09049328d197b6506532f>`_ (2014-12-06)
 
 
 CVE-2013-7040
@@ -642,7 +656,7 @@ Fixed In:
 
 * 2.7.4 (357 days): 2013-04-06, `commit 715a63b <https://github.com/python/cpython/commit/715a63b78349952ccc0fb3dd3139e2d822006d35>`_ (2012-07-20, 97 days)
 * 3.2.4 (358 days): 2013-04-07, `commit 715a63b <https://github.com/python/cpython/commit/715a63b78349952ccc0fb3dd3139e2d822006d35>`_ (2012-07-20, 97 days)
-* 3.3.0: 2012-09-29, `commit b4bbee2 <https://github.com/python/cpython/commit/b4bbee25b1e3f4bccac222f806b3138fb72439d6>`_
+* 3.3.0: 2012-09-29, `commit b4bbee2 <https://github.com/python/cpython/commit/b4bbee25b1e3f4bccac222f806b3138fb72439d6>`_ (2012-07-20)
 
 
 CVE-2012-0845
@@ -666,7 +680,7 @@ Fixed In:
 * 2.7.3 (56 days): 2012-04-09, `commit 66f3cc6 <https://github.com/python/cpython/commit/66f3cc6f8de83c447d937160e4a1630c4482b5f5>`_ (2012-02-18, 5 days)
 * 3.1.5 (55 days): 2012-04-08, `commit ec1712a <https://github.com/python/cpython/commit/ec1712a1662282c909b4cd4cc0c7486646bc9246>`_ (2012-02-18, 5 days)
 * 3.2.3 (57 days): 2012-04-10, `commit ec1712a <https://github.com/python/cpython/commit/ec1712a1662282c909b4cd4cc0c7486646bc9246>`_ (2012-02-18, 5 days)
-* 3.3.0: 2012-09-29, `commit ec1712a <https://github.com/python/cpython/commit/ec1712a1662282c909b4cd4cc0c7486646bc9246>`_
+* 3.3.0: 2012-09-29, `commit ec1712a <https://github.com/python/cpython/commit/ec1712a1662282c909b4cd4cc0c7486646bc9246>`_ (2012-02-18)
 
 
 CVE-2011-3389
@@ -690,7 +704,7 @@ Fixed In:
 * 2.7.3 (73 days): 2012-04-09, `commit d358e05 <https://github.com/python/cpython/commit/d358e0554bc520768041652676ec8e6076f221a9>`_ (2012-01-27, 0 days)
 * 3.1.5 (72 days): 2012-04-08, `commit f2bf8a6 <https://github.com/python/cpython/commit/f2bf8a6ac51530e14d798a03c8e950dd934d85cd>`_ (2012-01-27, 0 days)
 * 3.2.3 (74 days): 2012-04-10, `commit f2bf8a6 <https://github.com/python/cpython/commit/f2bf8a6ac51530e14d798a03c8e950dd934d85cd>`_ (2012-01-27, 0 days)
-* 3.3.0: 2012-09-29, `commit f2bf8a6 <https://github.com/python/cpython/commit/f2bf8a6ac51530e14d798a03c8e950dd934d85cd>`_
+* 3.3.0: 2012-09-29, `commit f2bf8a6 <https://github.com/python/cpython/commit/f2bf8a6ac51530e14d798a03c8e950dd934d85cd>`_ (2012-01-27)
 
 
 CVE-2012-1150
@@ -718,7 +732,7 @@ Fixed In:
 * 2.7.3 (103 days): 2012-04-09, `commit 1e13eb0 <https://github.com/python/cpython/commit/1e13eb084f72d5993cbb726e45b36bdb69c83a24>`_ (2012-02-21, 55 days)
 * 3.1.5 (102 days): 2012-04-08, `commit 2daf6ae <https://github.com/python/cpython/commit/2daf6ae2495c862adf8bc717bfe9964081ea0b10>`_ (2012-02-20, 54 days)
 * 3.2.3 (104 days): 2012-04-10, `commit 2daf6ae <https://github.com/python/cpython/commit/2daf6ae2495c862adf8bc717bfe9964081ea0b10>`_ (2012-02-20, 54 days)
-* 3.3.0: 2012-09-29, `commit 2daf6ae <https://github.com/python/cpython/commit/2daf6ae2495c862adf8bc717bfe9964081ea0b10>`_
+* 3.3.0: 2012-09-29, `commit 2daf6ae <https://github.com/python/cpython/commit/2daf6ae2495c862adf8bc717bfe9964081ea0b10>`_ (2012-02-20)
 
 
 CVE-2011-4944
@@ -740,7 +754,7 @@ Fixed In:
 * 2.7.4 (493 days): 2013-04-06, `commit e5567cc <https://github.com/python/cpython/commit/e5567ccc863cadb68f5e57a2760e021e0d3807cf>`_ (2012-07-03, 216 days)
 * 3.2.4 (494 days): 2013-04-07, `commit e5567cc <https://github.com/python/cpython/commit/e5567ccc863cadb68f5e57a2760e021e0d3807cf>`_ (2012-07-03, 216 days)
 * 3.3.1 (494 days): 2013-04-07, `commit e5567cc <https://github.com/python/cpython/commit/e5567ccc863cadb68f5e57a2760e021e0d3807cf>`_ (2012-07-03, 216 days)
-* 3.4.0: 2014-03-16, `commit e5567cc <https://github.com/python/cpython/commit/e5567ccc863cadb68f5e57a2760e021e0d3807cf>`_
+* 3.4.0: 2014-03-16, `commit e5567cc <https://github.com/python/cpython/commit/e5567ccc863cadb68f5e57a2760e021e0d3807cf>`_ (2012-07-03)
 
 
 CVE-2011-1521
@@ -765,7 +779,7 @@ Fixed In:
 * 2.7.2 (79 days): 2011-06-11, `commit 60a4a90 <https://github.com/python/cpython/commit/60a4a90c8dd2972eb4bb977e70835be9593cbbac>`_ (2011-03-24, 0 days)
 * 3.1.4 (79 days): 2011-06-11, `commit a119df9 <https://github.com/python/cpython/commit/a119df91f33724f64e6bc1ecb484eeaa30ace014>`_ (2011-03-29, 5 days)
 * 3.2.1 (108 days): 2011-07-10, `commit a119df9 <https://github.com/python/cpython/commit/a119df91f33724f64e6bc1ecb484eeaa30ace014>`_ (2011-03-29, 5 days)
-* 3.3.0: 2012-09-29, `commit a119df9 <https://github.com/python/cpython/commit/a119df91f33724f64e6bc1ecb484eeaa30ace014>`_
+* 3.3.0: 2012-09-29, `commit a119df9 <https://github.com/python/cpython/commit/a119df91f33724f64e6bc1ecb484eeaa30ace014>`_ (2011-03-29)
 
 
 CVE-2011-4940
@@ -789,7 +803,53 @@ Fixed In:
 * 2.7.2 (95 days): 2011-06-11, `commit 3853586 <https://github.com/python/cpython/commit/3853586e0caa0d5c4342ac8bd7e78cb5766fa8cc>`_ (2011-03-17, 9 days)
 * 3.2.4 (761 days): 2013-04-07, `commit 3853586 <https://github.com/python/cpython/commit/3853586e0caa0d5c4342ac8bd7e78cb5766fa8cc>`_ (2011-03-17, 9 days)
 * 3.3.1 (761 days): 2013-04-07, `commit 3853586 <https://github.com/python/cpython/commit/3853586e0caa0d5c4342ac8bd7e78cb5766fa8cc>`_ (2011-03-17, 9 days)
-* 3.4.0: 2014-03-16, `commit 3853586 <https://github.com/python/cpython/commit/3853586e0caa0d5c4342ac8bd7e78cb5766fa8cc>`_
+* 3.4.0: 2014-03-16, `commit 3853586 <https://github.com/python/cpython/commit/3853586e0caa0d5c4342ac8bd7e78cb5766fa8cc>`_ (2011-03-17)
+
+
+CVE-2010-1634
+=============
+
+Disclosure date: 2010-05-10 (issue #8674 reported).
+
+`CVSS Score`_: 5.0.
+
+Multiple integer overflows in audioop.c in the audioop module in Python 2.6, 2.7, 3.1, and 3.2 allow context-dependent attackers to cause a denial of service (application crash) via a large fragment, as demonstrated by a call to audioop.lin2lin with a long string in the first argument, leading to a buffer overflow.
+NOTE: this vulnerability exists because of an incorrect fix for CVE-2008-3143.5.
+
+Links:
+
+* http://bugs.python.org/issue8674
+* http://www.cvedetails.com/cve/CVE-2010-1634/
+
+Fixed In:
+
+* 2.6.6 (106 days): 2010-08-24, `commit 7ceb497 <https://github.com/python/cpython/commit/7ceb497ae6f554274399bd9916ea5a21de443208>`_ (2010-05-11, 1 days)
+* 2.7 (54 days): 2010-07-03, `commit 11bb2cd <https://github.com/python/cpython/commit/11bb2cdc6aa8db142a87de281b83293d500847b2>`_ (2010-05-11, 1 days)
+* 3.1.3 (201 days): 2010-11-27, `commit ee289e6 <https://github.com/python/cpython/commit/ee289e6cd5c009e641ee970cfc67996d8f871221>`_ (2010-05-11, 1 days)
+* 3.2: 2011-02-20, `commit 393b97a <https://github.com/python/cpython/commit/393b97a7b61583f3e0401f385da8b741ef1684d6>`_ (2010-05-11)
+
+
+CVE-2010-2089
+=============
+
+Disclosure date: 2010-01-11 (issue #7673 reported).
+
+`CVSS Score`_: 5.0.
+
+The audioop module in Python 2.7 and 3.2 does not verify the relationships between size arguments and byte string lengths, which allows context-dependent attackers to cause a denial of service (memory corruption and application crash) via crafted arguments, as demonstrated by a call to audioop.reverse with a one-byte string, a different vulnerability than `CVE-2010-1634`_.
+Reported by STINNER Victor.
+
+Links:
+
+* http://bugs.python.org/issue7673
+* http://www.cvedetails.com/cve/CVE-2010-2089/
+
+Fixed In:
+
+* 2.6.6 (225 days): 2010-08-24, `commit e9123ef <https://github.com/python/cpython/commit/e9123efa21a16584758b5ce7da93d3966cf0cd81>`_ (2010-07-03, 173 days)
+* 2.7.2 (516 days): 2011-06-11, `commit e9123ef <https://github.com/python/cpython/commit/e9123efa21a16584758b5ce7da93d3966cf0cd81>`_ (2010-07-03, 173 days)
+* 3.1.3 (320 days): 2010-11-27, `commit 8e42fb7 <https://github.com/python/cpython/commit/8e42fb7ada3198e66d3f060c5c87c52465a86e36>`_ (2010-07-03, 173 days)
+* 3.2: 2011-02-20, `commit bc5c54b <https://github.com/python/cpython/commit/bc5c54bca24fdb1fcf7fa055831ec997a65f3ce8>`_ (2010-07-03)
 
 
 Issue #6791
@@ -807,7 +867,97 @@ Fixed In:
 
 * 2.7.2 (652 days): 2011-06-11, `commit d7b6ac6 <https://github.com/python/cpython/commit/d7b6ac66c1b81d13f2efa8d9ebba69e17c158c0a>`_ (2010-12-18, 477 days)
 * 3.1.4 (652 days): 2011-06-11, `commit ff1bbba <https://github.com/python/cpython/commit/ff1bbba92aad261df1ebd8fd8cc189c104e113b0>`_ (2010-12-18, 477 days)
-* 3.2: 2011-02-20, `commit 5466bf1 <https://github.com/python/cpython/commit/5466bf1c94d38e75bc053b0cfc163e2f948fe345>`_
+* 3.2: 2011-02-20, `commit 5466bf1 <https://github.com/python/cpython/commit/5466bf1c94d38e75bc053b0cfc163e2f948fe345>`_ (2010-12-18)
+
+
+CVE-2010-3492
+=============
+
+Disclosure date: 2009-08-14 (issue #6706 reported).
+
+`CVSS Score`_: 5.0.
+
+The asyncore module in Python before 3.2 does not properly handle unsuccessful calls to the accept function, and does not have accompanying documentation describing how daemon applications should handle unsuccessful calls to the accept function, which makes it easier for remote attackers to conduct denial of service attacks that terminate these applications via network connections.
+Reported by Giampaolo Rodola.
+
+Links:
+
+* http://bugs.python.org/issue6706
+* http://www.cvedetails.com/cve/CVE-2010-3492/
+
+Fixed In:
+
+* 2.7.4 (1331 days): 2013-04-06, `commit 977c707 <https://github.com/python/cpython/commit/977c707b425ee753d54f3e9010f07ec77ef61274>`_ (2010-10-04, 416 days)
+* 3.2: 2011-02-20, `commit 977c707 <https://github.com/python/cpython/commit/977c707b425ee753d54f3e9010f07ec77ef61274>`_ (2010-10-04)
+
+
+CVE-2010-3493
+=============
+
+Disclosure date: 2009-08-14 (issue #6706 reported).
+
+`CVSS Score`_: 4.3.
+
+Multiple race conditions in smtpd.py in the smtpd module in Python 2.6, 2.7, 3.1, and 3.2 alpha allow remote attackers to cause a denial of service (daemon outage) by establishing and then immediately closing a TCP connection, leading to the accept function having an unexpected return value of None, an unexpected value of None for the address, or an ECONNABORTED, EAGAIN, or EWOULDBLOCK error, or the getpeername function having an ENOTCONN error, a related issue to `CVE-2010-3492`_.
+Reported by Giampaolo Rodola.
+
+Links:
+
+* http://bugs.python.org/issue6706
+* http://www.cvedetails.com/cve/CVE-2010-3493/
+
+Fixed In:
+
+* 2.7.1 (470 days): 2010-11-27, `commit 19e9fef <https://github.com/python/cpython/commit/19e9fefc660d623ce7c31fb008cde1157ae12aba>`_ (2010-11-01, 444 days)
+* 3.1.3 (470 days): 2010-11-27, `commit 5ea3d0f <https://github.com/python/cpython/commit/5ea3d0f95b51009fa1c3409e7dd1c12006427ccc>`_ (2010-11-01, 444 days)
+* 3.2.1 (695 days): 2011-07-10, `commit 5ea3d0f <https://github.com/python/cpython/commit/5ea3d0f95b51009fa1c3409e7dd1c12006427ccc>`_ (2010-11-01, 444 days)
+* 3.3.0: 2012-09-29, `commit 5ea3d0f <https://github.com/python/cpython/commit/5ea3d0f95b51009fa1c3409e7dd1c12006427ccc>`_ (2010-11-01)
+
+
+CVE-2008-3143
+=============
+
+Disclosure date: 2008-04-11 (issue #2620 reported).
+
+`CVSS Score`_: 7.5.
+
+Multiple integer overflows in Python before 2.5.2 might allow context-dependent attackers to have an unknown impact via vectors related to (1) Include/pymem.h; (2) _csv.c, (3) _struct.c, (4) arraymodule.c, (5) audioop.c, (6) binascii.c, (7) cPickle.c, (8) cStringIO.c, (9) cjkcodecs/multibytecodec.c, (10) datetimemodule.c, (11) md5.c, (12) rgbimgmodule.c, and (13) stropmodule.c in Modules/; (14) bufferobject.c, (15) listobject.c, and (16) obmalloc.c in Objects/; (17) Parser/node.c; and (18) asdl.c, (19) ast.c, (20) bltinmodule.c, and (21) compile.c in Python/, as addressed by "checks for integer overflows, contributed by Google."
+Reported by Justin Ferguson.
+
+Links:
+
+* http://bugs.python.org/issue2620
+* http://www.cvedetails.com/cve/CVE-2008-3143/
+
+Fixed In:
+
+* 2.5.3 (252 days): 2008-12-19, `commit 83ac014 <https://github.com/python/cpython/commit/83ac0144fa3041556aa4f3952ebd979e0189a19c>`_ (2008-07-28, 108 days)
+* 2.6 (173 days): 2008-10-01, `commit 0470bab <https://github.com/python/cpython/commit/0470bab69783c13447cb634fa403ef1067fe56d1>`_ (2008-07-22, 102 days)
+* 2.7 (813 days): 2010-07-03, `commit 0470bab <https://github.com/python/cpython/commit/0470bab69783c13447cb634fa403ef1067fe56d1>`_ (2008-07-22, 102 days)
+* 3.0: 2008-12-03, `commit d492ad8 <https://github.com/python/cpython/commit/d492ad80c872d264ed46bec71e31a00f174ac819>`_ (2008-07-23)
+
+
+CVE-2008-5031
+=============
+
+Disclosure date: 2008-03-11 (commit date).
+
+`CVSS Score`_: 10.0.
+
+Multiple integer overflows in Python 2.2.3 through 2.5.1, and 2.6, allow context-dependent attackers to have an unknown impact via a large integer value in the tabsize argument to the expandtabs method, as implemented by (1) the string_expandtabs function in Objects/stringobject.c and (2) the unicode_expandtabs function in Objects/unicodeobject.c. NOTE: this vulnerability reportedly exists because of an incomplete fix for CVE-2008-2315.
+Reported by Chris Evans.
+
+Links:
+
+* http://scary.beasts.org/security/CESA-2008-008.html
+* http://www.cvedetails.com/cve/CVE-2008-5031/
+
+Fixed In:
+
+* 2.5.3 (283 days): 2008-12-19, `commit 44a93e5 <https://github.com/python/cpython/commit/44a93e54f4b0f90634d16d53c437fabb6946ea9d>`_ (2008-03-11, 0 days)
+* 2.6 (204 days): 2008-10-01, `commit 5bdff60 <https://github.com/python/cpython/commit/5bdff60617e6fc1d2e387a0b165cb23b82d7dae6>`_ (2008-03-11, 0 days)
+* 2.7 (844 days): 2010-07-03, `commit 5bdff60 <https://github.com/python/cpython/commit/5bdff60617e6fc1d2e387a0b165cb23b82d7dae6>`_ (2008-03-11, 0 days)
+* 3.0: 2008-12-03, `commit dd15f6c <https://github.com/python/cpython/commit/dd15f6c315f20c1a9a540dd757cd63e27dbe9f3c>`_ (2008-03-16)
 
 
 CVE-2011-1015
@@ -829,4 +979,27 @@ Fixed In:
 * 2.7 (848 days): 2010-07-03, `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_ (2009-04-06, 395 days)
 * 3.2.4 (1857 days): 2013-04-07, `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_ (2009-04-06, 395 days)
 * 3.3.1 (1857 days): 2013-04-07, `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_ (2009-04-06, 395 days)
-* 3.4.0: 2014-03-16, `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_
+* 3.4.0: 2014-03-16, `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_ (2009-04-06)
+
+
+CVE-2007-4965
+=============
+
+Disclosure date: 2007-09-16 (full-disclosure email).
+
+`CVSS Score`_: 5.8.
+
+Multiple integer overflows in the imageop module in Python 2.5.1 and earlier allow context-dependent attackers to cause a denial of service (application crash) and possibly obtain sensitive information (memory contents) via crafted arguments to (1) the ``tovideo()`` method, and unspecified other vectors related to (2) imageop.c, (3) rbgimgmodule.c, and other files, which trigger heap-based buffer overflows.
+Reported by Slythers Bro on the full-disclosure mailing list.
+
+Links:
+
+* http://bugs.python.org/issue1179
+* http://seclists.org/fulldisclosure/2007/Sep/279
+* http://www.cvedetails.com/cve/CVE-2007-4965/
+
+Fixed In:
+
+* 2.5.3 (460 days): 2008-12-19, `commit 4df1b6d <https://github.com/python/cpython/commit/4df1b6d478020ac51c84467f47e42083f53adbad>`_ (2008-08-19, 338 days)
+* 2.6 (381 days): 2008-10-01, `commit 93ebfb1 <https://github.com/python/cpython/commit/93ebfb154456daa841aa223bd296422787b3074c>`_ (2008-08-19, 338 days)
+* 2.7 (1021 days): 2010-07-03, `commit 93ebfb1 <https://github.com/python/cpython/commit/93ebfb154456daa841aa223bd296422787b3074c>`_ (2008-08-19, 338 days)
