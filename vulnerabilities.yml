@@ -654,6 +654,8 @@
   links:
     - http://bugs.python.org/issue1179
     - http://seclists.org/fulldisclosure/2007/Sep/279
+    - http://bugs.python.org/issue8678
+    - https://bugzilla.redhat.com/show_bug.cgi?id=541698
   disclosure: "2007-09-16 (full-disclosure email)"
   cvss-score: "5.8"
   # imageop module was removed in Python 3
@@ -670,6 +672,10 @@
     other files, which trigger heap-based buffer overflows.
 
     Reported by Slythers Bro on the full-disclosure mailing list.
+
+    CVE-2009-4134, CVE-2010-1449 and CVE-2010-1450 are similar reports of the
+    same vulnerability. Reported by Marc Schoenefeld in the Red Hat bugzilla
+    (2009-11-26).
 
 - name: "CVE-2008-3143"
   summary: >

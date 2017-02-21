@@ -989,11 +989,14 @@ Disclosure date: 2007-09-16 (full-disclosure email).
 
 Multiple integer overflows in the imageop module in Python 2.5.1 and earlier allow context-dependent attackers to cause a denial of service (application crash) and possibly obtain sensitive information (memory contents) via crafted arguments to (1) the ``tovideo()`` method, and unspecified other vectors related to (2) imageop.c, (3) rbgimgmodule.c, and other files, which trigger heap-based buffer overflows.
 Reported by Slythers Bro on the full-disclosure mailing list.
+CVE-2009-4134, CVE-2010-1449 and CVE-2010-1450 are similar reports of the same vulnerability. Reported by Marc Schoenefeld in the Red Hat bugzilla (2009-11-26).
 
 Links:
 
 * http://bugs.python.org/issue1179
 * http://seclists.org/fulldisclosure/2007/Sep/279
+* http://bugs.python.org/issue8678
+* https://bugzilla.redhat.com/show_bug.cgi?id=541698
 * http://www.cvedetails.com/cve/CVE-2007-4965/
 
 Fixed In:
