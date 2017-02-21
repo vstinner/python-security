@@ -24,6 +24,8 @@ Security vulnerabilities
 +----------------------------+--------------------------------------------+--------------+---------------+-----------------------------------+
 | `CVE-2016-5699`_           | HTTP header injection                      | 2014-11-24   | 4.3           | 2.7.10, 3.4.4                     |
 +----------------------------+--------------------------------------------+--------------+---------------+-----------------------------------+
+| `CVE-2014-9365`_           | Validate TLS certificate                   | 2014-04-19   | 5.8           | 2.7.9, 3.4.3                      |
++----------------------------+--------------------------------------------+--------------+---------------+-----------------------------------+
 | `CVE-2014-4616`_           | JSON arbitrary memory access               | 2014-04-13   | Moderate      | 2.7.7, 3.2.6, 3.3.6, 3.4.1        |
 +----------------------------+--------------------------------------------+--------------+---------------+-----------------------------------+
 | `CVE-2014-1912`_           | ``socket.recvfrom_into()`` buffer overflow | 2014-01-14   | 7.5           | 2.7.7, 3.2.6, 3.3.4               |
@@ -235,6 +237,29 @@ Fixed In:
 
 * 2.7.10 (180 days): 2015-05-23, `commit 59bdf63 <https://github.com/python/cpython/commit/59bdf6392de446de8a19bfa37cee52981612830e>`_ (2015-03-12, 108 days)
 * 3.4.4 (392 days): 2015-12-21, `commit a112a8a <https://github.com/python/cpython/commit/a112a8ae47813f75aa8ad27ee8c42a7c2e937d13>`_ (2015-03-12, 108 days)
+
+
+CVE-2014-9365
+=============
+
+Disclosure date: 2014-04-19 (issue #21308 reported).
+
+`CVSS Score`_: 5.8.
+
+[Python 2] backport many ssl features from Python 3. A contribution of Alex Gaynor and David Reid with the generous support of Rackspace. May God have mercy on their souls.
+
+Links:
+
+* http://bugs.python.org/issue21308
+* http://bugs.python.org/issue22417
+* https://www.python.org/dev/peps/pep-0466/
+* https://www.python.org/dev/peps/pep-0476/
+* http://www.cvedetails.com/cve/CVE-2014-9365/
+
+Fixed In:
+
+* 2.7.9 (235 days): 2014-12-10, `commit daeb925 <https://github.com/python/cpython/commit/daeb925cc88cc8fed2030166ade641de28edb396>`_ (2014-08-20, 123 days)
+* 3.4.3 (310 days): 2015-02-23, `commit 4ffb075 <https://github.com/python/cpython/commit/4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd>`_ (2014-11-03, 198 days)
 
 
 CVE-2014-4616

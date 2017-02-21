@@ -404,6 +404,25 @@
     Sweet32 vulnerability found by Karthik Bhargavan and Gaetan Leurent from
     the `INRIA <https://www.inria.fr/>`_.
 
+- name: "CVE-2014-9365"
+  summary: >
+    Validate TLS certificate
+  links:
+    - http://bugs.python.org/issue21308
+    - http://bugs.python.org/issue22417
+    - https://www.python.org/dev/peps/pep-0466/
+    - https://www.python.org/dev/peps/pep-0476/
+  disclosure: "2014-04-19 (issue #21308 reported)"
+  cvss-score: "5.8"
+  fixed-in:
+   - daeb925cc88cc8fed2030166ade641de28edb396 # 2.7
+   - 4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd # 3.4
+  description: >
+    [Python 2] backport many ssl features from Python 3. A contribution of Alex
+    Gaynor and David Reid with the generous support of Rackspace. May God have
+    mercy on their souls.
+
+
 # Template:
 # - name: ""
 #   summary: >
@@ -414,3 +433,7 @@
 #   fixed-in:
 #    -
 #   description: >
+
+# Other issues:
+# CVE-2016-1494: vuln in 3rd party python-rsa
+# CVE-2015-5652: sys.path on Windows

@@ -74,7 +74,11 @@ Ok, understood, but I want a sandbox in Python. Well...
 Validate TLS certificates
 =========================
 
-* Python 3.4
+* CVE-2014-9365
+* Python 2.7.9
+* Python 3.4.3
+* `PEP 476: Enabling certificate verification by default for stdlib http
+  clients <https://www.python.org/dev/peps/pep-0476/>`_: Python 3.4.3, 3.5
 * `PEP 466 <https://www.python.org/dev/peps/pep-0466/>`_: Python 2.7.9
 * Version matrix?
 
@@ -153,6 +157,12 @@ Misc
 * sys.path:
 
   * CVE-2008-5983: http://bugs.python.org/issue5753 added ``PySys_SetArgvEx()``
+  * `CVE-2015-5652 <http://www.cvedetails.com/cve/CVE-2015-5652/>`_:
+    Untrusted search path vulnerability in python.exe in Python through 3.5.0
+    on Windows allows local users to gain privileges via a Trojan horse
+    readline.pyd file in the current working directory. NOTE: the vendor says
+    "It was determined that this is a longtime behavior of Python that cannot
+    really be altered at this point."
   * ``python -E``, ``python -I``
 
 Links
@@ -172,3 +182,4 @@ Links
   which exposes cryptographic recipes and primitives
 * `Python CVEs (cvedetails.com)
   <http://www.cvedetails.com/product/18230/Python-Python.html?vendor_id=10210>`_
+* https://github.com/pyupio/safety-db and https://pyup.io/
