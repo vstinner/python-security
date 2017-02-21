@@ -253,7 +253,7 @@
 
 - name: "CVE-2014-1912"
   summary: >
-    ``socket.recvfrom_into()`` buffer overflow
+    ``socket.recvfrom_into()`` overflow
   links:
     - http://bugs.python.org/issue20246
   disclosure: "2014-01-14 (issue #20246 reported)"
@@ -269,7 +269,7 @@
 
 - name: "Issue #19435"
   summary: >
-    CGIHTTPRequestHandler directory traversal
+    CGI directory traversal
   links:
     - http://bugs.python.org/issue19435
   disclosure: "2013-10-29 (issue #19435 reported)"
@@ -441,7 +441,7 @@
 
 - name: "CVE-2014-2667"
   summary: >
-      ``os.makedirs(exist_ok=True)`` is not thread-safe
+      ``os.makedirs()`` not thread-safe
   links:
     - http://bugs.python.org/issue21082
   disclosure: "2014-03-28 (issue #21082 reported)"
@@ -458,7 +458,7 @@
 
 - name: "CVE-2013-7440"
   summary: >
-    ``ssl.match_hostname()`` vuln with IDNA prefix
+    ``ssl.match_hostname()`` IDNA issue
   links:
     - https://bugs.python.org/issue17997
     - https://tools.ietf.org/html/rfc6125
@@ -536,7 +536,7 @@
 
 - name: "CVE-2011-4940"
   summary: >
-    SimpleHTTPServer UTF-7 vulnerability
+    SimpleHTTPServer UTF-7
   links:
     - http://bugs.python.org/issue11442
   disclosure: "2011-03-08 (issue #11442 reported)"
@@ -552,7 +552,7 @@
 
 - name: "CVE-2011-1015"
   summary: >
-    CGIHTTPServer directory traversal
+    CGI directory traversal
   links:
     - http://bugs.python.org/issue2254
   disclosure: "2008-03-07 (issue #2254 reported)"
@@ -650,7 +650,7 @@
 
 - name: "CVE-2007-4965"
   summary: >
-    rgbimg and imageop integer overflows
+    rgbimg and imageop overflows
   links:
     - http://bugs.python.org/issue1179
     - http://seclists.org/fulldisclosure/2007/Sep/279
