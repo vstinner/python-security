@@ -219,8 +219,8 @@ class Fix:
 
 class Vulnerability:
     def __init__(self, app, data):
-        self.name = data['name']
-        disclosure = data['disclosure']
+        self.name = data.pop('name')
+        disclosure = data.pop('disclosure')
         if isinstance(disclosure, str):
             disclosure_date, _, comment = disclosure.partition('(')
             disclosure_date = disclosure_date.strip()
@@ -235,12 +235,12 @@ class Vulnerability:
             comment = None
         self.disclosure_date = parse_date(disclosure_date)
         self.disclosure_comment = comment
-        self.summary = data['summary'].rstrip()
-        self.description = data['description'].rstrip()
-        self.links = data.get('links')
-        self.cvss_score = data.get('cvss-score')
-        self.redhat_impact = data.get('redhat-impact')
-        self.reported_by = data.get('reported-by')
+        self.summary = data.pop('summary').strip()
+        self.description = data.pop('description').strip()
+        self.links = data.pop('links', None)
+        self.cvss_score = data.pop('cvss-score', None)
+        self.redhat_impact = data.pop('redhat-impact', None)
+        self.reported_by = data.pop('reported-by', None)
         if self.reported_by is not None:
             self.reported_by = self.reported_by.strip()
 
@@ -257,10 +257,14 @@ class Vulnerability:
 
         self.find_fixes(data)
 
+        if data:
+            raise Exception("Vulnerability %r has unknown keys: %s"
+                            % (self.name, ', '.join(sorted(data))))
+
     def find_fixes(self, data):
         fixes = []
-        ignore_python3 = data.get('ignore-python3')
-        commits = data['fixed-in']
+        ignore_python3 = data.pop('ignore-python3', None)
+        commits = data.pop('fixed-in')
         for commit in commits:
             commit_date = app.commit_dates.get_commit_date(commit)
             versions = app.commit_tags.get_tags(commit,
