@@ -1225,8 +1225,14 @@ unspecified other vectors related to (2) ``imageop.c``, (3)
 ``rbgimgmodule.c``, and other files, which trigger heap-based buffer
 overflows.
 
-CVE-2009-4134, CVE-2010-1449 and CVE-2010-1450 are similar reports of the
-same vulnerability. Reported again by Marc Schoenefeld in the Red Hat
+CVE-ID:
+
+* CVE-2007-4965
+* CVE-2009-4134
+* CVE-2010-1449
+* CVE-2010-1450
+
+Reported again by Marc Schoenefeld in the Red Hat
 bugzilla at 2009-11-26.
 
 Information:
