@@ -183,11 +183,16 @@ class CommitTags:
         tags.sort()
         tags2 = []
         seen = set()
+        major = None
         for tag_info in tags:
             key = tag_info[:2]
             if key in seen:
                 continue
             seen.add(key)
+            if tag_info[0] == major:
+                continue
+            if tag_info[2] == 0:
+                major = tag_info[0]
             tag = '.'.join(map(str, tag_info))
             tags2.append(tag)
         tags = tags2
@@ -214,7 +219,7 @@ class Fix:
 
     @staticmethod
     def sort_key(fix):
-        return tuple(map(int, fix.python_version.split(".")))
+        return version_info(fix.python_version)
 
 
 class Vulnerability:
@@ -285,9 +290,9 @@ class Vulnerability:
             if key in seen:
                 continue
             seen.add(key)
+            if pyver_info[0] == major:
+                continue
             if pyver_info[2] == 0:
-                if pyver_info[0] == major:
-                    continue
                 major = pyver_info[0]
             self.fixes.append(fix)
 
