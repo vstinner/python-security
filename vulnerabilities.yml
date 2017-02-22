@@ -226,6 +226,7 @@
   links:
     - http://bugs.python.org/issue28563
   disclosure: "2016-10-30 (issue #28563 reported)"
+  reported-by: Carl Ekerot
   fixed-in:
    - a8760275bd59fb8d8be1f1bf05313fed31c08321 # 2.7
    - 07bcf05fcf3fd1d4001e8e3489162e6d67638285 # 3.3
