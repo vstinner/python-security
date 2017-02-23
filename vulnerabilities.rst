@@ -2,91 +2,91 @@
 Security vulnerabilities
 ++++++++++++++++++++++++
 
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| Vulnerability              | Summary                             | Disclosure   | Score         | Fixed In                                 |
-+============================+=====================================+==============+===============+==========================================+
-| `Issue #28563`_            | ``gettext.c2py()``                  | 2016-10-30   | ?             | 2.7.13, 3.4.6, 3.5.3, 3.6.0              |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2016-2183`_           | Sweet32 attack (DES, 3DES)          | 2016-08-24   | 5.0           | 2.7.13, 3.5.3, 3.6.0                     |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2016-1000110`_        | HTTPoxy attack                      | 2016-07-18   | 5.0 (CVSS v3) | 2.7.13, 3.4.6, 3.5.3, 3.6.0              |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2016-0772`_           | smtplib TLS stripping               | 2016-06-11   | 5.8           | 2.7.12, 3.4.5, 3.5.2, 3.6.0              |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `Issue #26657`_            | HTTP directory traversal            | 2016-03-28   | ?             | 2.7.12, 3.5.2, 3.6.0                     |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2016-5636`_           | zipimporter heap overflow           | 2016-01-21   | 10.0          | 2.7.12, 3.4.5, 3.5.2, 3.6.0              |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2015-1283`_           | expat 2.1.1                         | 2015-07-24   | 6.8           | 2.7.12, 3.4.5, 3.5.2, 3.6.0              |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2016-5699`_           | HTTP header injection               | 2014-11-24   | 4.3           | 2.7.10, 3.4.4, 3.5.0                     |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2014-7185`_           | buffer integer overflow             | 2014-06-24   | 6.4           | 2.7.8                                    |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2014-9365`_           | Validate TLS certificate            | 2014-04-19   | 5.8           | 2.7.9, 3.4.3, 3.5.0                      |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2014-4616`_           | JSON arbitrary memory access        | 2014-04-13   | Moderate      | 2.7.7, 3.2.6, 3.3.6, 3.4.1, 3.5.0        |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2014-2667`_           | ``os.makedirs()`` not thread-safe   | 2014-03-28   | 3.3           | 3.2.6, 3.3.6, 3.4.1, 3.5.0               |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2014-1912`_           | ``socket.recvfrom_into()`` overflow | 2014-01-14   | 7.5           | 2.7.7, 3.2.6, 3.3.4, 3.4.0               |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2013-7338`_           | zipfile DoS using malformed file    | 2013-12-27   | 7.1           | 3.3.4, 3.4.0                             |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `Issue #19435`_            | CGI directory traversal             | 2013-10-29   | ?             | 2.7.6, 3.2.6, 3.3.4, 3.4.0               |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2013-4238`_           | ssl: NUL in subjectAltNames         | 2013-08-12   | 4.3           | 2.6.9, 2.7.6, 3.3.3, 3.4.0               |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2013-7440`_           | ``ssl.match_hostname()`` IDNA issue | 2013-05-17   | 4.3           | 3.3.3, 3.4.0                             |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2013-2099`_           | ``ssl.match_hostname()`` wildcard   | 2013-05-15   | 4.3           | 3.3.3, 3.4.0                             |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2013-1752 (ftplib)`_  | ftplib unlimited read               | 2012-09-25   | Moderate      | 2.7.6, 3.2.6, 3.3.3, 3.4.0               |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2013-1752 (nntplib)`_ | nntplib unlimited read              | 2012-09-25   | Moderate      | 2.6.9, 2.7.6, 3.2.6, 3.4.3, 3.5.0        |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2013-1752 (poplib)`_  | poplib unlimited read               | 2012-09-25   | Moderate      | 2.7.9, 3.2.6, 3.4.3, 3.5.0               |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2013-1752 (smtplib)`_ | smtplib unlimited read              | 2012-09-25   | Moderate      | 2.7.9, 3.2.6, 3.4.3, 3.5.0               |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2013-1753`_           | xmlrpc unlimited read               | 2012-09-25   | Moderate      | 2.7.9, 3.4.3, 3.5.0                      |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2013-7040`_           | Hash not randomized properly        | 2012-04-19   | 4.3           | 3.4.0                                    |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2012-2135`_           | UTF-16 decoder                      | 2012-04-14   | 6.4           | 2.7.4, 3.2.4, 3.3.0                      |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2012-0845`_           | XML-RPC DoS                         | 2012-02-13   | 5.0           | 2.6.8, 2.7.3, 3.1.5, 3.2.3, 3.3.0        |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2011-3389`_           | ssl CBC IV attack                   | 2012-01-27   | 4.3           | 2.6.8, 2.7.3, 3.1.5, 3.2.3, 3.3.0        |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2012-1150`_           | Hash collision denial of service    | 2011-12-28   | 5.0           | 2.6.8, 2.7.3, 3.1.5, 3.2.3, 3.3.0        |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2011-4944`_           | ``~/.pypirc`` created insecurely    | 2011-11-30   | 1.9           | 2.7.4, 3.2.4, 3.3.1, 3.4.0               |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2011-1521`_           | urllib redirect vulnerability       | 2011-03-24   | 6.4           | 2.5.6, 2.6.7, 2.7.2, 3.1.4, 3.2.1, 3.3.0 |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2011-4940`_           | SimpleHTTPServer UTF-7              | 2011-03-08   | 2.6           | 2.5.6, 2.6.7, 2.7.2, 3.2.4, 3.3.1, 3.4.0 |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2010-1634`_           | audioop integer overflows           | 2010-05-10   | 5.0           | 2.6.6, 2.7, 3.1.3, 3.2                   |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2010-2089`_           | audioop input validation            | 2010-01-11   | 5.0           | 2.6.6, 2.7.2, 3.1.3, 3.2                 |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `Issue #6791`_             | httplib unlimited read              | 2009-08-28   | ?             | 2.7.2, 3.1.4, 3.2                        |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2010-3492`_           | smtpd accept bug                    | 2009-08-14   | 5.0           | 2.7.4, 3.2                               |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2010-3493`_           | smtpd race conditions               | 2009-08-14   | 4.3           | 2.7.1, 3.1.3, 3.2.1, 3.3.0               |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2008-2315`_           | Multiple integer overflows          | 2008-07-31   | 7.5           | 2.6.0, 3.0.0                             |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2008-3143`_           | multiple integer overflows          | 2008-04-11   | 7.5           | 2.5.3, 2.6, 3.0                          |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2008-5031`_           | ``expandtab()`` integer overflow    | 2008-03-11   | 10.0          | 2.5.3, 2.6, 3.0                          |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2011-1015`_           | CGI directory traversal             | 2008-03-07   | 5.0           | 2.7, 3.2.4, 3.3.1, 3.4.0                 |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2007-4965`_           | rgbimg and imageop overflows        | 2007-09-16   | 5.8           | 2.5.3, 2.6                               |
-+----------------------------+-------------------------------------+--------------+---------------+------------------------------------------+
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| Vulnerability                                         | Disclosure   | Score         | Fixed In                                 |
++=======================================================+==============+===============+==========================================+
+| `Issue #28563: gettext.c2py()`_                       | 2016-10-30   | ?             | 2.7.13, 3.4.6, 3.5.3, 3.6.0              |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2016-2183: Sweet32 attack (DES, 3DES)`_          | 2016-08-24   | 5.0           | 2.7.13, 3.5.3, 3.6.0                     |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2016-1000110: HTTPoxy attack`_                   | 2016-07-18   | 5.0 (CVSS v3) | 2.7.13, 3.4.6, 3.5.3, 3.6.0              |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2016-0772: smtplib TLS stripping`_               | 2016-06-11   | 5.8           | 2.7.12, 3.4.5, 3.5.2, 3.6.0              |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `Issue #26657: HTTP directory traversal`_             | 2016-03-28   | ?             | 2.7.12, 3.5.2, 3.6.0                     |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `Issue #26556: Expat 2.1.1`_                          | 2016-03-14   | ?             | 2.7.12, 3.4.5, 3.5.2, 3.6.0              |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2016-5636: zipimporter overflow`_                | 2016-01-21   | 10.0          | 2.7.12, 3.4.5, 3.5.2, 3.6.0              |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2016-5699: HTTP header injection`_               | 2014-11-24   | 4.3           | 2.7.10, 3.4.4, 3.5.0                     |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2014-7185: integer overflows`_                   | 2014-06-24   | 6.4           | 2.7.8                                    |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2014-9365: Validate TLS certificate`_            | 2014-04-19   | 5.8           | 2.7.9, 3.4.3, 3.5.0                      |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2014-4616: JSONDecoder.raw_decode`_              | 2014-04-13   | Moderate      | 2.7.7, 3.2.6, 3.3.6, 3.4.1, 3.5.0        |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2014-2667: os.makedirs() not thread-safe`_       | 2014-03-28   | 3.3           | 3.2.6, 3.3.6, 3.4.1, 3.5.0               |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2014-1912: socket.recvfrom_into() overflow`_     | 2014-01-14   | 7.5           | 2.7.7, 3.2.6, 3.3.4, 3.4.0               |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2013-7338: zipfile DoS using malformed file`_    | 2013-12-27   | 7.1           | 3.3.4, 3.4.0                             |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `Issue #19435: CGI directory traversal`_              | 2013-10-29   | ?             | 2.7.6, 3.2.6, 3.3.4, 3.4.0               |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2013-4238: ssl: NUL in subjectAltNames`_         | 2013-08-12   | 4.3           | 2.6.9, 2.7.6, 3.3.3, 3.4.0               |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2013-7440: ssl.match_hostname() IDNA issue`_     | 2013-05-17   | 4.3           | 3.3.3, 3.4.0                             |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2013-2099: ssl.match_hostname() wildcard`_       | 2013-05-15   | 4.3           | 3.3.3, 3.4.0                             |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2013-1752: ftplib unlimited read`_               | 2012-09-25   | Moderate      | 2.7.6, 3.2.6, 3.3.3, 3.4.0               |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2013-1752: nntplib unlimited read`_              | 2012-09-25   | Moderate      | 2.6.9, 2.7.6, 3.2.6, 3.4.3, 3.5.0        |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2013-1752: poplib unlimited read`_               | 2012-09-25   | Moderate      | 2.7.9, 3.2.6, 3.4.3, 3.5.0               |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2013-1752: smtplib unlimited read`_              | 2012-09-25   | Moderate      | 2.7.9, 3.2.6, 3.4.3, 3.5.0               |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2013-1753: xmlrpc unlimited read`_               | 2012-09-25   | Moderate      | 2.7.9, 3.4.3, 3.5.0                      |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2013-7040: Hash not properly randomized`_        | 2012-04-19   | 4.3           | 3.4.0                                    |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2012-2135: UTF-16 decoder`_                      | 2012-04-14   | 6.4           | 2.7.4, 3.2.4, 3.3.0                      |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2012-0845: XML-RPC DoS`_                         | 2012-02-13   | 5.0           | 2.6.8, 2.7.3, 3.1.5, 3.2.3, 3.3.0        |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2011-3389: ssl CBC IV attack`_                   | 2012-01-27   | 4.3           | 2.6.8, 2.7.3, 3.1.5, 3.2.3, 3.3.0        |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2012-1150: Hash DoS`_                            | 2011-12-28   | 5.0           | 2.6.8, 2.7.3, 3.1.5, 3.2.3, 3.3.0        |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2011-4944: ~/.pypirc created insecurely`_        | 2011-11-30   | 1.9           | 2.7.4, 3.2.4, 3.3.1, 3.4.0               |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2011-1521: urllib redirect`_                     | 2011-03-24   | 6.4           | 2.5.6, 2.6.7, 2.7.2, 3.1.4, 3.2.1, 3.3.0 |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2011-4940: SimpleHTTPServer UTF-7`_              | 2011-03-08   | 2.6           | 2.5.6, 2.6.7, 2.7.2, 3.2.4, 3.3.1, 3.4.0 |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2010-1634: audioop integer overflows`_           | 2010-05-10   | 5.0           | 2.6.6, 2.7.0, 3.1.3, 3.2.0               |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2010-2089: audioop input validation`_            | 2010-01-11   | 5.0           | 2.6.6, 2.7.2, 3.1.3, 3.2.0               |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2013-1752: httplib unlimited read`_              | 2009-08-28   | Moderate      | 2.7.2, 3.1.4, 3.2.0                      |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2010-3492: smtpd accept bug`_                    | 2009-08-14   | 5.0           | 2.7.4, 3.2.0                             |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2010-3493: smtpd race conditions`_               | 2009-08-14   | 4.3           | 2.7.1, 3.1.3, 3.2.1, 3.3.0               |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2008-2315: Multiple integer overflows (Apple)`_  | 2008-07-31   | 7.5           | 2.6.0, 3.0.0                             |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2008-3143: Multiple integer overflows (Google)`_ | 2008-04-11   | 7.5           | 2.5.3, 2.6.0, 3.0.0                      |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2008-5031: expandtab() integer overflow`_        | 2008-03-11   | 10.0          | 2.5.3, 2.6.0, 3.0.0                      |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2011-1015: CGI directory traversal`_             | 2008-03-07   | 5.0           | 2.7.0, 3.2.4, 3.3.1, 3.4.0               |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
+| `CVE-2007-4965: rgbimg and imageop overflows`_        | 2007-09-16   | 5.8           | 2.5.3, 2.6.0                             |
++-------------------------------------------------------+--------------+---------------+------------------------------------------+
 
 Total: 41 vulnerabilities
 
@@ -96,14 +96,15 @@ Total: 41 vulnerabilities
 * `Red Hat impact <https://access.redhat.com/security/updates/classification/>`_
 
 
-Issue #28563
-============
+Issue #28563: gettext.c2py()
+============================
 
 Arbitrary code execution in ``gettext.c2py()``.
 
 Information:
 
 * Disclosure date: 2016-10-30 (issue #28563 reported)
+* Reported by: Carl Ekerot
 
 Fixed In:
 
@@ -117,8 +118,8 @@ Links:
 * http://bugs.python.org/issue28563
 
 
-CVE-2016-2183
-=============
+CVE-2016-2183: Sweet32 attack (DES, 3DES)
+=========================================
 
 Remove 3DES from ssl default cipher list.
 
@@ -127,8 +128,8 @@ the `INRIA <https://www.inria.fr/>`_.
 
 Information:
 
-* Disclosure date: 2016-08-24 (issue #27850 reported)
-* Reported by: Karthik Bhargavan and Gaetan Leurent
+* Disclosure date: 2016-08-24 (end of the Sweet32 embargo)
+* Reported by: Karthik Bhargavan and Gaetan Leurent (Sweet32), Christian Heimes (Python issue)
 * `CVSS Score`_: 5.0
 
 Fixed In:
@@ -145,18 +146,23 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2016-2183/
 
 
-CVE-2016-1000110
-================
+CVE-2016-1000110: HTTPoxy attack
+================================
 
-Prevent HTTPoxy attack.
+It was discovered that the Python ``CGIHandler`` class did not properly
+protect against the ``HTTP_PROXY`` variable name clash in a CGI context.
 
-Ignore the HTTP_PROXY variable when REQUEST_METHOD environment is set, which
-indicates that the script is in CGI mode.
+A remote attacker could possibly use this flaw to redirect HTTP requests
+performed by a Python CGI script to an attacker-controlled proxy via a
+malicious HTTP request.
+
+Ignore the ``HTTP_PROXY`` variable when ``REQUEST_METHOD`` environment is
+set, which indicates that the script is in CGI mode.
 
 Information:
 
 * Disclosure date: 2016-07-18 (issue #27568 reported)
-* Reported by: Rémi Rampin
+* Reported by: Scott Geary (HTTPoxy), Rémi Rampin (Python issue)
 * `CVSS Score`_: 5.0 (CVSS v3)
 
 Fixed In:
@@ -174,8 +180,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2016-1000110/
 
 
-CVE-2016-0772
-=============
+CVE-2016-0772: smtplib TLS stripping
+====================================
 
 A vulnerability in smtplib allowing MITM attacker to perform a startTLS
 stripping attack. smtplib does not seem to raise an exception when the
@@ -187,6 +193,7 @@ code does not explicitly check the response code for startTLS.
 Information:
 
 * Disclosure date: 2016-06-11 (commit date)
+* Discovered at: 2016-02-01 (Red Hat issue reported) (-131 days)
 * Reported by: Tin (Team Oststrom)
 * `CVSS Score`_: 5.8
 
@@ -204,17 +211,20 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2016-0772/
 
 
-Issue #26657
-============
+Issue #26657: HTTP directory traversal
+======================================
 
 Fix directory traversal vulnerability with ``http.server`` and
 ``SimpleHTTPServer`` on Windows.
 
 Regression of Python 3.3.5.
 
+Python issue reported at 2016-03-14.
+
 Information:
 
 * Disclosure date: 2016-03-28 (issue #26657 reported)
+* Reported by: Thomas
 
 Fixed In:
 
@@ -227,14 +237,45 @@ Links:
 * http://bugs.python.org/issue26657
 
 
-CVE-2016-5636
-=============
+Issue #26556: Expat 2.1.1
+=========================
+
+Multiple integer overflows have been discovered in Expat, an XML parsing C
+library, which may result in denial of service or the execution of
+arbitrary code if a malformed XML file is processed.
+
+Update bundled copy of Expat library to version 2.1.1 to get CVE-2015-1283
+fixes.
+
+Information:
+
+* Disclosure date: 2016-03-14 (issue #26556 reported)
+* Discovered at: 2015-07-24 (Expat issue #528 reported) (-234 days)
+* Reported by: David Dillard (Expat issue), Christian Heimes (Python issue)
+
+Fixed In:
+
+* 2.7.12: 2016-06-28 (106 days), `commit d244a8f <https://github.com/python/cpython/commit/d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e>`_ (2016-06-11, 89 days)
+* 3.4.5: 2016-06-27 (105 days), `commit 196d7db <https://github.com/python/cpython/commit/196d7db3956f4c0b03e87b570771b3460a61bab5>`_ (2016-06-11, 89 days)
+* 3.5.2: 2016-06-27 (105 days), `commit 196d7db <https://github.com/python/cpython/commit/196d7db3956f4c0b03e87b570771b3460a61bab5>`_ (2016-06-11, 89 days)
+* 3.6.0: 2016-12-23, `commit 196d7db <https://github.com/python/cpython/commit/196d7db3956f4c0b03e87b570771b3460a61bab5>`_ (2016-06-11)
+
+Links:
+
+* http://bugs.python.org/issue26556
+* https://sourceforge.net/p/expat/bugs/528/
+* http://www.cvedetails.com/cve/CVE-2015-1283/
+
+
+CVE-2016-5636: zipimporter overflow
+===================================
 
 Heap overflow in ``zipimporter`` module.
 
 Information:
 
 * Disclosure date: 2016-01-21 (issue #26171 reported)
+* Reported by: Insu Yun
 * `CVSS Score`_: 10.0
 
 Fixed In:
@@ -250,38 +291,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2016-5636/
 
 
-CVE-2015-1283
-=============
-
-Multiple integer overflows have been discovered in Expat, an XML parsing C
-library, which may result in denial of service or the execution of
-arbitrary code if a malformed XML file is processed.
-
-Update Expat to 2.1.1.
-
-Information:
-
-* Disclosure date: 2015-07-24 (expat issue reported)
-* `CVSS Score`_: 6.8
-
-Fixed In:
-
-* 2.7.12: 2016-06-28 (340 days), `commit d244a8f <https://github.com/python/cpython/commit/d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e>`_ (2016-06-11, 323 days)
-* 3.4.5: 2016-06-27 (339 days), `commit 196d7db <https://github.com/python/cpython/commit/196d7db3956f4c0b03e87b570771b3460a61bab5>`_ (2016-06-11, 323 days)
-* 3.5.2: 2016-06-27 (339 days), `commit 196d7db <https://github.com/python/cpython/commit/196d7db3956f4c0b03e87b570771b3460a61bab5>`_ (2016-06-11, 323 days)
-* 3.6.0: 2016-12-23, `commit 196d7db <https://github.com/python/cpython/commit/196d7db3956f4c0b03e87b570771b3460a61bab5>`_ (2016-06-11)
-
-Links:
-
-* http://bugs.python.org/issue26556
-* https://sourceforge.net/p/expat/bugs/528/
-* https://www.mozilla.org/en-US/security/advisories/mfsa2015-54/
-* https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-1283
-* http://www.cvedetails.com/cve/CVE-2015-1283/
-
-
-CVE-2016-5699
-=============
+CVE-2016-5699: HTTP header injection
+====================================
 
 HTTP header injection in ``urllib``, ``urrlib2``, ``httplib`` and
 ``http.client`` modules.
@@ -294,6 +305,7 @@ in a URL.
 Information:
 
 * Disclosure date: 2014-11-24 (issue #22928 reported)
+* Reported by: Guido Vranken
 * `CVSS Score`_: 4.3
 
 Fixed In:
@@ -309,8 +321,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2016-5699/
 
 
-CVE-2014-7185
-=============
+CVE-2014-7185: integer overflows
+================================
 
 Integer overflow in ``bufferobject.c`` in Python before 2.7.8 allows
 context-dependent attackers to obtain sensitive information from process
@@ -332,8 +344,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2014-7185/
 
 
-CVE-2014-9365
-=============
+CVE-2014-9365: Validate TLS certificate
+=======================================
 
 Python 2.7 backport of many ssl features from Python 3.
 
@@ -343,6 +355,7 @@ Rackspace. May God have mercy on their souls.
 Information:
 
 * Disclosure date: 2014-04-19 (issue #21308 reported)
+* Reported by: Nick Coghlan
 * `CVSS Score`_: 5.8
 
 Fixed In:
@@ -360,8 +373,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2014-9365/
 
 
-CVE-2014-4616
-=============
+CVE-2014-4616: JSONDecoder.raw_decode
+=====================================
 
 Fix arbitrary memory access in ``JSONDecoder.raw_decode`` with a negative
 second parameter.
@@ -386,8 +399,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2014-4616/
 
 
-CVE-2014-2667
-=============
+CVE-2014-2667: os.makedirs() not thread-safe
+============================================
 
 ``os.makedirs(exist_ok=True)`` is not thread-safe: umask is set temporary
 to ``0``, serious security problem.
@@ -413,8 +426,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2014-2667/
 
 
-CVE-2014-1912
-=============
+CVE-2014-1912: socket.recvfrom_into() overflow
+==============================================
 
 ``socket.recvfrom_into()`` fails to check that the supplied buffer object
 is big enough for the requested read and so will happily write off the end.
@@ -438,8 +451,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2014-1912/
 
 
-CVE-2013-7338
-=============
+CVE-2013-7338: zipfile DoS using malformed file
+===============================================
 
 Python before 3.3.4 RC1 allows remote attackers to cause a denial of
 service (infinite loop and CPU consumption) via a file size value larger
@@ -471,8 +484,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2013-7338/
 
 
-Issue #19435
-============
+Issue #19435: CGI directory traversal
+=====================================
 
 An error in separating the path and filename of the CGI script to run in
 ``http.server.CGIHTTPRequestHandler`` allows running arbitrary executables in
@@ -495,8 +508,8 @@ Links:
 * http://bugs.python.org/issue19435
 
 
-CVE-2013-4238
-=============
+CVE-2013-4238: ssl: NUL in subjectAltNames
+==========================================
 
 SSL module fails to handle NULL bytes inside subjectAltNames general names.
 
@@ -519,8 +532,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2013-4238/
 
 
-CVE-2013-7440
-=============
+CVE-2013-7440: ssl.match_hostname() IDNA issue
+==============================================
 
 ``ssl.match_hostname()``: sub string wildcard should not match IDNA prefix.
 
@@ -546,8 +559,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2013-7440/
 
 
-CVE-2013-2099
-=============
+CVE-2013-2099: ssl.match_hostname() wildcard
+============================================
 
 If the name in the certificate contains many ``*`` characters (wildcard),
 matching the compiled regular expression against the host name can take a
@@ -574,8 +587,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2013-2099/
 
 
-CVE-2013-1752 (ftplib)
-======================
+CVE-2013-1752: ftplib unlimited read
+====================================
 
 ftplib: unlimited read from connection.
 
@@ -599,14 +612,15 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2013-1752/
 
 
-CVE-2013-1752 (nntplib)
-=======================
+CVE-2013-1752: nntplib unlimited read
+=====================================
 
 Unlimited read from connection in nntplib.
 
 Information:
 
 * Disclosure date: 2012-09-25 (issue #16040 reported)
+* Reported by: Christian Heimes
 * `Red Hat impact`_: Moderate
 
 Fixed In:
@@ -624,14 +638,15 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2013-1752/
 
 
-CVE-2013-1752 (poplib)
-======================
+CVE-2013-1752: poplib unlimited read
+====================================
 
 poplib: unlimited read from connection.
 
 Information:
 
 * Disclosure date: 2012-09-25 (iIssue #16041 reported)
+* Reported by: Christian Heimes
 * `Red Hat impact`_: Moderate
 
 Fixed In:
@@ -648,8 +663,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2013-1752/
 
 
-CVE-2013-1752 (smtplib)
-=======================
+CVE-2013-1752: smtplib unlimited read
+=====================================
 
 CVE-2013-1752: The smtplib module doesn't limit the amount of read data in
 its call to readline(). An erroneous or malicious SMTP server can trick the
@@ -658,6 +673,7 @@ smtplib module to consume large amounts of memory.
 Information:
 
 * Disclosure date: 2012-09-25 (issue #16042 reported)
+* Reported by: Christian Heimes
 * `Red Hat impact`_: Moderate
 
 Fixed In:
@@ -674,8 +690,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2013-1752/
 
 
-CVE-2013-1753
-=============
+CVE-2013-1753: xmlrpc unlimited read
+====================================
 
 Add a default limit for the amount of data ``xmlrpclib.gzip_decode()`` will
 return.
@@ -683,6 +699,7 @@ return.
 Information:
 
 * Disclosure date: 2012-09-25 (issue #16043 reported)
+* Reported by: Christian Heimes
 * `Red Hat impact`_: Moderate
 
 Fixed In:
@@ -698,8 +715,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2013-1753/
 
 
-CVE-2013-7040
-=============
+CVE-2013-7040: Hash not properly randomized
+===========================================
 
 Hash function is not randomized properly.
 
@@ -723,8 +740,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2013-7040/
 
 
-CVE-2012-2135
-=============
+CVE-2012-2135: UTF-16 decoder
+=============================
 
 Vulnerability in the UTF-16 decoder after error handling.
 
@@ -746,8 +763,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2012-2135/
 
 
-CVE-2012-0845
-=============
+CVE-2012-0845: XML-RPC DoS
+==========================
 
 A denial of service flaw was found in the way Simple XML-RPC Server module
 of Python processed client connections, that were closed prior the complete
@@ -775,8 +792,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2012-0845/
 
 
-CVE-2011-3389
-=============
+CVE-2011-3389: ssl CBC IV attack
+================================
 
 The ssl module would always disable the CBC IV attack countermeasure.
 Disable OpenSSL ``SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS`` option.
@@ -801,8 +818,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2011-3389/
 
 
-CVE-2012-1150
-=============
+CVE-2012-1150: Hash DoS
+=======================
 
 Hash collision denial of service.
 
@@ -819,6 +836,7 @@ See also the `PEP 456: Secure and interchangeable hash algorithm
 Information:
 
 * Disclosure date: 2011-12-28 (CCC talk)
+* Reported by: Alexander “alech” Klink and Julian “zeri” Wälde
 * `CVSS Score`_: 5.0
 
 Fixed In:
@@ -837,8 +855,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2012-1150/
 
 
-CVE-2011-4944
-=============
+CVE-2011-4944: ~/.pypirc created insecurely
+===========================================
 
 Python 2.6 through 3.2 creates ``~/.pypirc`` configuration file with
 world-readable permissions before changing them after data has been
@@ -848,6 +866,7 @@ obtain a username and password by reading this file.
 Information:
 
 * Disclosure date: 2011-11-30 (issue #13512 reported)
+* Reported by: Vincent Danen
 * `CVSS Score`_: 1.9
 
 Fixed In:
@@ -863,8 +882,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2011-4944/
 
 
-CVE-2011-1521
-=============
+CVE-2011-1521: urllib redirect
+==============================
 
 The Python urllib and urllib2 modules are typically used to fetch web pages
 but by default also contains handlers for ``ftp://`` and ``file://`` URL
@@ -876,6 +895,7 @@ redirect (HTTP 302) a urllib request to any of the supported schemes.
 Information:
 
 * Disclosure date: 2011-03-24 (issue #11662 reported)
+* Reported by: (email received on the Python security list)
 * `CVSS Score`_: 6.4
 
 Fixed In:
@@ -893,8 +913,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2011-1521/
 
 
-CVE-2011-4940
-=============
+CVE-2011-4940: SimpleHTTPServer UTF-7
+=====================================
 
 The ``list_directory()`` function in ``Lib/SimpleHTTPServer.py`` in
 ``SimpleHTTPServer`` in Python before 2.5.6c1, 2.6.x before 2.6.7 rc2, and
@@ -906,6 +926,7 @@ encoding.
 Information:
 
 * Disclosure date: 2011-03-08 (issue #11442 reported)
+* Reported by: (email received on the Python security list)
 * `CVSS Score`_: 2.6
 
 Fixed In:
@@ -923,8 +944,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2011-4940/
 
 
-CVE-2010-1634
-=============
+CVE-2010-1634: audioop integer overflows
+========================================
 
 Multiple integer overflows in ``audioop.c`` in the ``audioop`` module in Python
 2.6, 2.7, 3.1, and 3.2 allow context-dependent attackers to cause a denial
@@ -933,35 +954,37 @@ call to audioop.lin2lin with a long string in the first argument, leading
 to a buffer overflow.
 
 NOTE: this vulnerability exists because of an incorrect fix for
-`CVE-2008-3143`_.
+CVE-2008-3143.
 
 Information:
 
 * Disclosure date: 2010-05-10 (issue #8674 reported)
+* Reported by: Tomas Hoger
 * `CVSS Score`_: 5.0
 
 Fixed In:
 
 * 2.6.6: 2010-08-24 (106 days), `commit 7ceb497 <https://github.com/python/cpython/commit/7ceb497ae6f554274399bd9916ea5a21de443208>`_ (2010-05-11, 1 days)
-* 2.7: 2010-07-03, `commit 11bb2cd <https://github.com/python/cpython/commit/11bb2cdc6aa8db142a87de281b83293d500847b2>`_ (2010-05-11)
+* 2.7.0: 2010-07-03, `commit 11bb2cd <https://github.com/python/cpython/commit/11bb2cdc6aa8db142a87de281b83293d500847b2>`_ (2010-05-11)
 * 3.1.3: 2010-11-27 (201 days), `commit ee289e6 <https://github.com/python/cpython/commit/ee289e6cd5c009e641ee970cfc67996d8f871221>`_ (2010-05-11, 1 days)
-* 3.2: 2011-02-20, `commit 393b97a <https://github.com/python/cpython/commit/393b97a7b61583f3e0401f385da8b741ef1684d6>`_ (2010-05-11)
+* 3.2.0: 2011-02-20, `commit 393b97a <https://github.com/python/cpython/commit/393b97a7b61583f3e0401f385da8b741ef1684d6>`_ (2010-05-11)
 
 Links:
 
 * http://bugs.python.org/issue8674
+* http://www.cvedetails.com/cve/CVE-2008-3143/
 * http://www.cvedetails.com/cve/CVE-2010-1634/
 
 
-CVE-2010-2089
-=============
+CVE-2010-2089: audioop input validation
+=======================================
 
 The ``audioop`` module in Python 2.7 and 3.2 does not verify the relationships
 between size arguments and byte string lengths, which allows
 context-dependent attackers to cause a denial of service (memory corruption
 and application crash) via crafted arguments, as demonstrated by a call to
 ``audioop.reverse()`` with a one-byte string, a different vulnerability
-than `CVE-2010-1634`_.
+than CVE-2010-1634.
 
 Information:
 
@@ -974,16 +997,17 @@ Fixed In:
 * 2.6.6: 2010-08-24 (225 days), `commit e9123ef <https://github.com/python/cpython/commit/e9123efa21a16584758b5ce7da93d3966cf0cd81>`_ (2010-07-03, 173 days)
 * 2.7.2: 2011-06-11 (516 days), `commit e9123ef <https://github.com/python/cpython/commit/e9123efa21a16584758b5ce7da93d3966cf0cd81>`_ (2010-07-03, 173 days)
 * 3.1.3: 2010-11-27 (320 days), `commit 8e42fb7 <https://github.com/python/cpython/commit/8e42fb7ada3198e66d3f060c5c87c52465a86e36>`_ (2010-07-03, 173 days)
-* 3.2: 2011-02-20, `commit bc5c54b <https://github.com/python/cpython/commit/bc5c54bca24fdb1fcf7fa055831ec997a65f3ce8>`_ (2010-07-03)
+* 3.2.0: 2011-02-20, `commit bc5c54b <https://github.com/python/cpython/commit/bc5c54bca24fdb1fcf7fa055831ec997a65f3ce8>`_ (2010-07-03)
 
 Links:
 
 * http://bugs.python.org/issue7673
+* http://www.cvedetails.com/cve/CVE-2010-1634/
 * http://www.cvedetails.com/cve/CVE-2010-2089/
 
 
-Issue #6791
-===========
+CVE-2013-1752: httplib unlimited read
+=====================================
 
 Limit the HTTP header readline.
 
@@ -991,20 +1015,22 @@ Information:
 
 * Disclosure date: 2009-08-28 (issue #6791 reported)
 * Reported by: sumar (m.sucajtys)
+* `Red Hat impact`_: Moderate
 
 Fixed In:
 
 * 2.7.2: 2011-06-11 (652 days), `commit d7b6ac6 <https://github.com/python/cpython/commit/d7b6ac66c1b81d13f2efa8d9ebba69e17c158c0a>`_ (2010-12-18, 477 days)
 * 3.1.4: 2011-06-11 (652 days), `commit ff1bbba <https://github.com/python/cpython/commit/ff1bbba92aad261df1ebd8fd8cc189c104e113b0>`_ (2010-12-18, 477 days)
-* 3.2: 2011-02-20, `commit 5466bf1 <https://github.com/python/cpython/commit/5466bf1c94d38e75bc053b0cfc163e2f948fe345>`_ (2010-12-18)
+* 3.2.0: 2011-02-20, `commit 5466bf1 <https://github.com/python/cpython/commit/5466bf1c94d38e75bc053b0cfc163e2f948fe345>`_ (2010-12-18)
 
 Links:
 
 * http://bugs.python.org/issue6791
+* http://www.cvedetails.com/cve/CVE-2013-1752/
 
 
-CVE-2010-3492
-=============
+CVE-2010-3492: smtpd accept bug
+===============================
 
 The ``asyncore`` module in Python before 3.2 does not properly handle
 unsuccessful calls to the accept function, and does not have accompanying
@@ -1022,7 +1048,7 @@ Information:
 Fixed In:
 
 * 2.7.4: 2013-04-06 (1331 days), `commit 977c707 <https://github.com/python/cpython/commit/977c707b425ee753d54f3e9010f07ec77ef61274>`_ (2010-10-04, 416 days)
-* 3.2: 2011-02-20, `commit 977c707 <https://github.com/python/cpython/commit/977c707b425ee753d54f3e9010f07ec77ef61274>`_ (2010-10-04)
+* 3.2.0: 2011-02-20, `commit 977c707 <https://github.com/python/cpython/commit/977c707b425ee753d54f3e9010f07ec77ef61274>`_ (2010-10-04)
 
 Links:
 
@@ -1030,8 +1056,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2010-3492/
 
 
-CVE-2010-3493
-=============
+CVE-2010-3493: smtpd race conditions
+====================================
 
 Multiple race conditions in ``smtpd.py`` in the ``smtpd`` module in Python 2.6,
 2.7, 3.1, and 3.2 alpha allow remote attackers to cause a denial of
@@ -1039,7 +1065,7 @@ service (daemon outage) by establishing and then immediately closing a TCP
 connection, leading to the accept function having an unexpected return
 value of None, an unexpected value of None for the address, or an
 ECONNABORTED, EAGAIN, or EWOULDBLOCK error, or the getpeername function
-having an ENOTCONN error, a related issue to `CVE-2010-3492`_.
+having an ENOTCONN error, a related issue to CVE-2010-3492.
 
 Information:
 
@@ -1057,11 +1083,12 @@ Fixed In:
 Links:
 
 * http://bugs.python.org/issue6706
+* http://www.cvedetails.com/cve/CVE-2010-3492/
 * http://www.cvedetails.com/cve/CVE-2010-3493/
 
 
-CVE-2008-2315
-=============
+CVE-2008-2315: Multiple integer overflows (Apple)
+=================================================
 
 Security patches from Apple: prevent integer overflows when allocating
 memory.
@@ -1080,6 +1107,7 @@ CVE-ID:
 Information:
 
 * Disclosure date: 2008-07-31 (commit)
+* Reported by: Apple
 * `CVSS Score`_: 7.5
 
 Fixed In:
@@ -1100,8 +1128,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2008-4864/
 
 
-CVE-2008-3143
-=============
+CVE-2008-3143: Multiple integer overflows (Google)
+==================================================
 
 Multiple integer overflows in Python before 2.5.2 might allow
 context-dependent attackers to have an unknown impact via vectors related
@@ -1148,8 +1176,8 @@ Information:
 Fixed In:
 
 * 2.5.3: 2008-12-19 (252 days), `commit 83ac014 <https://github.com/python/cpython/commit/83ac0144fa3041556aa4f3952ebd979e0189a19c>`_ (2008-07-28, 108 days)
-* 2.6: 2008-10-01, `commit 0470bab <https://github.com/python/cpython/commit/0470bab69783c13447cb634fa403ef1067fe56d1>`_ (2008-07-22)
-* 3.0: 2008-12-03, `commit d492ad8 <https://github.com/python/cpython/commit/d492ad80c872d264ed46bec71e31a00f174ac819>`_ (2008-07-23)
+* 2.6.0: 2008-10-01, `commit 0470bab <https://github.com/python/cpython/commit/0470bab69783c13447cb634fa403ef1067fe56d1>`_ (2008-07-22)
+* 3.0.0: 2008-12-03, `commit d492ad8 <https://github.com/python/cpython/commit/d492ad80c872d264ed46bec71e31a00f174ac819>`_ (2008-07-23)
 
 Links:
 
@@ -1157,8 +1185,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2008-3143/
 
 
-CVE-2008-5031
-=============
+CVE-2008-5031: expandtab() integer overflow
+===========================================
 
 Multiple integer overflows in Python 2.2.3 through 2.5.1, and 2.6, allow
 context-dependent attackers to have an unknown impact via a large integer
@@ -1168,7 +1196,7 @@ value in the tabsize argument to the expandtabs method, as implemented by:
 * the ``unicode_expandtabs()`` function in ``Objects/unicodeobject.c``
 
 NOTE: this vulnerability reportedly exists because of an incomplete
-fix for `CVE-2008-2315`_.
+fix for CVE-2008-2315.
 
 Information:
 
@@ -1179,17 +1207,18 @@ Information:
 Fixed In:
 
 * 2.5.3: 2008-12-19 (283 days), `commit 44a93e5 <https://github.com/python/cpython/commit/44a93e54f4b0f90634d16d53c437fabb6946ea9d>`_ (2008-03-11, 0 days)
-* 2.6: 2008-10-01, `commit 5bdff60 <https://github.com/python/cpython/commit/5bdff60617e6fc1d2e387a0b165cb23b82d7dae6>`_ (2008-03-11)
-* 3.0: 2008-12-03, `commit dd15f6c <https://github.com/python/cpython/commit/dd15f6c315f20c1a9a540dd757cd63e27dbe9f3c>`_ (2008-03-16)
+* 2.6.0: 2008-10-01, `commit 5bdff60 <https://github.com/python/cpython/commit/5bdff60617e6fc1d2e387a0b165cb23b82d7dae6>`_ (2008-03-11)
+* 3.0.0: 2008-12-03, `commit dd15f6c <https://github.com/python/cpython/commit/dd15f6c315f20c1a9a540dd757cd63e27dbe9f3c>`_ (2008-03-16)
 
 Links:
 
 * http://scary.beasts.org/security/CESA-2008-008.html
+* http://www.cvedetails.com/cve/CVE-2008-2315/
 * http://www.cvedetails.com/cve/CVE-2008-5031/
 
 
-CVE-2011-1015
-=============
+CVE-2011-1015: CGI directory traversal
+======================================
 
 The ``is_cgi()`` method in ``CGIHTTPServer.py`` in the ``CGIHTTPServer``
 module in Python 2.5, 2.6, and 3.0 allows remote attackers to read script
@@ -1199,11 +1228,12 @@ the beginning of the URI.
 Information:
 
 * Disclosure date: 2008-03-07 (issue #2254 reported)
+* Reported by: sumar (m.sucajtys)
 * `CVSS Score`_: 5.0
 
 Fixed In:
 
-* 2.7: 2010-07-03 (848 days), `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_ (2009-04-06, 395 days)
+* 2.7.0: 2010-07-03 (848 days), `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_ (2009-04-06, 395 days)
 * 3.2.4: 2013-04-07 (1857 days), `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_ (2009-04-06, 395 days)
 * 3.3.1: 2013-04-07 (1857 days), `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_ (2009-04-06, 395 days)
 * 3.4.0: 2014-03-16, `commit 923ba36 <https://github.com/python/cpython/commit/923ba361d8f757f0656cfd216525aca4848e02aa>`_ (2009-04-06)
@@ -1214,8 +1244,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2011-1015/
 
 
-CVE-2007-4965
-=============
+CVE-2007-4965: rgbimg and imageop overflows
+===========================================
 
 Multiple integer overflows in the ``imageop`` module in Python 2.5.1 and
 earlier allow context-dependent attackers to cause a denial of service
@@ -1244,7 +1274,7 @@ Information:
 Fixed In:
 
 * 2.5.3: 2008-12-19 (460 days), `commit 4df1b6d <https://github.com/python/cpython/commit/4df1b6d478020ac51c84467f47e42083f53adbad>`_ (2008-08-19, 338 days)
-* 2.6: 2008-10-01, `commit 93ebfb1 <https://github.com/python/cpython/commit/93ebfb154456daa841aa223bd296422787b3074c>`_ (2008-08-19)
+* 2.6.0: 2008-10-01, `commit 93ebfb1 <https://github.com/python/cpython/commit/93ebfb154456daa841aa223bd296422787b3074c>`_ (2008-08-19)
 
 Links:
 

@@ -12,6 +12,9 @@ CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
 CVE_URL = 'http://www.cvedetails.com/cve/%s/'
 
 
+def timedelta_days(delta):
+    return delta.days
+
 def parse_date(text):
     if isinstance(text, datetime.date):
         return text
@@ -222,30 +225,51 @@ class Fix:
         return version_info(fix.python_version)
 
 
+class DateComment:
+    def __init__(self, date):
+        self.comment = None
+        if isinstance(date, datetime.date):
+            self.date = date
+            return
+
+        # date is a string
+        date, _, comment = date.partition('(')
+        date = date.strip()
+        if comment:
+            if not comment.endswith(')'):
+                raise ValueError("date comment must be written in (...)")
+            self.comment = comment[:-1].strip()
+        self.date = parse_date(date)
+
+    def __str__(self):
+        text = format_date(self.date)
+        if self.comment:
+            text = '%s (%s)' % (text, self.comment)
+        return text
+
+
 class Vulnerability:
     def __init__(self, app, data):
         self.name = data.pop('name')
-        disclosure = data.pop('disclosure')
-        if isinstance(disclosure, str):
-            disclosure_date, _, comment = disclosure.partition('(')
-            disclosure_date = disclosure_date.strip()
-            if comment:
-                if not comment.endswith(')'):
-                    raise ValueError("disclosure comment must be written in (...)")
-                comment = comment[:-1]
-            else:
-                comment = None
+        try:
+            self.parse(data)
+        except KeyError as exc:
+            raise Exception("failed to parse %r: missing key %s" % (self.name, exc))
+        except Exception as exc:
+            raise Exception("failed to parse %r: %s" % (self.name, exc))
+
+    def parse(self, data):
+        self.disclosure = DateComment(data.pop('disclosure'))
+        discovered_at = data.pop('discovered-at', None)
+        if discovered_at is not None:
+            self.discovered_at = DateComment(discovered_at)
         else:
-            disclosure_date = disclosure
-            comment = None
-        self.disclosure_date = parse_date(disclosure_date)
-        self.disclosure_comment = comment
-        self.summary = data.pop('summary').strip()
+            self.discovered_at = None
         self.description = data.pop('description').strip()
         self.links = data.pop('links', None)
         self.cvss_score = data.pop('cvss-score', None)
         self.redhat_impact = data.pop('redhat-impact', None)
-        self.reported_by = data.pop('reported-by', None)
+        self.reported_by = data.pop('reported-by')
         if self.reported_by is not None:
             self.reported_by = self.reported_by.strip()
 
@@ -298,8 +322,8 @@ class Vulnerability:
 
     @staticmethod
     def sort_key(vuln):
-        date = datetime.date.min - vuln.disclosure_date
-        return (date, vuln.name, vuln.summary)
+        date = datetime.date.min - vuln.disclosure.date
+        return (date, vuln.name)
 
 
 class PythonReleases:
@@ -340,7 +364,7 @@ class RenderDoc:
 
         vulnerabilities.sort(key=Vulnerability.sort_key)
 
-        headers = ['Vulnerability', 'Summary', 'Disclosure', 'Score', 'Fixed In']
+        headers = ['Vulnerability', 'Disclosure', 'Score', 'Fixed In']
         table = []
         sections = []
 
@@ -350,10 +374,10 @@ class RenderDoc:
             fixes = ', '.join(fixes)
 
             name = "`%s`_" % vuln.name
-            disclosure = format_date(vuln.disclosure_date)
+            disclosure = format_date(vuln.disclosure.date)
             score = vuln.cvss_score or vuln.redhat_impact or '?'
 
-            row = [name, vuln.summary, disclosure, score, fixes]
+            row = [name, disclosure, score, fixes]
             table.append(row)
 
         with open(filename, 'w', encoding='utf-8') as fp:
@@ -376,21 +400,22 @@ class RenderDoc:
                 print(file=fp)
                 print(file=fp)
 
-                name = vuln.name
-
-                print(name, file=fp)
-                print("=" * len(name), file=fp)
+                title = vuln.name
+                print(title, file=fp)
+                print("=" * len(title), file=fp)
                 print(file=fp)
                 print(vuln.description, file=fp)
-
-                disclosure = format_date(vuln.disclosure_date)
-                if vuln.disclosure_comment:
-                    disclosure = '%s (%s)' % (disclosure, vuln.disclosure_comment)
                 print(file=fp)
 
                 print("Information:", file=fp)
                 print(file=fp)
-                print("* Disclosure date: {}".format(disclosure), file=fp)
+                print("* Disclosure date: {}".format(vuln.disclosure), file=fp)
+                if vuln.discovered_at:
+                    discovered = vuln.discovered_at
+                    days = timedelta_days(vuln.discovered_at.date - vuln.disclosure.date)
+                    if days:
+                        discovered = "{} ({} days)".format(discovered, days)
+                    print("* Discovered at: {}".format(discovered), file=fp)
                 if vuln.reported_by:
                     print("* Reported by: {}".format(vuln.reported_by), file=fp)
                 if vuln.cvss_score:
@@ -406,9 +431,9 @@ class RenderDoc:
                         short = short_commit(fix.commit)
                         date = format_date(fix.release_date)
                         url = commit_url(fix.commit)
-                        days = (fix.release_date - vuln.disclosure_date).days
+                        days = timedelta_days(fix.release_date - vuln.disclosure.date)
                         commit_date = format_date(fix.commit_date)
-                        commit_days = (fix.commit_date - vuln.disclosure_date).days
+                        commit_days = timedelta_days(fix.commit_date - vuln.disclosure.date)
                         pyver_info = version_info(fix.python_version)
 
                         version = fix.python_version
