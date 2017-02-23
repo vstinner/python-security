@@ -364,20 +364,17 @@ class RenderDoc:
 
         vulnerabilities.sort(key=Vulnerability.sort_key)
 
-        headers = ['Vulnerability', 'Disclosure', 'Score', 'Fixed In']
+        headers = ['Vulnerability', 'Disclosure', 'Score']
         table = []
         sections = []
 
 
         for vuln in vulnerabilities:
-            fixes = [fix.python_version for fix in vuln.fixes]
-            fixes = ', '.join(fixes)
-
             name = "`%s`_" % vuln.name
             disclosure = format_date(vuln.disclosure.date)
             score = vuln.cvss_score or vuln.redhat_impact or '?'
 
-            row = [name, disclosure, score, fixes]
+            row = [name, disclosure, score]
             table.append(row)
 
         with open(filename, 'w', encoding='utf-8') as fp:
