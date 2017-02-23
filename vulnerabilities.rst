@@ -21,9 +21,9 @@ Security vulnerabilities
 +-------------------------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2016-5699: HTTP header injection`_               | 2014-11-24   | 4.3           | 2.7.10, 3.4.4, 3.5.0                     |
 +-------------------------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2014-7185: integer overflows`_                   | 2014-06-24   | 6.4           | 2.7.8                                    |
+| `CVE-2014-9365: Validate TLS certificate`_            | 2014-08-28   | 5.8           | 2.7.9, 3.4.3, 3.5.0                      |
 +-------------------------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2014-9365: Validate TLS certificate`_            | 2014-04-19   | 5.8           | 2.7.9, 3.4.3, 3.5.0                      |
+| `CVE-2014-7185: integer overflows`_                   | 2014-06-24   | 6.4           | 2.7.8                                    |
 +-------------------------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2014-4616: JSONDecoder.raw_decode`_              | 2014-04-13   | Moderate      | 2.7.7, 3.2.6, 3.3.6, 3.4.1, 3.5.0        |
 +-------------------------------------------------------+--------------+---------------+------------------------------------------+
@@ -35,11 +35,11 @@ Security vulnerabilities
 +-------------------------------------------------------+--------------+---------------+------------------------------------------+
 | `Issue #19435: CGI directory traversal`_              | 2013-10-29   | ?             | 2.7.6, 3.2.6, 3.3.4, 3.4.0               |
 +-------------------------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2013-4238: ssl: NUL in subjectAltNames`_         | 2013-08-12   | 4.3           | 2.6.9, 2.7.6, 3.3.3, 3.4.0               |
+| `CVE-2013-4238: ssl: NUL in subjectAltNames`_         | 2013-06-27   | 4.3           | 2.6.9, 2.7.6, 3.3.3, 3.4.0               |
 +-------------------------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2013-7440: ssl.match_hostname() IDNA issue`_     | 2013-05-17   | 4.3           | 3.3.3, 3.4.0                             |
 +-------------------------------------------------------+--------------+---------------+------------------------------------------+
-| `CVE-2013-2099: ssl.match_hostname() wildcard`_       | 2013-05-15   | 4.3           | 3.3.3, 3.4.0                             |
+| `CVE-2013-2099: ssl.match_hostname() wildcard DoS`_   | 2013-05-15   | 4.3           | 3.3.3, 3.4.0                             |
 +-------------------------------------------------------+--------------+---------------+------------------------------------------+
 | `CVE-2013-1752: ftplib unlimited read`_               | 2012-09-25   | Moderate      | 2.7.6, 3.2.6, 3.3.3, 3.4.0               |
 +-------------------------------------------------------+--------------+---------------+------------------------------------------+
@@ -307,6 +307,7 @@ Information:
 * Disclosure date: 2014-11-24 (issue #22928 reported)
 * Reported by: Guido Vranken
 * `CVSS Score`_: 4.3
+* `Red Hat impact`_: Moderate
 
 Fixed In:
 
@@ -319,6 +320,39 @@ Links:
 * https://bugs.python.org/issue22928
 * https://access.redhat.com/security/cve/cve-2014-4616
 * http://www.cvedetails.com/cve/CVE-2016-5699/
+
+
+CVE-2014-9365: Validate TLS certificate
+=======================================
+
+The HTTP clients in the (1) httplib, (2) urllib, (3) urllib2, and (4)
+xmlrpclib libraries in CPython (aka Python) 2.x before 2.7.9 and 3.x before
+3.4.3, when accessing an HTTPS URL, do not (a) check the certificate
+against a trust store or verify that the server hostname matches a domain
+name in the subject's (b) Common Name or (c) subjectAltName field of the
+X.509 certificate, which allows man-in-the-middle attackers to spoof SSL
+servers via an arbitrary valid certificate.
+
+See also the `PEP 466: Network Security Enhancements for Python 2.7.x
+<https://www.python.org/dev/peps/pep-0466/>`_.
+
+Information:
+
+* Disclosure date: 2014-08-28 (PEP 476 created)
+* Reported by: Alex Gaynor (PEP 476 author)
+* `CVSS Score`_: 5.8
+
+Fixed In:
+
+* 2.7.9: 2014-12-10 (104 days), `commit e3e7d40 <https://github.com/python/cpython/commit/e3e7d40514e5dd0c3847682a719577efcfae1d8f>`_ (2014-11-24, 88 days)
+* 3.4.3: 2015-02-23 (179 days), `commit 4ffb075 <https://github.com/python/cpython/commit/4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd>`_ (2014-11-03, 67 days)
+* 3.5.0: 2015-09-09, `commit 4ffb075 <https://github.com/python/cpython/commit/4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd>`_ (2014-11-03)
+
+Links:
+
+* http://bugs.python.org/issue22417
+* `PEP 476: Enabling certificate verification by default for stdlib http clients <https://www.python.org/dev/peps/pep-0476/>`_
+* http://www.cvedetails.com/cve/CVE-2014-9365/
 
 
 CVE-2014-7185: integer overflows
@@ -344,40 +378,13 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2014-7185/
 
 
-CVE-2014-9365: Validate TLS certificate
-=======================================
-
-Python 2.7 backport of many ssl features from Python 3.
-
-A contribution of Alex Gaynor and David Reid with the generous support of
-Rackspace. May God have mercy on their souls.
-
-Information:
-
-* Disclosure date: 2014-04-19 (issue #21308 reported)
-* Reported by: Nick Coghlan
-* `CVSS Score`_: 5.8
-
-Fixed In:
-
-* 2.7.9: 2014-12-10 (235 days), `commit daeb925 <https://github.com/python/cpython/commit/daeb925cc88cc8fed2030166ade641de28edb396>`_ (2014-08-20, 123 days)
-* 3.4.3: 2015-02-23 (310 days), `commit 4ffb075 <https://github.com/python/cpython/commit/4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd>`_ (2014-11-03, 198 days)
-* 3.5.0: 2015-09-09, `commit 4ffb075 <https://github.com/python/cpython/commit/4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd>`_ (2014-11-03)
-
-Links:
-
-* http://bugs.python.org/issue21308
-* http://bugs.python.org/issue22417
-* https://www.python.org/dev/peps/pep-0466/
-* https://www.python.org/dev/peps/pep-0476/
-* http://www.cvedetails.com/cve/CVE-2014-9365/
-
-
 CVE-2014-4616: JSONDecoder.raw_decode
 =====================================
 
-Fix arbitrary memory access in ``JSONDecoder.raw_decode`` with a negative
+Fix arbitrary memory access in ``JSONDecoder.raw_decode()`` with a negative
 second parameter.
+
+Note: The issue #21529 was reported at 2014-05-19, after the commit.
 
 Information:
 
@@ -406,6 +413,9 @@ CVE-2014-2667: os.makedirs() not thread-safe
 to ``0``, serious security problem.
 
 Remove directory mode check from ``os.makedirs()``.
+
+The ``exist_ok`` parameter was added to Python 3.2.0 (commit
+5a22b651173f142a600625a036fcf36484ade237).
 
 Information:
 
@@ -513,22 +523,28 @@ CVE-2013-4238: ssl: NUL in subjectAltNames
 
 SSL module fails to handle NULL bytes inside subjectAltNames general names.
 
+It's related to `Ruby's CVE-2013-4073
+<http://www.ruby-lang.org/en/news/2013/06/27/hostname-check-bypassing-vulnerability-in-openssl-client-cve-2013-4073/>`_.
+
+Issue #18709 reported by Christian Heimes at 2013-08-12.
+
 Information:
 
-* Disclosure date: 2013-08-12 (issue #18709 reported)
-* Reported by: Christian Heimes
+* Disclosure date: 2013-06-27 (Ruby issue)
+* Reported by: Ryan Sleevi of the Google Chrome Security Team
 * `CVSS Score`_: 4.3
 
 Fixed In:
 
-* 2.6.9: 2013-10-29 (78 days), `commit 82f8828 <https://github.com/python/cpython/commit/82f88283171933127f20f866a7f98694b29cca56>`_ (2013-08-23, 11 days)
-* 2.7.6: 2013-11-10 (90 days), `commit 82f8828 <https://github.com/python/cpython/commit/82f88283171933127f20f866a7f98694b29cca56>`_ (2013-08-23, 11 days)
-* 3.3.3: 2013-11-17 (97 days), `commit 824f7f3 <https://github.com/python/cpython/commit/824f7f366d1b54d2d3100c3130c04cf1dfb4b47c>`_ (2013-08-16, 4 days)
+* 2.6.9: 2013-10-29 (124 days), `commit 82f8828 <https://github.com/python/cpython/commit/82f88283171933127f20f866a7f98694b29cca56>`_ (2013-08-23, 57 days)
+* 2.7.6: 2013-11-10 (136 days), `commit 82f8828 <https://github.com/python/cpython/commit/82f88283171933127f20f866a7f98694b29cca56>`_ (2013-08-23, 57 days)
+* 3.3.3: 2013-11-17 (143 days), `commit 824f7f3 <https://github.com/python/cpython/commit/824f7f366d1b54d2d3100c3130c04cf1dfb4b47c>`_ (2013-08-16, 50 days)
 * 3.4.0: 2014-03-16, `commit 824f7f3 <https://github.com/python/cpython/commit/824f7f366d1b54d2d3100c3130c04cf1dfb4b47c>`_ (2013-08-16)
 
 Links:
 
 * http://bugs.python.org/issue18709
+* http://www.cvedetails.com/cve/CVE-2013-4073/
 * http://www.cvedetails.com/cve/CVE-2013-4238/
 
 
@@ -559,8 +575,8 @@ Links:
 * http://www.cvedetails.com/cve/CVE-2013-7440/
 
 
-CVE-2013-2099: ssl.match_hostname() wildcard
-============================================
+CVE-2013-2099: ssl.match_hostname() wildcard DoS
+================================================
 
 If the name in the certificate contains many ``*`` characters (wildcard),
 matching the compiled regular expression against the host name can take a
@@ -801,7 +817,7 @@ Disable OpenSSL ``SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS`` option.
 Information:
 
 * Disclosure date: 2012-01-27 (issue #13885 reported)
-* Reported by: Antoine Pitrou
+* Reported by: Apple security team
 * `CVSS Score`_: 4.3
 
 Fixed In:
@@ -895,7 +911,7 @@ redirect (HTTP 302) a urllib request to any of the supported schemes.
 Information:
 
 * Disclosure date: 2011-03-24 (issue #11662 reported)
-* Reported by: (email received on the Python security list)
+* Reported by: email received on the Python security list
 * `CVSS Score`_: 6.4
 
 Fixed In:
@@ -926,7 +942,7 @@ encoding.
 Information:
 
 * Disclosure date: 2011-03-08 (issue #11442 reported)
-* Reported by: (email received on the Python security list)
+* Reported by: email received on the Python security list
 * `CVSS Score`_: 2.6
 
 Fixed In:

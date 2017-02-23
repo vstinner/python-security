@@ -61,6 +61,7 @@
   disclosure: "2014-11-24 (issue #22928 reported)"
   reported-by: Guido Vranken
   cvss-score: "4.3"
+  redhat-impact: "Moderate"
   fixed-in:
     - 59bdf6392de446de8a19bfa37cee52981612830e # 2.7.10
     - a112a8ae47813f75aa8ad27ee8c42a7c2e937d13 # 3.4.4
@@ -203,8 +204,10 @@
    # Add CVE in Misc/NEWS: 5e621176c4ec3cbd5102b9ca7441695832544123 # 3.2
   reported-by: Guido Vranken
   description: |
-    Fix arbitrary memory access in ``JSONDecoder.raw_decode`` with a negative
+    Fix arbitrary memory access in ``JSONDecoder.raw_decode()`` with a negative
     second parameter.
+
+    Note: The issue #21529 was reported at 2014-05-19, after the commit.
 
 - name: "Issue #28563: gettext.c2py()"
   links:
@@ -265,7 +268,7 @@
     ``http.server.CGIHTTPRequestHandler`` allows running arbitrary executables in
     the directory under which the server was started.
 
-- name: "CVE-2013-2099: ssl.match_hostname() wildcard"
+- name: "CVE-2013-2099: ssl.match_hostname() wildcard DoS"
   links:
     - http://bugs.python.org/issue17980
   disclosure: "2013-05-15 (issue #17980 reported)"
@@ -313,8 +316,8 @@
 - name: "CVE-2013-4238: ssl: NUL in subjectAltNames"
   links:
     - http://bugs.python.org/issue18709
-  disclosure: "2013-08-12 (issue #18709 reported)"
-  reported-by: Christian Heimes
+  disclosure: "2013-06-27 (Ruby issue)"
+  reported-by: Ryan Sleevi of the Google Chrome Security Team
   cvss-score: "4.3"
   fixed-in:
    - 82f88283171933127f20f866a7f98694b29cca56 # 2.7
@@ -322,11 +325,16 @@
   description: |
     SSL module fails to handle NULL bytes inside subjectAltNames general names.
 
+    It's related to `Ruby's CVE-2013-4073
+    <http://www.ruby-lang.org/en/news/2013/06/27/hostname-check-bypassing-vulnerability-in-openssl-client-cve-2013-4073/>`_.
+
+    Issue #18709 reported by Christian Heimes at 2013-08-12.
+
 - name: "CVE-2011-3389: ssl CBC IV attack"
   links:
     - http://bugs.python.org/issue13885
   disclosure: "2012-01-27 (issue #13885 reported)"
-  reported-by: Antoine Pitrou
+  reported-by: Apple security team
   cvss-score: "4.3"
   fixed-in:
    - d358e0554bc520768041652676ec8e6076f221a9 # 2.x
@@ -339,7 +347,7 @@
   links:
     - http://bugs.python.org/issue11662
   disclosure: "2011-03-24 (issue #11662 reported)"
-  reported-by: (email received on the Python security list)
+  reported-by: email received on the Python security list
   cvss-score: "6.4"
   fixed-in:
    - 60a4a90c8dd2972eb4bb977e70835be9593cbbac # 2.5
@@ -372,21 +380,26 @@
 
 - name: "CVE-2014-9365: Validate TLS certificate"
   links:
-    - http://bugs.python.org/issue21308
     - http://bugs.python.org/issue22417
-    - https://www.python.org/dev/peps/pep-0466/
-    - https://www.python.org/dev/peps/pep-0476/
-  disclosure: "2014-04-19 (issue #21308 reported)"
-  reported-by: Nick Coghlan
+    - "`PEP 476: Enabling certificate verification by default for stdlib
+       http clients <https://www.python.org/dev/peps/pep-0476/>`_"
+  disclosure: "2014-08-28 (PEP 476 created)"
+  reported-by: Alex Gaynor (PEP 476 author)
   cvss-score: "5.8"
   fixed-in:
-   - daeb925cc88cc8fed2030166ade641de28edb396 # 2.7
+   - e3e7d40514e5dd0c3847682a719577efcfae1d8f # 2.7
    - 4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd # 3.4
   description: |
-    Python 2.7 backport of many ssl features from Python 3.
+    The HTTP clients in the (1) httplib, (2) urllib, (3) urllib2, and (4)
+    xmlrpclib libraries in CPython (aka Python) 2.x before 2.7.9 and 3.x before
+    3.4.3, when accessing an HTTPS URL, do not (a) check the certificate
+    against a trust store or verify that the server hostname matches a domain
+    name in the subject's (b) Common Name or (c) subjectAltName field of the
+    X.509 certificate, which allows man-in-the-middle attackers to spoof SSL
+    servers via an arbitrary valid certificate.
 
-    A contribution of Alex Gaynor and David Reid with the generous support of
-    Rackspace. May God have mercy on their souls.
+    See also the `PEP 466: Network Security Enhancements for Python 2.7.x
+    <https://www.python.org/dev/peps/pep-0466/>`_.
 
 - name: "CVE-2014-7185: integer overflows"
   links:
@@ -414,6 +427,9 @@
     to ``0``, serious security problem.
 
     Remove directory mode check from ``os.makedirs()``.
+
+    The ``exist_ok`` parameter was added to Python 3.2.0 (commit
+    5a22b651173f142a600625a036fcf36484ade237).
 
 - name: "CVE-2013-7440: ssl.match_hostname() IDNA issue"
   links:
@@ -487,7 +503,7 @@
   links:
     - http://bugs.python.org/issue11442
   disclosure: "2011-03-08 (issue #11442 reported)"
-  reported-by: (email received on the Python security list)
+  reported-by: email received on the Python security list
   cvss-score: "2.6"
   fixed-in:
    - 3853586e0caa0d5c4342ac8bd7e78cb5766fa8cc # 2.x
