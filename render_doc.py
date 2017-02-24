@@ -4,7 +4,6 @@ import datetime
 import re
 import subprocess
 import sys
-import tabulate
 import yaml
 
 
@@ -364,18 +363,28 @@ class RenderDoc:
 
         vulnerabilities.sort(key=Vulnerability.sort_key)
 
-        headers = ['Vulnerability', 'Disclosure', 'Score']
+        headers = ['Vulnerability', 'Disclosure', 'Score', 'Fixed In']
         table = []
         sections = []
 
-
         for vuln in vulnerabilities:
+            fixes = ['| ' + fix.python_version for fix in vuln.fixes]
+
             name = "`%s`_" % vuln.name
             disclosure = format_date(vuln.disclosure.date)
             score = vuln.cvss_score or vuln.redhat_impact or '?'
 
-            row = [name, disclosure, score]
+            row = [name, disclosure, score, fixes]
             table.append(row)
+
+        widths = [len(header) for header in headers]
+        for row in table:
+            for column, cell in enumerate(row):
+                if isinstance(cell, str):
+                    cell_len = len(cell)
+                else:
+                    cell_len = max(len(subcell) for subcell in cell)
+                widths[column] = max(widths[column], cell_len)
 
         with open(filename, 'w', encoding='utf-8') as fp:
             title = 'Security vulnerabilities'
@@ -384,8 +393,30 @@ class RenderDoc:
             print("+" * len(title), file=fp)
             print(file=fp)
 
-            print(tabulate.tabulate(table, headers, tablefmt="grid"), file=fp)
+            def table_line(char='-'):
+                parts = ['']
+                for width in widths:
+                    parts.append(char * (width + 2))
+                parts.append('')
+                return '+'.join(parts)
+
+            def table_row(row):
+                parts = ['']
+                for width, cell in zip(widths, row):
+                    parts.append(' %s ' % cell.ljust(width))
+                parts.append('')
+                return '|'.join(parts)
+
+            print(table_line('-'), file=fp)
+            print(table_row(headers), file=fp)
+            print(table_line('='), file=fp)
+            for row in table:
+                print(table_row(row[:-1] + [row[-1][0]]), file=fp)
+                for fix in row[-1][1:]:
+                    print(table_row([''] * (len(headers) - 1) + [fix]), file=fp)
+                print(table_line('-'), file=fp)
             print(file=fp)
+
             print("Total: %s vulnerabilities" % len(table), file=fp)
             print(file=fp)
             print("* Vulnerabilities sorted by the Disclosure column", file=fp)
