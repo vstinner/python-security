@@ -1,6 +1,3 @@
-# Minimal makefile for Sphinx documentation
-#
-
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
@@ -8,17 +5,19 @@ SPHINXPROJ    = PythonSecurity
 SOURCEDIR     = .
 BUILDDIR      = build
 
-all:
-	./venv/bin/python render_doc.py
+.PHONY: html
+
+doc: html
 	make html
 
-# Put it first so that "make" without argument is like "make help".
-help:
-	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+venv:
+	./venv.sh
 
-.PHONY: help Makefile
+vulnerabilities.rst: vulnerabilities.yml venv
+	./venv/bin/python render_doc.py
 
-# Catch-all target: route all unknown targets to Sphinx using the new
-# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: Makefile
+html: vulnerabilities.rst
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+clean:
+	rm -rf vulnerabilities.rst build/ venv/
