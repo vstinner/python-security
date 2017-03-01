@@ -76,6 +76,13 @@ CA store
 * Linux: xxx
 * macOS: xxx
 
+See also
+
+* `certifi <https://pypi.python.org/pypi/certifi>`_: "Python package for
+  providing Mozilla's CA Bundle".
+* `[Python-Dev] SSL certificates recommendations for downstream python packagers
+  <https://mail.python.org/pipermail/python-dev/2017-January/147282.html>`_
+
 SSLContext
 ==========
 
