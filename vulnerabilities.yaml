@@ -21,8 +21,7 @@
     - 46b32f307c48bcb999b22eebf65ffe8ed5cca544 # 3.4.5
 
 - name: "Issue #26657: HTTP directory traversal"
-  links:
-    - http://bugs.python.org/issue26657
+  bpo: 26657
   disclosure: "2016-03-28 (issue #26657 reported)"
   reported-by: Thomas
   fixed-in:
@@ -37,8 +36,8 @@
     Python issue reported at 2016-03-14.
 
 - name: "Issue #26556: Expat 2.1.1"
+  bpo: 26556
   links:
-    - http://bugs.python.org/issue26556
     - https://sourceforge.net/p/expat/bugs/528/
   disclosure: "2016-03-14 (issue #26556 reported)"
   reported-at: "2015-07-24 (Expat issue #528 reported)"
@@ -55,8 +54,8 @@
     fixes.
 
 - name: "CVE-2016-5699: HTTP header injection"
+  bpo: 22928
   links:
-    - https://bugs.python.org/issue22928
     - https://access.redhat.com/security/cve/cve-2014-4616
   disclosure: "2014-11-24 (issue #22928 reported)"
   reported-by: Guido Vranken
@@ -79,8 +78,8 @@
   disclosure: 2011-12-28 (CCC talk)
   reported-by: Alexander “alech” Klink and Julian “zeri” Wälde
   cvss-score: "5.0"
+  bpo: 13703
   links:
-   - http://bugs.python.org/issue13703
    - https://events.ccc.de/congress/2011/Fahrplan/events/4680.en.html
    - http://www.ocert.org/advisories/ocert-2011-003.html
   fixed-in:
@@ -100,8 +99,7 @@
     `SipHash <https://131002.net/siphash/>`_.
 
 - name: "CVE-2016-5636: zipimporter overflow"
-  links:
-    - https://bugs.python.org/issue26171
+  bpo: 26171
   disclosure: "2016-01-21 (issue #26171 reported)"
   reported-by: Insu Yun
   cvss-score: "10.0"
@@ -112,8 +110,8 @@
     Heap overflow in ``zipimporter`` module.
 
 - name: "CVE-2013-1752: smtplib unlimited read"
+  bpo: 16042
   links:
-    - http://bugs.python.org/issue16042
     - https://access.redhat.com/security/cve/cve-2013-1752
   disclosure: "2012-09-25 (issue #16042 reported)"
   reported-by: Christian Heimes
@@ -127,8 +125,7 @@
     smtplib module to consume large amounts of memory.
 
 - name: "CVE-2013-1752: httplib unlimited read"
-  links:
-    - http://bugs.python.org/issue6791
+  bpo: 6791
   disclosure: "2009-08-28 (issue #6791 reported)"
   redhat-impact: "Moderate"
   reported-by: sumar (m.sucajtys)
@@ -140,8 +137,8 @@
     Limit the HTTP header readline.
 
 - name: "CVE-2013-1752: ftplib unlimited read"
+  bpo: 16038
   links:
-    - http://bugs.python.org/issue16038
     - https://access.redhat.com/security/cve/cve-2013-1752
   disclosure: "2012-09-25 (issue #16038 reported)"
   reported-by: Christian Heimes
@@ -154,8 +151,8 @@
     ftplib: unlimited read from connection.
 
 - name: "CVE-2013-1752: nntplib unlimited read"
+  bpo: 16040
   links:
-    - http://bugs.python.org/issue16040
     - https://access.redhat.com/security/cve/cve-2013-1752
   disclosure: "2012-09-25 (issue #16040 reported)"
   reported-by: Christian Heimes
@@ -167,8 +164,8 @@
     Unlimited read from connection in nntplib.
 
 - name: "CVE-2013-1752: poplib unlimited read"
+  bpo: 16041
   links:
-    - http://bugs.python.org/issue16041
     - https://access.redhat.com/security/cve/cve-2013-1752
   disclosure: "2012-09-25 (iIssue #16041 reported)"
   reported-by: Christian Heimes
@@ -180,8 +177,8 @@
     poplib: unlimited read from connection.
 
 - name: "CVE-2013-1753: xmlrpc unlimited read"
+  bpo: 16043
   links:
-    - http://bugs.python.org/issue16043
     - https://access.redhat.com/security/cve/cve-2013-1753
   disclosure: "2012-09-25 (issue #16043 reported)"
   reported-by: Christian Heimes
@@ -194,8 +191,7 @@
     return.
 
 - name: "CVE-2014-4616: JSONDecoder.raw_decode"
-  links:
-   - http://bugs.python.org/issue21529
+  bpo: 21529
   disclosure: "2014-04-13 (commit)"
   redhat-impact: "Moderate"
   fixed-in:
@@ -210,8 +206,7 @@
     Note: The issue #21529 was reported at 2014-05-19, after the commit.
 
 - name: "Issue #28563: gettext.c2py()"
-  links:
-    - http://bugs.python.org/issue28563
+  bpo: 28563
   disclosure: "2016-10-30 (issue #28563 reported)"
   reported-by: Carl Ekerot
   fixed-in:
@@ -221,8 +216,8 @@
     Arbitrary code execution in ``gettext.c2py()``.
 
 - name: "CVE-2016-1000110: HTTPoxy attack"
+  bpo: 27568
   links:
-    - http://bugs.python.org/issue27568
     - https://httpoxy.org/
     - https://access.redhat.com/security/cve/cve-2016-1000110
   disclosure: "2016-07-18 (issue #27568 reported)"
@@ -243,8 +238,7 @@
     set, which indicates that the script is in CGI mode.
 
 - name: "CVE-2014-1912: socket.recvfrom_into() overflow"
-  links:
-    - http://bugs.python.org/issue20246
+  bpo: 20246
   disclosure: "2014-01-14 (issue #20246 reported)"
   reported-by: Ryan Smith-Roberts
   cvss-score: "7.5"
@@ -256,8 +250,7 @@
     is big enough for the requested read and so will happily write off the end.
 
 - name: "Issue #19435: CGI directory traversal"
-  links:
-    - http://bugs.python.org/issue19435
+  bpo: 19435
   disclosure: "2013-10-29 (issue #19435 reported)"
   reported-by: Alexander Kruppa
   fixed-in:
@@ -269,8 +262,7 @@
     the directory under which the server was started.
 
 - name: "CVE-2013-2099: ssl.match_hostname() wildcard DoS"
-  links:
-    - http://bugs.python.org/issue17980
+  bpo: 17980
   disclosure: "2013-05-15 (issue #17980 reported)"
   reported-by: Florian Weimer
   cvss-score: "4.3"
@@ -286,8 +278,7 @@
     a CA (which seems unlikely).
 
 - name: "CVE-2012-2135: UTF-16 decoder"
-  links:
-    - http://bugs.python.org/issue14579
+  bpo: 14579
   disclosure: "2012-04-14"
   reported-by: Serhiy Storchaka
   cvss-score: "6.4"
@@ -298,8 +289,7 @@
     Vulnerability in the UTF-16 decoder after error handling.
 
 - name: "CVE-2012-0845: XML-RPC DoS"
-  links:
-    - http://bugs.python.org/issue14001
+  bpo: 14001
   disclosure: "2012-02-13 (issue #14001 reported)"
   reported-by: Jan Lieskovsky
   cvss-score: "5.0"
@@ -314,8 +304,7 @@
     amount of CPU.
 
 - name: "CVE-2013-4238: ssl: NUL in subjectAltNames"
-  links:
-    - http://bugs.python.org/issue18709
+  bpo: 18709
   disclosure: "2013-06-27 (Ruby issue)"
   reported-by: Ryan Sleevi of the Google Chrome Security Team
   cvss-score: "4.3"
@@ -331,8 +320,7 @@
     Issue #18709 reported by Christian Heimes at 2013-08-12.
 
 - name: "CVE-2011-3389: ssl CBC IV attack"
-  links:
-    - http://bugs.python.org/issue13885
+  bpo: 13885
   disclosure: "2012-01-27 (issue #13885 reported)"
   reported-by: Apple security team
   cvss-score: "4.3"
@@ -344,8 +332,7 @@
     Disable OpenSSL ``SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS`` option.
 
 - name: "CVE-2011-1521: urllib redirect"
-  links:
-    - http://bugs.python.org/issue11662
+  bpo: 11662
   disclosure: "2011-03-24 (issue #11662 reported)"
   reported-by: email received on the Python security list
   cvss-score: "6.4"
@@ -361,8 +348,8 @@
     redirect (HTTP 302) a urllib request to any of the supported schemes.
 
 - name: "CVE-2016-2183: Sweet32 attack (DES, 3DES)"
+  bpo: 27850
   links:
-    - http://bugs.python.org/issue27850
     - https://sweet32.info/
     - https://www.openssl.org/blog/blog/2016/08/24/sweet32/
   disclosure: "2016-08-24 (end of the Sweet32 embargo)"
@@ -379,8 +366,8 @@
     the `INRIA <https://www.inria.fr/>`_.
 
 - name: "CVE-2014-9365: Validate TLS certificate"
+  bpo: 22417
   links:
-    - http://bugs.python.org/issue22417
     - "`PEP 476: Enabling certificate verification by default for stdlib
        http clients <https://www.python.org/dev/peps/pep-0476/>`_"
   disclosure: "2014-08-28 (PEP 476 created)"
@@ -402,8 +389,7 @@
     <https://www.python.org/dev/peps/pep-0466/>`_.
 
 - name: "CVE-2014-7185: integer overflows"
-  links:
-    - http://bugs.python.org/issue21831
+  bpo: 21831
   disclosure: "2014-06-24 (issue #21831 reported)"
   reported-by: Chris Foster (on the Python security list)
   cvss-score: "6.4"
@@ -415,8 +401,7 @@
     memory via a large size and offset in a ``buffer`` type.
 
 - name: "CVE-2014-2667: os.makedirs() not thread-safe"
-  links:
-    - http://bugs.python.org/issue21082
+  bpo: 21082
   disclosure: "2014-03-28 (issue #21082 reported)"
   reported-by: Ryan Lortie
   cvss-score: "3.3"
@@ -432,8 +417,8 @@
     5a22b651173f142a600625a036fcf36484ade237).
 
 - name: "CVE-2013-7440: ssl.match_hostname() IDNA issue"
+  bpo: 17997
   links:
-    - https://bugs.python.org/issue17997
     - https://tools.ietf.org/html/rfc6125
   disclosure: "2013-05-17 (issue #17997 reported)"
   reported-by: Christian Heimes
@@ -448,8 +433,7 @@
     inside IDN fragments.
 
 - name: "CVE-2013-7338: zipfile DoS using malformed file"
-  links:
-    - http://bugs.python.org/issue20078
+  bpo: 20078
   disclosure: "2013-12-27 (issue #20078 reported)"
   reported-by: Nandiya
   cvss-score: "7.1"
@@ -470,8 +454,7 @@
     Python 2.7 is not affected.
 
 - name: "CVE-2013-7040: Hash not properly randomized"
-  links:
-    - http://bugs.python.org/issue14621
+  bpo: 14621
   disclosure: "2012-04-19 (issue #14621 reported)"
   reported-by: Vlado Boza
   cvss-score: "4.3"
@@ -485,8 +468,7 @@
     Python 3.3 and Python 2.7 are still affected.
 
 - name: "CVE-2011-4944: ~/.pypirc created insecurely"
-  links:
-    - http://bugs.python.org/issue13512
+  bpo: 13512
   disclosure: "2011-11-30 (issue #13512 reported)"
   reported-by: Vincent Danen
   cvss-score: "1.9"
@@ -500,8 +482,7 @@
     obtain a username and password by reading this file.
 
 - name: "CVE-2011-4940: SimpleHTTPServer UTF-7"
-  links:
-    - http://bugs.python.org/issue11442
+  bpo: 11442
   disclosure: "2011-03-08 (issue #11442 reported)"
   reported-by: email received on the Python security list
   cvss-score: "2.6"
@@ -516,8 +497,7 @@
     encoding.
 
 - name: "CVE-2011-1015: CGI directory traversal"
-  links:
-    - http://bugs.python.org/issue2254
+  bpo: 2254
   disclosure: "2008-03-07 (issue #2254 reported)"
   reported-by: sumar (m.sucajtys)
   cvss-score: "5.0"
@@ -530,8 +510,7 @@
     the beginning of the URI.
 
 - name: "CVE-2010-3493: smtpd race conditions"
-  links:
-    - http://bugs.python.org/issue6706
+  bpo: 6706
   disclosure: "2009-08-14 (issue #6706 reported)"
   reported-by: Giampaolo Rodola
   cvss-score: "4.3"
@@ -548,8 +527,7 @@
     having an ENOTCONN error, a related issue to CVE-2010-3492.
 
 - name: "CVE-2010-3492: smtpd accept bug"
-  links:
-    - http://bugs.python.org/issue6706
+  bpo: 6706
   disclosure: "2009-08-14 (issue #6706 reported)"
   reported-by: Giampaolo Rodola
   cvss-score: "5.0"
@@ -564,8 +542,7 @@
     network connections.
 
 - name: "CVE-2010-2089: audioop input validation"
-  links:
-    - http://bugs.python.org/issue7673
+  bpo: 7673
   disclosure: "2010-01-11 (issue #7673 reported)"
   reported-by: STINNER Victor
   cvss-score: "5.0"
@@ -582,8 +559,7 @@
     than CVE-2010-1634.
 
 - name: "CVE-2010-1634: audioop integer overflows"
-  links:
-    - http://bugs.python.org/issue8674
+  bpo: 8674
   disclosure: "2010-05-10 (issue #8674 reported)"
   reported-by: Tomas Hoger
   cvss-score: "5.0"
@@ -603,8 +579,8 @@
     CVE-2008-3143.
 
 - name: "CVE-2007-4965: rgbimg and imageop overflows"
+  bpo: 1179
   links:
-    - http://bugs.python.org/issue1179
     - http://seclists.org/fulldisclosure/2007/Sep/279
     - http://bugs.python.org/issue8678
     - https://bugzilla.redhat.com/show_bug.cgi?id=541698
@@ -636,8 +612,7 @@
     bugzilla at 2009-11-26.
 
 - name: "CVE-2008-3143: Multiple integer overflows (Google)"
-  links:
-    - http://bugs.python.org/issue2620
+  bpo: 2620
   disclosure: "2008-04-11 (issue #2620 reported)"
   reported-by: Justin Ferguson
   cvss-score: "7.5"
@@ -729,6 +704,8 @@
 
 # Template:
 # - name: ""
+#   # Bug number at bugs.python.org (bpo)
+#   bpo:
 #   links:
 #     -
 #   disclosure: ""

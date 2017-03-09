@@ -9,6 +9,7 @@ import yaml
 
 CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
 CVE_URL = 'http://www.cvedetails.com/cve/%s/'
+BPO_URL = 'https://bugs.python.org/issue%s'
 
 
 def timedelta_days(delta):
@@ -258,6 +259,7 @@ class Vulnerability:
             raise Exception("failed to parse %r: %s" % (self.name, exc))
 
     def parse(self, data):
+        self.bpo = int(data.pop('bpo', 0))
         self.disclosure = DateComment(data.pop('disclosure'))
         reported_at = data.pop('reported-at', None)
         if reported_at is not None:
@@ -266,11 +268,17 @@ class Vulnerability:
             self.reported_at = None
         self.description = data.pop('description').strip()
         self.links = data.pop('links', None)
+        if not self.links:
+            self.links = []
         self.cvss_score = data.pop('cvss-score', None)
         self.redhat_impact = data.pop('redhat-impact', None)
         self.reported_by = data.pop('reported-by')
         if self.reported_by is not None:
             self.reported_by = self.reported_by.strip()
+
+        if self.bpo:
+            url = BPO_URL % self.bpo
+            self.links.insert(0, url)
 
         cves = set()
         for text in (self.name, self.description):
@@ -279,8 +287,6 @@ class Vulnerability:
 
         for cve in sorted(cves):
             url = CVE_URL % cve
-            if not self.links:
-                self.links = []
             self.links.append(url)
 
         self.find_fixes(data)
