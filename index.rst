@@ -26,8 +26,8 @@ Python branches
   <https://docs.python.org/devguide/#status-of-python-branches>`_
 
 
-Dangerous functions
-===================
+Dangerous functions and modules
+===============================
 
 * Python 2 input()
 * Python 2 execfile()
@@ -36,6 +36,18 @@ Dangerous functions
 * Python 3.6 f-string: `Be Careful with Python's New-Style String Format
   <http://lucumr.pocoo.org/2016/12/29/careful-with-str-format/>`_
   (Armin Ronacher, December 2016)
+* The ``pickle`` module executes arbitrary Python code: never use it with
+  untrusted data.
+* archives:
+
+  * tarfile: Never extract archives from untrusted sources without prior
+    inspection. It is possible that files are created outside of path, e.g.
+    members that have absolute filenames starting with "/" or filenames with
+    two dots "..".
+  * zipfile: Never extract archives from untrusted sources without prior
+    inspection. It is possible that files are created outside of path, e.g.
+    members that have absolute filenames starting with "/" or filenames with
+    two dots "..". zipfile attempts to prevent that.
 
 
 Security model
@@ -115,8 +127,6 @@ CPython Security Experts
 Misc
 ====
 
-* The ``pickle`` module executes arbitrary Python code: never use it with
-  untrusted data.
 * `python3 -E <https://docs.python.org/3/using/cmdline.html#cmdoption-E>`_:
   ignore ``PYTHON*`` environment variables like ``PYTHONPATH``
 * `python3 -I <https://docs.python.org/3/using/cmdline.html#cmdoption-I>`_:
