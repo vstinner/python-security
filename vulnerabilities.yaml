@@ -22,8 +22,6 @@
 
 - name: "Issue #26657: HTTP directory traversal"
   bpo: 26657
-  disclosure: "2016-03-28 (issue #26657 reported)"
-  reported-by: Thomas
   fixed-in:
     - 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb # 2.7.12
     - d274b3f1f1e2d8811733fb952c9f18d7da3a376a # 3.5.2
@@ -39,7 +37,6 @@
   bpo: 26556
   links:
     - https://sourceforge.net/p/expat/bugs/528/
-  disclosure: "2016-03-14 (issue #26556 reported)"
   reported-at: "2015-07-24 (Expat issue #528 reported)"
   reported-by: David Dillard (Expat issue), Christian Heimes (Python issue)
   fixed-in:
@@ -57,8 +54,6 @@
   bpo: 22928
   links:
     - https://access.redhat.com/security/cve/cve-2014-4616
-  disclosure: "2014-11-24 (issue #22928 reported)"
-  reported-by: Guido Vranken
   cvss-score: "4.3"
   redhat-impact: "Moderate"
   fixed-in:
@@ -100,8 +95,6 @@
 
 - name: "CVE-2016-5636: zipimporter overflow"
   bpo: 26171
-  disclosure: "2016-01-21 (issue #26171 reported)"
-  reported-by: Insu Yun
   cvss-score: "10.0"
   fixed-in:
    - 64ea192b73e39e877d8b39ce6584fa580eb0e9b4 # 2.7.12
@@ -113,8 +106,6 @@
   bpo: 16042
   links:
     - https://access.redhat.com/security/cve/cve-2013-1752
-  disclosure: "2012-09-25 (issue #16042 reported)"
-  reported-by: Christian Heimes
   redhat-impact: "Moderate"
   fixed-in:
     - dabfc56b57f5086eb5522d8e6cd7670c62d2482d # 2.7
@@ -126,9 +117,7 @@
 
 - name: "CVE-2013-1752: httplib unlimited read"
   bpo: 6791
-  disclosure: "2009-08-28 (issue #6791 reported)"
   redhat-impact: "Moderate"
-  reported-by: sumar (m.sucajtys)
   fixed-in:
     - d7b6ac66c1b81d13f2efa8d9ebba69e17c158c0a # 2.7
     - ff1bbba92aad261df1ebd8fd8cc189c104e113b0 # 3.2
@@ -140,8 +129,6 @@
   bpo: 16038
   links:
     - https://access.redhat.com/security/cve/cve-2013-1752
-  disclosure: "2012-09-25 (issue #16038 reported)"
-  reported-by: Christian Heimes
   redhat-impact: "Moderate"
   fixed-in:
    - 2585e1e48abb3013abeb8a1fe9dccb5f79ac4091 # 2.7
@@ -154,8 +141,6 @@
   bpo: 16040
   links:
     - https://access.redhat.com/security/cve/cve-2013-1752
-  disclosure: "2012-09-25 (issue #16040 reported)"
-  reported-by: Christian Heimes
   redhat-impact: "Moderate"
   fixed-in:
    - 42faa55124abcbb132c57745dec9e0489ac74406 # 2.7
@@ -180,8 +165,6 @@
   bpo: 16043
   links:
     - https://access.redhat.com/security/cve/cve-2013-1753
-  disclosure: "2012-09-25 (issue #16043 reported)"
-  reported-by: Christian Heimes
   redhat-impact: "Moderate"
   fixed-in:
    - 9e8f523c5b1c354097753084054eadf14d33238d # 2.7
@@ -207,8 +190,6 @@
 
 - name: "Issue #28563: gettext.c2py()"
   bpo: 28563
-  disclosure: "2016-10-30 (issue #28563 reported)"
-  reported-by: Carl Ekerot
   fixed-in:
    - a8760275bd59fb8d8be1f1bf05313fed31c08321 # 2.7
    - 07bcf05fcf3fd1d4001e8e3489162e6d67638285 # 3.3
@@ -220,7 +201,6 @@
   links:
     - https://httpoxy.org/
     - https://access.redhat.com/security/cve/cve-2016-1000110
-  disclosure: "2016-07-18 (issue #27568 reported)"
   cvss-score: "5.0 (CVSS v3)"
   reported-by: Scott Geary (HTTPoxy), Rémi Rampin (Python issue)
   fixed-in:
@@ -239,8 +219,6 @@
 
 - name: "CVE-2014-1912: socket.recvfrom_into() overflow"
   bpo: 20246
-  disclosure: "2014-01-14 (issue #20246 reported)"
-  reported-by: Ryan Smith-Roberts
   cvss-score: "7.5"
   fixed-in:
    - 28cf368c1baba3db1f01010e921f63017af74c8f # 2.7
@@ -251,8 +229,6 @@
 
 - name: "Issue #19435: CGI directory traversal"
   bpo: 19435
-  disclosure: "2013-10-29 (issue #19435 reported)"
-  reported-by: Alexander Kruppa
   fixed-in:
    - 1ef959ac3ddc4d96dfa1a613db5cb206cdaeb662 # 2.7
    - 04e9de40f380b2695f955d68f2721d57cecbf858 # 3.2
@@ -263,8 +239,6 @@
 
 - name: "CVE-2013-2099: ssl.match_hostname() wildcard DoS"
   bpo: 17980
-  disclosure: "2013-05-15 (issue #17980 reported)"
-  reported-by: Florian Weimer
   cvss-score: "4.3"
   fixed-in:
    - 636f93c63ba286249c1207e3a903f8429efb2041 # 3.3
@@ -290,8 +264,6 @@
 
 - name: "CVE-2012-0845: XML-RPC DoS"
   bpo: 14001
-  disclosure: "2012-02-13 (issue #14001 reported)"
-  reported-by: Jan Lieskovsky
   cvss-score: "5.0"
   fixed-in:
    - 66f3cc6f8de83c447d937160e4a1630c4482b5f5 # 2.6
@@ -321,7 +293,6 @@
 
 - name: "CVE-2011-3389: ssl CBC IV attack"
   bpo: 13885
-  disclosure: "2012-01-27 (issue #13885 reported)"
   reported-by: Apple security team
   cvss-score: "4.3"
   fixed-in:
@@ -333,7 +304,6 @@
 
 - name: "CVE-2011-1521: urllib redirect"
   bpo: 11662
-  disclosure: "2011-03-24 (issue #11662 reported)"
   reported-by: email received on the Python security list
   cvss-score: "6.4"
   fixed-in:
@@ -390,7 +360,6 @@
 
 - name: "CVE-2014-7185: integer overflows"
   bpo: 21831
-  disclosure: "2014-06-24 (issue #21831 reported)"
   reported-by: Chris Foster (on the Python security list)
   cvss-score: "6.4"
   fixed-in:
@@ -402,8 +371,6 @@
 
 - name: "CVE-2014-2667: os.makedirs() not thread-safe"
   bpo: 21082
-  disclosure: "2014-03-28 (issue #21082 reported)"
-  reported-by: Ryan Lortie
   cvss-score: "3.3"
   fixed-in:
    - ee5f1c13d1ea21c628068fdf142823177f5526c2 # 3.2
@@ -420,8 +387,6 @@
   bpo: 17997
   links:
     - https://tools.ietf.org/html/rfc6125
-  disclosure: "2013-05-17 (issue #17997 reported)"
-  reported-by: Christian Heimes
   cvss-score: "4.3"
   fixed-in:
    - 72c98d3a761457a4f2b8054458b19f051dfb5886 # 3.3
@@ -434,8 +399,6 @@
 
 - name: "CVE-2013-7338: zipfile DoS using malformed file"
   bpo: 20078
-  disclosure: "2013-12-27 (issue #20078 reported)"
-  reported-by: Nandiya
   cvss-score: "7.1"
   fixed-in:
    - 5ce3f10aeea711bb912e948fa5d9f63736df1327 # 3.x
@@ -455,8 +418,6 @@
 
 - name: "CVE-2013-7040: Hash not properly randomized"
   bpo: 14621
-  disclosure: "2012-04-19 (issue #14621 reported)"
-  reported-by: Vlado Boza
   cvss-score: "4.3"
   fixed-in:
    - 985ecdcfc29adfc36ce2339acf03f819ad414869 # 3.4
@@ -469,8 +430,6 @@
 
 - name: "CVE-2011-4944: ~/.pypirc created insecurely"
   bpo: 13512
-  disclosure: "2011-11-30 (issue #13512 reported)"
-  reported-by: Vincent Danen
   cvss-score: "1.9"
   fixed-in:
    - e5567ccc863cadb68f5e57a2760e021e0d3807cf # 2.6
@@ -483,7 +442,6 @@
 
 - name: "CVE-2011-4940: SimpleHTTPServer UTF-7"
   bpo: 11442
-  disclosure: "2011-03-08 (issue #11442 reported)"
   reported-by: email received on the Python security list
   cvss-score: "2.6"
   fixed-in:
@@ -498,8 +456,6 @@
 
 - name: "CVE-2011-1015: CGI directory traversal"
   bpo: 2254
-  disclosure: "2008-03-07 (issue #2254 reported)"
-  reported-by: sumar (m.sucajtys)
   cvss-score: "5.0"
   fixed-in:
    - 923ba361d8f757f0656cfd216525aca4848e02aa # 2.7
@@ -511,8 +467,6 @@
 
 - name: "CVE-2010-3493: smtpd race conditions"
   bpo: 6706
-  disclosure: "2009-08-14 (issue #6706 reported)"
-  reported-by: Giampaolo Rodola
   cvss-score: "4.3"
   fixed-in:
    - 19e9fefc660d623ce7c31fb008cde1157ae12aba # 2.x
@@ -528,8 +482,6 @@
 
 - name: "CVE-2010-3492: smtpd accept bug"
   bpo: 6706
-  disclosure: "2009-08-14 (issue #6706 reported)"
-  reported-by: Giampaolo Rodola
   cvss-score: "5.0"
   fixed-in:
    - 977c707b425ee753d54f3e9010f07ec77ef61274 # 3.2
@@ -543,8 +495,6 @@
 
 - name: "CVE-2010-2089: audioop input validation"
   bpo: 7673
-  disclosure: "2010-01-11 (issue #7673 reported)"
-  reported-by: STINNER Victor
   cvss-score: "5.0"
   fixed-in:
    - e9123efa21a16584758b5ce7da93d3966cf0cd81 # 2.6
@@ -560,8 +510,6 @@
 
 - name: "CVE-2010-1634: audioop integer overflows"
   bpo: 8674
-  disclosure: "2010-05-10 (issue #8674 reported)"
-  reported-by: Tomas Hoger
   cvss-score: "5.0"
   fixed-in:
    - 7ceb497ae6f554274399bd9916ea5a21de443208 # 2.6
@@ -613,8 +561,6 @@
 
 - name: "CVE-2008-3143: Multiple integer overflows (Google)"
   bpo: 2620
-  disclosure: "2008-04-11 (issue #2620 reported)"
-  reported-by: Justin Ferguson
   cvss-score: "7.5"
   fixed-in:
    - 83ac0144fa3041556aa4f3952ebd979e0189a19c # 2.5

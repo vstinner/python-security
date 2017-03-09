@@ -4,7 +4,6 @@ TODO list
 
 TODO list for this python-security documentation.
 
-* Get discovered date from Python bug report?
 * Get CVSS Score from the CVE?
 * Get Red Hat impact from a Red Hat URL?
 
