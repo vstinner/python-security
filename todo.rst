@@ -7,15 +7,6 @@ TODO list for this python-security documentation.
 * Get CVSS Score from the CVE?
 * Get Red Hat impact from a Red Hat URL?
 
-"Issue #19435": Python 3.1 is vulnerable, fix commited but never released
-
-Expat::
-
-    - name: "Issue #26556: Expat 2.1.1"
-      disclosure: "2016-03-14 (issue #26556 reported)"
-      discovered-at: "2015-07-24 (Expat issue #528 reported)"
-      CVE-2015-1283
-
 cookielib
 =========
 
