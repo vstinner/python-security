@@ -259,11 +259,11 @@ class Vulnerability:
 
     def parse(self, data):
         self.disclosure = DateComment(data.pop('disclosure'))
-        discovered_at = data.pop('discovered-at', None)
-        if discovered_at is not None:
-            self.discovered_at = DateComment(discovered_at)
+        reported_at = data.pop('reported-at', None)
+        if reported_at is not None:
+            self.reported_at = DateComment(reported_at)
         else:
-            self.discovered_at = None
+            self.reported_at = None
         self.description = data.pop('description').strip()
         self.links = data.pop('links', None)
         self.cvss_score = data.pop('cvss-score', None)
@@ -438,12 +438,12 @@ class RenderDoc:
                 print("Information:", file=fp)
                 print(file=fp)
                 print("* Disclosure date: {}".format(vuln.disclosure), file=fp)
-                if vuln.discovered_at:
-                    discovered = vuln.discovered_at
-                    days = timedelta_days(vuln.discovered_at.date - vuln.disclosure.date)
+                if vuln.reported_at:
+                    reported = vuln.reported_at
+                    days = timedelta_days(vuln.reported_at.date - vuln.disclosure.date)
                     if days:
-                        discovered = "{} ({} days)".format(discovered, days)
-                    print("* Discovered at: {}".format(discovered), file=fp)
+                        reported = "{} ({} days)".format(reported, days)
+                    print("* Reported at: {}".format(reported), file=fp)
                 if vuln.reported_by:
                     print("* Reported by: {}".format(vuln.reported_by), file=fp)
                 if vuln.cvss_score:

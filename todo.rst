@@ -4,8 +4,6 @@ TODO list
 
 TODO list for this python-security documentation.
 
-* Christian Heimes asked to replace "discovered" with "reported".
-* Check commits of ``- name: "CVE-2014-9365: Validate TLS certificate (py2.7)"``
 * Get discovered date from Python bug report?
 * Get CVSS Score from the CVE?
 * Get Red Hat impact from a Red Hat URL?

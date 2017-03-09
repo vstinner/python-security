@@ -2,7 +2,7 @@
 
 - name: "CVE-2016-0772: smtplib TLS stripping"
   disclosure: 2016-06-11 (commit date)
-  discovered-at: 2016-02-01 (Red Hat issue reported)
+  reported-at: 2016-02-01 (Red Hat issue reported)
   reported-by: Tin (Team Oststrom)
   cvss-score: "5.8"
   links:
@@ -41,7 +41,7 @@
     - http://bugs.python.org/issue26556
     - https://sourceforge.net/p/expat/bugs/528/
   disclosure: "2016-03-14 (issue #26556 reported)"
-  discovered-at: "2015-07-24 (Expat issue #528 reported)"
+  reported-at: "2015-07-24 (Expat issue #528 reported)"
   reported-by: David Dillard (Expat issue), Christian Heimes (Python issue)
   fixed-in:
     - d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e # 2.7.12
