@@ -38,7 +38,7 @@
   links:
     - https://sourceforge.net/p/expat/bugs/528/
   reported-at: "2015-07-24 (Expat issue #528 reported)"
-  reported-by: David Dillard (Expat issue), Christian Heimes (Python issue)
+  reported-by: David Dillard (Expat issue)
   fixed-in:
     - d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e # 2.7.12
     - 196d7db3956f4c0b03e87b570771b3460a61bab5 # 3.4.5
@@ -152,8 +152,6 @@
   bpo: 16041
   links:
     - https://access.redhat.com/security/cve/cve-2013-1752
-  disclosure: "2012-09-25 (iIssue #16041 reported)"
-  reported-by: Christian Heimes
   redhat-impact: "Moderate"
   fixed-in:
    - faad6bbea6c86e30c770eb0a3648e2cd52b2e55e # 2.7
@@ -180,13 +178,12 @@
   fixed-in:
    - 6c939cb6f6dfbd273609577b0022542d31ae2802 # 2.7
    - 99b5afab74428e5ddfd877bdf3aa8a8c479696b1 # 3.2
-   # Add CVE in Misc/NEWS: 5e621176c4ec3cbd5102b9ca7441695832544123 # 3.2
   reported-by: Guido Vranken
   description: |
     Fix arbitrary memory access in ``JSONDecoder.raw_decode()`` with a negative
     second parameter.
 
-    Note: The issue #21529 was reported at 2014-05-19, after the commit.
+    Note: The issue #21529 was created at 2014-05-19, after the commit.
 
 - name: "Issue #28563: gettext.c2py()"
   bpo: 28563
@@ -202,7 +199,7 @@
     - https://httpoxy.org/
     - https://access.redhat.com/security/cve/cve-2016-1000110
   cvss-score: "5.0 (CVSS v3)"
-  reported-by: Scott Geary (HTTPoxy), Rémi Rampin (Python issue)
+  reported-by: Scott Geary (HTTPoxy)
   fixed-in:
    - 75d7b615ba70fc5759d16dee95bbd8f0474d8a9c # 2.7
    - 4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d # 3.3
@@ -254,7 +251,6 @@
 - name: "CVE-2012-2135: UTF-16 decoder"
   bpo: 14579
   disclosure: "2012-04-14"
-  reported-by: Serhiy Storchaka
   cvss-score: "6.4"
   fixed-in:
    - 715a63b78349952ccc0fb3dd3139e2d822006d35 # 2.7
@@ -323,8 +319,7 @@
     - https://sweet32.info/
     - https://www.openssl.org/blog/blog/2016/08/24/sweet32/
   disclosure: "2016-08-24 (end of the Sweet32 embargo)"
-  reported-by: >
-    Karthik Bhargavan and Gaetan Leurent (Sweet32), Christian Heimes (Python issue)
+  reported-by: Karthik Bhargavan and Gaetan Leurent (Sweet32)
   cvss-score: "5.0"
   fixed-in:
    - d988f429fe43808345812ef63dfa8da170c61871 # 2.7
