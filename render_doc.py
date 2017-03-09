@@ -354,9 +354,9 @@ class RenderDoc:
         self.commit_tags = CommitTags(python_path, tags_filename)
         self.python_releases = PythonReleases()
 
-    def main(self, filename):
+    def main(self, yaml_filename, filename):
         vulnerabilities = []
-        with open("vulnerabilities.yml", encoding="utf-8") as fp:
+        with open(yaml_filename, encoding="utf-8") as fp:
             for data in yaml.load(fp):
                 vuln = Vulnerability(self, data)
                 vulnerabilities.append(vuln)
@@ -490,10 +490,11 @@ class RenderDoc:
 
 
 if __name__ == "__main__":
-    filename = 'vulnerabilities.rst'
+    yaml_filename = "vulnerabilities.yaml"
+    rst_filename = 'vulnerabilities.rst'
     date_filename = 'commit_dates.txt'
     tags_filename = 'commit_tags.txt'
     python_path = '/home/haypo/prog/python/master'
 
     app = RenderDoc(python_path, date_filename, tags_filename)
-    app.main(filename)
+    app.main(yaml_filename, rst_filename)

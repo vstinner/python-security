@@ -13,7 +13,7 @@ doc: html
 venv:
 	./venv.sh
 
-vulnerabilities.rst: vulnerabilities.yml venv
+vulnerabilities.rst: vulnerabilities.yaml venv
 	./venv/bin/python render_doc.py
 
 html: vulnerabilities.rst
