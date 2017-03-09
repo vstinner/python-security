@@ -1,0 +1,157 @@
+1179:
+    author: Ismail Donmez
+    date: 2007-09-19.01:02:34.135
+    title: '[CVE-2007-4965] Integer overflow in imageop module'
+2254:
+    author: sumar
+    date: 2008-03-07.19:59:43.063
+    title: Python CGIHTTPServer information disclosure
+2620:
+    author: Justin Ferguson
+    date: 2008-04-11.22:35:34.407
+    title: Multiple buffer overflows in unicode processing
+6706:
+    author: Giampaolo Rodola'
+    date: 2009-08-14.23:03:34.855
+    title: asyncore's accept() is broken
+6791:
+    author: sumar
+    date: 2009-08-28.08:32:32.461
+    title: httplib read status memory usage
+7673:
+    author: STINNER Victor
+    date: 2010-01-11.01:05:03.678
+    title: 'audioop: check that length is a multiple of the size'
+8674:
+    author: Tomas Hoger
+    date: 2010-05-10.13:43:22.651
+    title: 'audioop: incorrect integer overflow checks'
+11442:
+    author: Guido van Rossum
+    date: 2011-03-08.19:05:14.954
+    title: list_directory() in SimpleHTTPServer.py should add charset=... to Content-type
+        header
+11662:
+    author: Guido van Rossum
+    date: 2011-03-24.15:06:56.972
+    title: Redirect vulnerability in urllib/urllib2
+13512:
+    author: Vincent Danen
+    date: 2011-11-30.23:23:22.338
+    title: ~/.pypirc created insecurely
+13703:
+    author: Barry A. Warsaw
+    date: 2012-01-03.19:36:49.543
+    title: Hash collision security issue
+13885:
+    author: Antoine Pitrou
+    date: 2012-01-27.08:25:52.527
+    title: 'CVE-2011-3389: _ssl module always disables the CBC IV attack countermeasure'
+14001:
+    author: Jan Lieskovsky
+    date: 2012-02-13.13:45:32.834
+    title: 'CVE-2012-0845 Python v2.7.2 / v3.2.2 (SimpleXMLRPCServer): DoS (excessive
+        CPU usage) by processing malformed XMLRPC / HTTP POST request'
+14579:
+    author: Serhiy Storchaka
+    date: 2012-04-14.18:46:02.834
+    title: 'CVE-2012-2135: Vulnerability in the utf-16 decoder after error handling'
+14621:
+    author: Vlado Boza
+    date: 2012-04-19.17:58:08.874
+    title: Hash function is not randomized properly
+16038:
+    author: Christian Heimes
+    date: 2012-09-25.10:32:54.388
+    title: 'ftplib: unlimited readline() from connection'
+16040:
+    author: Christian Heimes
+    date: 2012-09-25.10:38:44.757
+    title: 'nntplib: unlimited readline() from connection'
+16041:
+    author: Christian Heimes
+    date: 2012-09-25.10:39:22.625
+    title: 'poplib: unlimited readline() from connection'
+16042:
+    author: Christian Heimes
+    date: 2012-09-25.10:40:09.309
+    title: 'smtplib: unlimited readline() from connection'
+16043:
+    author: Christian Heimes
+    date: 2012-09-25.10:52:06.242
+    title: 'xmlrpc: gzip_decode has unlimited read()'
+17980:
+    author: Florian Weimer
+    date: 2013-05-15.10:25:06.260
+    title: "CVE-2013-2099 ssl.match_hostname() trips over crafted\twildcard names"
+17997:
+    author: Christian Heimes
+    date: 2013-05-17.14:04:53.621
+    title: 'ssl.match_hostname(): sub string wildcard should not match IDNA prefix'
+18709:
+    author: Christian Heimes
+    date: 2013-08-12.11:32:51.937
+    title: SSL module fails to handle NULL bytes inside subjectAltNames general names
+        (CVE-2013-4238)
+19435:
+    author: Alexander Kruppa
+    date: 2013-10-29.16:34:01.203
+    title: Directory traversal attack for CGIHTTPRequestHandler
+20078:
+    author: Nandiya
+    date: 2013-12-27.02:11:15.324
+    title: zipfile - ZipExtFile.read goes into 100% CPU infinite loop on maliciously
+        binary edited zips
+20246:
+    author: Ryan Smith-Roberts
+    date: 2014-01-14.00:43:59.073
+    title: buffer overflow in socket.recvfrom_into
+21082:
+    author: Ryan Lortie
+    date: 2014-03-28.07:04:05.588
+    title: 'os.makedirs(exist_ok=True) is not thread-safe: umask is set temporary
+        to 0, serious security problem'
+21529:
+    author: Benjamin Peterson
+    date: 2014-05-19.00:40:48.909
+    title: 'JSON module: reading arbitrary process memory'
+21831:
+    author: Benjamin Peterson
+    date: 2014-06-24.03:11:22.499
+    title: integer overflow in 'buffer' type allows reading memory
+22417:
+    author: Nick Coghlan
+    date: 2014-09-15.12:34:29.145
+    title: 'PEP 476: verify HTTPS certificates by default'
+22928:
+    author: Guido Vranken
+    date: 2014-11-24.02:50:23.165
+    title: HTTP header injection in urrlib2/urllib/httplib/http.client (CVE-2016-5699)
+26171:
+    author: Insu Yun
+    date: 2016-01-21.03:52:31.863
+    title: heap overflow in zipimporter module
+26556:
+    author: Christian Heimes
+    date: 2016-03-14.10:31:35.077
+    title: Update expat to 2.1.1
+26657:
+    author: Thomas
+    date: 2016-03-28.15:30:14.841
+    title: Directory traversal with http.server and SimpleHTTPServer on windows
+27568:
+    author: "R\xE9mi Rampin"
+    date: 2016-07-18.22:30:13.649
+    title: '"HTTPoxy", use of HTTP_PROXY flag supplied by attacker in CGI scripts'
+27845:
+    author: STINNER Victor
+    date: 2016-08-23.21:44:34.730
+    title: Optimize update_keyword_args() function
+27850:
+    author: Christian Heimes
+    date: 2016-08-24.13:43:47.563
+    title: Remove 3DES from cipher list (sweet32 CVE-2016-2183)
+28563:
+    author: Carl Ekerot
+    date: 2016-10-30.16:58:40.897
+    title: Arbitrary code execution in gettext.c2py

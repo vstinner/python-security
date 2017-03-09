@@ -4,16 +4,32 @@ import datetime
 import re
 import subprocess
 import sys
+import xmlrpc.client
 import yaml
 
 
 CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
 CVE_URL = 'http://www.cvedetails.com/cve/%s/'
 BPO_URL = 'https://bugs.python.org/issue%s'
+# FIXME: need login+password in BUGS_API, add a configuration file?
+# https://user:password@bugs.python.org/xmlrpc
+BUGS_API = 'https://bugs.python.org/xmlrpc'
+BUGS_DATE_REGEX = re.compile(r'<Date (.*)>')
+
+
+def load_yaml(filename):
+    with open(filename, encoding="utf-8") as fp:
+        return yaml.load(fp, Loader=yaml.SafeLoader)
+
+
+def dump_yaml(filename, data):
+    with open(filename, "w", encoding="utf-8") as fp:
+        return yaml.dump(data, fp, indent=4, default_flow_style=False)
 
 
 def timedelta_days(delta):
     return delta.days
+
 
 def parse_date(text):
     if isinstance(text, datetime.date):
@@ -226,20 +242,9 @@ class Fix:
 
 
 class DateComment:
-    def __init__(self, date):
-        self.comment = None
-        if isinstance(date, datetime.date):
-            self.date = date
-            return
-
-        # date is a string
-        date, _, comment = date.partition('(')
-        date = date.strip()
-        if comment:
-            if not comment.endswith(')'):
-                raise ValueError("date comment must be written in (...)")
-            self.comment = comment[:-1].strip()
-        self.date = parse_date(date)
+    def __init__(self, date, comment):
+        self.date = date
+        self.comment = comment
 
     def __str__(self):
         text = format_date(self.date)
@@ -248,22 +253,118 @@ class DateComment:
         return text
 
 
+def parse_date_comment(date):
+    comment = None
+    if isinstance(date, datetime.date):
+        return DateComment(date, comment)
+
+    # date is a string
+    date, _, comment = date.partition('(')
+    date = date.strip()
+    if comment:
+        if not comment.endswith(')'):
+            raise ValueError("date comment must be written in (...)")
+        comment = comment[:-1].strip()
+    date = parse_date(date)
+    return DateComment(date, comment)
+
+
+class PythonBugs:
+    def __init__(self, filename):
+        self.filename = filename
+        self.bugs = {}
+        self.load()
+
+    def load(self):
+        try:
+            bugs = load_yaml(self.filename)
+        except FileNotFoundError:
+            return
+        if not bugs:
+            return
+
+        for number, bug in bugs.items():
+            self.bugs[number] = bug
+
+    def download(self, number):
+        try:
+            return self.bugs[number]
+        except KeyError:
+            pass
+
+        print("Download issue #%s" % number)
+
+        bug = {}
+        server = xmlrpc.client.ServerProxy(BUGS_API, allow_none=True)
+        with server:
+            issue = server.display('issue%s' % number)
+            bug['title'] = issue['title']
+
+            msg = issue['messages'][0]
+            msg = server.display('msg%s' % msg)
+            match = BUGS_DATE_REGEX.match(msg['date'])
+            if not match:
+                raise Exception("unable to parse bug msg date: %r" % msg['date'])
+            bug['date'] = match.group(1)
+
+            user = server.display('user%s' % msg['author'], 'username', 'realname')
+            bug['author'] = user['realname'] or user['username']
+
+        self.bugs[number] = bug
+        self.dump()
+        return bug
+
+    def get_bug(self, number):
+        bug = self.download(number)
+
+        date = bug['date']
+        date = datetime.datetime.strptime(date[:11], "%Y-%m-%d.").date()
+        return PythonBug(number, bug['author'], bug['title'], date)
+
+    def dump(self):
+        data = self.bugs
+        dump_yaml(self.filename, data)
+
+
+class PythonBug:
+    def __init__(self, number, author, title, date):
+        self.number = number
+        self.author = author
+        self.date = date
+        self.title = title
+
+    def get_url(self):
+        return BPO_URL % self.number
+
+
 class Vulnerability:
     def __init__(self, app, data):
         self.name = data.pop('name')
         try:
-            self.parse(data)
+            self.parse(app, data)
         except KeyError as exc:
             raise Exception("failed to parse %r: missing key %s" % (self.name, exc))
         except Exception as exc:
             raise Exception("failed to parse %r: %s" % (self.name, exc))
 
-    def parse(self, data):
-        self.bpo = int(data.pop('bpo', 0))
-        self.disclosure = DateComment(data.pop('disclosure'))
+    def parse(self, app, data):
+        bpo = int(data.pop('bpo', 0))
+        if bpo:
+            self.python_bug = app.bugs.get_bug(bpo)
+        else:
+            self.python_bug = None
+        disclosure = data.pop('disclosure', None)
+        if disclosure:
+            self.disclosure = parse_date_comment(disclosure)
+        elif self.python_bug:
+            date = self.python_bug.date
+            comment = "issue #%s reported" % self.python_bug.number
+            self.disclosure = DateComment(date, comment)
+        else:
+            raise Exception("bug has no bpo no disclosure")
         reported_at = data.pop('reported-at', None)
         if reported_at is not None:
-            self.reported_at = DateComment(reported_at)
+            self.reported_at = parse_date_comment(reported_at)
         else:
             self.reported_at = None
         self.description = data.pop('description').strip()
@@ -272,13 +373,19 @@ class Vulnerability:
             self.links = []
         self.cvss_score = data.pop('cvss-score', None)
         self.redhat_impact = data.pop('redhat-impact', None)
-        self.reported_by = data.pop('reported-by')
-        if self.reported_by is not None:
-            self.reported_by = self.reported_by.strip()
 
-        if self.bpo:
-            url = BPO_URL % self.bpo
-            self.links.insert(0, url)
+        reported_by = data.pop('reported-by', None)
+        if reported_by is not None:
+            self.reported_by = reported_by.strip()
+            if not self.reported_by:
+                raise Exception("empty reported-by")
+        elif self.python_bug:
+            self.reported_by = self.python_bug.author
+        else:
+            raise Exception("no reported-by nor bpo")
+
+        if self.python_bug:
+            self.links.insert(0, self.python_bug.get_url())
 
         cves = set()
         for text in (self.name, self.description):
@@ -289,13 +396,13 @@ class Vulnerability:
             url = CVE_URL % cve
             self.links.append(url)
 
-        self.find_fixes(data)
+        self.find_fixes(app, data)
 
         if data:
             raise Exception("Vulnerability %r has unknown keys: %s"
                             % (self.name, ', '.join(sorted(data))))
 
-    def find_fixes(self, data):
+    def find_fixes(self, app, data):
         fixes = []
         ignore_python3 = data.pop('ignore-python3', None)
         commits = data.pop('fixed-in')
@@ -355,17 +462,17 @@ class PythonReleases:
 
 
 class RenderDoc:
-    def __init__(self, python_path, date_filename, tags_filename):
+    def __init__(self, python_path, date_filename, tags_filename, bugs_filename):
         self.commit_dates = CommitDates(python_path, date_filename)
         self.commit_tags = CommitTags(python_path, tags_filename)
         self.python_releases = PythonReleases()
+        self.bugs = PythonBugs(bugs_filename)
 
     def main(self, yaml_filename, filename):
         vulnerabilities = []
-        with open(yaml_filename, encoding="utf-8") as fp:
-            for data in yaml.load(fp):
-                vuln = Vulnerability(self, data)
-                vulnerabilities.append(vuln)
+        for data in load_yaml(yaml_filename):
+            vuln = Vulnerability(self, data)
+            vulnerabilities.append(vuln)
 
         vulnerabilities.sort(key=Vulnerability.sort_key)
 
@@ -444,6 +551,11 @@ class RenderDoc:
                 print("Information:", file=fp)
                 print(file=fp)
                 print("* Disclosure date: {}".format(vuln.disclosure), file=fp)
+                if vuln.python_bug:
+                    bug = vuln.python_bug
+                    text = ("`%s <%s>`_ reported by %s at %s"
+                            % (bug.title, bug.get_url(), bug.author, format_date(bug.date)))
+                    print("* Python bug: {}".format(text), file=fp)
                 if vuln.reported_at:
                     reported = vuln.reported_at
                     days = timedelta_days(vuln.reported_at.date - vuln.disclosure.date)
@@ -500,7 +612,8 @@ if __name__ == "__main__":
     rst_filename = 'vulnerabilities.rst'
     date_filename = 'commit_dates.txt'
     tags_filename = 'commit_tags.txt'
+    bugs_filename = 'bugs.txt'
     python_path = '/home/haypo/prog/python/master'
 
-    app = RenderDoc(python_path, date_filename, tags_filename)
+    app = RenderDoc(python_path, date_filename, tags_filename, bugs_filename)
     app.main(yaml_filename, rst_filename)
