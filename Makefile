@@ -7,17 +7,14 @@ BUILDDIR      = build
 
 .PHONY: html
 
-doc: html
-	make html
+html: vulnerabilities.rst
+	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 venv:
 	./venv.sh
 
 vulnerabilities.rst: render_doc.py vulnerabilities.yaml venv
 	./venv/bin/python render_doc.py
-
-html: vulnerabilities.rst
-	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 clean:
 	rm -rf vulnerabilities.rst build/ venv/
