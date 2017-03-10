@@ -34,6 +34,13 @@ def create_slug(name):
     return slug
 
 
+def try_mkdir(path):
+    try:
+        os.mkdir(path)
+    except FileExistsError:
+        pass
+
+
 def download(url):
     response = urllib.request.urlopen(url)
     with response:
@@ -397,10 +404,7 @@ class CVERegistry:
     def __init__(self, path):
         self.path = path
         self.cves = {}
-        try:
-            os.mkdir(self.path)
-        except FileExistsError:
-            pass
+        try_mkdir(self.path)
         self.load()
 
     def load_cve(self, number, filename):
@@ -682,7 +686,7 @@ def render_python_bug(fp, bug):
         return
 
     title = "Python issue #%s" % bug.number
-    render_title(fp, "Information", "-")
+    render_title(fp, title, "-")
 
     print("* `Python issue #%s <%s>`_:" % (bug.number, bug.get_url()), file=fp)
     print("* Creation date: %s" % format_date(bug.date), file=fp)
@@ -733,26 +737,54 @@ def render_links(fp, links):
     print(file=fp)
 
 
-def render_vuln(fp, vuln):
-    print(".. _%s:" % vuln.slug, file=fp)
+def render_vuln(filename, vuln):
+    with open(filename, "w", encoding="utf-8") as fp:
+        print(".. _%s:" % vuln.slug, file=fp)
+        print(file=fp)
+
+        render_title(fp, vuln.name, '=')
+
+        print(vuln.description, file=fp)
+        print(file=fp)
+
+        render_info(fp, vuln)
+        render_python_bug(fp, vuln.python_bug)
+        render_cve(fp, vuln.cve)
+        render_fixes(fp, vuln.fixes)
+        render_timeline(fp, vuln)
+        render_links(fp, vuln.links)
+
+
+def render_filenames(fp, filenames):
+    print("Table of Contents:", file=fp)
+    print(file=fp)
+    print(".. toctree::", file=fp)
+    print("   :maxdepth: 2", file=fp)
+    print(file=fp)
+    for filename in filenames:
+        name = os.path.splitext(filename)[0]
+        print("   %s" % name, file=fp)
     print(file=fp)
 
-    render_title(fp, vuln.name, '=')
 
-    print(vuln.description, file=fp)
-    print(file=fp)
+def render_table(fp, vulnerabilities):
+    headers = ['Vulnerability', 'Disclosure', 'Score', 'Fixed In']
+    table = []
+    sections = []
 
-    render_info(fp, vuln)
-    render_python_bug(fp, vuln.python_bug)
-    render_cve(fp, vuln.cve)
-    render_fixes(fp, vuln.fixes)
-    render_timeline(fp, vuln)
-    render_links(fp, vuln.links)
+    for vuln in vulnerabilities:
+        fixes = ['| ' + fix.python_version for fix in vuln.fixes]
 
-    print(file=fp)
+        name = "`%s <%s>`_" % (vuln.name, vuln.slug)
+        disclosure = format_date(vuln.disclosure.date)
+        if vuln.cve:
+            score = str(vuln.cve.cvss)
+        else:
+            score = vuln.redhat_impact or '?'
 
+        row = [name, disclosure, score, fixes]
+        table.append(row)
 
-def render_table(fp, headers, table):
     widths = [len(header) for header in headers]
     for row in table:
         for column, cell in enumerate(row):
@@ -798,44 +830,39 @@ def render_table(fp, headers, table):
 
 
 class RenderDoc:
-    def __init__(self, python_path, date_filename, tags_filename, bugs_filename, cve_path):
+    def __init__(self, python_path, date_filename, tags_filename, bugs_filename, cve_path, vuln_path):
         self.commit_dates = CommitDates(python_path, date_filename)
         self.commit_tags = CommitTags(python_path, tags_filename)
         self.python_releases = PythonReleases()
         self.bugs = PythonBugs(bugs_filename)
         self.cves = CVERegistry(cve_path)
+        self.vuln_path = vuln_path
 
-    def main(self, yaml_filename, filename):
+    def load_vulnerabilities(self, filename):
         vulnerabilities = []
-        for data in load_yaml(yaml_filename):
+        for data in load_yaml(filename):
             vuln = Vulnerability(self, data)
             vulnerabilities.append(vuln)
 
         vulnerabilities.sort(key=Vulnerability.sort_key)
+        return vulnerabilities
 
-        headers = ['Vulnerability', 'Disclosure', 'Score', 'Fixed In']
-        table = []
-        sections = []
+    def main(self, yaml_filename, output_filename):
+        vulnerabilities = self.load_vulnerabilities(yaml_filename)
 
-        for vuln in vulnerabilities:
-            fixes = ['| ' + fix.python_version for fix in vuln.fixes]
+        with open(output_filename, 'w', encoding='utf-8') as fp:
+            render_table(fp, vulnerabilities)
 
-            name = "`%s <%s>`_" % (vuln.name, vuln.slug)
-            disclosure = format_date(vuln.disclosure.date)
-            if vuln.cve:
-                score = str(vuln.cve.cvss)
-            else:
-                score = vuln.redhat_impact or '?'
-
-            row = [name, disclosure, score, fixes]
-            table.append(row)
-
-        with open(filename, 'w', encoding='utf-8') as fp:
-            render_table(fp, headers, table)
+            try_mkdir(self.vuln_path)
+            filenames = []
             for vuln in vulnerabilities:
-                render_vuln(fp, vuln)
+                filename = os.path.join(self.vuln_path, vuln.slug + '.rst')
+                render_vuln(filename, vuln)
+                filenames.append(filename)
 
-        print("{} generated".format(filename))
+            render_filenames(fp, filenames)
+
+        print("{} generated".format(output_filename))
 
 
 def main():
@@ -845,9 +872,10 @@ def main():
     tags_filename = 'commit_tags.txt'
     bugs_filename = 'bugs.txt'
     cve_path = 'cve'
+    vuln_path = 'vuln'
     python_path = '/home/haypo/prog/python/master'
 
-    app = RenderDoc(python_path, date_filename, tags_filename, bugs_filename, cve_path)
+    app = RenderDoc(python_path, date_filename, tags_filename, bugs_filename, cve_path, vuln_path)
     app.main(yaml_filename, rst_filename)
 
 
