@@ -742,7 +742,7 @@ def render_fixes(fp, fixes):
         url = commit_url(fix.commit)
         commit_date = format_date(fix.commit_date)
 
-        print("* **{}**: {}, `commit {} <{}>`_ ({})".format(fix.python_version, date, short, url, commit_date),
+        print("* Python **{}**: {}, `commit {} <{}>`_ ({})".format(fix.python_version, date, short, url, commit_date),
               file=fp)
     print(file=fp)
 
