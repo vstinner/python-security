@@ -171,3 +171,5 @@ Links
 * `Python CVEs (cvedetails.com)
   <http://www.cvedetails.com/product/18230/Python-Python.html?vendor_id=10210>`_
 * https://github.com/pyupio/safety-db and https://pyup.io/
+* `owasp-pysec: OWASP Python Security Project
+  <https://github.com/ebranca/owasp-pysec>`_
