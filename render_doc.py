@@ -485,9 +485,7 @@ class Vulnerability:
         if disclosure:
             self.disclosure = parse_date_comment(disclosure)
         elif self.python_bug:
-            date = self.python_bug.date
-            comment = "issue #%s reported" % self.python_bug.number
-            self.disclosure = DateComment(date, comment)
+            self.disclosure = None
         else:
             raise Exception("bug has no bpo no disclosure")
         reported_at = data.pop('reported-at', None)
@@ -569,9 +567,15 @@ class Vulnerability:
                 major = pyver_info[0]
             self.fixes.append(fix)
 
+    def get_disclosure_date(self):
+        if self.disclosure:
+            return self.disclosure.date
+        else:
+            return self.python_bug.date
+
     @staticmethod
     def sort_key(vuln):
-        date = datetime.date.min - vuln.disclosure.date
+        date = datetime.date.min - vuln.get_disclosure_date()
         return (date, vuln.name)
 
 
@@ -607,19 +611,21 @@ def render_title(fp, title, line='='):
 def render_timeline(fp, vuln):
     render_title(fp, "Timeline", "-")
 
-    day0 = vuln.disclosure.date
+    day0 = vuln.get_disclosure_date()
 
     dates = []
-    text = "Disclosure date"
-    if vuln.disclosure.comment:
-        text = '%s (%s)' % (text, vuln.disclosure.comment)
-    dates.append((vuln.disclosure.date, False, text))
+
+    if vuln.disclosure:
+        text = "Disclosure date"
+        if vuln.disclosure.comment:
+            text = '%s (%s)' % (text, vuln.disclosure.comment)
+        dates.append((vuln.disclosure.date, False, text))
 
     if vuln.python_bug:
         bug = vuln.python_bug
-        text = ("Python issue #%s `%s <%s>`_ reported by %s"
-                % (bug.number, bug.title, bug.get_url(), bug.author))
-        dates.append((bug.date, True, text))
+        text = ("`Python issue #%s <%s>`_ reported by %s"
+                % (bug.number, bug.get_url(), bug.author))
+        dates.append((bug.date, bool(vuln.disclosure), text))
 
     cve = vuln.cve
     if cve:
@@ -656,11 +662,14 @@ def render_timeline(fp, vuln):
 
     dates.sort()
 
+    print("Timeline using disclosure date **%s** as referene:" % (format_date(day0)), file=fp)
+    print(file=fp)
+
     for date, show_days, text in dates:
         days = timedelta_days(date - day0)
         date = format_date(date)
         if show_days:
-            date = "%s (%+i days)" % (date, days)
+            date = "%s (**%+i days**)" % (date, days)
         print("* %s: %s" % (date, text), file=fp)
     print(file=fp)
 
@@ -668,10 +677,18 @@ def render_timeline(fp, vuln):
 def render_info(fp, vuln):
     render_title(fp, "Information", "-")
 
-    text = "**%s**" % format_date(vuln.disclosure.date)
-    if vuln.disclosure.comment:
-        text = "%s (%s)" % (text, vuln.disclosure.comment)
+    if vuln.disclosure:
+        date = vuln.disclosure.date
+        comment = vuln.disclosure.comment
+    else:
+        date = vuln.python_bug.date
+        comment = "issue #%s reported" % vuln.python_bug.number
+
+    text = "**%s**" % format_date(date)
+    if comment:
+        text = "%s (%s)" % (text, comment)
     print("* Disclosure date: %s" % text, file=fp)
+
     if vuln.reported_at:
         print("* Reported at: {}".format(vuln.reported_at), file=fp)
     if vuln.reported_by:
@@ -685,10 +702,10 @@ def render_python_bug(fp, bug):
     if not bug:
         return
 
-    title = "Python issue #%s" % bug.number
+    title = "Python issue"
     render_title(fp, title, "-")
 
-    print("* `Python issue #%s <%s>`_:" % (bug.number, bug.get_url()), file=fp)
+    print("* Issue: `Python issue #%s <%s>`_" % (bug.number, bug.get_url()), file=fp)
     print("* Creation date: %s" % format_date(bug.date), file=fp)
     print("* Title: %s" % bug.title, file=fp)
     print("* Reporter: %s" % bug.author, file=fp)
@@ -702,7 +719,7 @@ def render_cve(fp, cve):
     render_title(fp, cve.number, "-")
 
     url = CVE_URL % cve.number
-    print("* `%s <%s>`_:" % (cve.number, url), file=fp)
+    print("* CVE ID: `%s <%s>`_" % (cve.number, url), file=fp)
     print("* Published: %s" % format_date(cve.published), file=fp)
     print("* Summary: {}".format(cve.summary), file=fp)
     print("* `CVSS Score <%s>`_: %s" % (CVSS_SCORE_URL, cve.cvss), file=fp)
@@ -776,7 +793,7 @@ def render_table(fp, vulnerabilities):
         fixes = ['| ' + fix.python_version for fix in vuln.fixes]
 
         name = "`%s <%s>`_" % (vuln.name, vuln.slug)
-        disclosure = format_date(vuln.disclosure.date)
+        disclosure = format_date(vuln.get_disclosure_date())
         if vuln.cve:
             score = str(vuln.cve.cvss)
         else:
