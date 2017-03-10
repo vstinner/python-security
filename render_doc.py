@@ -16,10 +16,22 @@ CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
 CVE_URL = 'https://www.cvedetails.com/cve/%s/'
 CVE_API = 'http://cve.circl.lu/api/cve/%s'
 BPO_URL = 'https://bugs.python.org/issue%s'
+CVSS_SCORE_URL = 'https://nvd.nist.gov/cvss.cfm'
+RED_HAT_IMPACT_URL = 'https://access.redhat.com/security/updates/classification/'
 # FIXME: need login+password in BUGS_API, add a configuration file?
 # https://user:password@bugs.python.org/xmlrpc
 BUGS_API = 'https://bugs.python.org/xmlrpc'
 BUGS_DATE_REGEX = re.compile(r'<Date (.*)>')
+
+
+def create_slug(name):
+    slug = name.lower()
+    slug = re.sub(r'[#(),]', '', slug)
+    slug = re.sub(r'[ :]', '_', slug)
+    slug = re.sub(r'__+', '_', slug)
+    if not re.match('^[a-z0-9._-]+$', slug):
+        raise ValueError("invalid slug: %r" % slug)
+    return slug
 
 
 def download(url):
@@ -457,6 +469,7 @@ class Vulnerability:
             raise Exception("failed to parse %r: missing key %s" % (self.name, exc))
         except Exception as exc:
             raise Exception("failed to parse %r: %s" % (self.name, exc))
+        self.slug = create_slug(self.name)
 
     def parse(self, app, data):
         bpo = int(data.pop('bpo', 0))
@@ -581,10 +594,14 @@ class PythonReleases:
             raise KeyError("missing release date of Python %s" % version)
 
 
+def render_title(fp, title, line='='):
+    print(title, file=fp)
+    print(line * len(title), file=fp)
+    print(file=fp)
+
+
 def render_timeline(fp, vuln):
-    print(file=fp)
-    print("Timeline:", file=fp)
-    print(file=fp)
+    render_title(fp, "Timeline", "-")
 
     day0 = vuln.disclosure.date
 
@@ -593,6 +610,12 @@ def render_timeline(fp, vuln):
     if vuln.disclosure.comment:
         text = '%s (%s)' % (text, vuln.disclosure.comment)
     dates.append((vuln.disclosure.date, False, text))
+
+    if vuln.python_bug:
+        bug = vuln.python_bug
+        text = ("Python issue #%s `%s <%s>`_ reported by %s"
+                % (bug.number, bug.title, bug.get_url(), bug.author))
+        dates.append((bug.date, True, text))
 
     cve = vuln.cve
     if cve:
@@ -635,6 +658,144 @@ def render_timeline(fp, vuln):
         if show_days:
             date = "%s (%+i days)" % (date, days)
         print("* %s: %s" % (date, text), file=fp)
+    print(file=fp)
+
+
+def render_info(fp, vuln):
+    render_title(fp, "Information", "-")
+
+    text = "**%s**" % format_date(vuln.disclosure.date)
+    if vuln.disclosure.comment:
+        text = "%s (%s)" % (text, vuln.disclosure.comment)
+    print("* Disclosure date: %s" % text, file=fp)
+    if vuln.reported_at:
+        print("* Reported at: {}".format(vuln.reported_at), file=fp)
+    if vuln.reported_by:
+        print("* Reported by: {}".format(vuln.reported_by), file=fp)
+    if vuln.redhat_impact:
+        print("* `Red Hat impact <%s>`_: %s" % (RED_HAT_IMPACT_URL, vuln.redhat_impact), file=fp)
+    print(file=fp)
+
+
+def render_python_bug(fp, bug):
+    if not bug:
+        return
+
+    title = "Python issue #%s" % bug.number
+    render_title(fp, "Information", "-")
+
+    print("* `Python issue #%s <%s>`_:" % (bug.number, bug.get_url()), file=fp)
+    print("* Creation date: %s" % format_date(bug.date), file=fp)
+    print("* Title: %s" % bug.title, file=fp)
+    print("* Reporter: %s" % bug.author, file=fp)
+    print(file=fp)
+
+
+def render_cve(fp, cve):
+    if not cve:
+        return
+
+    render_title(fp, cve.number, "-")
+
+    url = CVE_URL % cve.number
+    print("* `%s <%s>`_:" % (cve.number, url), file=fp)
+    print("* Published: %s" % format_date(cve.published), file=fp)
+    print("* Summary: {}".format(cve.summary), file=fp)
+    print("* `CVSS Score <%s>`_: %s" % (CVSS_SCORE_URL, cve.cvss), file=fp)
+    print(file=fp)
+
+
+def render_fixes(fp, fixes):
+    if not fixes:
+        return
+
+    render_title(fp, "Fixed In", "-")
+
+    for index, fix in enumerate(fixes):
+        short = short_commit(fix.commit)
+        date = format_date(fix.release_date)
+        url = commit_url(fix.commit)
+        commit_date = format_date(fix.commit_date)
+
+        print("* **{}**: {}, `commit {} <{}>`_ ({})".format(fix.python_version, date, short, url, commit_date),
+              file=fp)
+    print(file=fp)
+
+
+def render_links(fp, links):
+    if not links:
+        return
+
+    render_title(fp, "Links", "-")
+
+    for link in links:
+        print("* %s" % link, file=fp)
+    print(file=fp)
+
+
+def render_vuln(fp, vuln):
+    print(".. _%s:" % vuln.slug, file=fp)
+    print(file=fp)
+
+    render_title(fp, vuln.name, '=')
+
+    print(vuln.description, file=fp)
+    print(file=fp)
+
+    render_info(fp, vuln)
+    render_python_bug(fp, vuln.python_bug)
+    render_cve(fp, vuln.cve)
+    render_fixes(fp, vuln.fixes)
+    render_timeline(fp, vuln)
+    render_links(fp, vuln.links)
+
+    print(file=fp)
+
+
+def render_table(fp, headers, table):
+    widths = [len(header) for header in headers]
+    for row in table:
+        for column, cell in enumerate(row):
+            if isinstance(cell, str):
+                cell_len = len(cell)
+            else:
+                cell_len = max(len(subcell) for subcell in cell)
+            widths[column] = max(widths[column], cell_len)
+
+    title = 'Security vulnerabilities'
+    print("+" * len(title), file=fp)
+    print(title, file=fp)
+    print("+" * len(title), file=fp)
+    print(file=fp)
+
+    def table_line(char='-'):
+        parts = ['']
+        for width in widths:
+            parts.append(char * (width + 2))
+        parts.append('')
+        return '+'.join(parts)
+
+    def table_row(row):
+        parts = ['']
+        for width, cell in zip(widths, row):
+            parts.append(' %s ' % cell.ljust(width))
+        parts.append('')
+        return '|'.join(parts)
+
+    print("Total: %s vulnerabilities." % len(table), file=fp)
+    print(file=fp)
+    print(table_line('-'), file=fp)
+    print(table_row(headers), file=fp)
+    print(table_line('='), file=fp)
+    for row in table:
+        print(table_row(row[:-1] + [row[-1][0]]), file=fp)
+        for fix in row[-1][1:]:
+            print(table_row([''] * (len(headers) - 1) + [fix]), file=fp)
+        print(table_line('-'), file=fp)
+    print(file=fp)
+    print(file=fp)
+
+
 
 class RenderDoc:
     def __init__(self, python_path, date_filename, tags_filename, bugs_filename, cve_path):
@@ -659,7 +820,7 @@ class RenderDoc:
         for vuln in vulnerabilities:
             fixes = ['| ' + fix.python_version for fix in vuln.fixes]
 
-            name = "`%s`_" % vuln.name
+            name = "`%s <%s>`_" % (vuln.name, vuln.slug)
             disclosure = format_date(vuln.disclosure.date)
             if vuln.cve:
                 score = str(vuln.cve.cvss)
@@ -669,133 +830,10 @@ class RenderDoc:
             row = [name, disclosure, score, fixes]
             table.append(row)
 
-        widths = [len(header) for header in headers]
-        for row in table:
-            for column, cell in enumerate(row):
-                if isinstance(cell, str):
-                    cell_len = len(cell)
-                else:
-                    cell_len = max(len(subcell) for subcell in cell)
-                widths[column] = max(widths[column], cell_len)
-
         with open(filename, 'w', encoding='utf-8') as fp:
-            title = 'Security vulnerabilities'
-            print("+" * len(title), file=fp)
-            print(title, file=fp)
-            print("+" * len(title), file=fp)
-            print(file=fp)
-
-            def table_line(char='-'):
-                parts = ['']
-                for width in widths:
-                    parts.append(char * (width + 2))
-                parts.append('')
-                return '+'.join(parts)
-
-            def table_row(row):
-                parts = ['']
-                for width, cell in zip(widths, row):
-                    parts.append(' %s ' % cell.ljust(width))
-                parts.append('')
-                return '|'.join(parts)
-
-            print(table_line('-'), file=fp)
-            print(table_row(headers), file=fp)
-            print(table_line('='), file=fp)
-            for row in table:
-                print(table_row(row[:-1] + [row[-1][0]]), file=fp)
-                for fix in row[-1][1:]:
-                    print(table_row([''] * (len(headers) - 1) + [fix]), file=fp)
-                print(table_line('-'), file=fp)
-            print(file=fp)
-
-            print("Total: %s vulnerabilities" % len(table), file=fp)
-            print(file=fp)
-            print("* Vulnerabilities sorted by the Disclosure column", file=fp)
-            print("* Disclosure: Disclosure date, first time that the vulnerability was public", file=fp)
-            print("* `CVSS Score <https://nvd.nist.gov/cvss.cfm>`_", file=fp)
-            print("* `Red Hat impact <https://access.redhat.com/security/updates/classification/>`_", file=fp)
-
+            render_table(fp, headers, table)
             for vuln in vulnerabilities:
-                print(file=fp)
-                print(file=fp)
-
-                title = vuln.name
-                print(title, file=fp)
-                print("=" * len(title), file=fp)
-                print(file=fp)
-                print(vuln.description, file=fp)
-                print(file=fp)
-
-                print("Information:", file=fp)
-                print(file=fp)
-                text = "**%s**" % format_date(vuln.disclosure.date)
-                if vuln.disclosure.comment:
-                    text = "%s (%s)" % (text, vuln.disclosure.comment)
-                print("* Disclosure date: %s" % text, file=fp)
-                if vuln.python_bug:
-                    bug = vuln.python_bug
-                    text = ("`%s <%s>`_ reported by %s at %s"
-                            % (bug.title, bug.get_url(), bug.author, format_date(bug.date)))
-                    print("* Python bug: {}".format(text), file=fp)
-                if vuln.reported_at:
-                    reported = vuln.reported_at
-                    days = timedelta_days(vuln.reported_at.date - vuln.disclosure.date)
-                    if days:
-                        reported = "%s (%+i days)" % (reported, days)
-                    print("* Reported at: {}".format(reported), file=fp)
-                if vuln.reported_by:
-                    print("* Reported by: {}".format(vuln.reported_by), file=fp)
-                if vuln.redhat_impact:
-                    print("* `Red Hat impact`_: {}".format(vuln.redhat_impact), file=fp)
-
-                if vuln.cve:
-                    cve = vuln.cve
-                    print(file=fp)
-                    url = CVE_URL % cve.number
-                    print("`%s <%s>`_:" % (cve.number, url), file=fp)
-                    print(file=fp)
-                    days = timedelta_days(cve.published - vuln.disclosure.date)
-                    print("* Published: %s (%+i days)" % (format_date(cve.published), days), file=fp)
-                    print("* Summary: {}".format(cve.summary), file=fp)
-                    print("* `CVSS Score`_: {}".format(cve.cvss), file=fp)
-
-                if vuln.fixes:
-                    print(file=fp)
-                    print("Fixed In:", file=fp)
-                    print(file=fp)
-                    for index, fix in enumerate(vuln.fixes):
-                        short = short_commit(fix.commit)
-                        date = format_date(fix.release_date)
-                        url = commit_url(fix.commit)
-                        days = timedelta_days(fix.release_date - vuln.disclosure.date)
-                        commit_date = format_date(fix.commit_date)
-                        commit_days = timedelta_days(fix.commit_date - vuln.disclosure.date)
-                        pyver_info = version_info(fix.python_version)
-
-                        version = fix.python_version
-                        commit = "`commit {} <{}>`_".format(short, url)
-
-                        # Don't show the date/days fort 3.x.0 releases, except
-                        # if it's the first (and so the only) version having
-                        # the fix (ex: CVE-2013-7040)
-                        if pyver_info[2] != 0 or index == 0:
-                            date = "%s (%+i days)" % (date, days)
-                            commit = "%s (%s, %+i days)" % (commit, commit_date, commit_days)
-                        else:
-                            commit = "{} ({})".format(commit, commit_date)
-                        print("* **{}**: {}, {}".format(version, date, commit),
-                              file=fp)
-
-                render_timeline(fp, vuln)
-
-                links = vuln.links
-                if links:
-                    print(file=fp)
-                    print("Links:", file=fp)
-                    print(file=fp)
-                    for link in links:
-                        print("* %s" % link, file=fp)
+                render_vuln(fp, vuln)
 
         print("{} generated".format(filename))
 
