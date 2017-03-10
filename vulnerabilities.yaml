@@ -54,7 +54,7 @@
   cve: CVE-2016-5699
   bpo: 22928
   links:
-    - https://access.redhat.com/security/cve/cve-2014-4616
+    - http://blog.blindspotsecurity.com/2016/06/advisory-http-header-injection-in.html
   redhat-impact: "Moderate"
   fixed-in:
     - 59bdf6392de446de8a19bfa37cee52981612830e # 2.7.10
@@ -68,6 +68,9 @@
     in ``urllib2`` and ``urllib`` in CPython before 2.7.10 and 3.x before 3.4.4
     allows remote attackers to inject arbitrary HTTP headers via CRLF sequences
     in a URL.
+
+    Reported again in January 2016 by Timothy D. Morgan (Blindspot Security),
+    with a full disclosed at 2016-06-15.
 
 - name: "Hash DoS"
   cve: CVE-2012-1150
@@ -182,6 +185,8 @@
   bpo: 21529
   disclosure: "2014-04-13 (commit)"
   redhat-impact: "Moderate"
+  links:
+    - https://access.redhat.com/security/cve/cve-2014-4616
   fixed-in:
    - 6c939cb6f6dfbd273609577b0022542d31ae2802 # 2.7
    - 99b5afab74428e5ddfd877bdf3aa8a8c479696b1 # 3.2
