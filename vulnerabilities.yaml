@@ -387,7 +387,7 @@
     ``os.makedirs(exist_ok=True)`` is not thread-safe: umask is set temporary
     to ``0``, serious security problem.
 
-    Remove directory mode check from ``os.makedirs()``.
+    The fix removes the directory mode check from ``os.makedirs()``.
 
     The ``exist_ok`` parameter was added to Python 3.2.0 (commit
     5a22b651173f142a600625a036fcf36484ade237).

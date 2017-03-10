@@ -505,7 +505,7 @@ class Vulnerability:
             if not self.reported_by:
                 raise Exception("empty reported-by")
         elif self.python_bug:
-            self.reported_by = self.python_bug.author
+            self.reported_by = None
         else:
             raise Exception("no reported-by nor bpo")
 
@@ -662,7 +662,8 @@ def render_timeline(fp, vuln):
 
     dates.sort()
 
-    print("Timeline using disclosure date **%s** as referene:" % (format_date(day0)), file=fp)
+    print("Timeline using the disclosure date **%s** as reference:"
+          % (format_date(day0)), file=fp)
     print(file=fp)
 
     for date, show_days, text in dates:
@@ -675,8 +676,6 @@ def render_timeline(fp, vuln):
 
 
 def render_info(fp, vuln):
-    render_title(fp, "Information", "-")
-
     if vuln.disclosure:
         date = vuln.disclosure.date
         comment = vuln.disclosure.comment
@@ -702,12 +701,15 @@ def render_python_bug(fp, bug):
     if not bug:
         return
 
-    title = "Python issue"
-    render_title(fp, title, "-")
+    render_title(fp, "Python issue", "-")
 
+    text = bug.title
+    if not text.endswith('.'):
+        text += '.'
+    print(text, file=fp)
+    print(file=fp)
     print("* Issue: `Python issue #%s <%s>`_" % (bug.number, bug.get_url()), file=fp)
     print("* Creation date: %s" % format_date(bug.date), file=fp)
-    print("* Title: %s" % bug.title, file=fp)
     print("* Reporter: %s" % bug.author, file=fp)
     print(file=fp)
 
@@ -718,10 +720,12 @@ def render_cve(fp, cve):
 
     render_title(fp, cve.number, "-")
 
+    print(cve.summary, file=fp)
+    print(file=fp)
+
     url = CVE_URL % cve.number
     print("* CVE ID: `%s <%s>`_" % (cve.number, url), file=fp)
     print("* Published: %s" % format_date(cve.published), file=fp)
-    print("* Summary: {}".format(cve.summary), file=fp)
     print("* `CVSS Score <%s>`_: %s" % (CVSS_SCORE_URL, cve.cvss), file=fp)
     print(file=fp)
 
@@ -763,8 +767,8 @@ def render_vuln(filename, vuln):
 
         print(vuln.description, file=fp)
         print(file=fp)
-
         render_info(fp, vuln)
+
         render_python_bug(fp, vuln.python_bug)
         render_cve(fp, vuln.cve)
         render_fixes(fp, vuln.fixes)
