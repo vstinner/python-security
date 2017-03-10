@@ -9,7 +9,7 @@ import yaml
 
 
 CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
-CVE_URL = 'http://www.cvedetails.com/cve/%s/'
+CVE_URL = 'https://www.cvedetails.com/cve/%s/'
 BPO_URL = 'https://bugs.python.org/issue%s'
 # FIXME: need login+password in BUGS_API, add a configuration file?
 # https://user:password@bugs.python.org/xmlrpc
