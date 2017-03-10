@@ -494,9 +494,6 @@ class Vulnerability:
         else:
             raise Exception("no reported-by nor bpo")
 
-        if self.python_bug:
-            self.links.insert(0, self.python_bug.get_url())
-
         # CVE
         cves = set()
 
@@ -583,6 +580,61 @@ class PythonReleases:
         except KeyError:
             raise KeyError("missing release date of Python %s" % version)
 
+
+def render_timeline(fp, vuln):
+    print(file=fp)
+    print("Timeline:", file=fp)
+    print(file=fp)
+
+    day0 = vuln.disclosure.date
+
+    dates = []
+    text = "Disclosure date"
+    if vuln.disclosure.comment:
+        text = '%s (%s)' % (text, vuln.disclosure.comment)
+    dates.append((vuln.disclosure.date, False, text))
+
+    cve = vuln.cve
+    if cve:
+        text = "%s published" % cve.number
+        dates.append((cve.published, True, text))
+
+    if vuln.reported_at:
+        text = "Reported"
+        if vuln.reported_at.comment:
+            text = '%s (%s)' % (text, vuln.reported_at.comment)
+        dates.append((vuln.reported_at.date, True, text))
+
+    commit_seen = set()
+    for fix in vuln.fixes:
+        if fix.commit in commit_seen:
+            continue
+        commit_seen.add(fix.commit)
+
+        short = short_commit(fix.commit)
+        url = commit_url(fix.commit)
+        text = "`commit {} <{}>`_".format(short, url)
+
+        dates.append((fix.commit_date, True, text))
+
+    for index, fix in enumerate(vuln.fixes):
+        pyver_info = version_info(fix.python_version)
+        # Don't show the date/days fort 3.x.0 releases, except
+        # if it's the first (and so the only) version having
+        # the fix (ex: CVE-2013-7040)
+        show_days = (pyver_info[2] != 0 or index == 0)
+
+        text = "Python %s released" % fix.python_version
+        dates.append((fix.release_date, show_days, text))
+
+    dates.sort()
+
+    for date, show_days, text in dates:
+        days = timedelta_days(date - day0)
+        date = format_date(date)
+        if show_days:
+            date = "%s (%+i days)" % (date, days)
+        print("* %s: %s" % (date, text), file=fp)
 
 class RenderDoc:
     def __init__(self, python_path, date_filename, tags_filename, bugs_filename, cve_path):
@@ -677,7 +729,10 @@ class RenderDoc:
 
                 print("Information:", file=fp)
                 print(file=fp)
-                print("* Disclosure date: {}".format(vuln.disclosure), file=fp)
+                text = "**%s**" % format_date(vuln.disclosure.date)
+                if vuln.disclosure.comment:
+                    text = "%s (%s)" % (text, vuln.disclosure.comment)
+                print("* Disclosure date: %s" % text, file=fp)
                 if vuln.python_bug:
                     bug = vuln.python_bug
                     text = ("`%s <%s>`_ reported by %s at %s"
@@ -687,7 +742,7 @@ class RenderDoc:
                     reported = vuln.reported_at
                     days = timedelta_days(vuln.reported_at.date - vuln.disclosure.date)
                     if days:
-                        reported = "{} ({} days)".format(reported, days)
+                        reported = "%s (%+i days)" % (reported, days)
                     print("* Reported at: {}".format(reported), file=fp)
                 if vuln.reported_by:
                     print("* Reported by: {}".format(vuln.reported_by), file=fp)
@@ -701,7 +756,7 @@ class RenderDoc:
                     print("`%s <%s>`_:" % (cve.number, url), file=fp)
                     print(file=fp)
                     days = timedelta_days(cve.published - vuln.disclosure.date)
-                    print("* Published: {} ({} days)".format(format_date(cve.published), days), file=fp)
+                    print("* Published: %s (%+i days)" % (format_date(cve.published), days), file=fp)
                     print("* Summary: {}".format(cve.summary), file=fp)
                     print("* `CVSS Score`_: {}".format(cve.cvss), file=fp)
 
@@ -725,12 +780,14 @@ class RenderDoc:
                         # if it's the first (and so the only) version having
                         # the fix (ex: CVE-2013-7040)
                         if pyver_info[2] != 0 or index == 0:
-                            date = "{} ({} days)".format(date, days)
-                            commit = "{} ({}, {} days)".format(commit, commit_date, commit_days)
+                            date = "%s (%+i days)" % (date, days)
+                            commit = "%s (%s, %+i days)" % (commit, commit_date, commit_days)
                         else:
                             commit = "{} ({})".format(commit, commit_date)
-                        print("* {}: {}, {}".format(version, date, commit),
+                        print("* **{}**: {}, {}".format(version, date, commit),
                               file=fp)
+
+                render_timeline(fp, vuln)
 
                 links = vuln.links
                 if links:
