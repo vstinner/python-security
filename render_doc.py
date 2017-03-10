@@ -681,7 +681,7 @@ def render_info(fp, vuln):
         comment = vuln.disclosure.comment
     else:
         date = vuln.python_bug.date
-        comment = "issue #%s reported" % vuln.python_bug.number
+        comment = "Python issue #%s reported" % vuln.python_bug.number
 
     text = "**%s**" % format_date(date)
     if comment:
@@ -708,7 +708,7 @@ def render_python_bug(fp, bug):
         text += '.'
     print(text, file=fp)
     print(file=fp)
-    print("* Issue: `Python issue #%s <%s>`_" % (bug.number, bug.get_url()), file=fp)
+    print("* Python issue: `issue #%s <%s>`_" % (bug.number, bug.get_url()), file=fp)
     print("* Creation date: %s" % format_date(bug.date), file=fp)
     print("* Reporter: %s" % bug.author, file=fp)
     print(file=fp)
@@ -742,7 +742,7 @@ def render_fixes(fp, fixes):
         url = commit_url(fix.commit)
         commit_date = format_date(fix.commit_date)
 
-        print("* Python **{}**: {}, `commit {} <{}>`_ ({})".format(fix.python_version, date, short, url, commit_date),
+        print("* Python **{}** ({}) fixed by `commit {} <{}>`_ ({})".format(fix.python_version, date, short, url, commit_date),
               file=fp)
     print(file=fp)
 
@@ -769,9 +769,9 @@ def render_vuln(filename, vuln):
         print(file=fp)
         render_info(fp, vuln)
 
+        render_fixes(fp, vuln.fixes)
         render_python_bug(fp, vuln.python_bug)
         render_cve(fp, vuln.cve)
-        render_fixes(fp, vuln.fixes)
         render_timeline(fp, vuln)
         render_links(fp, vuln.links)
 
@@ -796,7 +796,7 @@ def render_table(fp, vulnerabilities):
     for vuln in vulnerabilities:
         fixes = ['| ' + fix.python_version for fix in vuln.fixes]
 
-        name = "`%s <%s>`_" % (vuln.name, vuln.slug)
+        name = ":ref:`%s <%s>`" % (vuln.name, vuln.slug)
         disclosure = format_date(vuln.get_disclosure_date())
         if vuln.cve:
             score = str(vuln.cve.cvss)
