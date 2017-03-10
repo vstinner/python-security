@@ -1,20 +1,41 @@
 #!/usr/bin/env python3
 import argparse
 import datetime
+import glob
+import json
+import os.path
 import re
 import subprocess
 import sys
+import urllib.request
 import xmlrpc.client
 import yaml
 
 
 CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
 CVE_URL = 'https://www.cvedetails.com/cve/%s/'
+CVE_API = 'http://cve.circl.lu/api/cve/%s'
 BPO_URL = 'https://bugs.python.org/issue%s'
 # FIXME: need login+password in BUGS_API, add a configuration file?
 # https://user:password@bugs.python.org/xmlrpc
 BUGS_API = 'https://bugs.python.org/xmlrpc'
 BUGS_DATE_REGEX = re.compile(r'<Date (.*)>')
+
+
+def download(url):
+    response = urllib.request.urlopen(url)
+    with response:
+        return response.read()
+
+
+def load_json(filename):
+    with open(filename, encoding="utf-8") as fp:
+        return json.load(fp)
+
+
+def dump_json(filename, data):
+    with open(filename, "w", encoding="utf-8") as fp:
+        return json.dump(data, fp, sort_keys=True, indent=4)
 
 
 def load_yaml(filename):
@@ -37,11 +58,34 @@ def parse_date(text):
 
     try:
         dt = datetime.datetime.strptime(text, "%Y-%m-%d")
+        return dt.date()
     except ValueError:
+        pass
+
+    try:
         # Mon Apr 18 03:45:18 2016 +0000
         dt = datetime.datetime.strptime(text, "%a %b %d %H:%M:%S %Y %z")
         dt = (dt - dt.utcoffset()).replace(tzinfo=datetime.timezone.utc)
-    return dt.date()
+        return dt.date()
+    except ValueError:
+        pass
+
+    try:
+        # CVE date: 2016-09-02T10:59:00.127-04:00
+        if len(text) == 29 and text.count('.') == 1:
+            text2 = re.sub(r'\.[0-9]{3}', '', text)
+            def replace_timezone(regs):
+                text = regs.group(0)
+                return text[:2] + text[3:]
+            text2 = re.sub(r'[0-9]{2}:[0-9]{2}$', replace_timezone, text2)
+
+            dt = datetime.datetime.strptime(text2, "%Y-%m-%dT%H:%M:%S%z")
+            dt = (dt - dt.utcoffset()).replace(tzinfo=datetime.timezone.utc)
+            return dt.date()
+    except ValueError:
+        pass
+
+    raise ValueError("unable to parse date: %r" % text)
 
 
 def format_date(date):
@@ -337,6 +381,73 @@ class PythonBug:
         return BPO_URL % self.number
 
 
+class CVERegistry:
+    def __init__(self, path):
+        self.path = path
+        self.cves = {}
+        try:
+            os.mkdir(self.path)
+        except FileExistsError:
+            pass
+        self.load()
+
+    def load_cve(self, number, filename):
+        if os.path.getsize(filename) == 0:
+            # special case: empty file used as a marker to avoid
+            # downloading again, use None
+            cve = None
+        else:
+            cve = load_json(filename)
+        self.cves[number] = cve
+
+    def load(self):
+        for filename in glob.glob(os.path.join(self.path, '*.json')):
+            number = os.path.basename(filename[:-5])
+            if not number.startswith("CVE-"):
+                continue
+            self.load_cve(number, filename)
+
+    def dump(self):
+        for number, cve in self.cves.items():
+            filename = os.path.join(self.path, number + '.json')
+            if cve is not None:
+                dump_json(filename, cve)
+            else:
+                # create empty file
+                fp = open(filename, "wb")
+                fp.close()
+
+    def get_cve(self, number):
+        try:
+            cve = self.cves[number]
+        except KeyError:
+            url = CVE_API % number
+            print("Download %s" % url)
+
+            data = download(url)
+            data = data.decode('utf-8')
+            cve = json.loads(data)
+            if not cve:
+                cve = None
+            self.cves[number] = cve
+            self.dump()
+
+        if cve is None:
+            return None
+        return CVE(number, cve)
+
+
+class CVE:
+    def __init__(self, number, data):
+        self.number = number
+        try:
+            self.published = parse_date(data['Published'])
+            self.summary = data['summary']
+            self.cvss = data['cvss']
+        except Exception:
+            raise Exception("failed to parse %s" % self.number)
+
+
 class Vulnerability:
     def __init__(self, app, data):
         self.name = data.pop('name')
@@ -371,7 +482,6 @@ class Vulnerability:
         self.links = data.pop('links', None)
         if not self.links:
             self.links = []
-        self.cvss_score = data.pop('cvss-score', None)
         self.redhat_impact = data.pop('redhat-impact', None)
 
         reported_by = data.pop('reported-by', None)
@@ -387,8 +497,21 @@ class Vulnerability:
         if self.python_bug:
             self.links.insert(0, self.python_bug.get_url())
 
+        # CVE
         cves = set()
-        for text in (self.name, self.description):
+
+        cve = data.pop('cve', None)
+        if cve:
+            self.name = '%s: %s' % (cve, self.name)
+            # get_cve() can return None
+            self.cve = app.cves.get_cve(cve)
+            if self.cve is None:
+                # Add a link if there is no CVE detail
+                cves.add(cve)
+        else:
+            self.cve = None
+
+        for text in self.description:
             for cve in CVE_REGEX.findall(text):
                 cves.add(cve)
 
@@ -462,11 +585,12 @@ class PythonReleases:
 
 
 class RenderDoc:
-    def __init__(self, python_path, date_filename, tags_filename, bugs_filename):
+    def __init__(self, python_path, date_filename, tags_filename, bugs_filename, cve_path):
         self.commit_dates = CommitDates(python_path, date_filename)
         self.commit_tags = CommitTags(python_path, tags_filename)
         self.python_releases = PythonReleases()
         self.bugs = PythonBugs(bugs_filename)
+        self.cves = CVERegistry(cve_path)
 
     def main(self, yaml_filename, filename):
         vulnerabilities = []
@@ -485,7 +609,10 @@ class RenderDoc:
 
             name = "`%s`_" % vuln.name
             disclosure = format_date(vuln.disclosure.date)
-            score = vuln.cvss_score or vuln.redhat_impact or '?'
+            if vuln.cve:
+                score = str(vuln.cve.cvss)
+            else:
+                score = vuln.redhat_impact or '?'
 
             row = [name, disclosure, score, fixes]
             table.append(row)
@@ -564,10 +691,19 @@ class RenderDoc:
                     print("* Reported at: {}".format(reported), file=fp)
                 if vuln.reported_by:
                     print("* Reported by: {}".format(vuln.reported_by), file=fp)
-                if vuln.cvss_score:
-                    print("* `CVSS Score`_: {}".format(vuln.cvss_score), file=fp)
                 if vuln.redhat_impact:
                     print("* `Red Hat impact`_: {}".format(vuln.redhat_impact), file=fp)
+
+                if vuln.cve:
+                    cve = vuln.cve
+                    print(file=fp)
+                    url = CVE_URL % cve.number
+                    print("`%s <%s>`_:" % (cve.number, url), file=fp)
+                    print(file=fp)
+                    days = timedelta_days(cve.published - vuln.disclosure.date)
+                    print("* Published: {} ({} days)".format(format_date(cve.published), days), file=fp)
+                    print("* Summary: {}".format(cve.summary), file=fp)
+                    print("* `CVSS Score`_: {}".format(cve.cvss), file=fp)
 
                 if vuln.fixes:
                     print(file=fp)
@@ -607,13 +743,18 @@ class RenderDoc:
         print("{} generated".format(filename))
 
 
-if __name__ == "__main__":
+def main():
     yaml_filename = "vulnerabilities.yaml"
     rst_filename = 'vulnerabilities.rst'
     date_filename = 'commit_dates.txt'
     tags_filename = 'commit_tags.txt'
     bugs_filename = 'bugs.txt'
+    cve_path = 'cve'
     python_path = '/home/haypo/prog/python/master'
 
-    app = RenderDoc(python_path, date_filename, tags_filename, bugs_filename)
+    app = RenderDoc(python_path, date_filename, tags_filename, bugs_filename, cve_path)
     app.main(yaml_filename, rst_filename)
+
+
+if __name__ == "__main__":
+    main()
