@@ -7,6 +7,7 @@ import json
 import os.path
 import re
 import subprocess
+import shutil
 import sys
 import urllib.request
 import xmlrpc.client
@@ -919,7 +920,8 @@ class RenderDoc:
         with open(output_filename, 'w', encoding='utf-8') as fp:
             render_table(fp, vulnerabilities)
 
-            try_mkdir(self.vuln_path)
+            shutil.rmtree(self.vuln_path)
+            os.mkdir(self.vuln_path)
             filenames = []
             for vuln in vulnerabilities:
                 filename = os.path.join(self.vuln_path, vuln.slug + '.rst')
