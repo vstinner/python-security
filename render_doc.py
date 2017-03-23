@@ -836,7 +836,7 @@ def render_table(fp, vulnerabilities):
     sections = []
 
     for vuln in vulnerabilities:
-        fixes = ['| ' + fix.python_version for fix in vuln.fixes]
+        fixes = ', '.join(fix.python_version for fix in vuln.fixes)
 
         name = ":ref:`%s <%s>`" % (vuln.name, vuln.slug)
         disclosure = format_date(vuln.get_disclosure_date())
@@ -844,9 +844,9 @@ def render_table(fp, vulnerabilities):
             score = str(vuln.cve.cvss)
         else:
             score = vuln.redhat_impact or '?'
-        vulnerable = ['| %s' % version for version in vuln.vulnerable_versions]
+        vulnerable = ', '.join(vuln.vulnerable_versions)
         if not vulnerable:
-            vulnerable = ['']
+            vulnerable = ['--']
 
         row = [name, disclosure, score, fixes, vulnerable]
         table.append(row)
