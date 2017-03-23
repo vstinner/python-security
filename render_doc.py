@@ -835,8 +835,14 @@ def render_table(fp, vulnerabilities):
     table = []
     sections = []
 
+    print('.. |br| raw:: html', file=fp)
+    print(file=fp)
+    print('   <br />', file=fp)
+    print(file=fp)
+
+    break_line = ' |br| '
     for vuln in vulnerabilities:
-        fixes = ', '.join(fix.python_version for fix in vuln.fixes)
+        fixes = break_line.join(fix.python_version for fix in vuln.fixes)
 
         name = ":ref:`%s <%s>`" % (vuln.name, vuln.slug)
         disclosure = format_date(vuln.get_disclosure_date())
@@ -844,7 +850,7 @@ def render_table(fp, vulnerabilities):
             score = str(vuln.cve.cvss)
         else:
             score = vuln.redhat_impact or '?'
-        vulnerable = ', '.join(vuln.vulnerable_versions)
+        vulnerable = break_line.join(vuln.vulnerable_versions)
         if not vulnerable:
             vulnerable = ['--']
 
