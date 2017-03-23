@@ -587,7 +587,7 @@ class Vulnerability:
             if any(is_fixed(major, fixed) for fixed in seen):
                 continue
             if affected_versions:
-                if not any(is_fixed(major, affected)
+                if not any(is_fixed(major, affected[:2])
                            for affected in affected_versions):
                     continue
             vulnerable.append(version)
