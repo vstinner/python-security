@@ -18,6 +18,7 @@
 
   fixed-in:
     - 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f # 2.7.12
+    - 981847e3c14f7fd6be3c47d60581e27daa23a56b # 3.3, no release yet (2017-03-23)
     - 46b32f307c48bcb999b22eebf65ffe8ed5cca544 # 3.4.5
 
 - name: "Issue #26657: HTTP directory traversal"
@@ -101,6 +102,7 @@
   bpo: 26171
   fixed-in:
    - 64ea192b73e39e877d8b39ce6584fa580eb0e9b4 # 2.7.12
+   - d751040b1a4e35fd3b01fc919cd8f9374ed714fd # 3.3, no release yet (2017-03-23)
    - c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf # 3.4.5, 3.5.2, 3.6.0
   description: |
     Heap overflow in ``zipimporter`` module.
@@ -167,7 +169,7 @@
   description: |
     poplib: unlimited read from connection.
 
-- name: "xmlrpc unlimited read"
+- name: "xmlrpc gzip unlimited read"
   cve: CVE-2013-1753
   bpo: 16043
   links:
@@ -202,6 +204,7 @@
   fixed-in:
    - a8760275bd59fb8d8be1f1bf05313fed31c08321 # 2.7
    - 07bcf05fcf3fd1d4001e8e3489162e6d67638285 # 3.3
+   # 2017-03-23: 3.3 fixed, no release yet
   description: |
     Arbitrary code execution in ``gettext.c2py()``.
 
@@ -215,6 +218,7 @@
   fixed-in:
    - 75d7b615ba70fc5759d16dee95bbd8f0474d8a9c # 2.7
    - 4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d # 3.3
+   # 2017-03-23: 3.3 fixed, no release yet
   description: |
     It was discovered that the Python ``CGIHandler`` class did not properly
     protect against the ``HTTP_PROXY`` variable name clash in a CGI context.
@@ -251,7 +255,13 @@
 - name: "ssl.match_hostname() wildcard DoS"
   cve: CVE-2013-2099
   bpo: 17980
+  affected-versions:
+   # ssl.match_hostname() was added to Python 3.2
+   # The function was backported to 2.7.9 with the IDNA fix
+   # (commit daeb925cc88cc8fed2030166ade641de28edb396).
+   - '3.2'
   fixed-in:
+   - 86d53caddad11808ca332ab93ec35508b602a0dd # 3.2
    - 636f93c63ba286249c1207e3a903f8429efb2041 # 3.3
   description: |
     If the name in the certificate contains many ``*`` characters (wildcard),
@@ -292,7 +302,8 @@
   reported-by: Ryan Sleevi of the Google Chrome Security Team
   fixed-in:
    - 82f88283171933127f20f866a7f98694b29cca56 # 2.7
-   - 824f7f366d1b54d2d3100c3130c04cf1dfb4b47c # 3.x
+   - ec3c103520a5061e657581b388e2b8ba6f74602a # 3.2
+   - 824f7f366d1b54d2d3100c3130c04cf1dfb4b47c # 3.3
   description: |
     SSL module fails to handle NULL bytes inside subjectAltNames general names.
 
@@ -335,9 +346,14 @@
     - https://www.openssl.org/blog/blog/2016/08/24/sweet32/
   disclosure: "2016-08-24 (end of the Sweet32 embargo)"
   reported-by: Karthik Bhargavan and Gaetan Leurent (Sweet32)
+  affected-versions:
+   # ssl._DEFAULT_CIPHERS doesn't include 3DES in 3.3 but is quite generic
+   - '2.7'
+   - '3.4'
   fixed-in:
    - d988f429fe43808345812ef63dfa8da170c61871 # 2.7
-   - 03d13c0cbfe912eb0f9b9a02987b9e569f25fe19 # 3.x
+   - 03d13c0cbfe912eb0f9b9a02987b9e569f25fe19 # 3.5
+   - fa53dbdec818b0f2a0e22ca12a49d83ec948fc91 # 3.4, no release yet (2017-03-23)
   description: |
     Remove 3DES from ssl default cipher list.
 
@@ -403,6 +419,11 @@
   bpo: 17997
   links:
     - https://tools.ietf.org/html/rfc6125
+  affected-versions:
+   # ssl.match_hostname() was added to Python 3.2
+   # The function was backported to 2.7.9 with the IDNA fix
+   # (commit daeb925cc88cc8fed2030166ade641de28edb396).
+   - '3.2'
   fixed-in:
    - 72c98d3a761457a4f2b8054458b19f051dfb5886 # 3.3
   description: |
