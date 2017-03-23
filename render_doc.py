@@ -228,7 +228,7 @@ class CommitTags:
                     tag = line[1:]
                     tags.append(tag)
                 else:
-                    if commit and tags:
+                    if commit:
                         self.cache[commit] = tags
                     commit = line
                     tags = []
