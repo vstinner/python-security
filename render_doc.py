@@ -2,6 +2,7 @@
 import argparse
 import datetime
 import glob
+import itertools
 import json
 import os.path
 import re
@@ -11,6 +12,8 @@ import urllib.request
 import xmlrpc.client
 import yaml
 
+# Last update: 2017-03-23
+MAINTAINED_BRANCHES = ['2.7', '3.2', '3.3', '3.4', '3.5', '3.6']
 
 CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
 CVE_URL = 'https://www.cvedetails.com/cve/%s/'
@@ -567,6 +570,32 @@ class Vulnerability:
                 major = pyver_info[0]
             self.fixes.append(fix)
 
+        affected_versions = data.pop('affected-versions', ())
+        affected_versions = ['%.1f' % version if isinstance(version, float) else version
+                             for version in affected_versions]
+        affected_versions = list(map(version_info, affected_versions))
+
+        def is_fixed(ver1, ver2):
+            return (ver1[0] == ver2[0] and ver1 >= ver2)
+
+        vulnerable = []
+        for version in MAINTAINED_BRANCHES:
+            major = python_major_version(version)
+            if major in seen:
+                continue
+            if any(is_fixed(major, fixed) for fixed in seen):
+                continue
+            if affected_versions:
+                if not any(is_fixed(major, affected)
+                           for affected in affected_versions):
+                    continue
+            vulnerable.append(version)
+        vulnerable.sort()
+        if vulnerable:
+            print("%r vulnerable versions: %s"
+                  % (self.name, ', '.join(vulnerable)))
+        self.vulnerable_versions = vulnerable
+
     def get_disclosure_date(self):
         if self.disclosure:
             return self.disclosure.date
@@ -736,7 +765,7 @@ def render_fixes(fp, fixes):
 
     render_title(fp, "Fixed In", "-")
 
-    for index, fix in enumerate(fixes):
+    for fix in fixes:
         short = short_commit(fix.commit)
         date = format_date(fix.release_date)
         url = commit_url(fix.commit)
@@ -744,6 +773,17 @@ def render_fixes(fp, fixes):
 
         print("* Python **{}** ({}) fixed by `commit {} <{}>`_ ({})".format(fix.python_version, date, short, url, commit_date),
               file=fp)
+    print(file=fp)
+
+
+def render_vulnerable(fp, versions):
+    if not versions:
+        return
+
+    render_title(fp, "Vulnerable Versions", "-")
+
+    for version in versions:
+        print("* Python **{}**".format(version), file=fp)
     print(file=fp)
 
 
@@ -770,6 +810,7 @@ def render_vuln(filename, vuln):
         render_info(fp, vuln)
 
         render_fixes(fp, vuln.fixes)
+        render_vulnerable(fp, vuln.vulnerable_versions)
         render_python_bug(fp, vuln.python_bug)
         render_cve(fp, vuln.cve)
         render_timeline(fp, vuln)
@@ -789,7 +830,7 @@ def render_filenames(fp, filenames):
 
 
 def render_table(fp, vulnerabilities):
-    headers = ['Vulnerability', 'Disclosure', 'Score', 'Fixed In']
+    headers = ['Vulnerability', 'Disclosure', 'Score', 'Fixed In', 'Vulnerable']
     table = []
     sections = []
 
@@ -802,8 +843,11 @@ def render_table(fp, vulnerabilities):
             score = str(vuln.cve.cvss)
         else:
             score = vuln.redhat_impact or '?'
+        vulnerable = ['| %s' % version for version in vuln.vulnerable_versions]
+        if not vulnerable:
+            vulnerable = ['']
 
-        row = [name, disclosure, score, fixes]
+        row = [name, disclosure, score, fixes, vulnerable]
         table.append(row)
 
     widths = [len(header) for header in headers]
@@ -841,9 +885,10 @@ def render_table(fp, vulnerabilities):
     print(table_row(headers), file=fp)
     print(table_line('='), file=fp)
     for row in table:
-        print(table_row(row[:-1] + [row[-1][0]]), file=fp)
-        for fix in row[-1][1:]:
-            print(table_row([''] * (len(headers) - 1) + [fix]), file=fp)
+        row = [(cell,) if isinstance(cell, str) else cell
+               for cell in row]
+        for row in itertools.zip_longest(*row, fillvalue=''):
+            print(table_row(row), file=fp)
         print(table_line('-'), file=fp)
     print(file=fp)
     print(file=fp)

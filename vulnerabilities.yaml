@@ -367,10 +367,13 @@
     See also the `PEP 466: Network Security Enhancements for Python 2.7.x
     <https://www.python.org/dev/peps/pep-0466/>`_.
 
-- name: "integer overflows"
+- name: "buffer() integer overflows"
   cve: CVE-2014-7185
   bpo: 21831
   reported-by: Chris Foster (on the Python security list)
+  affected-versions:
+   # buffer() type was removed from Python 3
+   - '2.0'
   fixed-in:
    - 550b945fd66f1c6837a53fbf29dc8e524297b8c3 # 2.7
   description: |
@@ -381,6 +384,9 @@
 - name: "os.makedirs() not thread-safe"
   cve: CVE-2014-2667
   bpo: 21082
+  affected-versions:
+   # os.makedirs() exist_ok parameter added to Python 3.2
+   - '3.2'
   fixed-in:
    - ee5f1c13d1ea21c628068fdf142823177f5526c2 # 3.2
   description: |
@@ -409,6 +415,9 @@
 - name: "zipfile DoS using malformed file"
   cve: CVE-2013-7338
   bpo: 20078
+  affected-versions:
+   # ZipExtFile._read2() was added to Python 3.3
+   - '3.3'
   fixed-in:
    - 5ce3f10aeea711bb912e948fa5d9f63736df1327 # 3.x
   description: |
@@ -546,6 +555,9 @@
   reported-by: Slythers Bro (on the full-disclosure mailing list)
   # imageop module was removed in Python 3
   ignore-python3: true
+  affected-versions:
+   # rgbimg and imageop modules were removed in Python 3
+   - '2.0'
   fixed-in:
    - 4df1b6d478020ac51c84467f47e42083f53adbad # 2.5
    - 93ebfb154456daa841aa223bd296422787b3074c # 2.6
@@ -667,7 +679,9 @@
 #   disclosure: ""
 #   reported-by: ""
 #   fixed-in:
-#    -
+#    - commit_sha1
+#   affected-versions:
+#    - "x.y"
 #   description: |
 #
 # Other tag: "ignore-python3: true", used for modules removed from Python 3
