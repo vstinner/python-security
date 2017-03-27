@@ -919,11 +919,13 @@ class RenderDoc:
     def main(self, yaml_filename, output_filename):
         vulnerabilities = self.load_vulnerabilities(yaml_filename)
 
+        if os.path.exists(self.vuln_path):
+            shutil.rmtree(self.vuln_path)
+        os.mkdir(self.vuln_path)
+
         with open(output_filename, 'w', encoding='utf-8') as fp:
             render_table(fp, vulnerabilities)
 
-            shutil.rmtree(self.vuln_path)
-            os.mkdir(self.vuln_path)
             filenames = []
             for vuln in vulnerabilities:
                 filename = os.path.join(self.vuln_path, vuln.slug + '.rst')
