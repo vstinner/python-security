@@ -17,4 +17,4 @@ vulnerabilities.rst: render_doc.py vulnerabilities.yaml venv
 	./venv/bin/python render_doc.py
 
 clean:
-	rm -rf vulnerabilities.rst build/ venv/
+	rm -rf vulnerabilities.rst build/ venv/ vuln/
