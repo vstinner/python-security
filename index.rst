@@ -20,9 +20,9 @@ Pages
 Python branches
 ===============
 
-* Python 2.6, 3.0 and 3.1 don't get security fixes anymore and so should be
-  considered as vulnerable
-* Branches getting security fixes: 2.7, 3.2, 3.3, 3.4 and 3.5
+* (Latest update: 2017-03-28) Python 2.6, 3.0, 3.1, 3.2 don't get security
+  fixes anymore and so should be considered as vulnerable
+* Branches getting security fixes: 2.7, 3.3, 3.4 and 3.5
 * See `Status of Python branches
   <https://docs.python.org/devguide/#status-of-python-branches>`_
 
