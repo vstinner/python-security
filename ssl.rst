@@ -130,12 +130,13 @@ Python bundled OpenSSL in Windows and macOS installers.
 
 OpenSSL versions (read from the Windows installer):
 
-* Python 2.7.13, 3.5.3 and 3.6.0: openssl-1.0.2j
-* Python 2.7.12, 3.5.2: openssl-1.0.2h
-* Python 2.7.11, 3.4.4, 3.5.0, 3.5.1: openssl-1.0.2d
-* Python 2.7.10: openssl-1.0.2a
-* Python 2.7.9: openssl-1.0.1j
-* Python 3.3.5: openssl-1.0.1e
+* Python 3.6.1: OpenSSL 1.0.2k
+* Python 2.7.13, 3.5.3 and 3.6.0: OpenSSL 1.0.2j
+* Python 2.7.12, 3.5.2: OpenSSL 1.0.2h
+* Python 2.7.11, 3.4.4, 3.5.0, 3.5.1: OpenSSL 1.0.2d
+* Python 2.7.10: OpenSSL 1.0.2a
+* Python 2.7.9: OpenSSL 1.0.1j
+* Python 3.3.5: OpenSSL 1.0.1e
 
 Windows: see `PCbuild/get_externals.bat
 <https://github.com/python/cpython/blob/master/PCbuild/get_externals.bat>`_
