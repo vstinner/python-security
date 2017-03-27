@@ -831,7 +831,7 @@ def render_filenames(fp, filenames):
 
 
 def render_table(fp, vulnerabilities):
-    headers = ['Vulnerability', 'Disclosure', 'Score', 'Fixed In', 'Vulnerable']
+    headers = ['Vulnerability', 'Disclosure', 'Fixed In', 'Vulnerable']
     table = []
     sections = []
 
@@ -846,15 +846,11 @@ def render_table(fp, vulnerabilities):
 
         name = ":ref:`%s <%s>`" % (vuln.name, vuln.slug)
         disclosure = format_date(vuln.get_disclosure_date())
-        if vuln.cve:
-            score = str(vuln.cve.cvss)
-        else:
-            score = vuln.redhat_impact or '?'
         vulnerable = break_line.join(vuln.vulnerable_versions)
         if not vulnerable:
             vulnerable = ['--']
 
-        row = [name, disclosure, score, fixes, vulnerable]
+        row = [name, disclosure, fixes, vulnerable]
         table.append(row)
 
     widths = [len(header) for header in headers]
