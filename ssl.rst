@@ -126,7 +126,9 @@ TLS versions
 OpenSSL versions
 ================
 
-Python bundled OpenSSL on Windows. Official Windows installer:
+Python bundled OpenSSL in Windows and macOS installers.
+
+OpenSSL versions (read from the Windows installer):
 
 * Python 2.7.13, 3.5.3 and 3.6.0: openssl-1.0.2j
 * Python 2.7.12, 3.5.2: openssl-1.0.2h
@@ -139,7 +141,17 @@ Windows: see `PCbuild/get_externals.bat
 <https://github.com/python/cpython/blob/master/PCbuild/get_externals.bat>`_
 (or PCbuild/readme.txt in older versions).
 
-OpenSSL also bundled on macOS?
+macOS: see `Mac/BuildScript/build-installer.py <https://github.com/ned-deily/cpython/blob/master/Mac/BuildScript/build-installer.py#L210>`_.
+
+macOS::
+
+    # Since Apple removed the header files for the deprecated system
+    # OpenSSL as of the Xcode 7 release (for OS X 10.10+), we do not
+    # have much choice but to build our own copy here, too.
+
+Example of OpenSSL update: `Upgrade installers to OpenSSL 1.0.2k
+<http://bugs.python.org/issue29572>`_ (March 2017).
+
 
 Links
 =====
