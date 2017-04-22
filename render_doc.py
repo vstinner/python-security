@@ -121,7 +121,7 @@ def run(cmd, cwd):
                           universal_newlines=True,
                           cwd=cwd)
     if proc.returncode:
-        print("Command failed with exit code %s"
+        print("Command %r failed with exit code %s"
               % (' '.join(cmd), proc.returncode))
         sys.exit(proc.returncode)
     return proc
