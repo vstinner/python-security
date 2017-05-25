@@ -34,7 +34,10 @@ Dangerous functions and modules
 * Python 2 execfile()
 * eval()
 * subprocess.Popen(shell=True)
-* Python 3.6 f-string: `Be Careful with Python's New-Style String Format
+* str.format(), Python 3 str.format_map, and Python 2 unicode.format() all
+  allow arbitrary attribute access on formatted values, and hence access
+  to Python's introspection features:
+  `Be Careful with Python's New-Style String Format
   <http://lucumr.pocoo.org/2016/12/29/careful-with-str-format/>`_
   (Armin Ronacher, December 2016)
 * The ``pickle`` module executes arbitrary Python code: never use it with
