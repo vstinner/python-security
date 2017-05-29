@@ -544,7 +544,7 @@ class Vulnerability:
     def find_fixes(self, app, data):
         fixes = []
         ignore_python3 = data.pop('ignore-python3', None)
-        commits = data.pop('fixed-in')
+        commits = data.pop('fixed-in', ())
         for commit in commits:
             commit_date = app.commit_dates.get_commit_date(commit)
             versions = app.commit_tags.get_tags(commit,

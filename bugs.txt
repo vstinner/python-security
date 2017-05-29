@@ -155,3 +155,7 @@
     author: Carl Ekerot
     date: 2016-10-30.16:58:40.897
     title: Arbitrary code execution in gettext.c2py
+30500:
+    author: Nam Nguyen
+    date: 2017-05-29.04:04:11.735
+    title: urllib connects to a wrong host

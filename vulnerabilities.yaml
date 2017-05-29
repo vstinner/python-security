@@ -1,5 +1,29 @@
 # Vulnerabilities: http://www.itsecdb.com/oval/definitions/product-18230/0/Python-Python.html?class=5
 
+# Template:
+# - name: ""
+#   cve:
+#   # Bug number at bugs.python.org (bpo)
+#   bpo:
+#   links:
+#     -
+#   disclosure: ""
+#   reported-by: ""
+#   fixed-in:
+#    - commit_sha1
+#   affected-versions:
+#    - "x.y"
+#   description: |
+#
+# Other tag: "ignore-python3: true", used for modules removed from Python 3
+
+- name: "bpo-30500: urllib connects to a wrong host"
+  bpo: 30500
+  reported-at: 2017-03-04 (Orange Tsai on the PSRT list)
+  description: |
+    The urllib module doesn't parse correctly password containing the ``#``
+    character.
+
 - name: "smtplib TLS stripping"
   cve: CVE-2016-0772
   disclosure: 2016-06-11 (commit date)
@@ -689,23 +713,6 @@
     * CVE-2008-3142 (``unicode_resize()``, ``PyMem_RESIZE()``)
     * CVE-2008-3144 (``PyOS_vsnprintf()``)
     * CVE-2008-4864 (``imageop``)
-
-# Template:
-# - name: ""
-#   cve:
-#   # Bug number at bugs.python.org (bpo)
-#   bpo:
-#   links:
-#     -
-#   disclosure: ""
-#   reported-by: ""
-#   fixed-in:
-#    - commit_sha1
-#   affected-versions:
-#    - "x.y"
-#   description: |
-#
-# Other tag: "ignore-python3: true", used for modules removed from Python 3
 
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
