@@ -163,6 +163,6 @@ Links
   which exposes cryptographic recipes and primitives
 * `pyOpenSSL <https://pypi.python.org/pypi/pyOpenSSL>`_
 * `M2Crypto <https://pypi.python.org/pypi/M2Crypto>`_
-* `urllib3 <https://urllib3.readthedocs.io/`>_
+* `urllib3 <https://urllib3.readthedocs.io/>_`
 * `LibreSSL <http://www.libressl.org/>`_
 * `borringssl <https://boringssl.googlesource.com/boringssl/>`_
