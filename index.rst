@@ -160,6 +160,11 @@ Misc
     really be altered at this point."
   * ``python -E``, ``python -I``
 
+* `Python at HackerOne <https://hackerone.com/python>`_
+* `humans.txt of python.org <https://www.python.org/humans.txt>`_
+  with the list of "people who found security bugs in the website".
+  For the rationale, see `humanstxt.org <http://humanstxt.org/>`_.
+
 Links
 =====
 
