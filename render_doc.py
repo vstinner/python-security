@@ -108,6 +108,16 @@ def parse_date(text):
     except ValueError:
         pass
 
+    if '.' in text:
+        try:
+            # CVE date: '2016-05-26T12:59:00.133000'
+            text2 = re.sub(r'\.[0-9]{6}$', '', text)
+            dt = datetime.datetime.strptime(text2, "%Y-%m-%dT%H:%M:%S")
+            dt = dt.replace(tzinfo=datetime.timezone.utc)
+            return dt.date()
+        except ValueError:
+            pass
+
     raise ValueError("unable to parse date: %r" % text)
 
 

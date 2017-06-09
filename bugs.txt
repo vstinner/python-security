@@ -159,3 +159,7 @@
     author: Nam Nguyen
     date: 2017-05-29.04:04:11.735
     title: urllib connects to a wrong host
+30610:
+    author: Duy Phan Thanh
+    date: 2017-06-09.09:07:09.951
+    title: libexpat vulnerable to CVE-2016-0718

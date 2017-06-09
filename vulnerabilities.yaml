@@ -714,6 +714,21 @@
     * CVE-2008-3144 (``PyOS_vsnprintf()``)
     * CVE-2008-4864 (``imageop``)
 
+- name: "libexpat vulnerable to CVE-2016-0718"
+  cve: CVE-2016-0718
+  # Bug number at bugs.python.org (bpo)
+  bpo: 30610
+  links:
+    - https://sourceforge.net/p/expat/bugs/537/
+  reported-by: "2016-05-27 (expat bug #537 reported)"
+  description: |
+    The Expat XML parser mishandles certain kinds of malformed input documents,
+    resulting in buffer overflows during processing and error reporting. The
+    overflows can manifest as a segmentation fault or as memory corruption
+    during a parse operation. The bugs allow for a denial of service attack in
+    many applications by an unauthenticated attacker, and could conceivably
+    result in remote code execution.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
