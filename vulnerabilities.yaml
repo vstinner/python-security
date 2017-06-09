@@ -714,7 +714,7 @@
     * CVE-2008-3144 (``PyOS_vsnprintf()``)
     * CVE-2008-4864 (``imageop``)
 
-- name: "libexpat vulnerable to CVE-2016-0718"
+- name: "expat bug #537"
   cve: CVE-2016-0718
   # Bug number at bugs.python.org (bpo)
   bpo: 30610
