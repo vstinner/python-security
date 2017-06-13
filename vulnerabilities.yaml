@@ -714,12 +714,13 @@
     * CVE-2008-3144 (``PyOS_vsnprintf()``)
     * CVE-2008-4864 (``imageop``)
 
-- name: "expat bug #537"
+- name: "expat 2.2, bug #537"
   cve: CVE-2016-0718
   # Bug number at bugs.python.org (bpo)
-  bpo: 30610
+  bpo: 29591
   links:
     - https://sourceforge.net/p/expat/bugs/537/
+    - https://bugs.python.org/issue30610
   reported-by: "2016-05-27 (expat bug #537 reported)"
   description: |
     The Expat XML parser mishandles certain kinds of malformed input documents,
@@ -728,6 +729,12 @@
     during a parse operation. The bugs allow for a denial of service attack in
     many applications by an unauthenticated attacker, and could conceivably
     result in remote code execution.
+
+    CVE-ID:
+
+    - CVE-2016-0718
+    - CVE-2016-4472
+
 
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
