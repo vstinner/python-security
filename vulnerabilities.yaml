@@ -722,6 +722,11 @@
     - https://sourceforge.net/p/expat/bugs/537/
     - https://bugs.python.org/issue30610
   reported-by: "2016-05-27 (expat bug #537 reported)"
+  # fixed-in:
+  #   - 23ec4b57e1359f9c539b8defc317542173ae087e # master, 3.7
+  #   - 86b95370c45dedb8a56c9894372a43681de47a73 # 3.6
+  #   - 8c797ed8a0fea5e3162b9415f13e270d4d5d9549 # 3.5
+  #   - 0e4571a68a7f48e8469ef05b04ba3463d3fd82c0 # 2.7
   description: |
     The Expat XML parser mishandles certain kinds of malformed input documents,
     resulting in buffer overflows during processing and error reporting. The
