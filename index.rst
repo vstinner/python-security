@@ -165,11 +165,17 @@ Misc
   with the list of "people who found security bugs in the website".
   For the rationale, see `humanstxt.org <http://humanstxt.org/>`_.
 
+Python Security Response Team (PSRT)
+====================================
+
+* Handle security@python.org incoming emails
+* `PSRT issues (private) <https://github.com/python/psrt/issues>`_
+* `LWN: The Python security response team
+  <https://lwn.net/Articles/691308/>`_ (June, 2016)
+
 Links
 =====
 
-* `The Python security response team
-  <https://lwn.net/Articles/691308/>`_ (June, 2016)
 * `Reporting security issues in Python
   <https://www.python.org/news/security/>`_
 * `OWASP Python Security Project (pythonsecurity.org)
@@ -181,3 +187,4 @@ Links
 * https://github.com/pyupio/safety-db and https://pyup.io/
 * `owasp-pysec: OWASP Python Security Project
   <https://github.com/ebranca/owasp-pysec>`_
+
