@@ -8,6 +8,7 @@
 #   links:
 #     -
 #   disclosure: "" -- optional, use bpo if missing
+#   reported-at: ""
 #   reported-by: ""
 #   fixed-in:
 #    - commit_sha1
@@ -25,7 +26,8 @@
     - http://blog.blindspotsecurity.com/2017/02/advisory-javapython-ftp-injections.html
     - http://www.openwall.com/lists/oss-security/2017/02/20/1
   disclosure: "2017-02-20 (blog post, mail to oss-security)"
-  reported-by: "imothy D. Morgan (Blindspot)"
+  reported-at: "2016-01-15 (email sent to the PSRT list)"
+  reported-by: "Timothy D. Morgan (Blindspot)"
   description: |
     FTP protocol stream injection via malicious URLs.
 
