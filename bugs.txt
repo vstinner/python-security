@@ -159,6 +159,10 @@
     author: Natanael Copa
     date: 2017-02-17.15:39:39.187
     title: Various security vulnerabilities in bundled expat (CVE-2016-0718 and CVE-2016-4472)
+29606:
+    author: ecbftw
+    date: 2017-02-20.16:49:02.045
+    title: urllib FTP protocol stream injection
 30500:
     author: Nam Nguyen
     date: 2017-05-29.04:04:11.735

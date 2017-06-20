@@ -7,7 +7,7 @@
 #   bpo:
 #   links:
 #     -
-#   disclosure: ""
+#   disclosure: "" -- optional, use bpo if missing
 #   reported-by: ""
 #   fixed-in:
 #    - commit_sha1
@@ -16,6 +16,18 @@
 #   description: |
 #
 # Other tag: "ignore-python3: true", used for modules removed from Python 3
+
+- name: "urllib FTP protocol stream injection"
+  cve:
+  # Bug number at bugs.python.org (bpo)
+  bpo: 29606
+  links:
+    - http://blog.blindspotsecurity.com/2017/02/advisory-javapython-ftp-injections.html
+    - http://www.openwall.com/lists/oss-security/2017/02/20/1
+  disclosure: "2017-02-20 (blog post, mail to oss-security)"
+  reported-by: "imothy D. Morgan (Blindspot)"
+  description: |
+    FTP protocol stream injection via malicious URLs.
 
 - name: "bpo-30500: urllib connects to a wrong host"
   bpo: 30500
