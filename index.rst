@@ -187,4 +187,6 @@ Links
 * https://github.com/pyupio/safety-db and https://pyup.io/
 * `owasp-pysec: OWASP Python Security Project
   <https://github.com/ebranca/owasp-pysec>`_
-
+* `LWN: Python ssl module update
+  <https://lwn.net/Articles/724209/>`_ by Christian Heimes at the Python
+  Language Summit 2017 (during Pycon US, Portland, OR)
