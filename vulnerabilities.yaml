@@ -754,6 +754,30 @@
     - CVE-2016-0718
     - CVE-2016-4472
 
+- name: "Expat 2.2.1"
+  cve: CVE-2017-9233
+  bpo: 30694
+  links:
+    - https://libexpat.github.io/doc/cve-2017-9233/
+    - https://github.com/libexpat/libexpat/blob/R_2_2_1/expat/Changes
+  disclosure: "2017-06-17 (Expat 2.2.1 release)"
+  fixed-in:
+   - 5ff7132313eb651107b179d20218dfe5d4e47f13 # master
+   - 4a66524006852fc982aebafa277f2c043d9ad149 # 3.6
+   - 91d171be45942d37a973b0675521b5159a96be31 # 3.5
+   - 2ada64d2a073f85f135461833952dbe8d656810d # 2.7
+  description: |
+    Upgrade expat copy from 2.2.0 to 2.2.1 to get fixes of multiple security
+    vulnerabilities including:
+
+    * CVE-2017-9233 (External entity infinite loop DoS),
+    * CVE-2016-9063 (Integer overflow, re-fix),
+    * CVE-2016-0718 (Fix regression bugs from 2.2.0’s fix to CVE-2016-0718)
+    * CVE-2012-0876 (Counter hash flooding with SipHash).
+
+    Note: the CVE-2016-5300 (Use os-specific entropy sources like getrandom)
+    doesn’t impact Python, since Python already gets entropy from the OS to set
+    the expat secret using ``XML_SetHashSalt()``.
 
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa

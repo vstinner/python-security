@@ -171,3 +171,7 @@
     author: Duy Phan Thanh
     date: 2017-06-09.09:07:09.951
     title: libexpat vulnerable to CVE-2016-0718
+30694:
+    author: Ned Deily
+    date: 2017-06-18.03:01:26.301
+    title: Update embedded copy of expat to 2.2.1
