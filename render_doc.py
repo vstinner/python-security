@@ -250,6 +250,9 @@ class CommitTags:
         with open(self.cache_filename, "w", encoding="utf-8") as fp:
             items = sorted(self.cache.items())
             for commit, tags in items:
+                # Don't cache commits which have no tag yet
+                if not tags:
+                    continue
                 print(commit, file=fp)
                 for tag in tags:
                     print(" %s" % tag, file=fp)
