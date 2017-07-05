@@ -56,7 +56,7 @@
 
   fixed-in:
     - 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f # 2.7.12
-    - 981847e3c14f7fd6be3c47d60581e27daa23a56b # 3.3, no release yet (2017-03-23)
+#    - 981847e3c14f7fd6be3c47d60581e27daa23a56b # 3.3, no release yet (2017-03-23)
     - 46b32f307c48bcb999b22eebf65ffe8ed5cca544 # 3.4.5
 
 - name: "Issue #26657: HTTP directory traversal"
@@ -391,7 +391,7 @@
   fixed-in:
    - d988f429fe43808345812ef63dfa8da170c61871 # 2.7
    - 03d13c0cbfe912eb0f9b9a02987b9e569f25fe19 # 3.5
-   - fa53dbdec818b0f2a0e22ca12a49d83ec948fc91 # 3.4, no release yet (2017-03-23)
+#   - fa53dbdec818b0f2a0e22ca12a49d83ec948fc91 # 3.4, no release yet (2017-03-23)
   description: |
     Remove 3DES from ssl default cipher list.
 
@@ -761,11 +761,11 @@
     - https://libexpat.github.io/doc/cve-2017-9233/
     - https://github.com/libexpat/libexpat/blob/R_2_2_1/expat/Changes
   disclosure: "2017-06-17 (Expat 2.2.1 release)"
-  fixed-in:
-   - 5ff7132313eb651107b179d20218dfe5d4e47f13 # master
-   - 4a66524006852fc982aebafa277f2c043d9ad149 # 3.6
-   - 91d171be45942d37a973b0675521b5159a96be31 # 3.5
-   - 2ada64d2a073f85f135461833952dbe8d656810d # 2.7
+#  fixed-in:
+#   - 5ff7132313eb651107b179d20218dfe5d4e47f13 # master
+#   - 4a66524006852fc982aebafa277f2c043d9ad149 # 3.6
+#   - 91d171be45942d37a973b0675521b5159a96be31 # 3.5
+#   - 2ada64d2a073f85f135461833952dbe8d656810d # 2.7
   description: |
     Upgrade expat copy from 2.2.0 to 2.2.1 to get fixes of multiple security
     vulnerabilities including:
