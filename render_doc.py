@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import configparser
 import datetime
 import glob
 import itertools
@@ -9,6 +10,7 @@ import re
 import subprocess
 import shutil
 import sys
+import urllib.parse
 import urllib.request
 import xmlrpc.client
 import yaml
@@ -22,8 +24,6 @@ CVE_API = 'http://cve.circl.lu/api/cve/%s'
 BPO_URL = 'https://bugs.python.org/issue%s'
 CVSS_SCORE_URL = 'https://nvd.nist.gov/cvss.cfm'
 RED_HAT_IMPACT_URL = 'https://access.redhat.com/security/updates/classification/'
-# FIXME: need login+password in BUGS_API, add a configuration file?
-# https://user:password@bugs.python.org/xmlrpc
 BUGS_API = 'https://bugs.python.org/xmlrpc'
 BUGS_DATE_REGEX = re.compile(r'<Date (.*)>')
 
@@ -947,7 +947,32 @@ class RenderDoc:
         print("{} generated".format(output_filename))
 
 
+def parse_config(filename):
+    global BUGS_API
+
+    cfgobj = configparser.RawConfigParser()
+    ok = cfgobj.read(filename)
+    if not ok:
+        print("Skip missing configuration file: %s" % filename)
+        return
+
+    bpo_username = cfgobj['config']['bpo_username'].strip()
+    bpo_password = cfgobj['config']['bpo_password'].strip()
+
+    bpo_username = urllib.parse.quote(bpo_username, safe='')
+    bpo_password = urllib.parse.quote(bpo_password, safe='')
+
+    if not bpo_username and not bpo_password:
+        return
+
+    i = len('https://')
+    url = BUGS_API
+    url = '%s%s:%s@%s' % (url[:i], bpo_username, bpo_password, url[i:])
+    BUGS_API = url
+
+
 def main():
+    config_filename = "config.ini"
     yaml_filename = "vulnerabilities.yaml"
     rst_filename = 'vulnerabilities.rst'
     date_filename = 'commit_dates.txt'
@@ -956,6 +981,8 @@ def main():
     cve_path = 'cve'
     vuln_path = 'vuln'
     python_path = '/home/haypo/prog/python/master'
+
+    parse_config(config_filename)
 
     app = RenderDoc(python_path, date_filename, tags_filename, bugs_filename, cve_path, vuln_path)
     app.main(yaml_filename, rst_filename)
