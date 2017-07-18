@@ -175,3 +175,7 @@
     author: Ned Deily
     date: 2017-06-18.03:01:26.301
     title: Update embedded copy of expat to 2.2.1
+30730:
+    author: Serhiy Storchaka
+    date: 2017-06-22.08:06:59.735
+    title: '[security] Injecting environment variable in subprocess on Windows'

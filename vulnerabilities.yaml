@@ -777,6 +777,20 @@
     doesn’t impact Python, since Python already gets entropy from the OS to set
     the expat secret using ``XML_SetHashSalt()``.
 
+- name: "Environment variables injection in subprocess on Windows"
+  bpo: 30730
+  fixed-in:
+   - a9b16cff35811f88cdfeb4f50758140dfff36ebc # 3.6.2
+  description: |
+    On Windows, prevent passing invalid environment variables and command
+    arguments to subprocess.Popen.
+
+    It is possible to inject an environment variable in subprocess on Windows
+    if a user data is passed to a subprocess via environment variable.
+
+    Check for invalid environment (variable names containing '=') and command
+    arguments (containing '\0').
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
