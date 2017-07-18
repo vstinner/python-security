@@ -37,6 +37,8 @@
   description: |
     The urllib module doesn't parse correctly password containing the ``#``
     character.
+  fixed-in:
+    - b0fba8874a4bd6bf4773e6efdbd8fa762e9f05bd # 3.6.2
 
 - name: "smtplib TLS stripping"
   cve: CVE-2016-0772
@@ -738,11 +740,8 @@
     - https://sourceforge.net/p/expat/bugs/537/
     - https://bugs.python.org/issue30610
   reported-by: "2016-05-27 (expat bug #537 reported)"
-  # fixed-in:
-  #   - 23ec4b57e1359f9c539b8defc317542173ae087e # master, 3.7
-  #   - 86b95370c45dedb8a56c9894372a43681de47a73 # 3.6
-  #   - 8c797ed8a0fea5e3162b9415f13e270d4d5d9549 # 3.5
-  #   - 0e4571a68a7f48e8469ef05b04ba3463d3fd82c0 # 2.7
+  fixed-in:
+    - 86b95370c45dedb8a56c9894372a43681de47a73 # 3.6.2
   description: |
     The Expat XML parser mishandles certain kinds of malformed input documents,
     resulting in buffer overflows during processing and error reporting. The
@@ -763,11 +762,8 @@
     - https://libexpat.github.io/doc/cve-2017-9233/
     - https://github.com/libexpat/libexpat/blob/R_2_2_1/expat/Changes
   disclosure: "2017-06-17 (Expat 2.2.1 release)"
-#  fixed-in:
-#   - 5ff7132313eb651107b179d20218dfe5d4e47f13 # master
-#   - 4a66524006852fc982aebafa277f2c043d9ad149 # 3.6
-#   - 91d171be45942d37a973b0675521b5159a96be31 # 3.5
-#   - 2ada64d2a073f85f135461833952dbe8d656810d # 2.7
+  fixed-in:
+   - ea1ab803ddc14ab02ffed50ecc5089897f259623 # 3.6.2
   description: |
     Upgrade expat copy from 2.2.0 to 2.2.1 to get fixes of multiple security
     vulnerabilities including:
