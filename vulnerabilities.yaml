@@ -41,7 +41,7 @@
     - b0fba8874a4bd6bf4773e6efdbd8fa762e9f05bd # 3.6.2
     - 4899d847ed3f56b2a712799f896aa1f28540a5c0 # 3.5.4
     - cc54c1c0d2d05fe7404ba64c53df4b1352ed2262 # 3.4.7
-    # FIXME: 3.3
+    # 3.3: https://github.com/python/cpython/pull/2292
 
 - name: "smtplib TLS stripping"
   cve: CVE-2016-0772
@@ -70,7 +70,7 @@
     - 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb # 2.7.12
     - 6f6bc1da8aaae52664e7747e328d26eb59c0e74f # 3.4.7
     - d274b3f1f1e2d8811733fb952c9f18d7da3a376a # 3.5.2
-    # FIXME
+    # 3.3: https://github.com/python/cpython/pull/2860
   description: |
     Fix directory traversal vulnerability with ``http.server`` and
     ``SimpleHTTPServer`` on Windows.
@@ -107,7 +107,7 @@
     - 59bdf6392de446de8a19bfa37cee52981612830e # 2.7.10
     - a112a8ae47813f75aa8ad27ee8c42a7c2e937d13 # 3.4.4
     - b669bfc2bed1f5487ac2762bff53b55f6155bb60 # 3.5.0
-    # FIXME
+    # 3.3: https://github.com/python/cpython/pull/2817
   description: |
     HTTP header injection in ``urllib``, ``urrlib2``, ``httplib`` and
     ``http.client`` modules.
