@@ -41,6 +41,7 @@
     - b0fba8874a4bd6bf4773e6efdbd8fa762e9f05bd # 3.6.2
     - 4899d847ed3f56b2a712799f896aa1f28540a5c0 # 3.5.4
     - cc54c1c0d2d05fe7404ba64c53df4b1352ed2262 # 3.4.7
+    # FIXME: 3.3
 
 - name: "smtplib TLS stripping"
   cve: CVE-2016-0772
@@ -60,7 +61,7 @@
 
   fixed-in:
     - 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f # 2.7.12
-#    - 981847e3c14f7fd6be3c47d60581e27daa23a56b # 3.3, no release yet (2017-03-23)
+    - 981847e3c14f7fd6be3c47d60581e27daa23a56b # 3.3
     - 46b32f307c48bcb999b22eebf65ffe8ed5cca544 # 3.4.5
 
 - name: "Issue #26657: HTTP directory traversal"
@@ -69,6 +70,7 @@
     - 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb # 2.7.12
     - 6f6bc1da8aaae52664e7747e328d26eb59c0e74f # 3.4.7
     - d274b3f1f1e2d8811733fb952c9f18d7da3a376a # 3.5.2
+    # FIXME
   description: |
     Fix directory traversal vulnerability with ``http.server`` and
     ``SimpleHTTPServer`` on Windows.
@@ -86,6 +88,7 @@
   fixed-in:
     - d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e # 2.7.12
     - 196d7db3956f4c0b03e87b570771b3460a61bab5 # 3.4.5
+    - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
   description: |
     Multiple integer overflows have been discovered in Expat, an XML parsing C
     library, which may result in denial of service or the execution of
@@ -104,6 +107,7 @@
     - 59bdf6392de446de8a19bfa37cee52981612830e # 2.7.10
     - a112a8ae47813f75aa8ad27ee8c42a7c2e937d13 # 3.4.4
     - b669bfc2bed1f5487ac2762bff53b55f6155bb60 # 3.5.0
+    # FIXME
   description: |
     HTTP header injection in ``urllib``, ``urrlib2``, ``httplib`` and
     ``http.client`` modules.
@@ -145,7 +149,7 @@
   bpo: 26171
   fixed-in:
    - 64ea192b73e39e877d8b39ce6584fa580eb0e9b4 # 2.7.12
-   - d751040b1a4e35fd3b01fc919cd8f9374ed714fd # 3.3, no release yet (2017-03-23)
+   - d751040b1a4e35fd3b01fc919cd8f9374ed714fd # 3.3
    - c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf # 3.4.5, 3.5.2, 3.6.0
   description: |
     Heap overflow in ``zipimporter`` module.
@@ -158,7 +162,7 @@
   redhat-impact: "Moderate"
   fixed-in:
     - dabfc56b57f5086eb5522d8e6cd7670c62d2482d # 2.7
-    - 210ee47e3340d8e689d8cce584e7c918d368f16b # 3.2
+    - 210ee47e3340d8e689d8cce584e7c918d368f16b # 3.2, 3.3
   description: |
     The smtplib module doesn't limit the amount of read data in
     its call to readline(). An erroneous or malicious SMTP server can trick the
@@ -196,7 +200,7 @@
   redhat-impact: "Moderate"
   fixed-in:
    - 42faa55124abcbb132c57745dec9e0489ac74406 # 2.7
-   - b3ac84322fe6dd542aa755779cdbc155edca8064 # 3.2
+   - b3ac84322fe6dd542aa755779cdbc155edca8064 # 3.2.6, 3.3
   description: |
     Unlimited read from connection in nntplib.
 
@@ -208,7 +212,7 @@
   redhat-impact: "Moderate"
   fixed-in:
    - faad6bbea6c86e30c770eb0a3648e2cd52b2e55e # 2.7
-   - eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e # 3.2
+   - eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e # 3.2, 3.3
   description: |
     poplib: unlimited read from connection.
 
@@ -220,7 +224,7 @@
   redhat-impact: "Moderate"
   fixed-in:
    - 9e8f523c5b1c354097753084054eadf14d33238d # 2.7
-   - 4e9cefaf86035f8014e09049328d197b6506532f # 3.2
+   - 4e9cefaf86035f8014e09049328d197b6506532f # 3.2, 3.3
   description: |
     Add a default limit for the amount of data ``xmlrpclib.gzip_decode()`` will
     return.
@@ -249,7 +253,6 @@
   fixed-in:
    - a8760275bd59fb8d8be1f1bf05313fed31c08321 # 2.7
    - 07bcf05fcf3fd1d4001e8e3489162e6d67638285 # 3.3
-   # 2017-03-23: 3.3 fixed, no release yet
   description: |
     Arbitrary code execution in ``gettext.c2py()``.
 
@@ -263,7 +266,6 @@
   fixed-in:
    - 75d7b615ba70fc5759d16dee95bbd8f0474d8a9c # 2.7
    - 4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d # 3.3
-   # 2017-03-23: 3.3 fixed, no release yet
   description: |
     It was discovered that the Python ``CGIHandler`` class did not properly
     protect against the ``HTTP_PROXY`` variable name clash in a CGI context.
@@ -416,6 +418,7 @@
   fixed-in:
    - e3e7d40514e5dd0c3847682a719577efcfae1d8f # 2.7
    - 4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd # 3.4
+   # WONTFIX: 3.3, backward incompatible change, too late for 3.3
   description: |
     The HTTP clients in the (1) httplib, (2) urllib, (3) urllib2, and (4)
     xmlrpclib libraries in CPython (aka Python) 2.x before 2.7.9 and 3.x before
@@ -505,6 +508,7 @@
   bpo: 14621
   fixed-in:
    - 985ecdcfc29adfc36ce2339acf03f819ad414869 # 3.4
+   # 3.3: WONTFIX, too big change for 3.3, need configure change, etc.
   description: |
     Hash function is not randomized properly.
 
@@ -740,13 +744,14 @@
   # Bug number at bugs.python.org (bpo)
   bpo: 29591
   links:
-    - https://sourceforge.net/p/expat/bugs/537/
-    - https://bugs.python.org/issue30610
+   - https://sourceforge.net/p/expat/bugs/537/
+   - https://bugs.python.org/issue30610
   reported-by: "2016-05-27 (expat bug #537 reported)"
   fixed-in:
-    - 71572bbe82aa0836c036d44d41c8269ba6a321be # 3.4.7
-    - 8c797ed8a0fea5e3162b9415f13e270d4d5d9549 # 3.5.4
-    - 86b95370c45dedb8a56c9894372a43681de47a73 # 3.6.2
+   - 71572bbe82aa0836c036d44d41c8269ba6a321be # 3.4.7
+   - 8c797ed8a0fea5e3162b9415f13e270d4d5d9549 # 3.5.4
+   - 86b95370c45dedb8a56c9894372a43681de47a73 # 3.6.2
+   - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
   description: |
     The Expat XML parser mishandles certain kinds of malformed input documents,
     resulting in buffer overflows during processing and error reporting. The
@@ -771,6 +776,7 @@
    - ea1ab803ddc14ab02ffed50ecc5089897f259623 # 3.6.2
    - 91d171be45942d37a973b0675521b5159a96be31 # 3.5.4
    - 71572bbe82aa0836c036d44d41c8269ba6a321be # 3.4.7
+   - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
   description: |
     Upgrade expat copy from 2.2.0 to 2.2.1 to get fixes of multiple security
     vulnerabilities including:
@@ -788,8 +794,9 @@
   bpo: 30730
   fixed-in:
    - a9b16cff35811f88cdfeb4f50758140dfff36ebc # 3.6.2
-   - a7c0264735f46afab13771be4218d8eab0d7dc91 # 3.5.
+   - a7c0264735f46afab13771be4218d8eab0d7dc91 # 3.5
    - fe82c46327effc124ff166e1fa1e611579e1176b # 3.4
+   - e46f1c19642ea1882f427d8246987ba49351a97d # 3.3
   description: |
     On Windows, prevent passing invalid environment variables and command
     arguments to subprocess.Popen.
