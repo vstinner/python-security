@@ -571,13 +571,20 @@ class Vulnerability:
 
         self.fixes = []
         seen = set()
+        seen_major = set()
         major = None
         for fix in fixes:
             pyver_info = version_info(fix.python_version)
+
+            key = version_info(fix.python_version)
+            if key not in seen:
+                seen.add(key)
+
             key = python_major_version(fix.python_version)
-            if key in seen:
+            if key in seen_major:
                 continue
-            seen.add(key)
+            seen_major.add(key)
+
             if pyver_info[0] == major:
                 continue
             if pyver_info[2] == 0:
@@ -590,7 +597,14 @@ class Vulnerability:
         affected_versions = list(map(version_info, affected_versions))
 
         def is_fixed(ver1, ver2):
-            return (ver1[0] == ver2[0] and ver1 >= ver2)
+            if ver1[0] != ver2[0]:
+                return False
+            if ver1[1] == ver2[1]:
+                # 3.5 is fixed if 3.5.6 is fixed
+                return True
+            # 3.6 is fixed if 3.5.0 is fixed
+            return ((len(ver2) == 2 or ver2[2] == 0)
+                    and ver1 >= ver2)
 
         vulnerable = []
         for version in MAINTAINED_BRANCHES:
