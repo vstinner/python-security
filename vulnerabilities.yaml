@@ -39,6 +39,8 @@
     character.
   fixed-in:
     - b0fba8874a4bd6bf4773e6efdbd8fa762e9f05bd # 3.6.2
+    - 4899d847ed3f56b2a712799f896aa1f28540a5c0 # 3.5.4
+    - cc54c1c0d2d05fe7404ba64c53df4b1352ed2262 # 3.4.7
 
 - name: "smtplib TLS stripping"
   cve: CVE-2016-0772
@@ -65,6 +67,7 @@
   bpo: 26657
   fixed-in:
     - 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb # 2.7.12
+    - 6f6bc1da8aaae52664e7747e328d26eb59c0e74f # 3.4.7
     - d274b3f1f1e2d8811733fb952c9f18d7da3a376a # 3.5.2
   description: |
     Fix directory traversal vulnerability with ``http.server`` and
@@ -395,7 +398,7 @@
   fixed-in:
    - d988f429fe43808345812ef63dfa8da170c61871 # 2.7
    - 03d13c0cbfe912eb0f9b9a02987b9e569f25fe19 # 3.5
-#   - fa53dbdec818b0f2a0e22ca12a49d83ec948fc91 # 3.4, no release yet (2017-03-23)
+   - fa53dbdec818b0f2a0e22ca12a49d83ec948fc91 # 3.4
   description: |
     Remove 3DES from ssl default cipher list.
 
@@ -741,6 +744,8 @@
     - https://bugs.python.org/issue30610
   reported-by: "2016-05-27 (expat bug #537 reported)"
   fixed-in:
+    - 71572bbe82aa0836c036d44d41c8269ba6a321be # 3.4.7
+    - 8c797ed8a0fea5e3162b9415f13e270d4d5d9549 # 3.5.4
     - 86b95370c45dedb8a56c9894372a43681de47a73 # 3.6.2
   description: |
     The Expat XML parser mishandles certain kinds of malformed input documents,
@@ -764,6 +769,8 @@
   disclosure: "2017-06-17 (Expat 2.2.1 release)"
   fixed-in:
    - ea1ab803ddc14ab02ffed50ecc5089897f259623 # 3.6.2
+   - 91d171be45942d37a973b0675521b5159a96be31 # 3.5.4
+   - 71572bbe82aa0836c036d44d41c8269ba6a321be # 3.4.7
   description: |
     Upgrade expat copy from 2.2.0 to 2.2.1 to get fixes of multiple security
     vulnerabilities including:
@@ -781,6 +788,8 @@
   bpo: 30730
   fixed-in:
    - a9b16cff35811f88cdfeb4f50758140dfff36ebc # 3.6.2
+   - a7c0264735f46afab13771be4218d8eab0d7dc91 # 3.5.
+   - fe82c46327effc124ff166e1fa1e611579e1176b # 3.4
   description: |
     On Windows, prevent passing invalid environment variables and command
     arguments to subprocess.Popen.

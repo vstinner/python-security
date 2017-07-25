@@ -563,7 +563,11 @@ class Vulnerability:
             versions = app.commit_tags.get_tags(commit,
                                                 ignore_python3=ignore_python3)
             for version in versions:
-                release_date = app.python_releases.get_date(version)
+                try:
+                    release_date = app.python_releases.get_date(version)
+                except KeyError:
+                    print("Ignore %s: not released yet" % version)
+                    continue
                 fix = Fix(commit, commit_date, version, release_date)
                 fixes.append(fix)
 
