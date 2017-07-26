@@ -41,7 +41,7 @@
     - b0fba8874a4bd6bf4773e6efdbd8fa762e9f05bd # 3.6.2
     - 4899d847ed3f56b2a712799f896aa1f28540a5c0 # 3.5.4
     - cc54c1c0d2d05fe7404ba64c53df4b1352ed2262 # 3.4.7
-    # 3.3: https://github.com/python/cpython/pull/2292
+    - 052f9d6860c48c5abcff8e16212e77cf4249d66c # 3.3
 
 - name: "smtplib TLS stripping"
   cve: CVE-2016-0772
