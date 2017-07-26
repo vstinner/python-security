@@ -28,6 +28,11 @@
   disclosure: "2017-02-20 (blog post, mail to oss-security)"
   reported-at: "2016-01-15 (email sent to the PSRT list)"
   reported-by: "Timothy D. Morgan (Blindspot)"
+  fixed-in:
+   - a4e774f86224cd8c997deaa4e71312cf1a7b023c # 3.3
+   - 19b2890014d3098147d16475c492a47a43893768 # 3.5
+   - 8c2d4cf092c5f0335e7982392a33927579c4d512 # 3.6
+   - 2b1e6e9696cb433c0e0da11145157d54275d119f # 3.7
   description: |
     FTP protocol stream injection via malicious URLs.
 
@@ -70,7 +75,7 @@
     - 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb # 2.7.12
     - 6f6bc1da8aaae52664e7747e328d26eb59c0e74f # 3.4.7
     - d274b3f1f1e2d8811733fb952c9f18d7da3a376a # 3.5.2
-    # 3.3: https://github.com/python/cpython/pull/2860
+    - 7b92f9fa47df754b50c64aac84cf1c09693571af # 3.3
   description: |
     Fix directory traversal vulnerability with ``http.server`` and
     ``SimpleHTTPServer`` on Windows.
