@@ -34,6 +34,7 @@
    - 19b2890014d3098147d16475c492a47a43893768 # 3.5
    - 8c2d4cf092c5f0335e7982392a33927579c4d512 # 3.6
    - 2b1e6e9696cb433c0e0da11145157d54275d119f # 3.7
+   # 3.4: https://github.com/python/cpython/pull/2893
   description: |
     FTP protocol stream injection via malicious URLs.
 
@@ -68,7 +69,7 @@
 
   fixed-in:
     - 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f # 2.7.12
-    - 981847e3c14f7fd6be3c47d60581e27daa23a56b # 3.3
+    - 3625f7fd11679ecb390ffa58ef36d487acc8159b # 3.3
     - 46b32f307c48bcb999b22eebf65ffe8ed5cca544 # 3.4.5
 
 - name: "Issue #26657: HTTP directory traversal"
@@ -114,7 +115,7 @@
     - 59bdf6392de446de8a19bfa37cee52981612830e # 2.7.10
     - a112a8ae47813f75aa8ad27ee8c42a7c2e937d13 # 3.4.4
     - b669bfc2bed1f5487ac2762bff53b55f6155bb60 # 3.5.0
-    # 3.3: https://github.com/python/cpython/pull/2817
+    - 8e88f6b5e2a35ee458c161aa3f2b7f1f17fb45d1 # 3.3
   description: |
     HTTP header injection in ``urllib``, ``urrlib2``, ``httplib`` and
     ``http.client`` modules.
