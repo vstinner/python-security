@@ -48,6 +48,7 @@
     - 4899d847ed3f56b2a712799f896aa1f28540a5c0 # 3.5.4
     - cc54c1c0d2d05fe7404ba64c53df4b1352ed2262 # 3.4.7
     - 052f9d6860c48c5abcff8e16212e77cf4249d66c # 3.3
+    - d4324baca4c03eb8d55446cd1b74b32ec5633af5 # 2.7
 
 - name: "smtplib TLS stripping"
   cve: CVE-2016-0772
@@ -758,6 +759,7 @@
    - 8c797ed8a0fea5e3162b9415f13e270d4d5d9549 # 3.5.4
    - 86b95370c45dedb8a56c9894372a43681de47a73 # 3.6.2
    - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
+   - 0e4571a68a7f48e8469ef05b04ba3463d3fd82c0 # 2.7
   description: |
     The Expat XML parser mishandles certain kinds of malformed input documents,
     resulting in buffer overflows during processing and error reporting. The
@@ -783,6 +785,7 @@
    - 91d171be45942d37a973b0675521b5159a96be31 # 3.5.4
    - 71572bbe82aa0836c036d44d41c8269ba6a321be # 3.4.7
    - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
+   - 2ada64d2a073f85f135461833952dbe8d656810d # 2.7
   description: |
     Upgrade expat copy from 2.2.0 to 2.2.1 to get fixes of multiple security
     vulnerabilities including:
@@ -803,6 +806,7 @@
    - a7c0264735f46afab13771be4218d8eab0d7dc91 # 3.5
    - fe82c46327effc124ff166e1fa1e611579e1176b # 3.4
    - e46f1c19642ea1882f427d8246987ba49351a97d # 3.3
+   - 9dda2caca8edc7ff1285f6b0d1c5279b51854b7d # 2.7
   description: |
     On Windows, prevent passing invalid environment variables and command
     arguments to subprocess.Popen.
