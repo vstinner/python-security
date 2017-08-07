@@ -163,6 +163,11 @@
     author: ecbftw
     date: 2017-02-20.16:49:02.045
     title: urllib FTP protocol stream injection
+30119:
+    author: Dong-hee Na
+    date: 2017-04-20.17:57:20.197
+    title: (ftplib) A remote attacker could possibly attack by containing the newline
+        characters
 30500:
     author: Nam Nguyen
     date: 2017-05-29.04:04:11.735

@@ -29,13 +29,13 @@
   disclosure: "2017-02-20 (blog post, mail to oss-security)"
   reported-at: "2016-01-15 (email sent to the PSRT list)"
   reported-by: "Timothy D. Morgan (Blindspot)"
-  fixed-in:
-   - e5eae474c431af2880a68f6329840b9288fc4bc1 # 2.7
-   - a4e774f86224cd8c997deaa4e71312cf1a7b023c # 3.3
-   - 19b2890014d3098147d16475c492a47a43893768 # 3.5
-   - 8c2d4cf092c5f0335e7982392a33927579c4d512 # 3.6
-   - 2b1e6e9696cb433c0e0da11145157d54275d119f # 3.7
-   - 2a5a26c87e82c7d9a348792891feccd1b5e9a769 # 3.4
+  #fixed-in:
+   #NOTRELEASED# - e5eae474c431af2880a68f6329840b9288fc4bc1 # 2.7
+   #NOTRELEASED# - a4e774f86224cd8c997deaa4e71312cf1a7b023c # 3.3
+   #NOTRELEASED# - 19b2890014d3098147d16475c492a47a43893768 # 3.5
+   #NOTRELEASED# - 8c2d4cf092c5f0335e7982392a33927579c4d512 # 3.6
+   #NOTRELEASED# - 2b1e6e9696cb433c0e0da11145157d54275d119f # 3.7
+   #NOTRELEASED# - 2a5a26c87e82c7d9a348792891feccd1b5e9a769 # 3.4
   description: |
     FTP protocol stream injection via malicious URLs.
 
@@ -49,8 +49,8 @@
     - b0fba8874a4bd6bf4773e6efdbd8fa762e9f05bd # 3.6.2
     - 4899d847ed3f56b2a712799f896aa1f28540a5c0 # 3.5.4
     - cc54c1c0d2d05fe7404ba64c53df4b1352ed2262 # 3.4.7
-    - 052f9d6860c48c5abcff8e16212e77cf4249d66c # 3.3
-    - d4324baca4c03eb8d55446cd1b74b32ec5633af5 # 2.7
+    #NOTRELEASED# - 052f9d6860c48c5abcff8e16212e77cf4249d66c # 3.3
+    #NOTRELEASED# - d4324baca4c03eb8d55446cd1b74b32ec5633af5 # 2.7
 
 - name: "smtplib TLS stripping"
   cve: CVE-2016-0772
@@ -70,7 +70,7 @@
 
   fixed-in:
     - 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f # 2.7.12
-    - 3625f7fd11679ecb390ffa58ef36d487acc8159b # 3.3
+    #NOTRELEASED# - 3625f7fd11679ecb390ffa58ef36d487acc8159b # 3.3
     - 46b32f307c48bcb999b22eebf65ffe8ed5cca544 # 3.4.5
 
 - name: "Issue #26657: HTTP directory traversal"
@@ -79,7 +79,7 @@
     - 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb # 2.7.12
     - 6f6bc1da8aaae52664e7747e328d26eb59c0e74f # 3.4.7
     - d274b3f1f1e2d8811733fb952c9f18d7da3a376a # 3.5.2
-    - 7b92f9fa47df754b50c64aac84cf1c09693571af # 3.3
+    #NOTRELEASED# - 7b92f9fa47df754b50c64aac84cf1c09693571af # 3.3
   description: |
     Fix directory traversal vulnerability with ``http.server`` and
     ``SimpleHTTPServer`` on Windows.
@@ -97,7 +97,7 @@
   fixed-in:
     - d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e # 2.7.12
     - 196d7db3956f4c0b03e87b570771b3460a61bab5 # 3.4.5
-    - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
+    #NOTRELEASED# - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
   description: |
     Multiple integer overflows have been discovered in Expat, an XML parsing C
     library, which may result in denial of service or the execution of
@@ -116,7 +116,7 @@
     - 59bdf6392de446de8a19bfa37cee52981612830e # 2.7.10
     - a112a8ae47813f75aa8ad27ee8c42a7c2e937d13 # 3.4.4
     - b669bfc2bed1f5487ac2762bff53b55f6155bb60 # 3.5.0
-    - 8e88f6b5e2a35ee458c161aa3f2b7f1f17fb45d1 # 3.3
+    #NOTRELEASED# - 8e88f6b5e2a35ee458c161aa3f2b7f1f17fb45d1 # 3.3
   description: |
     HTTP header injection in ``urllib``, ``urrlib2``, ``httplib`` and
     ``http.client`` modules.
@@ -761,7 +761,7 @@
    - 8c797ed8a0fea5e3162b9415f13e270d4d5d9549 # 3.5.4
    - 86b95370c45dedb8a56c9894372a43681de47a73 # 3.6.2
    - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
-   - 0e4571a68a7f48e8469ef05b04ba3463d3fd82c0 # 2.7
+   #NOTRELEASED# - 0e4571a68a7f48e8469ef05b04ba3463d3fd82c0 # 2.7
   description: |
     The Expat XML parser mishandles certain kinds of malformed input documents,
     resulting in buffer overflows during processing and error reporting. The
@@ -787,7 +787,7 @@
    - 91d171be45942d37a973b0675521b5159a96be31 # 3.5.4
    - 71572bbe82aa0836c036d44d41c8269ba6a321be # 3.4.7
    - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
-   - 2ada64d2a073f85f135461833952dbe8d656810d # 2.7
+   #NOTRELEASED# - 2ada64d2a073f85f135461833952dbe8d656810d # 2.7
   description: |
     Upgrade expat copy from 2.2.0 to 2.2.1 to get fixes of multiple security
     vulnerabilities including:
@@ -807,8 +807,8 @@
    - a9b16cff35811f88cdfeb4f50758140dfff36ebc # 3.6.2
    - a7c0264735f46afab13771be4218d8eab0d7dc91 # 3.5
    - fe82c46327effc124ff166e1fa1e611579e1176b # 3.4
-   - e46f1c19642ea1882f427d8246987ba49351a97d # 3.3
-   - 9dda2caca8edc7ff1285f6b0d1c5279b51854b7d # 2.7
+   #NOTRELEASED# - e46f1c19642ea1882f427d8246987ba49351a97d # 3.3
+   #NOTRELEASED# - 9dda2caca8edc7ff1285f6b0d1c5279b51854b7d # 2.7
   description: |
     On Windows, prevent passing invalid environment variables and command
     arguments to subprocess.Popen.
