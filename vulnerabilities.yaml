@@ -760,7 +760,7 @@
    - 71572bbe82aa0836c036d44d41c8269ba6a321be # 3.4.7
    - 8c797ed8a0fea5e3162b9415f13e270d4d5d9549 # 3.5.4
    - 86b95370c45dedb8a56c9894372a43681de47a73 # 3.6.2
-   - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
+   #NOTRELEASED# - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
    #NOTRELEASED# - 0e4571a68a7f48e8469ef05b04ba3463d3fd82c0 # 2.7
   description: |
     The Expat XML parser mishandles certain kinds of malformed input documents,
@@ -786,7 +786,7 @@
    - ea1ab803ddc14ab02ffed50ecc5089897f259623 # 3.6.2
    - 91d171be45942d37a973b0675521b5159a96be31 # 3.5.4
    - 71572bbe82aa0836c036d44d41c8269ba6a321be # 3.4.7
-   - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
+   #NOTRELEASED# - ab90986600ba7dea2aa41e5c1773791070725453 # 3.3
    #NOTRELEASED# - 2ada64d2a073f85f135461833952dbe8d656810d # 2.7
   description: |
     Upgrade expat copy from 2.2.0 to 2.2.1 to get fixes of multiple security
