@@ -128,6 +128,47 @@ CPython Security Experts
 * Christian Heimes
 * Donald Stufft
 
+Windows
+=======
+
+ASLR and DEP
+------------
+
+ASLR and DEP protections enabled since Python 3.4 (and Python 2.7.11 if built
+using ``PCbuild/`` directory).
+
+Unsafe Python 2.7 default installation directory
+------------------------------------------------
+
+Python 2.7 installer uses C:\Python27\ directory by default. The created
+directory has the "Modify" access rights given to the "Authenticated Users"
+group. An attacker can modify the standard library or even modify
+python.exe. Python 3 installer now installs Python in "C:\Program Files" by
+default to fix this issue. Override the default installation directory, or
+fix the directory permissions.
+
+DLL injection
+-------------
+
+On Windows 8.1 and older, the installer is vulnerable to DLL injection:
+evil DLL written in the same download directory that the downloaded Python
+installer. See `DLL Hijacking Just Won’t Die
+<https://textslashplain.com/2015/12/18/dll-hijacking-just-wont-die/>`_.
+
+DLL injection using PATH
+------------------------
+
+Inject a malicious DLL in a writable directory included in PATH. The "pip" step
+of the Python installer will run this DLL.
+
+We consider that it is not an issue of Python (Python installer) itself.
+
+Once you have write access to a directory on the system PATH (not the current
+user PATH) and the ability to write binaries that are not validated by the
+operating system before loading, there are many more interesting things you can
+do rather than wait for the Python installer to be run.
+
+
 Misc
 ====
 
@@ -147,8 +188,6 @@ Misc
     highest quality rating
     <http://www.coverity.com/press-releases/coverity-finds-python-sets-new-level-of-quality-for-open-source-software/>`_.
 
-* Windows: ASLR and DEP protections enabled since Python 3.4 (and Python 2.7.11
-  if built using ``PCbuild/`` directory)
 * sys.path:
 
   * CVE-2008-5983: http://bugs.python.org/issue5753 added ``PySys_SetArgvEx()``
