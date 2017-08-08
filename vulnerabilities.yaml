@@ -29,10 +29,10 @@
   disclosure: "2017-02-20 (blog post, mail to oss-security)"
   reported-at: "2016-01-15 (email sent to the PSRT list)"
   reported-by: "Timothy D. Morgan (Blindspot)"
-  #fixed-in:
+  fixed-in:
    #NOTRELEASED# - e5eae474c431af2880a68f6329840b9288fc4bc1 # 2.7
    #NOTRELEASED# - a4e774f86224cd8c997deaa4e71312cf1a7b023c # 3.3
-   #NOTRELEASED# - 19b2890014d3098147d16475c492a47a43893768 # 3.5
+   - 19b2890014d3098147d16475c492a47a43893768 # 3.5
    #NOTRELEASED# - 8c2d4cf092c5f0335e7982392a33927579c4d512 # 3.6
    #NOTRELEASED# - 2b1e6e9696cb433c0e0da11145157d54275d119f # 3.7
    #NOTRELEASED# - 2a5a26c87e82c7d9a348792891feccd1b5e9a769 # 3.4
