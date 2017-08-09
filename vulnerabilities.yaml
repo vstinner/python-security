@@ -35,7 +35,7 @@
    - 19b2890014d3098147d16475c492a47a43893768 # 3.5
    #NOTRELEASED# - 8c2d4cf092c5f0335e7982392a33927579c4d512 # 3.6
    #NOTRELEASED# - 2b1e6e9696cb433c0e0da11145157d54275d119f # 3.7
-   #NOTRELEASED# - 2a5a26c87e82c7d9a348792891feccd1b5e9a769 # 3.4
+   - 2a5a26c87e82c7d9a348792891feccd1b5e9a769 # 3.4
   description: |
     FTP protocol stream injection via malicious URLs.
 
