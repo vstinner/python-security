@@ -437,7 +437,9 @@
     X.509 certificate, which allows man-in-the-middle attackers to spoof SSL
     servers via an arbitrary valid certificate.
 
-    See also the `PEP 466: Network Security Enhancements for Python 2.7.x
+    See also the `PEP 476 -- Enabling certificate verification by default for
+    stdlib http clients <https://www.python.org/dev/peps/pep-0476/>`_ and `PEP
+    466: Network Security Enhancements for Python 2.7.x
     <https://www.python.org/dev/peps/pep-0466/>`_.
 
 - name: "buffer() integer overflows"
