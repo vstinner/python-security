@@ -821,6 +821,22 @@
     Check for invalid environment (variable names containing '=') and command
     arguments (containing '\0').
 
+- name: "update zlib to 1.2.11"
+  bpo: 29169
+  reported-at: "2017-01-02 (zlib 1.2.10 released)"
+  fixed-in:
+  #NOTRELEASED# - 80b24a9354c60f6b800d462c941c6d4cde3cf783 # 2.7
+   - 34e7e2ecb1741850190e78f42875480693d3537b # 3.5
+  description: |
+    These are the changes updating zlib from 1.2.8 to 1.2.10. It is only used
+    when building without a system zlib.
+
+    The new release includes fixes for
+    security issues CVE-2016-9840, CVE-2016-9841, CVE-2016-9842, CVE-2016-9843.
+
+    Note: Only Windows and macOS are affected by this issue. Linux packages use
+    the system zlib.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows

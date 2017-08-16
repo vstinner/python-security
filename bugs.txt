@@ -155,6 +155,10 @@
     author: Carl Ekerot
     date: 2016-10-30.16:58:40.897
     title: Arbitrary code execution in gettext.c2py
+29169:
+    author: Matthias Klose
+    date: 2017-01-05.15:11:35.326
+    title: update zlib to 1.2.11
 29591:
     author: Natanael Copa
     date: 2017-02-17.15:39:39.187
