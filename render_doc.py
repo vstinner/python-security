@@ -125,11 +125,14 @@ def format_date(date):
     return date.strftime("%Y-%m-%d")
 
 
-def run(cmd, cwd):
+def run(cmd, cwd, text=True):
+    kw = {}
+    if text:
+        kw['universal_newlines'] = True
     proc = subprocess.run(cmd,
                           stdout=subprocess.PIPE,
-                          universal_newlines=True,
-                          cwd=cwd)
+                          cwd=cwd,
+                          **kw)
     if proc.returncode:
         print("Command %r failed with exit code %s"
               % (' '.join(cmd), proc.returncode))
@@ -180,11 +183,13 @@ class CommitDates:
         print("Get %s date" % commit)
 
         cmd = ["git", "show", commit]
-        proc = run(cmd, self.python_path)
+        proc = run(cmd, self.python_path, text=False)
         for line in proc.stdout.splitlines():
-            if not line.startswith('Date:'):
+            if not line.startswith(b'Date:'):
                 continue
-            return line[5:].strip()
+            line = line[5:].strip()
+            line = line.decode()
+            return line
 
         print("ERROR: failed to get commit date")
         print(proc.stdout)
