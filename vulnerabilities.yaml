@@ -828,6 +828,8 @@
   #NOTRELEASED# - 80b24a9354c60f6b800d462c941c6d4cde3cf783 # 2.7
   #NOTRELEASED# - d0e61bded5256e775e470e2c0da22367a1a81970 # 3.4
    - 34e7e2ecb1741850190e78f42875480693d3537b # 3.5, 3.6, 3.7
+   # Python 3.3 uses zlib 1.2.5 and is not going to be fixed:
+   # https://github.com/python/cpython/pull/3108
   description: |
     These are the changes updating zlib from 1.2.8 to 1.2.10. It is only used
     when building without a system zlib.
