@@ -845,8 +845,8 @@
   fixed-in:
    - ec4ab09b7c0b5070bdb27351f979cbecc4636245 # 2.7
    - 297516ea509c72d8ebed3a9b3ce200f023aca0b7 # 3.3, expat 2.2.1 to 2.2.4
-   - 83e37e16f3065086d721d4e62a3788e01db3431c # 3.6
-   - 93d0cb58b4da2a88c56f472c6c19491cc7a390df # 3.7
+   #NOTRELEASED# - 83e37e16f3065086d721d4e62a3788e01db3431c # 3.6
+   #NOTRELEASED# - 93d0cb58b4da2a88c56f472c6c19491cc7a390df # 3.7
   description: |
    Expat 2.2.2 was released with multiple security fixes:
 
