@@ -188,3 +188,7 @@
     author: Serhiy Storchaka
     date: 2017-06-22.08:06:59.735
     title: '[security] Injecting environment variable in subprocess on Windows'
+30947:
+    author: STINNER Victor
+    date: 2017-07-17.14:18:15.565
+    title: Update embeded copy of libexpat from 2.2.1 to 2.2.3

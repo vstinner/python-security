@@ -840,6 +840,30 @@
     Note: Only Windows and macOS are affected by this issue. Linux packages use
     the system zlib.
 
+- name: "Expat 2.2.3"
+  bpo: 30947
+  fixed-in:
+   - ec4ab09b7c0b5070bdb27351f979cbecc4636245 # 2.7
+   - 297516ea509c72d8ebed3a9b3ce200f023aca0b7 # 3.3, expat 2.2.1 to 2.2.4
+   - 83e37e16f3065086d721d4e62a3788e01db3431c # 3.6
+   - 93d0cb58b4da2a88c56f472c6c19491cc7a390df # 3.7
+  description: |
+   Expat 2.2.2 was released with multiple security fixes:
+
+   * #43: Protect against compilation without any source of high quality
+     entropy enabled, e.g. with CMake build system
+   * #60: Windows with _UNICODE: Unintended use of LoadLibraryW with a non-wide
+     string resulted in failure to load advapi32.dll and degradation in quality
+     of used entropy when compiled with _UNICODE for Windows; you can launch
+     existing binaries with EXPAT_ENTROPY_DEBUG=1 in the environment to inspect
+     the quality of entropy used during runtime
+   * [MOX-006]: Fix non-NULL parser parameter validation in XML_Parse; resulted
+     in NULL dereference, previously
+
+   Expat 2.2.3 contains an additional security fix: #82: CVE-2017-11742 --
+   Windows: Fix DLL hijacking vulnerability using Steve Holme's LoadLibrary
+   wrapper for/of cURL
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
