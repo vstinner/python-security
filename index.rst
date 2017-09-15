@@ -12,8 +12,8 @@ Pages
    :maxdepth: 2
 
    vulnerabilities
+   packages
    ssl
-   python_releases
    todo
 
 
@@ -212,29 +212,6 @@ Python Security Response Team (PSRT)
 * `LWN: The Python security response team
   <https://lwn.net/Articles/691308/>`_ (June, 2016)
 
-PyPI typo squatting
-===================
-
-* `Typosquatting programming language package managers
-  <http://incolumitas.com/2016/06/08/typosquatting-package-managers/>`_
-  by Nikolai Tschacher (8 June, 2016)
-* `LWN: Typosquatting in package repositories
-  <https://lwn.net/Articles/694830/>`_ (July 20, 2016)
-* `Building a botnet on PyPi
-  <https://hackernoon.com/building-a-botnet-on-pypi-be1ad280b8d6>`_
-  by Steve Stagg (May 19, 2017)
-* warehouse bug (pypi.org): `Block package names that conflict with core
-  libraries <https://github.com/pypa/warehouse/issues/2151>`_ (reported at June
-  28, 2017)
-* 2017-09-09: `skcsirt-sa-20170909-pypi-malicious-code advisory
-  <http://www.nbu.gov.sk/skcsirt-sa-20170909-pypi/>`_
-* `pytosquatting.org project <https://www.pytosquatting.org/>`_
-
-Example of typos:
-
-* ``urllib``, ``urllib2``: part of the standard library
-* ``urlib3`` instead of ``urllib3``
-
 Links
 =====
 
@@ -246,8 +223,6 @@ Links
   <https://github.com/openstack/bandit>`_
 * `Python CVEs (cvedetails.com)
   <http://www.cvedetails.com/product/18230/Python-Python.html?vendor_id=10210>`_
-* https://github.com/pyupio/safety-db and https://pyup.io/
-* https://pypi.python.org/pypi/safety
 * https://gemnasium.com/
 * `owasp-pysec: OWASP Python Security Project
   <https://github.com/ebranca/owasp-pysec>`_
