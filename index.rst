@@ -212,6 +212,20 @@ Python Security Response Team (PSRT)
 * `LWN: The Python security response team
   <https://lwn.net/Articles/691308/>`_ (June, 2016)
 
+PyPI typo squatting
+===================
+
+* `pytosquatting.org project <https://www.pytosquatting.org/>`_
+* `LWN: Typosquatting in package repositories
+  <https://lwn.net/Articles/694830/>`_ (July 20, 2016)
+* 2017-09-09: `skcsirt-sa-20170909-pypi-malicious-code advisory
+  <http://www.nbu.gov.sk/skcsirt-sa-20170909-pypi/>`_
+
+Example of typos:
+
+* ``urllib``, ``urllib2``: part of the standard library
+* ``urlib3`` instead of ``urllib3``
+
 Links
 =====
 
