@@ -215,6 +215,9 @@ Python Security Response Team (PSRT)
 PyPI typo squatting
 ===================
 
+* `Typosquatting programming language package managers
+  <http://incolumitas.com/2016/06/08/typosquatting-package-managers/>`_
+  by Nikolai Tschacher (8 June, 2016)
 * `pytosquatting.org project <https://www.pytosquatting.org/>`_
 * `LWN: Typosquatting in package repositories
   <https://lwn.net/Articles/694830/>`_ (July 20, 2016)
