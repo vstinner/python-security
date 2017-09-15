@@ -218,11 +218,17 @@ PyPI typo squatting
 * `Typosquatting programming language package managers
   <http://incolumitas.com/2016/06/08/typosquatting-package-managers/>`_
   by Nikolai Tschacher (8 June, 2016)
-* `pytosquatting.org project <https://www.pytosquatting.org/>`_
 * `LWN: Typosquatting in package repositories
   <https://lwn.net/Articles/694830/>`_ (July 20, 2016)
+* `Building a botnet on PyPi
+  <https://hackernoon.com/building-a-botnet-on-pypi-be1ad280b8d6>`_
+  by Steve Stagg (May 19, 2017)
+* warehouse bug (pypi.org): `Block package names that conflict with core
+  libraries <https://github.com/pypa/warehouse/issues/2151>`_ (reported at June
+  28, 2017)
 * 2017-09-09: `skcsirt-sa-20170909-pypi-malicious-code advisory
   <http://www.nbu.gov.sk/skcsirt-sa-20170909-pypi/>`_
+* `pytosquatting.org project <https://www.pytosquatting.org/>`_
 
 Example of typos:
 
