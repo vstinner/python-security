@@ -52,13 +52,44 @@ PyPI typo squatting
 * 2017-09-09: `skcsirt-sa-20170909-pypi-malicious-code advisory
   <http://www.nbu.gov.sk/skcsirt-sa-20170909-pypi/>`_
 
-fate0 story:
+fate0:
 
+* 2017-05-27 04:38 - 2017-05-31 12:24 (5 days): 10,685 downloads
 * May-June, 2017
+* https://mail.python.org/pipermail/distutils-sig/2017-June/030592.html
 * http://blog.fatezero.org/2017/06/01/package-fishing/
 * https://github.com/pypa/pypi-legacy/issues/644
 * http://evilpackage.fatezero.org/
 * https://github.com/fate0/cookiecutter-evilpy-package
+* Packages (this list needs to be validated):
+
+  * caffe
+  * ffmpeg
+  * ftp
+  * git
+  * hbase
+  * memcached
+  * mkl
+  * mongodb
+  * opencv
+  * openssl
+  * phantomjs
+  * proxy
+  * pygpu
+  * python-dev
+  * rabbitmq
+  * requirement.txt
+  * requirements.txt
+  * rrequirements.txt
+  * samba
+  * shadowsock
+  * smb
+  * tkinter
+  * vtk
+  * youtube-dl
+  * zookeeper
+  * ztz
+  * ...
 
 See also:
 
