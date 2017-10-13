@@ -117,4 +117,4 @@ Table of Contents:
 .. toctree::
    :maxdepth: 1
 
-   vuln/index-2017-10-12-unchecked_file_deletion.rst
+   index-vuln/index-2017-10-12-unchecked_file_deletion.rst
