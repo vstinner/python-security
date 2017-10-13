@@ -38,7 +38,11 @@ PyPI
 Vulnerabilites in the Package Index
 ===================================
 
-* :ref:`Unchecked file deletion <index-unchecked_file_deletion>` (2017-10-12)
+.. toctree::
+   :maxdepth: 1
+
+   pypi-vuln/index-2017-10-12-unchecked_file_deletion.rst
+
 
 
 PyPI typo squatting
@@ -111,10 +115,3 @@ Links
 
 * `The Update Framework (TUF) <https://theupdateframework.github.io/>`_:
   Like the S in HTTPS, a plug-and-play library for securing a software updater.
-
-Table of Contents:
-
-.. toctree::
-   :maxdepth: 1
-
-   index-vuln/index-2017-10-12-unchecked_file_deletion.rst
