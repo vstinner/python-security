@@ -35,6 +35,12 @@ PyPI
   <http://www.curiousefficiency.org/posts/2016/09/python-packaging-ecosystem.html#making-pypi-security-independent-of-ssl-tls>`_
   by Nick Coghlan
 
+Vulnerabilites in the Package Index
+===================================
+
+* :ref:`Unchecked file deletion <index-unchecked_file_deletion>` (2017-10-12)
+
+
 PyPI typo squatting
 ===================
 
@@ -105,3 +111,10 @@ Links
 
 * `The Update Framework (TUF) <https://theupdateframework.github.io/>`_:
   Like the S in HTTPS, a plug-and-play library for securing a software updater.
+
+Table of Contents:
+
+.. toctree::
+   :maxdepth: 1
+
+   vuln/index-2017-10-12-unchecked_file_deletion.rst
