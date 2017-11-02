@@ -63,7 +63,7 @@ def dump_json(filename, data):
 
 def load_yaml(filename):
     with open(filename, encoding="utf-8") as fp:
-        return yaml.load(fp, Loader=yaml.SafeLoader)
+        return yaml.safe_load(fp)
 
 
 def dump_yaml(filename, data):
