@@ -105,5 +105,5 @@ Timeline using the disclosure date **2017-11-05** as reference:
 * 2017-11-05 Issue reported by Joachim Jablon to a single member of the security team listed in our security policy on `pypi.org <https://pypi.org/security/>`_
 * 2017-11-08 (**+3days**):Issue reported by Joachim Jablon to an additional member of the security team listed in our security policy on `pypi.org <https://pypi.org/security/>`_
 * 2017-11-08 (**+3days**):Issue reported by Joachim Jablon to all members of the security team listed in our security policy on `pypi.org <https://pypi.org/security/>`_
-* 2017-10-08 (**+3days**): Report investigated by `Ernest W. Durbin III <https://ernest.ly>`_ and determined to be valid. 
-* 2017-10-09 (**+4days**): Administrative password resets issued.
+* 2017-11-08 (**+3days**): Report investigated by `Ernest W. Durbin III <https://ernest.ly>`_ and determined to be valid. 
+* 2017-11-09 (**+4days**): Administrative password resets issued.
