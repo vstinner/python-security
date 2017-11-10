@@ -42,6 +42,7 @@ Vulnerabilites in the Package Index
    :maxdepth: 1
 
    pypi-vuln/index-2017-10-12-unchecked_file_deletion.rst
+   pypi-vuln/index-2017-11-08-pypirc_exposure_on_github.rst
 
 
 
