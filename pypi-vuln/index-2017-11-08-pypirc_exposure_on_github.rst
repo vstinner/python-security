@@ -49,7 +49,7 @@ for the exposed accounts.
 
 The email sent to affected users took the form
 
-.. code-block::
+.. code-block:: python
 
   From: admin@mail.pypi.python.org
   To: {user['email']}
