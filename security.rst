@@ -128,7 +128,7 @@ Unsafe Python 2.7 default installation directory
 Python 2.7 installer uses C:\Python27\ directory by default. The created
 directory has the "Modify" access rights given to the "Authenticated Users"
 group. An attacker can modify the standard library or even modify
-python.exe. Python 3 installer now installs Python in "C:\Program Files" by
+python.exe. Python 3 installer now installs Python in ``C:\Program Files`` by
 default to fix this issue. Override the default installation directory, or
 fix the directory permissions.
 
