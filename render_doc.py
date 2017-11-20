@@ -15,6 +15,8 @@ import urllib.request
 import xmlrpc.client
 import yaml
 
+PYTHON_SRCDIR =  '/home/vstinner/prog/python/master'
+
 # Last update: 2017-10-18
 MAINTAINED_BRANCHES = ['2.7', '3.4', '3.5', '3.6']
 
@@ -1006,7 +1008,7 @@ def main():
     bugs_filename = 'bugs.txt'
     cve_path = 'cve'
     vuln_path = 'vuln'
-    python_path = '/home/haypo/prog/python/master'
+    python_path = PYTHON_SRCDIR
 
     parse_config(config_filename)
 
