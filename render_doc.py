@@ -216,6 +216,7 @@ def version_info(version):
 
 
 def python_major_version(version):
+    # Return (2, 7) from '2.7.3'
     return version_info(version)[:2]
 
 
@@ -625,7 +626,7 @@ class Vulnerability:
             if any(is_fixed(major, fixed) for fixed in seen):
                 continue
             if affected_versions:
-                if not any(is_fixed(major, affected[:2])
+                if not any(major == affected[:2]
                            for affected in affected_versions):
                     continue
             vulnerable.append(version)

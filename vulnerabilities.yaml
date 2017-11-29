@@ -864,6 +864,19 @@
    Windows: Fix DLL hijacking vulnerability using Steve Holme's LoadLibrary
    wrapper for/of cURL
 
+- name: "PyString_DecodeEscape integer overflow"
+  cve: CVE-2017-1000158
+  bpo: 30657
+  fixed-in:
+   - c3c9db89273fabc62ea1b48389d9a3000c1c03ae
+  affected-versions:
+   # <2.7 and <3.4 is likely impacted as well
+   - '2.7'
+   - '3.4'
+   - '3.5'
+  description: |
+    Check & prevent integer overflow in PyString_DecodeEscape.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
