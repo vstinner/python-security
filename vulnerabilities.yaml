@@ -877,6 +877,11 @@
   description: |
     Check & prevent integer overflow in PyString_DecodeEscape.
 
+    You need to compile a 1 GiB Python file on 32-bit system for reproducing
+    it. It is very unlikely that this can happen by accident, and it is hard to
+    used it in security attack. If you can make the attacked program compiling
+    a 1 GiB Python file, you perhaps have easier ways to make a harm.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
