@@ -143,10 +143,6 @@
     author: "R\xE9mi Rampin"
     date: 2016-07-18.22:30:13.649
     title: '"HTTPoxy", use of HTTP_PROXY flag supplied by attacker in CGI scripts'
-27845:
-    author: STINNER Victor
-    date: 2016-08-23.21:44:34.730
-    title: Optimize update_keyword_args() function
 27850:
     author: Christian Heimes
     date: 2016-08-24.13:43:47.563
@@ -162,11 +158,8 @@
 29591:
     author: Natanael Copa
     date: 2017-02-17.15:39:39.187
-    title: Various security vulnerabilities in bundled expat (CVE-2016-0718 and CVE-2016-4472)
-29606:
-    author: ecbftw
-    date: 2017-02-20.16:49:02.045
-    title: urllib FTP protocol stream injection
+    title: 'expat 2.2.0: Various security vulnerabilities in bundled expat (CVE-2016-0718
+        and CVE-2016-4472)'
 30119:
     author: Dong-hee Na
     date: 2017-04-20.17:57:20.197
@@ -175,15 +168,11 @@
 30500:
     author: Nam Nguyen
     date: 2017-05-29.04:04:11.735
-    title: urllib connects to a wrong host
-30610:
-    author: Duy Phan Thanh
-    date: 2017-06-09.09:07:09.951
-    title: libexpat vulnerable to CVE-2016-0718
+    title: '[security] urllib connects to a wrong host'
 30657:
     author: Jay Bosamiya
-    date: 2017-06-13.15:35:00.000
-    title: Unsafe arithmetic in PyString_DecodeEscape
+    date: 2017-06-13.15:35:28.798
+    title: '[security] CVE-2017-1000158: Unsafe arithmetic in PyString_DecodeEscape'
 30694:
     author: Ned Deily
     date: 2017-06-18.03:01:26.301
