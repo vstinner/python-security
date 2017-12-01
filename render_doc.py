@@ -357,6 +357,14 @@ def parse_date_comment(date):
     return DateComment(date, comment)
 
 
+class SpecialTransport(xmlrpc.client.SafeTransport):
+    def send_content(self, connection, request_body):
+        connection.putheader("Referer", "https://bugs.python.org/")
+        connection.putheader("Origin", "https://bugs.python.org")
+        connection.putheader("X-Requested-With", "XMLHttpRequest")
+        super().send_content(connection, request_body)
+
+
 class PythonBugs:
     def __init__(self, filename):
         self.filename = filename
@@ -383,7 +391,7 @@ class PythonBugs:
         print("Download issue #%s" % number)
 
         bug = {}
-        server = xmlrpc.client.ServerProxy(BUGS_API, allow_none=True)
+        server = xmlrpc.client.ServerProxy(BUGS_API, allow_none=True, transport=SpecialTransport())
         with server:
             issue = server.display('issue%s' % number)
             bug['title'] = issue['title']
