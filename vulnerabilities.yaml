@@ -870,6 +870,8 @@
   bpo: 30657
   fixed-in:
    - c3c9db89273fabc62ea1b48389d9a3000c1c03ae
+   #NOTRELEASED# - 6c004b40f9d51872d848981ef1a18bb08c2dfc42 # 3.4
+   #NOTRELEASED# - fd8614c5c5466a14a945db5b059c10c0fb8f76d9 # 3.5
   affected-versions:
    # <2.7 and <3.4 is likely impacted as well
    - '2.7'
