@@ -165,7 +165,7 @@ Links
 * `M2Crypto <https://pypi.python.org/pypi/M2Crypto>`_
 * `urllib3 <https://urllib3.readthedocs.io/>_`
 * `LibreSSL <http://www.libressl.org/>`_
-* `borringssl <https://boringssl.googlesource.com/boringssl/>`_
+* `boringssl <https://boringssl.googlesource.com/boringssl/>`_
 * `multissl <https://github.com/tiran/multissl/blob/master/multissl.py>`_ (by
   Christian Heimes): Run Python tests against multiple installations of OpenSSL
   and LibreSSL
