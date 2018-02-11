@@ -827,7 +827,7 @@
   reported-at: "2017-01-02 (zlib 1.2.10 released)"
   fixed-in:
    - 80b24a9354c60f6b800d462c941c6d4cde3cf783 # 2.7
-  #NOTRELEASED# - d0e61bded5256e775e470e2c0da22367a1a81970 # 3.4
+   - d0e61bded5256e775e470e2c0da22367a1a81970 # 3.4
    - 34e7e2ecb1741850190e78f42875480693d3537b # 3.5, 3.6, 3.7
    # Python 3.3 uses zlib 1.2.5 and is not going to be fixed:
    # https://github.com/python/cpython/pull/3108
@@ -846,6 +846,8 @@
   fixed-in:
    - ec4ab09b7c0b5070bdb27351f979cbecc4636245 # 2.7
    - 297516ea509c72d8ebed3a9b3ce200f023aca0b7 # 3.3, expat 2.2.1 to 2.2.4
+   - 86a713cb0c110b6798ca7f9e630fc511ee0a4028 # 3.4
+   - f2492bb6aae061aea47e21fc7e56b7ab9bfdf543 # 3.5
    - 83e37e16f3065086d721d4e62a3788e01db3431c # 3.6
    #NOTRELEASED# - 93d0cb58b4da2a88c56f472c6c19491cc7a390df # 3.7
   description: |
@@ -870,8 +872,8 @@
   bpo: 30657
   fixed-in:
    - c3c9db89273fabc62ea1b48389d9a3000c1c03ae
-   #NOTRELEASED# - 6c004b40f9d51872d848981ef1a18bb08c2dfc42 # 3.4
-   #NOTRELEASED# - fd8614c5c5466a14a945db5b059c10c0fb8f76d9 # 3.5
+   - 6c004b40f9d51872d848981ef1a18bb08c2dfc42 # 3.4
+   - fd8614c5c5466a14a945db5b059c10c0fb8f76d9 # 3.5
   affected-versions:
    # <2.7 and <3.4 is likely impacted as well
    - '2.7'
