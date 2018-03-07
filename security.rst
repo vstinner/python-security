@@ -202,6 +202,8 @@ Links
 
 * `Reporting security issues in Python
   <https://www.python.org/news/security/>`_
+* `Python Security Announce <https://mail.python.org/mm3/mailman3/lists/security-announce.python.org/>`_ 
+  public mailing list
 * `OWASP Python Security Project (pythonsecurity.org)
   <http://www.pythonsecurity.org/>`_
 * `bandit: Python AST-based static analyzer from OpenStack Security Group
