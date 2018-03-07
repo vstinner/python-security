@@ -887,6 +887,54 @@
     used it in security attack. If you can make the attacked program compiling
     a 1 GiB Python file, you perhaps have easier ways to make a harm.
 
+- name: "Buffer overflow vulnerability in os.symlink on Windows"
+  cve: CVE-2018-1000117
+  bpo: 33001
+  links:
+    - https://mail.python.org/mm3/archives/list/security-announce@python.org/thread/PVSURQ2YCNZODILA3QE7ZF3GCD25EVVT/
+  reported-at: "2018-02-27 (email to the PSRT)"
+  reported-by: "Alexey Izbyshev"
+  fixed-in:
+   #NOTRELEASED# - 6921e73e33edc3c61bc2d78ed558eaa22a89a564 # 3.8
+   #NOTRELEASED# - 96fdbacb7797a564249fd59ccf86ec153c4bb095 # 3.7
+   #NOTRELEASED# - baa45079466eda1f5636a6d13f3a60c2c00fdcd3 # 3.6
+   # 3.5: https://github.com/python/cpython/pull/5991
+   # 3.4: https://github.com/python/cpython/pull/5992
+  description: |
+    On February 27th, 2018, the Python Security Response team was notified
+    of a buffer overflow issue in the ``os.symlink()`` method on Windows. The
+    issue affects all versions of Python between 3.2 and 3.6.4, including
+    the 3.7 beta releases. It has been patched for the next releases of 3.4,
+    3.5, 3.6 and 3.7.
+
+    Scripts may be vulnerable if they use ``os.symlink()`` on Windows and an
+    attacker is able to influence the location where links are created. As
+    os.symlink requires additional privileges, exploits using this
+    vulnerability are more likely to result in escalation of privilege.
+
+    Besides applying the fix to CPython, scripts can also ensure that the
+    length of each path argument is less than 260, and if the source is a
+    relative path, that its combination with the destination is also shorter
+    than 260 characters. That is::
+
+        assert (len(src) < 260 and
+                len(dest) < 260 and
+                len(os.path.join(os.path.dirname(dest), src)) < 260)
+        os.symlink(src, dest)
+
+    Scripts that explicitly pass the target_is_directory argument as True
+    are not vulnerable. Scripts on Python 3.5 that use bytes for paths are
+    not vulnerable, because of a combination of stack layout and added
+    parameter validation, but will still not behave correctly for long paths.
+
+    This vulnerability has been registered as CVE-2018-1000117, and patched
+    in the commits listed below. This patch prevents the buffer overflow,
+    but does not raise any new errors or enable the use of long paths when
+    creating symlinks.
+
+    Many thanks to **Alexey Izbyshev** for the report, and helping us work
+    through developing the patch.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows

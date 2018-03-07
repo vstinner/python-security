@@ -185,3 +185,7 @@
     author: STINNER Victor
     date: 2017-07-17.14:18:15.565
     title: Update embeded copy of libexpat from 2.2.1 to 2.2.3
+33001:
+    author: Steve Dower
+    date: 2018-03-05.18:04:42.468
+    title: Buffer overflow vulnerability in os.symlink on Windows (CVE-2018-1000117)

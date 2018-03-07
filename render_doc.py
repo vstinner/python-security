@@ -574,6 +574,8 @@ class Vulnerability:
         fixes = []
         ignore_python3 = data.pop('ignore-python3', None)
         commits = data.pop('fixed-in', ())
+        if not commits:
+            commits = ()
         for commit in commits:
             commit_date = app.commit_dates.get_commit_date(commit)
             versions = app.commit_tags.get_tags(commit,
@@ -803,7 +805,8 @@ def render_cve(fp, cve):
     url = CVE_URL % cve.number
     print("* CVE ID: `%s <%s>`_" % (cve.number, url), file=fp)
     print("* Published: %s" % format_date(cve.published), file=fp)
-    print("* `CVSS Score <%s>`_: %s" % (CVSS_SCORE_URL, cve.cvss), file=fp)
+    if cve.cvss is not None:
+        print("* `CVSS Score <%s>`_: %s" % (CVSS_SCORE_URL, cve.cvss), file=fp)
     print(file=fp)
 
 
