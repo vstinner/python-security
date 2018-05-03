@@ -945,7 +945,7 @@
    #NOTRELEASED# - c9516754067d71fd7429a25ccfcb2141fc583523 # 3.6
    #NOTRELEASED# - 937ac1fe069a4dc8471dff205f553d82e724015b # 3.5
    #NOTRELEASED# - 942cc04ae44825ea120e3a19a80c9b348b8194d0 # 3.4
-   #NOTRELEASED# - e052d40cea15f582b50947f7d906b39744dc62a2 # 2.7
+   - e052d40cea15f582b50947f7d906b39744dc62a2 # 2.7
   description: |
     Regexes in difflib and poplib were vulnerable to catastrophic backtracking.
     These regexes formed potential DOS vectors (REDOS). They have been
