@@ -935,6 +935,26 @@
     Many thanks to **Alexey Izbyshev** for the report, and helping us work
     through developing the patch.
 
+- name: "difflib and poplib catastrophic backtracking"
+  cve: CVE-2018-1060
+  # Bug number at bugs.python.org (bpo)
+  bpo: 32981
+  fixed-in:
+   #NOTRELEASED# - 0e6c8ee2358a2e23117501826c008842acb835ac # master
+   #NOTRELEASED# - 0902a2d6b2d1d9dbde36aeaaccf1788ceaa97143 # 3.7
+   #NOTRELEASED# - c9516754067d71fd7429a25ccfcb2141fc583523 # 3.6
+   #NOTRELEASED# - 937ac1fe069a4dc8471dff205f553d82e724015b # 3.5
+   #NOTRELEASED# - 942cc04ae44825ea120e3a19a80c9b348b8194d0 # 3.4
+   #NOTRELEASED# - e052d40cea15f582b50947f7d906b39744dc62a2 # 2.7
+  description: |
+    Regexes in difflib and poplib were vulnerable to catastrophic backtracking.
+    These regexes formed potential DOS vectors (REDOS). They have been
+    refactored.
+
+    This resolves CVE-2018-1060 and CVE-2018-1061.
+
+    Patch by **Jamie Davis**.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
