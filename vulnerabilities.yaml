@@ -898,8 +898,8 @@
    #NOTRELEASED# - 6921e73e33edc3c61bc2d78ed558eaa22a89a564 # 3.8
    #NOTRELEASED# - 96fdbacb7797a564249fd59ccf86ec153c4bb095 # 3.7
    #NOTRELEASED# - baa45079466eda1f5636a6d13f3a60c2c00fdcd3 # 3.6
-   # 3.5: https://github.com/python/cpython/pull/5991
-   # 3.4: https://github.com/python/cpython/pull/5992
+   #NOTRELEASED# - 77c02cdce2d7b8360771be35b7676a4977e070c1 # 3.4
+   #NOTRELEASED# - f381cfe07d15d52f27de771a62a8167668f0dd51 # 3.5
   description: |
     On February 27th, 2018, the Python Security Response team was notified
     of a buffer overflow issue in the ``os.symlink()`` method on Windows. The
