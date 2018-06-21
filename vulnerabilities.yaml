@@ -955,6 +955,21 @@
 
     Patch by **Jamie Davis**.
 
+- name: "Python 2.7 readahead feature of file objects is not thread safe"
+  cve: CVE-2018-1000030
+  # Bug number at bugs.python.org (bpo)
+  bpo: 31530
+  links:
+    - https://access.redhat.com/security/cve/cve-2018-1000030
+  reported-by: "email to PSRT"
+  fixed-in:
+   - dbf52e02f18dac6f5f0a64f78932f3dc6efc056b
+  affected-versions:
+   - "2.7"
+  description: |
+    Reading from the same file object in different threads does crash Python
+    2.7. The readahead feature of Objects/fileobject.c is not thread safe.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows

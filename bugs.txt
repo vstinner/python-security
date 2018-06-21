@@ -185,6 +185,10 @@
     author: STINNER Victor
     date: 2017-07-17.14:18:15.565
     title: Update embeded copy of libexpat from 2.2.1 to 2.2.3
+31530:
+    author: STINNER Victor
+    date: 2017-09-20.13:27:12.407
+    title: Python 2.7 readahead feature of file objects is not thread safe
 32981:
     author: James Davis
     date: 2018-03-02.00:36:19.614
