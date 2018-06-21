@@ -970,6 +970,14 @@
     Reading from the same file object in different threads does crash Python
     2.7. The readahead feature of Objects/fileobject.c is not thread safe.
 
+    The PSRT decided that it's a regular bug and doesn't need to be categorized
+    as a vulnerability, since the attacker has to be able to run arbitrary code
+    in practice.
+
+    The PSRT considers that no Python 2.7 application currently rely on reading
+    from the same file object "at the same time" from different thread, since
+    it currently crashs.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
