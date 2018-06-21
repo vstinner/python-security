@@ -955,7 +955,7 @@
 
     Patch by **Jamie Davis**.
 
-- name: "Python 2.7 readahead feature of file objects is not thread safe"
+- name: "Python 2.7 readahead is not thread safe"
   cve: CVE-2018-1000030
   # Bug number at bugs.python.org (bpo)
   bpo: 31530
