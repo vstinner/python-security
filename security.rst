@@ -154,13 +154,28 @@ operating system before loading, there are many more interesting things you can
 do rather than wait for the Python installer to be run.
 
 
-Misc
-====
+Module Search Path (sys.path)
+=============================
 
 * `python3 -E <https://docs.python.org/3/using/cmdline.html#cmdoption-E>`_:
   ignore ``PYTHON*`` environment variables like ``PYTHONPATH``
 * `python3 -I <https://docs.python.org/3/using/cmdline.html#cmdoption-I>`_:
   isolated mode, also implies ``-E`` and ``-s``
+* `bpo-5753: CVE-2008-5983 python: untrusted python modules search path
+  <http://bugs.python.org/issue5753>`_ (2009) added `PySys_SetArgvEx()
+  <https://docs.python.org/dev/c-api/init.html#c.PySys_SetArgvEx>`_ (to Python
+  2.6.6, 2.7.0, 3.1.3, 3.2.0): allows embedders of the interpreter to set
+  sys.argv without also modifying sys.path. This helps fix CVE-2008-5983.
+* `CVE-2015-5652 <http://www.cvedetails.com/cve/CVE-2015-5652/>`_:
+  Untrusted search path vulnerability in python.exe in Python through 3.5.0
+  on Windows allows local users to gain privileges via a Trojan horse
+  readline.pyd file in the current working directory. NOTE: the vendor says
+  "It was determined that this is a longtime behavior of Python that cannot
+  really be altered at this point."
+
+Misc
+====
+
 * Python 3.7 adds a ``is_safe`` attribute to uuid.UUID objects:
   http://bugs.python.org/issue22807
 * XML: `defusedxml <https://pypi.python.org/pypi/defusedxml>`_, XML bomb
@@ -172,17 +187,6 @@ Misc
   - `analysis of 2012 by Coverity Software resulted in CPython receiving their
     highest quality rating
     <http://www.coverity.com/press-releases/coverity-finds-python-sets-new-level-of-quality-for-open-source-software/>`_.
-
-* sys.path:
-
-  * CVE-2008-5983: http://bugs.python.org/issue5753 added ``PySys_SetArgvEx()``
-  * `CVE-2015-5652 <http://www.cvedetails.com/cve/CVE-2015-5652/>`_:
-    Untrusted search path vulnerability in python.exe in Python through 3.5.0
-    on Windows allows local users to gain privileges via a Trojan horse
-    readline.pyd file in the current working directory. NOTE: the vendor says
-    "It was determined that this is a longtime behavior of Python that cannot
-    really be altered at this point."
-  * ``python -E``, ``python -I``
 
 * `Python at HackerOne <https://hackerone.com/python>`_
 * `humans.txt of python.org <https://www.python.org/humans.txt>`_
@@ -202,7 +206,7 @@ Links
 
 * `Reporting security issues in Python
   <https://www.python.org/news/security/>`_
-* `Python Security Announce <https://mail.python.org/mm3/mailman3/lists/security-announce.python.org/>`_ 
+* `Python Security Announce <https://mail.python.org/mm3/mailman3/lists/security-announce.python.org/>`_
   public mailing list
 * `OWASP Python Security Project (pythonsecurity.org)
   <http://www.pythonsecurity.org/>`_
