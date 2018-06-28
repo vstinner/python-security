@@ -895,7 +895,7 @@
   reported-at: "2018-02-27 (email to the PSRT)"
   reported-by: "Alexey Izbyshev"
   fixed-in:
-    - 6921e73e33edc3c61bc2d78ed558eaa22a89a564 # 3.8
+   #NOTRELEASED# - 6921e73e33edc3c61bc2d78ed558eaa22a89a564 # 3.8
     - 96fdbacb7797a564249fd59ccf86ec153c4bb095 # 3.7
     - baa45079466eda1f5636a6d13f3a60c2c00fdcd3 # 3.6
    #NOTRELEASED# - 77c02cdce2d7b8360771be35b7676a4977e070c1 # 3.4
