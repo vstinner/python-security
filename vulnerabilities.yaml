@@ -35,7 +35,7 @@
    - 2a5a26c87e82c7d9a348792891feccd1b5e9a769 # 3.4
    - 19b2890014d3098147d16475c492a47a43893768 # 3.5
    - 8c2d4cf092c5f0335e7982392a33927579c4d512 # 3.6
-   #NOTRELEASED# - 2b1e6e9696cb433c0e0da11145157d54275d119f # 3.7
+   - 2b1e6e9696cb433c0e0da11145157d54275d119f # 3.7
   description: |
     FTP protocol stream injection via malicious URLs.
 
@@ -849,7 +849,7 @@
    - 86a713cb0c110b6798ca7f9e630fc511ee0a4028 # 3.4
    - f2492bb6aae061aea47e21fc7e56b7ab9bfdf543 # 3.5
    - 83e37e16f3065086d721d4e62a3788e01db3431c # 3.6
-   #NOTRELEASED# - 93d0cb58b4da2a88c56f472c6c19491cc7a390df # 3.7
+   - 93d0cb58b4da2a88c56f472c6c19491cc7a390df # 3.7
   description: |
    Expat 2.2.2 was released with multiple security fixes:
 
@@ -895,9 +895,9 @@
   reported-at: "2018-02-27 (email to the PSRT)"
   reported-by: "Alexey Izbyshev"
   fixed-in:
-   #NOTRELEASED# - 6921e73e33edc3c61bc2d78ed558eaa22a89a564 # 3.8
-   #NOTRELEASED# - 96fdbacb7797a564249fd59ccf86ec153c4bb095 # 3.7
-   #NOTRELEASED# - baa45079466eda1f5636a6d13f3a60c2c00fdcd3 # 3.6
+    - 6921e73e33edc3c61bc2d78ed558eaa22a89a564 # 3.8
+    - 96fdbacb7797a564249fd59ccf86ec153c4bb095 # 3.7
+    - baa45079466eda1f5636a6d13f3a60c2c00fdcd3 # 3.6
    #NOTRELEASED# - 77c02cdce2d7b8360771be35b7676a4977e070c1 # 3.4
    #NOTRELEASED# - f381cfe07d15d52f27de771a62a8167668f0dd51 # 3.5
   description: |
@@ -941,11 +941,11 @@
   bpo: 32981
   fixed-in:
    #NOTRELEASED# - 0e6c8ee2358a2e23117501826c008842acb835ac # master
-   #NOTRELEASED# - 0902a2d6b2d1d9dbde36aeaaccf1788ceaa97143 # 3.7
-   #NOTRELEASED# - c9516754067d71fd7429a25ccfcb2141fc583523 # 3.6
+    - 0902a2d6b2d1d9dbde36aeaaccf1788ceaa97143 # 3.7
+    - c9516754067d71fd7429a25ccfcb2141fc583523 # 3.6
    #NOTRELEASED# - 937ac1fe069a4dc8471dff205f553d82e724015b # 3.5
    #NOTRELEASED# - 942cc04ae44825ea120e3a19a80c9b348b8194d0 # 3.4
-   - e052d40cea15f582b50947f7d906b39744dc62a2 # 2.7
+    - e052d40cea15f582b50947f7d906b39744dc62a2 # 2.7
   description: |
     Regexes in difflib and poplib were vulnerable to catastrophic backtracking.
     These regexes formed potential DOS vectors (REDOS). They have been
