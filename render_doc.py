@@ -702,7 +702,7 @@ def render_timeline(fp, vuln):
 
     if vuln.python_bug:
         bug = vuln.python_bug
-        text = ("`Python issue #%s <%s>`_ reported by %s"
+        text = ("`Python issue bpo-%s <%s>`_ reported by %s"
                 % (bug.number, bug.get_url(), bug.author))
         dates.append((bug.date, bool(vuln.disclosure), text))
 
@@ -760,7 +760,7 @@ def render_info(fp, vuln):
         comment = vuln.disclosure.comment
     else:
         date = vuln.python_bug.date
-        comment = "Python issue #%s reported" % vuln.python_bug.number
+        comment = "Python issue bpo-%s reported" % vuln.python_bug.number
 
     text = "**%s**" % format_date(date)
     if comment:
@@ -787,7 +787,7 @@ def render_python_bug(fp, bug):
         text += '.'
     print(text, file=fp)
     print(file=fp)
-    print("* Python issue: `issue #%s <%s>`_" % (bug.number, bug.get_url()), file=fp)
+    print("* Python issue: `bpo-%s <%s>`_" % (bug.number, bug.get_url()), file=fp)
     print("* Creation date: %s" % format_date(bug.date), file=fp)
     print("* Reporter: %s" % bug.author, file=fp)
     print(file=fp)

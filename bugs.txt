@@ -188,7 +188,8 @@
 31530:
     author: STINNER Victor
     date: 2017-09-20.13:27:12.407
-    title: Python 2.7 readahead feature of file objects is not thread safe
+    title: 'CVE-2018-1000030: Python 2.7 readahead feature of file objects is not
+        thread safe'
 32981:
     author: James Davis
     date: 2018-03-02.00:36:19.614
