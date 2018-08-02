@@ -898,8 +898,8 @@
    #NOTRELEASED# - 6921e73e33edc3c61bc2d78ed558eaa22a89a564 # 3.8
     - 96fdbacb7797a564249fd59ccf86ec153c4bb095 # 3.7
     - baa45079466eda1f5636a6d13f3a60c2c00fdcd3 # 3.6
-   #NOTRELEASED# - 77c02cdce2d7b8360771be35b7676a4977e070c1 # 3.4
-   #NOTRELEASED# - f381cfe07d15d52f27de771a62a8167668f0dd51 # 3.5
+    - 77c02cdce2d7b8360771be35b7676a4977e070c1 # 3.4
+    - f381cfe07d15d52f27de771a62a8167668f0dd51 # 3.5
   description: |
     On February 27th, 2018, the Python Security Response team was notified
     of a buffer overflow issue in the ``os.symlink()`` method on Windows. The
@@ -943,8 +943,8 @@
    #NOTRELEASED# - 0e6c8ee2358a2e23117501826c008842acb835ac # master
     - 0902a2d6b2d1d9dbde36aeaaccf1788ceaa97143 # 3.7
     - c9516754067d71fd7429a25ccfcb2141fc583523 # 3.6
-   #NOTRELEASED# - 937ac1fe069a4dc8471dff205f553d82e724015b # 3.5
-   #NOTRELEASED# - 942cc04ae44825ea120e3a19a80c9b348b8194d0 # 3.4
+    - 937ac1fe069a4dc8471dff205f553d82e724015b # 3.5
+    - 942cc04ae44825ea120e3a19a80c9b348b8194d0 # 3.4
     - e052d40cea15f582b50947f7d906b39744dc62a2 # 2.7
   description: |
     Regexes in difflib and poplib were vulnerable to catastrophic backtracking.
