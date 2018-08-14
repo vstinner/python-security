@@ -492,6 +492,9 @@
     Change behavior of ``ssl.match_hostname()`` to follow RFC 6125, for
     security reasons.  It now doesn't match multiple wildcards nor wildcards
     inside IDN fragments.
+    Note that this function was only added to Python 2.7 in a backport to 2.7.9,
+    and was added in its fixed form, so no releases of Python 2.7 have this
+    vulnerability.
 
 - name: "zipfile DoS using malformed file"
   cve: CVE-2013-7338
