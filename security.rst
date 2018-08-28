@@ -39,6 +39,23 @@ Dangerous functions and modules
     two dots "..". zipfile attempts to prevent that.
 
 
+Shell command injection
+=======================
+
+See https://www.owasp.org/index.php/Command_Injection
+
+Whenever possible, avoid ``subprocess.Popen(shell=True)``. On UNIX,
+``shlex.quote()`` can be used to escape command line arguments to use them
+safetely in a shell command.
+
+For Windows, see:
+
+* ``subprocess.list2cmdline()`` (private function)
+* ``distutils.spawn._nt_quote_args()`` (private function)
+* https://bugs.python.org/issue8987
+* https://bugs.python.org/issue20744
+
+
 Security model
 ==============
 
