@@ -44,9 +44,9 @@ Shell command injection
 
 See https://www.owasp.org/index.php/Command_Injection
 
-Whenever possible, avoid ``subprocess.Popen(shell=True)``. On UNIX,
-``shlex.quote()`` can be used to escape command line arguments to use them
-safetely in a shell command.
+Whenever possible, avoid ``subprocess.Popen(shell=True)`` and ``os.popen()``.
+On UNIX, ``shlex.quote()`` can be used to escape command line arguments to use
+them safetely in a shell command.
 
 For Windows, see:
 
