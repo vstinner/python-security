@@ -190,13 +190,9 @@ Module Search Path (sys.path)
   "It was determined that this is a longtime behavior of Python that cannot
   really be altered at this point."
 
-Misc
-====
+Static analysers of CPython code base
+=====================================
 
-* Python 3.7 adds a ``is_safe`` attribute to uuid.UUID objects:
-  http://bugs.python.org/issue22807
-* XML: `defusedxml <https://pypi.python.org/pypi/defusedxml>`_, XML bomb
-  protection for Python stdlib modules
 * Coverity:
 
   - `Coverity Scan: Python <https://scan.coverity.com/projects/python>`_
@@ -205,6 +201,26 @@ Misc
     highest quality rating
     <http://www.coverity.com/press-releases/coverity-finds-python-sets-new-level-of-quality-for-open-source-software/>`_.
 
+* `LGTM <https://lgtm.com/projects/g/python/cpython/>`_
+* `Svace static analyzer
+  <http://www.ispras.ru/en/technologies/svace/>`_
+
+
+Fuzzing
+=======
+
+* `Introduction to Fuzzing in Python with AFL
+  <https://alexgaynor.net/2015/apr/13/introduction-to-fuzzing-in-python-with-afl/>`_
+  (2015-04-13) by Alex Gaynor
+
+
+Misc
+====
+
+* Python 3.7 adds a ``is_safe`` attribute to uuid.UUID objects:
+  http://bugs.python.org/issue22807
+* XML: `defusedxml <https://pypi.python.org/pypi/defusedxml>`_, XML bomb
+  protection for Python stdlib modules
 * `Python at HackerOne <https://hackerone.com/python>`_
 * `humans.txt of python.org <https://www.python.org/humans.txt>`_
   with the list of "people who found security bugs in the website".
