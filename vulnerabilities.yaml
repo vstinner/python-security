@@ -154,6 +154,11 @@
     <https://www.python.org/dev/peps/pep-0456/>`_: Python 3.4 switched to
     `SipHash <https://131002.net/siphash/>`_.
 
+    * Ruby: CRuby 1.9 fixed the vulnerability in 2008 with randomized hash
+      function; JRuby has also been fixed.
+    * Perl: Perl 5.8.1 fixed the vulnerability in 2003 using a random
+      "PERL_HASH_SEED".
+
 - name: "zipimporter overflow"
   cve: CVE-2016-5636
   bpo: 26171
