@@ -880,74 +880,6 @@ def render_filenames(fp, filenames):
     print(file=fp)
 
 
-def render_table(fp, vulnerabilities):
-    headers = ['Vulnerability', 'Disclosure', 'Fixed In', 'Vulnerable']
-    table = []
-    sections = []
-
-    print('.. |br| raw:: html', file=fp)
-    print(file=fp)
-    print('   <br />', file=fp)
-    print(file=fp)
-
-    break_line = ' |br| '
-    for vuln in vulnerabilities:
-        fixes = break_line.join(fix.python_version for fix in vuln.fixes)
-
-        name = ":ref:`%s <%s>`" % (vuln.name, vuln.slug)
-        disclosure = format_date(vuln.get_disclosure_date())
-        vulnerable = break_line.join(vuln.vulnerable_versions)
-        if not vulnerable:
-            vulnerable = ['--']
-
-        row = [name, disclosure, fixes, vulnerable]
-        table.append(row)
-
-    widths = [len(header) for header in headers]
-    for row in table:
-        for column, cell in enumerate(row):
-            if isinstance(cell, str):
-                cell_len = len(cell)
-            else:
-                cell_len = max(len(subcell) for subcell in cell)
-            widths[column] = max(widths[column], cell_len)
-
-    title = 'Security vulnerabilities'
-    print("+" * len(title), file=fp)
-    print(title, file=fp)
-    print("+" * len(title), file=fp)
-    print(file=fp)
-
-    def table_line(char='-'):
-        parts = ['']
-        for width in widths:
-            parts.append(char * (width + 2))
-        parts.append('')
-        return '+'.join(parts)
-
-    def table_row(row):
-        parts = ['']
-        for width, cell in zip(widths, row):
-            parts.append(' %s ' % cell.ljust(width))
-        parts.append('')
-        return '|'.join(parts)
-
-    print("Total: %s vulnerabilities." % len(table), file=fp)
-    print(file=fp)
-    print(table_line('-'), file=fp)
-    print(table_row(headers), file=fp)
-    print(table_line('='), file=fp)
-    for row in table:
-        row = [(cell,) if isinstance(cell, str) else cell
-               for cell in row]
-        for row in itertools.zip_longest(*row, fillvalue=''):
-            print(table_row(row), file=fp)
-        print(table_line('-'), file=fp)
-    print(file=fp)
-    print(file=fp)
-
-
-
 class RenderDoc:
     def __init__(self, python_path, date_filename, tags_filename, bugs_filename, cve_path, vuln_path):
         self.commit_dates = CommitDates(python_path, date_filename)
@@ -966,6 +898,73 @@ class RenderDoc:
         vulnerabilities.sort(key=Vulnerability.sort_key)
         return vulnerabilities
 
+    def render_table(self, fp, vulnerabilities):
+        headers = ['Vulnerability', 'Disclosure', 'Fixed In', 'Vulnerable']
+        table = []
+        sections = []
+
+        print('.. |br| raw:: html', file=fp)
+        print(file=fp)
+        print('   <br />', file=fp)
+        print(file=fp)
+
+        break_line = ' |br| '
+        for vuln in vulnerabilities:
+            fixes = break_line.join(fix.python_version for fix in vuln.fixes)
+
+            doc_link = os.path.join(self.vuln_path, vuln.slug)
+            name = ":doc:`%s <%s>`" % (vuln.name, doc_link)
+            disclosure = format_date(vuln.get_disclosure_date())
+            vulnerable = break_line.join(vuln.vulnerable_versions)
+            if not vulnerable:
+                vulnerable = ['--']
+
+            row = [name, disclosure, fixes, vulnerable]
+            table.append(row)
+
+        widths = [len(header) for header in headers]
+        for row in table:
+            for column, cell in enumerate(row):
+                if isinstance(cell, str):
+                    cell_len = len(cell)
+                else:
+                    cell_len = max(len(subcell) for subcell in cell)
+                widths[column] = max(widths[column], cell_len)
+
+        title = 'Security vulnerabilities'
+        print("+" * len(title), file=fp)
+        print(title, file=fp)
+        print("+" * len(title), file=fp)
+        print(file=fp)
+
+        def table_line(char='-'):
+            parts = ['']
+            for width in widths:
+                parts.append(char * (width + 2))
+            parts.append('')
+            return '+'.join(parts)
+
+        def table_row(row):
+            parts = ['']
+            for width, cell in zip(widths, row):
+                parts.append(' %s ' % cell.ljust(width))
+            parts.append('')
+            return '|'.join(parts)
+
+        print("Total: %s vulnerabilities." % len(table), file=fp)
+        print(file=fp)
+        print(table_line('-'), file=fp)
+        print(table_row(headers), file=fp)
+        print(table_line('='), file=fp)
+        for row in table:
+            row = [(cell,) if isinstance(cell, str) else cell
+                   for cell in row]
+            for row in itertools.zip_longest(*row, fillvalue=''):
+                print(table_row(row), file=fp)
+            print(table_line('-'), file=fp)
+        print(file=fp)
+        print(file=fp)
+
     def main(self, yaml_filename, output_filename):
         vulnerabilities = self.load_vulnerabilities(yaml_filename)
 
@@ -974,7 +973,7 @@ class RenderDoc:
         os.mkdir(self.vuln_path)
 
         with open(output_filename, 'w', encoding='utf-8') as fp:
-            render_table(fp, vulnerabilities)
+            self.render_table(fp, vulnerabilities)
 
             filenames = []
             for vuln in vulnerabilities:
