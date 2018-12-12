@@ -64,6 +64,10 @@
     author: Christian Heimes
     date: 2012-09-25.10:32:54.388
     title: 'ftplib: unlimited readline() from connection'
+16039:
+    author: Christian Heimes
+    date: 2012-09-25.10:36:09.924
+    title: 'imaplib: unlimited readline() from connection'
 16040:
     author: Christian Heimes
     date: 2012-09-25.10:38:44.757

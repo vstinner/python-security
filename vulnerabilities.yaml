@@ -986,6 +986,19 @@
     from the same file object "at the same time" from different thread, since
     it currently crashs.
 
+- name: "CVE-2013-1752: Limit imaplib.IMAP4_SSL.readline()"
+  cve: CVE-2013-1752
+  # Bug number at bugs.python.org (bpo)
+  bpo: 16039
+  #fixed-in:
+  #NOTRELEASED# - 16d63202af35dadd652a5e3eae687ea709e95b11
+  affected-versions:
+   - "2.7"
+  description: |
+    The imaplib module doesn't limit the amount of read data in its call to
+    ``IMAP4_SSL.readline()``. An erroneous or malicious IMAP server can trick
+    the imaplib module to consume large amounts of memory.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
