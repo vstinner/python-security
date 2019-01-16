@@ -202,3 +202,7 @@
     author: Steve Dower
     date: 2018-03-05.18:04:42.468
     title: Buffer overflow vulnerability in os.symlink on Windows (CVE-2018-1000117)
+35746:
+    author: Christian Heimes
+    date: 2019-01-15.22:00:00.000
+    title: TALOS-2018-0758 Denial of Service (CVE-2019-5010)

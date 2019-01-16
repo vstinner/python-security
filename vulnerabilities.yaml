@@ -18,6 +18,28 @@
 #
 # Other tag: "ignore-python3: true", used for modules removed from Python 3
 
+- name: "TALOS-2018-0758 Denial of Service"
+  cve: CVE-2019-5010
+  bpo: 35746
+  disclosure: "2019-01-15 (Python issue bpo-35746 reported)"
+  reported-at: "2019-01-15"
+  reported-by: "Colin Read and Nicolas Edet of Cisco."
+  fixed-in:
+   #NOTRELEASED# - a37f52436f9aa4b9292878b72f3ff1480e2606c3 # master
+   - be5de958e9052e322b0087c6dba81cdad0c3e031 # 3.7
+   - 216a4d83c3b72f4fdcd81b588dc3f42cc461739a # 3.6
+   - 06b15424b0dcacb1c551b2a36e739fffa8d0c595 # 2.7
+  description: |
+    An exploitable denial-of-service vulnerability exists in the X509 certificate
+    parser of Python.org Python 2.7.11 / 3.6.6. A specially crafted X509 certificate
+    can cause a NULL pointer dereference, resulting in a denial of service. An attacker
+    can initiate or accept TLS connections using crafted certificates to trigger this
+    vulnerability.
+
+    This resolves CVE-2019-5010
+
+    Patch by **Christian Heimes**.
+
 - name: "urllib FTP protocol stream injection"
   cve:
   # Bug number at bugs.python.org (bpo)
