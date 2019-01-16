@@ -15,6 +15,7 @@ import urllib.request
 import xmlrpc.client
 import yaml
 
+OFFLINE = False
 PYTHON_SRCDIR =  '/home/vstinner/prog/python/master'
 
 # Last update: 2017-10-18
@@ -142,11 +143,22 @@ def run(cmd, cwd, text=True):
     return proc
 
 
-def commit_url(commit):
-    return 'https://github.com/python/cpython/commit/' + commit
+class Commit:
+    def __init__(self, revision, date):
+        self.revision = revision
+        self.date = date
 
-def short_commit(commit):
-    return commit[:7]
+    def short(self):
+        return self.revision[:7]
+
+    def url(self):
+        return 'https://github.com/python/cpython/commit/' + self.revision
+
+    def format(self):
+        return "`commit {} <{}>`_".format(self.short(), self.url())
+
+    def __repr__(self):
+        return '<Commit %s at %s>' % (self.revision, format_date(self.date))
 
 
 class CommitDates:
@@ -201,6 +213,9 @@ class CommitDates:
         if commit in self.cache:
             date = self.cache[commit]
             return parse_date(date)
+
+        if OFFLINE:
+            return Non
 
         date = self._get_commit_date(commit)
         self.cache[commit] = date
@@ -312,21 +327,26 @@ class CommitTags:
         if commit in self.cache:
             return self.cache[commit]
 
+        if OFFLINE:
+            return []
+
         tags = self._get_tags(commit, ignore_python3)
         self.cache[commit] = tags
         return tags
 
 
 class Fix:
-    def __init__(self, commit, commit_date, python_version, release_date):
+    def __init__(self, commit, python_version, release_date):
         self.commit = commit
-        self.commit_date = commit_date
         self.python_version = python_version
         self.release_date = release_date
 
+    def __repr__(self):
+        return '<Fix %r>' % self.commit
+
     @staticmethod
     def sort_key(fix):
-        return version_info(fix.python_version)
+        return version_info(fix.python_version or "")
 
 
 class DateComment:
@@ -470,6 +490,9 @@ class CVERegistry:
         try:
             cve = self.cves[number]
         except KeyError:
+            if OFFLINE:
+                return None
+
             url = CVE_API % number
             print("Download %s" % url)
 
@@ -500,6 +523,8 @@ class CVE:
 class Vulnerability:
     def __init__(self, app, data):
         self.name = data.pop('name')
+        self.fixes = None
+        self.unreleased_commits = []
         try:
             self.parse(app, data)
         except KeyError as exc:
@@ -507,6 +532,9 @@ class Vulnerability:
         except Exception as exc:
             raise Exception("failed to parse %r: %s" % (self.name, exc))
         self.slug = create_slug(self.name)
+
+    def __repr__(self):
+        return '<Vulnerability %r>' % self.name
 
     def parse(self, app, data):
         bpo = int(data.pop('bpo', 0))
@@ -576,9 +604,14 @@ class Vulnerability:
         commits = data.pop('fixed-in', ())
         if not commits:
             commits = ()
-        for commit in commits:
-            commit_date = app.commit_dates.get_commit_date(commit)
-            versions = app.commit_tags.get_tags(commit,
+        for revision in commits:
+            date = app.commit_dates.get_commit_date(revision)
+            if date is None:
+                # offline mode and the date is unknown
+                continue
+            commit = Commit(revision, date)
+
+            versions = app.commit_tags.get_tags(commit.revision,
                                                 ignore_python3=ignore_python3)
             for version in versions:
                 try:
@@ -586,8 +619,11 @@ class Vulnerability:
                 except KeyError:
                     print("Ignore %s: not released yet" % version)
                     continue
-                fix = Fix(commit, commit_date, version, release_date)
+                fix = Fix(commit, version, release_date)
                 fixes.append(fix)
+
+            if not versions:
+                self.unreleased_commits.append(commit)
 
         fixes.sort(key=Fix.sort_key)
 
@@ -719,15 +755,20 @@ def render_timeline(fp, vuln):
 
     commit_seen = set()
     for fix in vuln.fixes:
-        if fix.commit in commit_seen:
+        if fix.commit.revision in commit_seen:
             continue
-        commit_seen.add(fix.commit)
+        commit_seen.add(fix.commit.revision)
 
-        short = short_commit(fix.commit)
-        url = commit_url(fix.commit)
-        text = "`commit {} <{}>`_".format(short, url)
+        text = fix.commit.format()
+        dates.append((fix.commit.date, True, text))
 
-        dates.append((fix.commit_date, True, text))
+    for commit in vuln.unreleased_commits:
+        if commit.revision in commit_seen:
+            continue
+        commit_seen.add(commit.revision)
+
+        text = commit.format()
+        dates.append((commit.date, True, text))
 
     for index, fix in enumerate(vuln.fixes):
         pyver_info = version_info(fix.python_version)
@@ -817,12 +858,11 @@ def render_fixes(fp, fixes):
     render_title(fp, "Fixed In", "-")
 
     for fix in fixes:
-        short = short_commit(fix.commit)
-        date = format_date(fix.release_date)
-        url = commit_url(fix.commit)
-        commit_date = format_date(fix.commit_date)
+        release_date = format_date(fix.release_date)
+        commit_date = format_date(fix.commit.date)
+        commit_text = fix.commit.format()
 
-        print("* Python **{}** ({}) fixed by `commit {} <{}>`_ ({})".format(fix.python_version, date, short, url, commit_date),
+        print("* Python **{}** ({}) fixed by {} ({})".format(fix.python_version, release_date, commit_text, commit_date),
               file=fp)
     print(file=fp)
 
