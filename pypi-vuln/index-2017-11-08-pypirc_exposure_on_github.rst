@@ -1,5 +1,3 @@
-.. _index-unchecked_file_deletion:
-
 PyPI credential exposure on GitHub
 ==================================
 
@@ -54,32 +52,32 @@ The email sent to affected users took the form
   From: admin@mail.pypi.python.org
   To: {user['email']}
   Subject: [Urgent] Your PyPI password has been reset
-  
+
   {username},
-  
+
   A security report recently identified that your PyPI login credentials were
   exposed in a public code repository on github.com.
-  
+
   Please see the following links where your credentials were found:
-  
+
   {pypirc_links}
-  
+
   An initial audit of our journals found that {package_count} projects your
   account has access to were potentially exposed but did not indicate any
   malicious activity.
-  
+
   Packages:
-  
+
   {packages}
-  
+
   Please double check the audit logs at https://pypi.python.org after you have
   reset your password and notify us if you identify any suspicious activity.
-  
+
   Also please reset your passwords anywhere else you may have used the password
   exposed in the above links.
-  
+
   To reset your password, please visit {password_reset_link}.
-  
+
   Thanks,
   PyPI Security Team
 
@@ -105,5 +103,5 @@ Timeline using the disclosure date **2017-11-05** as reference:
 * 2017-11-05 Issue reported by Joachim Jablon to a single member of the security team listed in our security policy on `pypi.org <https://pypi.org/security/>`_
 * 2017-11-08 (**+3days**):Issue reported by Joachim Jablon to an additional member of the security team listed in our security policy on `pypi.org <https://pypi.org/security/>`_
 * 2017-11-08 (**+3days**):Issue reported by Joachim Jablon to all members of the security team listed in our security policy on `pypi.org <https://pypi.org/security/>`_
-* 2017-11-08 (**+3days**): Report investigated by `Ernest W. Durbin III <https://ernest.ly>`_ and determined to be valid. 
+* 2017-11-08 (**+3days**): Report investigated by `Ernest W. Durbin III <https://ernest.ly>`_ and determined to be valid.
 * 2017-11-09 (**+4days**): Administrative password resets issued.
