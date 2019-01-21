@@ -31,6 +31,10 @@ BUGS_API = 'https://bugs.python.org/xmlrpc'
 BUGS_DATE_REGEX = re.compile(r'<Date (.*)>')
 
 
+class OfflineError(Exception):
+    pass
+
+
 def create_slug(name):
     slug = name.lower()
     slug = re.sub(r'[#(),]', '', slug)
@@ -415,6 +419,9 @@ class PythonBugs:
         except KeyError:
             pass
 
+        if OFFLINE:
+            return None
+
         print("Download issue #%s" % number)
 
         bug = {}
@@ -439,6 +446,9 @@ class PythonBugs:
 
     def get_bug(self, number):
         bug = self.download(number)
+        if bug is None:
+            # Offline
+            return None
 
         date = bug['date']
         date = datetime.datetime.strptime(date[:11], "%Y-%m-%d.").date()
@@ -536,6 +546,8 @@ class Vulnerability:
             self.parse(app, data)
         except KeyError as exc:
             raise Exception("failed to parse %r: missing key %s" % (self.name, exc))
+        except OfflineError:
+            raise
         except Exception as exc:
             raise Exception("failed to parse %r: %s" % (self.name, exc))
         self.slug = create_slug(self.name)
@@ -555,7 +567,11 @@ class Vulnerability:
         elif self.python_bug:
             self.disclosure = None
         else:
-            raise Exception("bug has no bpo no disclosure")
+            msg = "bug has no bpo no disclosure date"
+            if OFFLINE:
+                raise OfflineError(msg)
+            else:
+                raise Exception(msg)
         reported_at = data.pop('reported-at', None)
         if reported_at is not None:
             self.reported_at = parse_date_comment(reported_at)
@@ -943,7 +959,11 @@ class RenderDoc:
     def load_vulnerabilities(self, filename):
         vulnerabilities = []
         for data in load_yaml(filename):
-            vuln = Vulnerability(self, data)
+            try:
+                vuln = Vulnerability(self, data)
+            except OfflineError as exc:
+                print("WARNING: missing data: skip the vulnerability: %s" % exc)
+                continue
             vulnerabilities.append(vuln)
 
         vulnerabilities.sort(key=Vulnerability.sort_key)
