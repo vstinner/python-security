@@ -160,9 +160,9 @@ class Commit:
         return 'https://github.com/python/cpython/commit/' + self.revision
 
     def format(self):
-        label = f'commit {self.short()}'
+        label = 'commit {}'.format(self.short())
         if self.branch:
-            label = f'{label} (branch {self.branch})'
+            label = '{} (branch {})'.format(label, self.branch)
         return "`{} <{}>`_".format(label, self.url())
 
     def __repr__(self):
