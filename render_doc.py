@@ -144,8 +144,9 @@ def run(cmd, cwd, text=True):
 
 
 class Commit:
-    def __init__(self, revision, date):
+    def __init__(self, revision, branch, date):
         self.revision = revision
+        self.branch = branch
         self.date = date
 
     def short(self):
@@ -155,10 +156,16 @@ class Commit:
         return 'https://github.com/python/cpython/commit/' + self.revision
 
     def format(self):
-        return "`commit {} <{}>`_".format(self.short(), self.url())
+        label = f'commit {self.short()}'
+        if self.branch:
+            label = f'{label} (branch {self.branch})'
+        return "`{} <{}>`_".format(label, self.url())
 
     def __repr__(self):
-        return '<Commit %s at %s>' % (self.revision, format_date(self.date))
+        revision = self.revision
+        if self.branch:
+            revision = '%s in %s' % (revision, self.branch)
+        return '<Commit %s at %s>' % (revision, format_date(self.date))
 
 
 class CommitDates:
@@ -601,15 +608,19 @@ class Vulnerability:
     def find_fixes(self, app, data):
         fixes = []
         ignore_python3 = data.pop('ignore-python3', None)
-        commits = data.pop('fixed-in', ())
-        if not commits:
-            commits = ()
-        for revision in commits:
+        commits_branches = data.pop('fixed-in', ())
+        commits = []
+        if commits_branches:
+            # [{branch: commit}] => [(branch, commit)]
+            for commit_branches in commits_branches:
+                for branch, commit in commit_branches.items():
+                    commits.append((branch, commit))
+        for branch, revision in commits:
             date = app.commit_dates.get_commit_date(revision)
             if date is None:
                 # offline mode and the date is unknown
                 continue
-            commit = Commit(revision, date)
+            commit = Commit(revision, branch, date)
 
             versions = app.commit_tags.get_tags(commit.revision,
                                                 ignore_python3=ignore_python3)
