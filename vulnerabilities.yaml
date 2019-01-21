@@ -903,7 +903,7 @@
   reported-at: "2018-02-27 (email to the PSRT)"
   reported-by: "Alexey Izbyshev"
   fixed-in:
-   #NOTRELEASED# - 6921e73e33edc3c61bc2d78ed558eaa22a89a564 # 3.8
+    - 6921e73e33edc3c61bc2d78ed558eaa22a89a564 # 3.8
     - 96fdbacb7797a564249fd59ccf86ec153c4bb095 # 3.7
     - baa45079466eda1f5636a6d13f3a60c2c00fdcd3 # 3.6
     - 77c02cdce2d7b8360771be35b7676a4977e070c1 # 3.4
@@ -948,7 +948,7 @@
   # Bug number at bugs.python.org (bpo)
   bpo: 32981
   fixed-in:
-   #NOTRELEASED# - 0e6c8ee2358a2e23117501826c008842acb835ac # master
+    - 0e6c8ee2358a2e23117501826c008842acb835ac # master
     - 0902a2d6b2d1d9dbde36aeaaccf1788ceaa97143 # 3.7
     - c9516754067d71fd7429a25ccfcb2141fc583523 # 3.6
     - 937ac1fe069a4dc8471dff205f553d82e724015b # 3.5
@@ -990,8 +990,8 @@
   cve: CVE-2013-1752
   # Bug number at bugs.python.org (bpo)
   bpo: 16039
-  #fixed-in:
-  #NOTRELEASED# - 16d63202af35dadd652a5e3eae687ea709e95b11
+  fixed-in:
+   - 16d63202af35dadd652a5e3eae687ea709e95b11
   affected-versions:
    - "2.7"
   description: |
