@@ -963,12 +963,16 @@ class RenderDoc:
 
     def load_vulnerabilities(self, filename):
         vulnerabilities = []
+        slugs = set()
         for data in load_yaml(filename):
             try:
                 vuln = Vulnerability(self, data)
             except OfflineError as exc:
                 print("WARNING: missing data: skip the vulnerability: %s" % exc)
                 continue
+            if vuln.slug in slugs:
+                raise Exception("slug %r is not unique" % vuln.slug)
+            slugs.add(vuln.slug)
             vulnerabilities.append(vuln)
 
         vulnerabilities.sort(key=Vulnerability.sort_key)

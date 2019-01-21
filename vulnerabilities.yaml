@@ -1063,6 +1063,22 @@
     A bug in ``pickle.load()`` function can cause memory exhaustion denial of
     service.
 
+- name: "xml package does not obey ignore_environment"
+  slug: xml-pakage-ignore-environment
+  description: |
+  bpo: 34791
+  fixed-in:
+   - 3.8: 223e501fb9c2b6ae21b96054e20c4c31d94a5d96
+   - 3.7: c119d5948f941d2f528dda3f099e196bd6383000
+   - 3.6: 5e808f92ea4eb238b17757526b99f97debf7dd57
+   - 2.7: 2546ac8eeb56fc146adea9a03158440a9271714e
+  description: |
+    On two occasions, the xml package uses environment variables to override
+    parser / DOM implementations: ``xml.sax package`` and ``xml.dom.domreg``
+    module. On both occasions, the code should not use env vars to override
+    module names, when the interpreter is started with flags like ``-E``
+    or ``-I``.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
