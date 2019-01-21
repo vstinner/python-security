@@ -202,3 +202,7 @@
     author: Steve Dower
     date: 2018-03-05.18:04:42.468
     title: Buffer overflow vulnerability in os.symlink on Windows (CVE-2018-1000117)
+34623:
+    author: Christian Heimes
+    date: 2018-09-10.22:47:44.343
+    title: _elementtree.c doesn't call XML_SetHashSalt()
