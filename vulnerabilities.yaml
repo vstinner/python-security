@@ -1019,6 +1019,29 @@
 
     The ``_elementree`` C accelerator doesn't call ``XML_SetHashSalt()``.
 
+- name: "TALOS-2018-0758 SSL CRL distribution points Denial of Service"
+  slug: ssl-crl-dps-dos
+  cve: CVE-2019-5010
+  bpo: 35746
+  disclosure: "2019-01-15 (Python issue bpo-35746 reported)"
+  reported-at: "2019-01-15"
+  reported-by: "Colin Read and Nicolas Edet of Cisco."
+  fixed-in:
+   - 3.8: a37f52436f9aa4b9292878b72f3ff1480e2606c3
+   - 3.7: be5de958e9052e322b0087c6dba81cdad0c3e031
+   - 3.6: 216a4d83c3b72f4fdcd81b588dc3f42cc461739a
+   - 2.7: 06b15424b0dcacb1c551b2a36e739fffa8d0c595
+  description: |
+    An exploitable denial-of-service vulnerability exists in the X509 certificate
+    parser of Python.org Python 2.7.11 / 3.6.6. A specially crafted X509 certificate
+    can cause a NULL pointer dereference, resulting in a denial of service. An attacker
+    can initiate or accept TLS connections using crafted certificates to trigger this
+    vulnerability.
+
+    This resolves CVE-2019-5010
+
+    Patch by **Christian Heimes**.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
