@@ -206,6 +206,10 @@
     author: Christian Heimes
     date: 2018-09-10.22:47:44.343
     title: _elementtree.c doesn't call XML_SetHashSalt()
+34656:
+    author: shuoz
+    date: 2018-09-13.04:38:46.491
+    title: '[CVE-2018-20406] memory exhaustion in Modules/_pickle.c:1393'
 35746:
     author: Cisco Talos
     date: 2019-01-15.16:24:28.272

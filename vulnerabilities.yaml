@@ -1042,6 +1042,20 @@
 
     Patch by **Christian Heimes**.
 
+- name: "pickle.load denial of service"
+  slug: pickle-load-dos
+  cve: CVE-2018-20406
+  bpo: 34656
+  links:
+    - https://bugzilla.redhat.com/show_bug.cgi?id=1664511
+  fixed-in:
+   - 3.8: a4ae828ee416a66d8c7bf5ee71d653c2cc6a26dd
+   - 3.7: ef4306b24c9034d6b37bb034e2ebe82e745d4b77
+   - 3.6: 71a9c65e74a70b6ed39adc4ba81d311ac1aa2acc
+  description: |
+    A bug in ``pickle.load()`` function can cause memory exhaustion denial of
+    service.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
