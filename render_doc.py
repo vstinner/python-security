@@ -550,7 +550,6 @@ class Vulnerability:
             raise
         except Exception as exc:
             raise Exception("failed to parse %r: %s" % (self.name, exc))
-        self.slug = create_slug(self.name)
 
     def __repr__(self):
         return '<Vulnerability %r>' % self.name
@@ -616,6 +615,10 @@ class Vulnerability:
             self.links.append(url)
 
         self.find_fixes(app, data)
+
+        self.slug = data.pop('slug', None)
+        if not self.slug:
+            self.slug = create_slug(self.name)
 
         if data:
             raise Exception("Vulnerability %r has unknown keys: %s"

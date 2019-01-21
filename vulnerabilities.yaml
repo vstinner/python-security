@@ -2,6 +2,8 @@
 
 # Template:
 # - name: ""
+#   # Optional: generated from the name if omitted
+#   slug:
 #   cve:
 #   # Bug number at bugs.python.org (bpo)
 #   bpo:
@@ -1001,6 +1003,7 @@
     the imaplib module to consume large amounts of memory.
 
 - name: "_elementree C accelerator doesn't call XML_SetHashSalt()"
+  slug: elementree_salt
   cve: CVE-2018-14647
   bpo: 34623
   fixed-in:
