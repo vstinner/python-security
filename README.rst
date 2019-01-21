@@ -15,6 +15,10 @@ Build the doc::
 
     make
 
+After a release, get new commit tags using::
+
+    make update
+
 Build without Makefile::
 
     ./venv.sh

@@ -15,7 +15,7 @@ import urllib.request
 import xmlrpc.client
 import yaml
 
-OFFLINE = False
+OFFLINE = True
 PYTHON_SRCDIR =  '/home/vstinner/prog/python/master'
 
 # Last update: 2017-10-18
@@ -215,7 +215,7 @@ class CommitDates:
             return parse_date(date)
 
         if OFFLINE:
-            return Non
+            return None
 
         date = self._get_commit_date(commit)
         self.cache[commit] = date
@@ -1051,6 +1051,8 @@ def parse_config(filename):
 
 
 def main():
+    global OFFLINE
+
     config_filename = "config.ini"
     yaml_filename = "vulnerabilities.yaml"
     rst_filename = 'vulnerabilities.rst'
@@ -1061,10 +1063,20 @@ def main():
     vuln_path = 'vuln'
     python_path = PYTHON_SRCDIR
 
+    if sys.argv[1:] == ['update']:
+        OFFLINE = False
+    elif sys.argv[1:] != []:
+        print("usage: %s %s [update]" % (sys.executable, sys.argv[0]))
+        sys.exit(1)
+
     parse_config(config_filename)
 
     app = RenderDoc(python_path, date_filename, tags_filename, bugs_filename, cve_path, vuln_path)
     app.main(yaml_filename, rst_filename)
+
+    if not OFFLINE:
+        print()
+        print("Update completed successfully")
 
 
 if __name__ == "__main__":
