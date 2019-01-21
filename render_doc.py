@@ -38,7 +38,7 @@ class OfflineError(Exception):
 def create_slug(name):
     slug = name.lower()
     slug = re.sub(r'[#(),]', '', slug)
-    slug = re.sub(r'[ :]', '_', slug)
+    slug = re.sub(r"[ :']", '_', slug)
     slug = re.sub(r'__+', '_', slug)
     if not re.match('^[a-z0-9._-]+$', slug):
         raise ValueError("invalid slug: %r" % slug)
