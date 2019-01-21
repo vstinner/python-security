@@ -643,16 +643,18 @@ class Vulnerability:
 
             versions = app.commit_tags.get_tags(commit.revision,
                                                 ignore_python3=ignore_python3)
+            added = False
             for version in versions:
                 try:
                     release_date = app.python_releases.get_date(version)
                 except KeyError:
-                    print("Ignore %s: not released yet" % version)
+                    print("WARNING: Ignore version %s: not released yet" % version)
                     continue
                 fix = Fix(commit, version, release_date)
                 fixes.append(fix)
+                added = True
 
-            if not versions:
+            if not added:
                 self.unreleased_commits.append(commit)
 
         fixes.sort(key=Fix.sort_key)
@@ -990,6 +992,8 @@ class RenderDoc:
             name = ":doc:`%s <%s>`" % (vuln.name, doc_link)
             disclosure = format_date(vuln.get_disclosure_date())
             vulnerable = break_line.join(vuln.vulnerable_versions)
+            if not fixes:
+                fixes = ['--']
             if not vulnerable:
                 vulnerable = ['--']
 
