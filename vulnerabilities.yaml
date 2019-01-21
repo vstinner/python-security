@@ -1000,6 +1000,22 @@
     ``IMAP4_SSL.readline()``. An erroneous or malicious IMAP server can trick
     the imaplib module to consume large amounts of memory.
 
+- name: "_elementree C accelerator doesn't call XML_SetHashSalt()"
+  cve: CVE-2018-14647
+  bpo: 34623
+  fixed-in:
+   - 3.8: cb5778f00ce48631c7140f33ba242496aaf7102b
+   - 3.7: 470a435f3b42c9be5fdb7f7b04f3df5663ba7305
+   - 3.6: f7666e828cc3d5873136473ea36ba2013d624fa1
+   - 2.7: 18b20bad75b4ff0486940fba4ec680e96e70f3a2
+  links:
+   - https://bugzilla.redhat.com/show_bug.cgi?id=1632095
+  description: |
+    The pyexpat module calls ``XML_SetHashSalt()`` to initialize the salt for
+    hash randomization of the XML_Parser struct.
+
+    The ``_elementree`` C accelerator doesn't call ``XML_SetHashSalt()``.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
