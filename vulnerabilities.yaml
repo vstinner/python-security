@@ -1052,13 +1052,6 @@
    - 3.8: a4ae828ee416a66d8c7bf5ee71d653c2cc6a26dd
    - 3.7: ef4306b24c9034d6b37bb034e2ebe82e745d4b77
    - 3.6: 71a9c65e74a70b6ed39adc4ba81d311ac1aa2acc
-  affected-versions:
-   # Python 2.7 is not affected
-   - '3.4'
-   - '3.5'
-   - '3.6'
-   - '3.7'
-   - '3.8'
   description: |
     A bug in ``pickle.load()`` function can cause memory exhaustion denial of
     service.
