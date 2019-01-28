@@ -18,8 +18,8 @@ import yaml
 OFFLINE = True
 PYTHON_SRCDIR =  '/home/vstinner/prog/python/master'
 
-# Last update: 2017-10-18
-MAINTAINED_BRANCHES = ['2.7', '3.4', '3.5', '3.6']
+# Last update: 2019-01-28
+MAINTAINED_BRANCHES = ['2.7', '3.4', '3.5', '3.6', '3.7']
 
 CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
 CVE_URL = 'https://www.cvedetails.com/cve/%s/'
