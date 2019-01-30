@@ -1031,6 +1031,8 @@
    - 3.7: be5de958e9052e322b0087c6dba81cdad0c3e031
    - 3.6: 216a4d83c3b72f4fdcd81b588dc3f42cc461739a
    - 2.7: 06b15424b0dcacb1c551b2a36e739fffa8d0c595
+  links:
+   - https://blog.talosintelligence.com/2019/01/vulnerability-spotlight-pythonorg.html
   description: |
     An exploitable denial-of-service vulnerability exists in the X509 certificate
     parser of Python.org Python 2.7.11 / 3.6.6. A specially crafted X509 certificate
