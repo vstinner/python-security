@@ -93,7 +93,13 @@ class SslNulSubjectNames(Checker):
     SCRIPT = "ssl_nul_in_subjectaltnames.py"
 
 
-CHECKERS = [SslCrlDpsDos, GettextC2P, SslNulSubjectNames]
+class HashDos(Checker):
+    NAME = "Hash DoS (CVE-2012-1150)"
+    SLUG = "cve-2012-1150_hash_dos"
+    SCRIPT = "hash_dos.py"
+
+
+CHECKERS = [SslCrlDpsDos, GettextC2P, SslNulSubjectNames, HashDos]
 
 
 class Application:
@@ -140,7 +146,7 @@ class Application:
                   % (version, vuln, 'IES' if vuln != 1 else 'Y'))
             fixed = False
         if fixed:
-            print("All known vulnerabilities are fixed in your Python %s :-)"
+            print("All tested vulnerabilities are fixed in your Python %s :-)"
                   % version)
 
     def main(self):
