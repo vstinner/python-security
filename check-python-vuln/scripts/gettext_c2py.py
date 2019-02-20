@@ -1,14 +1,17 @@
 import gettext
-from vulntools import exit_vulnerable, exit_error, exit_fixed
+import vulntools
+
 
 def func():
-    exit_vulnerable()
+    vulntools.exit_vulnerable()
 
+
+vulntools.prepare_process()
 try:
     py = gettext.c2py("n()")
 except ValueError:
-    exit_fixed()
+    vulntools.exit_fixed()
 else:
     py(func)
 
-exit_error()
+vulntools.exit_error()

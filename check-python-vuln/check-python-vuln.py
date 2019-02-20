@@ -119,6 +119,7 @@ class Application:
         python = ' '.join(self.python)
         version = '%s.%s.%s' % tuple(sys.version_info[:3])
         print("Result for %s (%s):" % (python, version))
+        vuln = 0
         for checker in self.checkers:
             result = checker.result
             if result == CHECK_ERROR:
@@ -126,17 +127,21 @@ class Application:
                 if errmsg:
                     result = '%s (%s)' % (result, errmsg)
             print("* %s: %s" % (checker.NAME, result))
+            if checker.result == VULNERABLE:
+                vuln += 1
         print("")
 
         fixed = True
         if any(checker.result == CHECK_ERROR for checker in self.checkers):
             print("CHECK ERROR :-(")
             fixed = False
-        if any(checker.result == VULNERABLE for checker in self.checkers):
-            print("Your Python %s is VULNERABLE!!!" % version)
+        if vuln:
+            print("Your Python %s has %s KNOWN VULNERABILIT%s!!!"
+                  % (version, vuln, 'IES' if vuln != 1 else 'Y'))
             fixed = False
         if fixed:
-            print("All known vulnerabilities are fixed in your Python :-)")
+            print("All known vulnerabilities are fixed in your Python %s :-)"
+                  % version)
 
     def main(self):
         self.run_checkers()

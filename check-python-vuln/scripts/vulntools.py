@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import os.path
 import math
 import sys
@@ -18,13 +20,18 @@ EXITCODE_SKIP = 102
 EXITCODE_ERROR = 103
 
 
+def data_file(filename):
+    return os.path.join(DATA_DIR, filename)
+
+
 def set_memory_limit(size=None):
     if not size:
         size = MEMORY_LIMIT
     if resource is None:
         return
     resource.setrlimit(resource.RLIMIT_AS, (size, size))
-    print("Memory limit set to %.1f GiB" % (size / (1024. ** 3)))
+    print("Memory limit set to %.1f GiB" % (size / (1024. ** 3)),
+          file=sys.stderr)
 
 
 def alarm_handler(timeout):
@@ -46,6 +53,17 @@ def set_time_limit(timeout=None):
 def limit_resources():
     set_memory_limit()
     set_time_limit()
+
+
+def prepare_process():
+    if resource is None:
+        return
+
+    # Disable coredump creation
+    old_value = resource.getrlimit(resource.RLIMIT_CORE)
+    resource.setrlimit(resource.RLIMIT_CORE, (0, old_value[1]))
+
+    limit_resources()
 
 
 def exit_error(msg):
@@ -73,7 +91,3 @@ def exit_skip(msg):
     else:
         print("SKIP CHECK")
     sys.exit(EXITCODE_SKIP)
-
-
-def data_file(filename):
-    return os.path.join(DATA_DIR, filename)
