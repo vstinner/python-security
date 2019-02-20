@@ -12,9 +12,9 @@ import vulntools
 FMT_URL = 'https://python-security.readthedocs.io/vuln/%s.html'
 
 
-FIXED = "FIXED"
+FIXED = "fixed"
 CHECK_ERROR = "CHECK_ERROR"
-SKIP = "SKIP"
+SKIP = "skipped"
 VULNERABLE = "VULNERABLE"
 
 
