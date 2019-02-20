@@ -14,6 +14,7 @@ FMT_URL = 'https://python-security.readthedocs.io/vuln/%s.html'
 
 FIXED = "FIXED"
 CHECK_ERROR = "CHECK_ERROR"
+SKIP = "SKIP"
 VULNERABLE = "VULNERABLE"
 
 
@@ -59,6 +60,8 @@ class Checker:
             self.result = FIXED
         elif exitcode == vulntools.EXITCODE_ERROR:
             self.result = CHECK_ERROR
+        elif exitcode == vulntools.EXITCODE_SKIP:
+            self.result = SKIP
         else:
             self.result = VULNERABLE
 
@@ -84,7 +87,19 @@ class GettextC2P(Checker):
     SCRIPT = "gettext_c2py.py"
 
 
-CHECKERS = [SslCrlDpsDos, GettextC2P]
+class SslNulSubjectNames(Checker):
+    NAME = "SLL NUL in subjectAltNames (CVE-2013-4238)"
+    SLUG = "cve-2013-4238_ssl_nul_in_subjectaltnames"
+    SCRIPT = "ssl_nul_in_subjectaltnames.py"
+
+
+class PickleLoadDos(Checker):
+    NAME = "pickle.load DoS"
+    SLUG = "pickle-load-dos"
+    SCRIPT = "pickle_load_dos.py"
+
+
+CHECKERS = [SslCrlDpsDos, GettextC2P, SslNulSubjectNames, PickleLoadDos]
 
 
 class Application:
@@ -94,33 +109,44 @@ class Application:
         self.python = [sys.executable]
         root_dir = os.getcwd()
         self.data_dir = os.path.join(root_dir, 'data')
+        self.checkers = []
 
-    def main(self):
-        checkers = []
+    def run_checkers(self):
         for checker_class in CHECKERS:
             checker = checker_class(self)
             if self.verbose:
                 print("Check: %s" % checker.NAME)
             checker.run()
-            checkers.append(checker)
+            self.checkers.append(checker)
 
         print("")
+
+    def display_results(self):
         python = ' '.join(self.python)
         version = '%s.%s.%s' % tuple(sys.version_info[:3])
         print("Result for %s (%s):" % (python, version))
-        for checker in checkers:
-            print("* %s: %s" % (checker.NAME, checker.result))
+        for checker in self.checkers:
+            result = checker.result
+            if result == CHECK_ERROR:
+                errmsg = checker.cmd_result.stdout.rstrip()
+                if errmsg:
+                    result = '%s (%s)' % (result, errmsg)
+            print("* %s: %s" % (checker.NAME, result))
         print("")
 
         fixed = True
-        if any(checker.result == CHECK_ERROR for checker in checkers):
+        if any(checker.result == CHECK_ERROR for checker in self.checkers):
             print("CHECK ERROR :-(")
             fixed = False
-        if any(checker.result == VULNERABLE for checker in checkers):
+        if any(checker.result == VULNERABLE for checker in self.checkers):
             print("Your Python %s is VULNERABLE!!!" % version)
             fixed = False
         if fixed:
             print("All known vulnerabilities are fixed in your Python :-)")
+
+    def main(self):
+        self.run_checkers()
+        self.display_results()
 
 
 if __name__ == "__main__":

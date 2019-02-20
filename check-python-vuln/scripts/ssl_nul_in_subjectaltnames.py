@@ -6,6 +6,6 @@ try:
 except ImportError as exc:
     vulntools.exit_error("missing _ssl module: %s" % exc)
 
-filename = vulntools.data_file("CVE-2019-5010.pem")
+filename = vulntools.data_file("nullbytecert.pem")
 _ssl._test_decode_cert(filename)
 vulntools.exit_fixed()
