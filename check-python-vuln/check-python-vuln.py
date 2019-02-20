@@ -93,13 +93,7 @@ class SslNulSubjectNames(Checker):
     SCRIPT = "ssl_nul_in_subjectaltnames.py"
 
 
-class PickleLoadDos(Checker):
-    NAME = "pickle.load DoS"
-    SLUG = "pickle-load-dos"
-    SCRIPT = "pickle_load_dos.py"
-
-
-CHECKERS = [SslCrlDpsDos, GettextC2P, SslNulSubjectNames, PickleLoadDos]
+CHECKERS = [SslCrlDpsDos, GettextC2P, SslNulSubjectNames]
 
 
 class Application:
