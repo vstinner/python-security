@@ -1010,6 +1010,8 @@
    - 3.8: cb5778f00ce48631c7140f33ba242496aaf7102b
    - 3.7: 470a435f3b42c9be5fdb7f7b04f3df5663ba7305
    - 3.6: f7666e828cc3d5873136473ea36ba2013d624fa1
+   - 3.5: d16eaf36795da48b930b80b20d3805bc27820712
+   - 3.4: 41b48e71ac8a71f56694b548f118bd20ce203410
    - 2.7: 18b20bad75b4ff0486940fba4ec680e96e70f3a2
   links:
    - https://bugzilla.redhat.com/show_bug.cgi?id=1632095
@@ -1030,6 +1032,8 @@
    - 3.8: a37f52436f9aa4b9292878b72f3ff1480e2606c3
    - 3.7: be5de958e9052e322b0087c6dba81cdad0c3e031
    - 3.6: 216a4d83c3b72f4fdcd81b588dc3f42cc461739a
+   - 3.5: efec7631edf3b9480dc3988c97ffef94df8800da
+   - 3.4: 6c655ce34ae54adb8eef22b73108e22cc381cb8d
    - 2.7: 06b15424b0dcacb1c551b2a36e739fffa8d0c595
   links:
    - https://blog.talosintelligence.com/2019/01/vulnerability-spotlight-pythonorg.html
@@ -1054,6 +1058,8 @@
    - 3.8: a4ae828ee416a66d8c7bf5ee71d653c2cc6a26dd
    - 3.7: ef4306b24c9034d6b37bb034e2ebe82e745d4b77
    - 3.6: 71a9c65e74a70b6ed39adc4ba81d311ac1aa2acc
+   - 3.5: ef33dd6036aafbd3f06c1d56e2b1a81dae3da63c
+   - 3.4: 4b42d575bf0fb01192b3ec54b7e224b238691527
   description: |
     A bug in ``pickle.load()`` function can cause memory exhaustion denial of
     service.
@@ -1066,6 +1072,8 @@
    - 3.8: 223e501fb9c2b6ae21b96054e20c4c31d94a5d96
    - 3.7: c119d5948f941d2f528dda3f099e196bd6383000
    - 3.6: 5e808f92ea4eb238b17757526b99f97debf7dd57
+   - 3.5: 7cd08cf62086a8a2d84fd825dfcd8bfe33bf1986
+   - 3.4: 765d333512e9b58da4a4431595a0e81517ef0443
    - 2.7: 2546ac8eeb56fc146adea9a03158440a9271714e
   description: |
     On two occasions, the xml package uses environment variables to override
