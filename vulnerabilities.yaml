@@ -1091,7 +1091,10 @@
   reported-at: "2019-02-16 (email to PSRT)"
   reported-by: "Jonathan Birch of Microsoft Corporation and Panayiotis Panayiotou"
   bpo: 36216
-  # not fixed yet!
+  fixed-in:
+   - 3.8: 16e6f7dee7f02bb81aa6b385b982dcdda5b99286
+   - 3.7: daad2c482c91de32d8305abbccc76a5de8b3a8be
+   - 2.7: e37ef41289b77e0f0bb9a6aedb0360664c55bdd5
   description: |
     URLs encoded with Punycode/IDNA use NFKC normalization to decompose
     characters. This can result in some characters introducing new segments
