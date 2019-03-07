@@ -1082,6 +1082,20 @@
     module names, when the interpreter is started with flags like ``-E``
     or ``-I``.
 
+- name: "urlsplit does not handle NFKC normalization"
+  slug: urlsplit-nfkc-normalization
+  reported-at: "2019-02-16 (email to PSRT)"
+  reported-by: "Jonathan Birch of Microsoft Corporation and Panayiotis Panayiotou"
+  bpo: 36216
+  # not fixed yet!
+  description: |
+    URLs encoded with Punycode/IDNA use NFKC normalization to decompose
+    characters. This can result in some characters introducing new segments
+    into a URL.
+
+    See `Unicode® Technical Standard #46: Unicode IDNA Compatibility Processing
+    <https://unicode.org/reports/tr46/>`_.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
