@@ -696,6 +696,13 @@ class Vulnerability:
             return ((len(ver2) == 2 or ver2[2] == 0)
                     and ver1 >= ver2)
 
+        def is_affected(version, affected):
+            version = version_info(version)
+            if version[0] > affected[0]:
+                # "affected=(2, 0)" means that Python 3.x is not affected
+                return False
+            return (version[:2] >= affected[:2])
+
         vulnerable = []
         for version in MAINTAINED_BRANCHES:
             major = python_major_version(version)
@@ -704,7 +711,7 @@ class Vulnerability:
             if any(is_fixed(major, fixed) for fixed in seen):
                 continue
             if affected_versions:
-                if not any(major == affected[:2]
+                if not any(is_affected(version, affected)
                            for affected in affected_versions):
                     continue
             vulnerable.append(version)
