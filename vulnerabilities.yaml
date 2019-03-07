@@ -994,7 +994,6 @@
 
 - name: "CVE-2013-1752: Limit imaplib.IMAP4_SSL.readline()"
   cve: CVE-2013-1752
-  # Bug number at bugs.python.org (bpo)
   bpo: 16039
   fixed-in:
    - 2.7: 16d63202af35dadd652a5e3eae687ea709e95b11

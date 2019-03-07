@@ -247,7 +247,8 @@ def python_major_version(version):
 
 
 class CommitTags:
-    def __init__(self, python_path, cache_filename):
+    def __init__(self, python_releases, python_path, cache_filename):
+        self.python_releases = python_releases
         self.python_path = python_path
         self.cache_filename = cache_filename
         # commit (sha1) => tag list
@@ -327,6 +328,13 @@ class CommitTags:
             if tag_info[2] == 0:
                 major = tag_info[0]
             tag = '.'.join(map(str, tag_info))
+
+            try:
+                self.python_releases.get_date(tag)
+            except KeyError:
+                print("WARNING: Ignore tag %s: not released yet" % tag)
+                continue
+
             tags2.append(tag)
         tags = tags2
 
@@ -962,8 +970,8 @@ def render_filenames(fp, filenames):
 class RenderDoc:
     def __init__(self, python_path, date_filename, tags_filename, bugs_filename, cve_path, vuln_path):
         self.commit_dates = CommitDates(python_path, date_filename)
-        self.commit_tags = CommitTags(python_path, tags_filename)
         self.python_releases = PythonReleases()
+        self.commit_tags = CommitTags(self.python_releases, python_path, tags_filename)
         self.bugs = PythonBugs(bugs_filename)
         self.cves = CVERegistry(cve_path)
         self.vuln_path = vuln_path
