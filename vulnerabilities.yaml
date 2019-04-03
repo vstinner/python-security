@@ -1046,7 +1046,36 @@
     can initiate or accept TLS connections using crafted certificates to trigger this
     vulnerability.
 
-    This resolves CVE-2019-5010
+    Christian Heimes added the following comment.
+
+    The bug is less critical and harder to exploit than I initially thought.
+    td;dr if you have cert validation enabled and only trust public root CAs
+    from CA/B forum, then you are not affected.
+
+    The bug is only exploitable under two conditions:
+
+    1) The user has disabled TLS/SSL certificate validation *and* calls
+       getpeercert() in 3rd party code.
+
+    2) Or the user trusts a CA that does not properly validate end-entity certificates.
+
+    When cert validation is enabled, the ssl module will refuse any untrusted
+    certificate during the handshake. The SSLSocket.getpeercert() and
+    SSLObject.getpeercert() methods raise an exception, when the handshake was
+    not successful. Python 2.7 - 3.6 hostname verification code only calls
+    getpeercert() after the cert chain was validated successfully. Python 3.7+
+    no longer calls getpeercert() for hostname verification. Further more
+    hostname verification can't be enabled when cert validation is disabled.
+
+    For publicly trusted CAs governed by CA/B baseline requirements, CRL DPs
+    must by valid URI general names with HTTP links. From CA/Browser Forum
+    Baseline Requirements Version 1.6.2, December 10, 2018, section 7.1.2.3.
+    Subscriber Certificate:
+
+    b. cRLDistributionPoints
+
+    This extension MAY be present. If present, it MUST NOT be marked critical,
+    and it MUST contain the HTTP URL of the CA’s CRL service.
 
     Patch by **Christian Heimes**.
 
