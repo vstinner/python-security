@@ -2,6 +2,51 @@
 Python Security
 +++++++++++++++
 
+Python Security model
+=====================
+
+Python doesn't implement `privilege separation
+<https://en.wikipedia.org/wiki/Privilege_separation>`_ (not "inside" Python) to
+reduce the attack surface of Python. Once an attacker is able the execute
+arbitrary Python code, the attacker basically gets a full access to the system.
+Privilege separation can be implemented "outside" Python by putting Python
+inside a sandbox.
+
+Example with `bpo-36506 <https://bugs.python.org/issue36506>`_ (closed as not a
+bug): ``getattr()`` executes arbitrary code by design, it's not a
+vulnerability.
+
+Bytecode
+--------
+
+CPython doesn't verify that bytecode is safe. If an attacker is able to
+execute arbitrary bytecode, we consider that the security of the bytecode is
+the least important issue: using bytecode, sensitive code can be imported and
+executed.
+
+For example, the ``marshal`` doesn't validate inputs.
+
+Sandbox
+-------
+
+Don't try to build a sandbox inside CPython. The attack surface is too large.
+Python has many introspection features, see for example the ``inspect`` module.
+Python also many convenient features which executes code on demand. Examples:
+
+* the literal string ``'\N{Snowman}'`` imports the ``unicodedata`` module
+* the code to log a warning might be abused to execute code
+
+The good design is to put CPython into a sandbox, not the opposite.
+
+Ok, understood, but I want a sandbox in Python. Well...
+
+* `Eval really is dangerous
+  <http://nedbatchelder.com/blog/201206/eval_really_is_dangerous.html>`_
+  (Ned Batchelder, June 2012)
+* `PyPy sandboxing <http://pypy.org/features.html#sandboxing>`_
+* For Linux, search for SECCOMP
+
+
 Python branches
 ===============
 
@@ -54,40 +99,6 @@ For Windows, see:
 * ``distutils.spawn._nt_quote_args()`` (private function)
 * https://bugs.python.org/issue8987
 * https://bugs.python.org/issue20744
-
-
-Security model
-==============
-
-Bytecode
---------
-
-CPython doesn't verify that bytecode is safe. If an attacker is able to
-execute arbitrary bytecode, we consider that the security of the bytecode is
-the least important issue: using bytecode, sensitive code can be imported and
-executed.
-
-For example, the ``marshal`` doesn't validate inputs.
-
-Sandbox
--------
-
-Don't try to build a sandbox inside CPython. The attack surface is too large.
-Python has many introspection features, see for example the ``inspect`` module.
-Python also many convenient features which executes code on demand. Examples:
-
-* the literal string ``'\N{Snowman}'`` imports the ``unicodedata`` module
-* the code to log a warning might be abused to execute code
-
-The good design is to put CPython into a sandbox, not the opposite.
-
-Ok, understood, but I want a sandbox in Python. Well...
-
-* `Eval really is dangerous
-  <http://nedbatchelder.com/blog/201206/eval_really_is_dangerous.html>`_
-  (Ned Batchelder, June 2012)
-* `PyPy sandboxing <http://pypy.org/features.html#sandboxing>`_
-* For Linux, search for SECCOMP
 
 
 RNG
