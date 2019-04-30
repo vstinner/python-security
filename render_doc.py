@@ -16,7 +16,7 @@ import xmlrpc.client
 import yaml
 
 OFFLINE = True
-PYTHON_SRCDIR =  '/home/vstinner/prog/python/master'
+PYTHON_SRCDIR = '/Users/karthikeyansingaravelan/stuff/python/cpython/'
 
 # Last update: 2019-05-13
 MAINTAINED_BRANCHES = ['2.7', '3.5', '3.6', '3.7']
