@@ -19,6 +19,12 @@ After a release, get new commit tags using::
 
     make update
 
+Update needs a configuration file ``config.ini``::
+
+    [config]
+    bpo_username = xxx
+    bpo_password = xxx
+
 For a X.Y.0 release, add X.Y to ``MAINTAINED_BRANCHES`` of ``render_doc.py``.
 
 Build without Makefile::

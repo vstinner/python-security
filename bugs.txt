@@ -218,6 +218,11 @@
     author: Cisco Talos
     date: 2019-01-15.16:24:28.272
     title: '[ssl][CVE-2019-5010] TALOS-2018-0758 Denial of Service'
+35907:
+    author: Sihoon Lee
+    date: 2019-02-06.08:19:50.837
+    title: '[security][CVE-2019-9948] Unnecessary URL scheme exists to allow file://
+        reading file  in urllib'
 36216:
     author: Steve Dower
     date: 2019-03-06.17:37:20.064
