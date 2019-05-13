@@ -169,6 +169,11 @@
     date: 2017-04-20.17:57:20.197
     title: (ftplib) A remote attacker could possibly attack by containing the newline
         characters
+30458:
+    author: Orange
+    date: 2017-05-24.15:01:31.674
+    title: '[security][CVE-2019-9740][CVE-2019-9947] HTTP Header Injection (follow-up
+        of CVE-2016-5699)'
 30500:
     author: Nam Nguyen
     date: 2017-05-29.04:04:11.735

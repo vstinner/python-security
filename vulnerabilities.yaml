@@ -1134,7 +1134,6 @@
     <https://unicode.org/reports/tr46/>`_.
 
 - name: "Unnecessary URL scheme exists to allow file:// reading file  in urllib"
-  # Optional: generated from the name if omitted
   slug: urllib-local_file
   cve: CVE-2019-9948
   bpo: 35907
@@ -1145,6 +1144,19 @@
     which makes it easier for remote attackers to bypass protection mechanisms
     that blacklist ``file:`` URIs, as demonstrated by triggering a
     ``urllib.urlopen('local_file:///etc/passwd')`` call.
+
+- name: "HTTP Header Injection (follow-up of CVE-2016-5699)"
+  # Optional: generated from the name if omitted
+  slug: http-header-injection
+  cve: CVE-2019-9740
+  bpo: 30458
+  fixed-in:
+   - 3.8: c4e671eec20dfcb29b18596a89ef075f826c9f96
+   - 3.7: 7e200e0763f5b71c199aaf98bd5588f291585619
+   - 3.6: c50d437e942d4c4c45c8cd76329b05340c02eb31
+  description: |
+    CVE-2019-9740 and CVE-2019-9947: HTTP Header Injection, follow-up of
+    CVE-2016-5699.
 
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
