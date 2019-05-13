@@ -49,6 +49,7 @@
     The urllib module doesn't parse correctly password containing the ``#``
     character.
   fixed-in:
+    - 3.7: 90e01e50ef8a9e6c91f30d965563c378a4ad26de
     - 3.6: b0fba8874a4bd6bf4773e6efdbd8fa762e9f05bd
     - 3.5: 4899d847ed3f56b2a712799f896aa1f28540a5c0
     - 3.4: cc54c1c0d2d05fe7404ba64c53df4b1352ed2262
@@ -771,9 +772,10 @@
    - https://bugs.python.org/issue30610
   reported-by: "2016-05-27 (expat bug #537 reported)"
   fixed-in:
-   - 3.4: 71572bbe82aa0836c036d44d41c8269ba6a321be
-   - 3.5: 8c797ed8a0fea5e3162b9415f13e270d4d5d9549
+   - 3.7: 23ec4b57e1359f9c539b8defc317542173ae087e
    - 3.6: 86b95370c45dedb8a56c9894372a43681de47a73
+   - 3.5: 8c797ed8a0fea5e3162b9415f13e270d4d5d9549
+   - 3.4: 71572bbe82aa0836c036d44d41c8269ba6a321be
    - 3.3: ab90986600ba7dea2aa41e5c1773791070725453
    - 2.7: 0e4571a68a7f48e8469ef05b04ba3463d3fd82c0
   description: |
@@ -797,6 +799,7 @@
     - https://github.com/libexpat/libexpat/blob/R_2_2_1/expat/Changes
   disclosure: "2017-06-17 (Expat 2.2.1 release)"
   fixed-in:
+   - 3.7: 5ff7132313eb651107b179d20218dfe5d4e47f13
    - 3.6: ea1ab803ddc14ab02ffed50ecc5089897f259623
    - 3.5: 91d171be45942d37a973b0675521b5159a96be31
    - 3.4: 71572bbe82aa0836c036d44d41c8269ba6a321be
@@ -818,6 +821,7 @@
 - name: "Environment variables injection in subprocess on Windows"
   bpo: 30730
   fixed-in:
+   - 3.7: d174d24a5d37d1516b885dc7c82f71ecd5930700
    - 3.6: a9b16cff35811f88cdfeb4f50758140dfff36ebc
    - 3.5: a7c0264735f46afab13771be4218d8eab0d7dc91
    - 3.4: fe82c46327effc124ff166e1fa1e611579e1176b
