@@ -709,7 +709,7 @@ class Vulnerability:
             if version[0] > affected[0]:
                 # "affected=(2, 0)" means that Python 3.x is not affected
                 return False
-            return (version[:2] >= affected[:2])
+            return (version[:2] == affected[:2])
 
         vulnerable = []
         for version in MAINTAINED_BRANCHES:
