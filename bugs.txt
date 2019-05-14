@@ -207,6 +207,11 @@
     author: Steve Dower
     date: 2018-03-05.18:04:42.468
     title: Buffer overflow vulnerability in os.symlink on Windows (CVE-2018-1000117)
+33529:
+    author: Rad164
+    date: 2018-05-16.00:12:26.510
+    title: '[security] Infinite loop on folding email (_fold_as_ew()) if an header
+        has no spaces'
 34623:
     author: Christian Heimes
     date: 2018-09-10.22:47:44.343

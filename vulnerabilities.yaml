@@ -1164,6 +1164,16 @@
     CVE-2019-9740 and CVE-2019-9947: HTTP Header Injection, follow-up of
     CVE-2016-5699.
 
+- name: "Email folding function Denial-of-Service"
+  slug: email-fold-dos
+  bpo: 33529
+  fixed-in:
+   - 3.8: c1f5667be1e3ec5871560c677402c1252c6018a6
+   - 3.7: 2fef5b01e36a17e36fd7e65c4b51f5ede8880dda
+  description: |
+    The email folding function enters an infinite loop if a header is longer
+    than the policy maximum line length and contains many non-ASCII characters
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows
