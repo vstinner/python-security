@@ -115,15 +115,15 @@ def parse_date(text):
     except ValueError:
         pass
 
-    if '.' in text:
-        try:
-            # CVE date: '2016-05-26T12:59:00.133000'
-            text2 = re.sub(r'\.[0-9]{6}$', '', text)
-            dt = datetime.datetime.strptime(text2, "%Y-%m-%dT%H:%M:%S")
-            dt = dt.replace(tzinfo=datetime.timezone.utc)
-            return dt.date()
-        except ValueError:
-            pass
+    try:
+        # CVE date: '2016-05-26T12:59:00'
+        # CVE date: '2016-05-26T12:59:00.133000'
+        text2 = re.sub(r'\.[0-9]{6}$', '', text)
+        dt = datetime.datetime.strptime(text2, "%Y-%m-%dT%H:%M:%S")
+        dt = dt.replace(tzinfo=datetime.timezone.utc)
+        return dt.date()
+    except ValueError:
+        pass
 
     raise ValueError("unable to parse date: %r" % text)
 
@@ -544,6 +544,9 @@ class CVE:
         except Exception:
             raise Exception("failed to parse %s" % self.number)
 
+    def __repr__(self):
+        return '<%s>' % self.number
+
 
 class Vulnerability:
     def __init__(self, app, data):
@@ -603,20 +606,24 @@ class Vulnerability:
         # CVE
         cves = set()
 
-        cve = data.pop('cve', None)
-        if cve:
-            self.name = '%s: %s' % (cve, self.name)
-            # get_cve() can return None
-            self.cve = app.cves.get_cve(cve)
-            if self.cve is None:
-                # Add a link if there is no CVE detail
-                cves.add(cve)
-        else:
-            self.cve = None
+        self.cve_list = []
+        cve_ids = data.pop('cve', None)
+        if cve_ids is not None:
+            if isinstance(cve_ids, str):
+                cve_ids = [cve_ids]
+            for cve_id in cve_ids:
+                if not CVE_REGEX.match(cve_id):
+                    raise ValueError("invalid CVE number: %r" % cve_id)
+                # get_cve() can return None
+                cve_obj = app.cves.get_cve(cve_id)
+                if cve_obj is not None:
+                    self.cve_list.append(cve_obj)
+                else:
+                    # Add a link if there is no CVE detail
+                    cves.add(cve_id)
 
-        for text in self.description:
-            for cve in CVE_REGEX.findall(text):
-                cves.add(cve)
+        for cve in CVE_REGEX.findall(self.description):
+            cves.add(cve)
 
         for cve in sorted(cves):
             url = CVE_URL % cve
@@ -626,7 +633,9 @@ class Vulnerability:
 
         self.slug = data.pop('slug', None)
         if not self.slug:
-            self.slug = create_slug(self.name)
+            raise ValueError("%r has not slug" % self)
+        if not re.match("^[a-z][a-z0-9_]+(-[a-z0-9._]+)*$", self.slug):
+            raise ValueError("invalid slug: %r" % self.slug)
 
         if data:
             raise Exception("Vulnerability %r has unknown keys: %s"
@@ -789,8 +798,7 @@ def render_timeline(fp, vuln):
                 % (bug.number, bug.get_url(), bug.author))
         dates.append((bug.date, bool(vuln.disclosure), text))
 
-    cve = vuln.cve
-    if cve:
+    for cve in vuln.cve_list:
         text = "%s published" % cve.number
         dates.append((cve.published, True, text))
 
@@ -950,7 +958,8 @@ def render_vuln(filename, vuln):
         render_fixes(fp, vuln.fixes)
         render_vulnerable(fp, vuln.vulnerable_versions)
         render_python_bug(fp, vuln.python_bug)
-        render_cve(fp, vuln.cve)
+        for cve in vuln.cve_list:
+            render_cve(fp, cve)
         render_timeline(fp, vuln)
         render_links(fp, vuln.links)
 
@@ -979,6 +988,7 @@ class RenderDoc:
     def load_vulnerabilities(self, filename):
         vulnerabilities = []
         slugs = set()
+        bpos = set()
         for data in load_yaml(filename):
             try:
                 vuln = Vulnerability(self, data)
@@ -988,6 +998,12 @@ class RenderDoc:
             if vuln.slug in slugs:
                 raise Exception("slug %r is not unique" % vuln.slug)
             slugs.add(vuln.slug)
+            bug = vuln.python_bug
+            if bug is not None:
+                bpo = bug.number
+                if bpo in bpos:
+                    raise Exception("bpo %r is not unique" % bpo)
+                bpos.add(bpo)
             vulnerabilities.append(vuln)
 
         vulnerabilities.sort(key=Vulnerability.sort_key)
