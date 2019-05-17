@@ -1235,6 +1235,18 @@
     The email folding function enters an infinite loop if a header is longer
     than the policy maximum line length and contains many non-ASCII characters
 
+- name: "Zip Bomb vulnerability"
+  slug: zip-bomb
+  bpo: 36260
+  links:
+   - https://bugs.python.org/issue36462
+  description: |
+    The zipfile module allows remote attackers to cause a denial of service
+    (resource consumption) via a `zip bomb
+    <https://en.wikipedia.org/wiki/Zip_bomb>`_.
+
+    zipfile doesn't have zip bomb detection and protection.
+
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
 # CVE-2015-5652: sys.path on Windows

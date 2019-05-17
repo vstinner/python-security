@@ -237,3 +237,7 @@
     author: Steve Dower
     date: 2019-03-06.17:37:20.064
     title: urlsplit does not handle NFKC normalization
+36260:
+    author: JUN-WEI SONG
+    date: 2019-03-11.07:16:58.562
+    title: '[security] CVE-2019-9674: Zip Bomb vulnerability'
