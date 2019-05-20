@@ -83,19 +83,19 @@ class SslCrlDpsDos(Checker):
 
 class GettextC2P(Checker):
     NAME = "gettext.c2py (bpo-28563)"
-    SLUG = "issue_28563_gettext.c2py"
+    SLUG = "gettext-c2py"
     SCRIPT = "gettext_c2py.py"
 
 
 class SslNulSubjectNames(Checker):
     NAME = "SLL NUL in subjectAltNames (CVE-2013-4238)"
-    SLUG = "cve-2013-4238_ssl_nul_in_subjectaltnames"
+    SLUG = "ssl-null-subjectaltnames"
     SCRIPT = "ssl_nul_in_subjectaltnames.py"
 
 
 class HashDos(Checker):
     NAME = "Hash DoS (CVE-2012-1150)"
-    SLUG = "cve-2012-1150_hash_dos"
+    SLUG = "hash-dos"
     SCRIPT = "hash_dos.py"
 
 
@@ -148,6 +148,7 @@ class Application:
         if fixed:
             print("All tested vulnerabilities are fixed in your Python %s :-)"
                   % version)
+        print("Tested executable: %s" % sys.executable)
 
     def main(self):
         self.run_checkers()
