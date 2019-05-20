@@ -58,12 +58,15 @@ class Checker:
 
         if exitcode == vulntools.EXITCODE_FIXED:
             self.result = FIXED
-        elif exitcode == vulntools.EXITCODE_ERROR:
-            self.result = CHECK_ERROR
+        elif exitcode == vulntools.EXITCODE_VULNERABLE:
+            self.result = VULNERABLE
         elif exitcode == vulntools.EXITCODE_SKIP:
             self.result = SKIP
-        else:
+        elif exitcode < 0:
+            # likely a crash
             self.result = VULNERABLE
+        else:
+            self.result = CHECK_ERROR
 
     def run_script(self, script):
         filename = os.path.join(scripts_path, script)
@@ -99,7 +102,13 @@ class HashDos(Checker):
     SCRIPT = "hash_dos.py"
 
 
-CHECKERS = [SslCrlDpsDos, GettextC2P, SslNulSubjectNames, HashDos]
+class UrlsplitNormalization(Checker):
+    NAME = "urlsplit does not handle NFKC normalization (CVE-2019-9636)"
+    SLUG = "urlsplit-nfkc-normalization"
+    SCRIPT = "urlsplit_normalization.py"
+
+
+CHECKERS = [SslCrlDpsDos, GettextC2P, SslNulSubjectNames, HashDos, UrlsplitNormalization]
 
 
 class Application:
