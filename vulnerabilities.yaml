@@ -1222,8 +1222,11 @@
    - 3.8: c4e671eec20dfcb29b18596a89ef075f826c9f96
    - 3.7: 7e200e0763f5b71c199aaf98bd5588f291585619
    - 3.6: c50d437e942d4c4c45c8cd76329b05340c02eb31
+   - 2.7: bb8071a4cae5ab3fe321481dd3d73662ffb26052
   description: |
     HTTP Header Injection, follow-up of CVE-2016-5699.
+
+    The fix disallows control chars in HTTP URLs.
 
 - name: "Email folding function Denial-of-Service"
   slug: email-fold-dos
