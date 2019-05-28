@@ -15,7 +15,7 @@ Python 2.7 and 3.5-3.7::
         '!aNULL:!eNULL:!MD5:!3DES'
         )
 
-Pytohn 3.4::
+Python 3.4::
 
     _DEFAULT_CIPHERS = (
         'ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+HIGH:'
