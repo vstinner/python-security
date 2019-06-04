@@ -58,12 +58,15 @@ class Checker:
 
         if exitcode == vulntools.EXITCODE_FIXED:
             self.result = FIXED
-        elif exitcode == vulntools.EXITCODE_ERROR:
-            self.result = CHECK_ERROR
+        elif exitcode == vulntools.EXITCODE_VULNERABLE:
+            self.result = VULNERABLE
         elif exitcode == vulntools.EXITCODE_SKIP:
             self.result = SKIP
-        else:
+        elif exitcode < 0:
+            # likely a crash
             self.result = VULNERABLE
+        else:
+            self.result = CHECK_ERROR
 
     def run_script(self, script):
         filename = os.path.join(scripts_path, script)
@@ -83,23 +86,35 @@ class SslCrlDpsDos(Checker):
 
 class GettextC2P(Checker):
     NAME = "gettext.c2py (bpo-28563)"
-    SLUG = "issue_28563_gettext.c2py"
+    SLUG = "gettext-c2py"
     SCRIPT = "gettext_c2py.py"
 
 
 class SslNulSubjectNames(Checker):
     NAME = "SLL NUL in subjectAltNames (CVE-2013-4238)"
-    SLUG = "cve-2013-4238_ssl_nul_in_subjectaltnames"
+    SLUG = "ssl-null-subjectaltnames"
     SCRIPT = "ssl_nul_in_subjectaltnames.py"
 
 
 class HashDos(Checker):
     NAME = "Hash DoS (CVE-2012-1150)"
-    SLUG = "cve-2012-1150_hash_dos"
+    SLUG = "hash-dos"
     SCRIPT = "hash_dos.py"
 
 
-CHECKERS = [SslCrlDpsDos, GettextC2P, SslNulSubjectNames, HashDos]
+class UrlsplitNormalization(Checker):
+    NAME = "urlsplit does not handle NFKC normalization (CVE-2019-9636)"
+    SLUG = "urlsplit-nfkc-normalization"
+    SCRIPT = "urlsplit_normalization.py"
+
+
+class CookieDomainCheck(Checker):
+    NAME = "Cookie domain check returns incorrect results"
+    SLUG = "cookie-domain-check"
+    SCRIPT = "cookie-domain-check.py"
+
+
+CHECKERS = [SslCrlDpsDos, GettextC2P, SslNulSubjectNames, HashDos, UrlsplitNormalization]
 
 
 class Application:
@@ -148,6 +163,7 @@ class Application:
         if fixed:
             print("All tested vulnerabilities are fixed in your Python %s :-)"
                   % version)
+        print("Tested executable: %s" % sys.executable)
 
     def main(self):
         self.run_checkers()
