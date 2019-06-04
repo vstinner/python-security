@@ -21,25 +21,6 @@
 #
 # Other tag: "ignore-python3: true", used for modules removed from Python 3
 
-- name: "bpo-35755: Remove current directory from posixpath.defpath"
-  bpo: 35755
-  disclosure: "2019-01-17 (Reported by bpo-35755)"
-  reported-at: "2019-01-17"
-  reported-by: "Victor Stinner"
-  affected-versions:
-   - "3.6"
-   - "3.7"
-   - "3.8"
-  description: |
-    shutil.which now uses os.confstr("CS_PATH") if available and if the
-    PATH environment variable is not set. Remove also the current
-    directory from posixpath.defpath. On Unix, shutil.which and the
-    subprocess module no longer search the executable in the current
-    directory if the PATH environment variable is not set.
-  fixed-in:
-   - 3.7: 394b991e41a2a4ce3afc8e6fde44de46e73bbb34
-   - 3.8: 2c4c02f8a876fcf084575dcaf857a0236c81261a
-
 - name: "urllib FTP protocol stream injection"
   slug: urllib-ftp-stream-injection
   cve:
@@ -1286,18 +1267,8 @@
     Singaravelan.
 
 - name: "bpo-35647: Incorrect validation of path in http.cookiejar"
-  cve:
+  slug: cookie-path-check
   bpo: 35647
-  disclosure: "2019-01-03 (Python issue bpo-35647 reported)"
-  reported-at: "2019-01-03"
-  reported-by: "Karthikeyan Singaravelan"
-  affected-versions:
-   - "2.7"
-   - "3.4"
-   - "3.5"
-   - "3.6"
-   - "3.7"
-   - "3.8"
   fixed-in:
    - 3.4: 382981b25092b5e9285f1e4894142af1e8f2ca86
    - 3.5: e260f092cd0d8975c777e73ca6fb549d59b5d452
@@ -1309,25 +1280,6 @@
     while using a cookiejar with http.cookiejar.DefaultCookiePolicy policy.
     The code did not check for the first non-matching character in prefix match
     to be a slash.
-
-- name: "CVE-2019-9947: CRLF injection attack in urllib"
-  cve: CVE-2019-9947
-  bpo: 30458
-  disclosure: "2019-10-31 (Also reported by bpo-36276, bpo-35906)"
-  reported-at: "2019-10-31"
-  reported-by: "Sihoon Lee, ragdoll, Orange"
-  affected-versions:
-   - "2.7"
-   - "3.4"
-   - "3.5"
-   - "3.6"
-   - "3.7"
-   - "3.8"
-  description: |
-    Multiple issues were discovered in urllib2 in Python 2.x through 2.7.16 and
-    urllib in Python 3.x through 3.7.2. CRLF injection is possible if the
-    attacker controls a url parameter, as demonstrated by the first argument
-    to urllib.request.urlopen with \r\n followed by an HTTP header or a Redis command.
 
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
