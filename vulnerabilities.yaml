@@ -40,75 +40,6 @@
    - 3.7: 394b991e41a2a4ce3afc8e6fde44de46e73bbb34
    - 3.8: 2c4c02f8a876fcf084575dcaf857a0236c81261a
 
-- name: "CVE-2019-9947: CRLF injection attack in urllib"
-  cve: CVE-2019-9947
-  bpo: 30458
-  disclosure: "2019-10-31 (Also reported by bpo-36276, bpo-35906)"
-  reported-at: "2019-10-31"
-  reported-by: "Sihoon Lee, ragdoll, Orange"
-  affected-versions:
-   - "2.7"
-   - "3.4"
-   - "3.5"
-   - "3.6"
-   - "3.7"
-   - "3.8"
-  description: |
-    Multiple issues were discovered in urllib2 in Python 2.x through 2.7.16 and
-    urllib in Python 3.x through 3.7.2. CRLF injection is possible if the
-    attacker controls a url parameter, as demonstrated by the first argument
-    to urllib.request.urlopen with \r\n followed by an HTTP header or a Redis command.
-
-- name: "bpo-35121: Incorrect validation of domain in http.cookiejar"
-  cve:
-  bpo: 35121
-  disclosure: "2018-10-31 (Python issue bpo-35121 reported)"
-  reported-at: "2018-10-31"
-  reported-by: "西田雄治"
-  affected-versions:
-   - "2.7"
-   - "3.4"
-   - "3.5"
-   - "3.6"
-   - "3.7"
-   - "3.8"
-  fixed-in:
-   - 3.4: 42ad4101d3ba7ca3c371dadf0f8880764c9f15fb
-   - 3.5: 4749f1b69000259e23b4cc6f63c542a9bdc62f1b
-   - 3.6: b241af861b37e20ad30533bc0b7e2e5491cc470f
-   - 3.7: e5123d81ffb3be35a1b2767d6ced1a097aaf77be
-   - 3.8: ca7fe5063593958e5efdf90f068582837f07bd14
-  description: |
-    Cookies of example.com without Domain attribute where sent to badexample.com
-    where example.com is a suffix match of badexample.com while using a cookiejar
-    with http.cookiejar.DefaultCookiePolicy policy. The code did not
-    check for the first non-matching character in suffix match to be a dot.
-
-- name: "bpo-35647: Incorrect validation of path in http.cookiejar"
-  cve:
-  bpo: 35647
-  disclosure: "2019-01-03 (Python issue bpo-35647 reported)"
-  reported-at: "2019-01-03"
-  reported-by: "Karthikeyan Singaravelan"
-  affected-versions:
-   - "2.7"
-   - "3.4"
-   - "3.5"
-   - "3.6"
-   - "3.7"
-   - "3.8"
-  fixed-in:
-   - 3.4: 382981b25092b5e9285f1e4894142af1e8f2ca86
-   - 3.5: e260f092cd0d8975c777e73ca6fb549d59b5d452
-   - 3.6: 5565b1db6f37f244890369e0d68a3e906aca28b9
-   - 3.7: 97c7d78fda49e03fc773c171ce0c736d02bb73f5
-   - 3.8: 0e1f1f01058bd4a9b98cfe443214adecc019a38c
-  description: |
-    Cookies of example.com with path=/any where sent to example.com/anybad/
-    while using a cookiejar with http.cookiejar.DefaultCookiePolicy policy.
-    The code did not check for the first non-matching character in prefix match
-    to be a slash.
-
 - name: "urllib FTP protocol stream injection"
   slug: urllib-ftp-stream-injection
   cve:
@@ -1353,6 +1284,50 @@
     domain A is a suffix match of domain B while using a cookiejar with
     `http.cookiejar.DefaultCookiePolicy` policy.  Patch by Karthikeyan
     Singaravelan.
+
+- name: "bpo-35647: Incorrect validation of path in http.cookiejar"
+  cve:
+  bpo: 35647
+  disclosure: "2019-01-03 (Python issue bpo-35647 reported)"
+  reported-at: "2019-01-03"
+  reported-by: "Karthikeyan Singaravelan"
+  affected-versions:
+   - "2.7"
+   - "3.4"
+   - "3.5"
+   - "3.6"
+   - "3.7"
+   - "3.8"
+  fixed-in:
+   - 3.4: 382981b25092b5e9285f1e4894142af1e8f2ca86
+   - 3.5: e260f092cd0d8975c777e73ca6fb549d59b5d452
+   - 3.6: 5565b1db6f37f244890369e0d68a3e906aca28b9
+   - 3.7: 97c7d78fda49e03fc773c171ce0c736d02bb73f5
+   - 3.8: 0e1f1f01058bd4a9b98cfe443214adecc019a38c
+  description: |
+    Cookies of example.com with path=/any where sent to example.com/anybad/
+    while using a cookiejar with http.cookiejar.DefaultCookiePolicy policy.
+    The code did not check for the first non-matching character in prefix match
+    to be a slash.
+
+- name: "CVE-2019-9947: CRLF injection attack in urllib"
+  cve: CVE-2019-9947
+  bpo: 30458
+  disclosure: "2019-10-31 (Also reported by bpo-36276, bpo-35906)"
+  reported-at: "2019-10-31"
+  reported-by: "Sihoon Lee, ragdoll, Orange"
+  affected-versions:
+   - "2.7"
+   - "3.4"
+   - "3.5"
+   - "3.6"
+   - "3.7"
+   - "3.8"
+  description: |
+    Multiple issues were discovered in urllib2 in Python 2.x through 2.7.16 and
+    urllib in Python 3.x through 3.7.2. CRLF injection is possible if the
+    attacker controls a url parameter, as demonstrated by the first argument
+    to urllib.request.urlopen with \r\n followed by an HTTP header or a Redis command.
 
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
