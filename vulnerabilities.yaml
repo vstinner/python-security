@@ -2,7 +2,6 @@
 
 # Template:
 # - name: ""
-#   # Optional: generated from the name if omitted
 #   slug:
 #   # CVE can be a single string or a list
 #   cve:
@@ -1249,6 +1248,23 @@
     <https://en.wikipedia.org/wiki/Zip_bomb>`_.
 
     zipfile doesn't have zip bomb detection and protection.
+
+- name: "Cookie domain check returns incorrect results"
+  slug: cookie-domain-check
+  bpo: 35121
+  fixed-in:
+   - 3.8: ca7fe5063593958e5efdf90f068582837f07bd14
+   - 3.7: e5123d81ffb3be35a1b2767d6ced1a097aaf77be
+   - 3.6: b241af861b37e20ad30533bc0b7e2e5491cc470f
+   - 3.4: 42ad4101d3ba7ca3c371dadf0f8880764c9f15fb
+   - 3.5: 4749f1b69000259e23b4cc6f63c542a9bdc62f1b
+  description: |
+    http.cookiejar.DefaultPolicy.domain_return_ok returns incorrect results.
+
+    Don't send cookies of domain A without Domain attribute to domain B when
+    domain A is a suffix match of domain B while using a cookiejar with
+    `http.cookiejar.DefaultCookiePolicy` policy.  Patch by Karthikeyan
+    Singaravelan.
 
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa

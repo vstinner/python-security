@@ -108,6 +108,12 @@ class UrlsplitNormalization(Checker):
     SCRIPT = "urlsplit_normalization.py"
 
 
+class CookieDomainCheck(Checker):
+    NAME = "Cookie domain check returns incorrect results"
+    SLUG = "cookie-domain-check"
+    SCRIPT = "cookie-domain-check.py"
+
+
 CHECKERS = [SslCrlDpsDos, GettextC2P, SslNulSubjectNames, HashDos, UrlsplitNormalization]
 
 

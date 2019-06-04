@@ -224,6 +224,10 @@
     author: Christian Heimes
     date: 2018-09-24.16:47:30.436
     title: xml package does not obey sys.flags.ignore_environment
+35121:
+    author: "\u897F\u7530\u96C4\u6CBB"
+    date: 2018-10-31.06:52:48.732
+    title: Cookie domain check returns incorrect results
 35746:
     author: Cisco Talos
     date: 2019-01-15.16:24:28.272
