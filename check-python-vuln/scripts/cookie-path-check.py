@@ -11,8 +11,8 @@ import vulntools
 vulntools.prepare_process()
 
 policy = DefaultCookiePolicy()
-req = Request('https://xxxfoo.co.jp/')
-if policy.domain_return_ok('foo.co.jp', req):
+req = Request('https://example.com/anybad')
+if policy.path_return_ok('/any', req):
     vulntools.exit_vulnerable()
 else:
     vulntools.exit_fixed()
