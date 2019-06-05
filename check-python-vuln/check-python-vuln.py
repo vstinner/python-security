@@ -4,18 +4,12 @@ import subprocess
 import sys
 import textwrap
 
-scripts_path = os.path.join(os.path.dirname(__file__), 'scripts')
-sys.path.append(scripts_path)
+SCRIPTS_PATH = os.path.join(os.path.dirname(__file__), 'scripts')
+sys.path.append(SCRIPTS_PATH)
 import vulntools
+from vulntools import TestResult, ERROR, VULNERABLE
 
 
-FMT_URL = 'https://python-security.readthedocs.io/vuln/%s.html'
-
-
-FIXED = "fixed"
-CHECK_ERROR = "CHECK_ERROR"
-SKIP = "skipped"
-VULNERABLE = "VULNERABLE"
 
 
 class CommandResult:
@@ -26,147 +20,82 @@ class CommandResult:
         self.stderr = stderr
 
 
-class Checker:
-    NAME = None
-    SLUG = None
+class Application:
+    def __init__(self):
+        self.verbose = True
+        self.debug = False
+        self.python = [sys.executable]
+        self.python_version = '%s.%s.%s' % tuple(sys.version_info[:3])
+        root_dir = os.getcwd()
+        self.data_dir = os.path.join(root_dir, 'data')
+        self.scripts = []
+        self.test_results = []
 
-    def __init__(self, app):
-        self.app = app
-        self.result = CHECK_ERROR
+    def search_scripts(self):
+        vulntools_filename = os.path.basename(vulntools.__file__)
 
-    def data_file(self, filename):
-        return os.path.join(self.app.data_dir, filename)
+        for filename in os.listdir(SCRIPTS_PATH):
+            if not filename.endswith(".py"):
+                continue
+            if filename == vulntools_filename:
+                continue
+            filename = os.path.join(SCRIPTS_PATH, filename)
+            if not os.path.isfile(filename):
+                continue
+            self.scripts.append(filename)
 
-    def url(self):
-        return FMT_URL % self.SLUG
-
-    def run_python(self, *args, **kw):
-        command = tuple(self.app.python + list(args))
-        if self.app.debug:
+    def run_script(self, script):
+        command = tuple(self.python + [os.path.basename(script), '--json'])
+        if self.debug:
             cmd_text = ' '.join(command)
             print("+ %s" % cmd_text)
         proc = subprocess.Popen(command,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.PIPE,
                                 universal_newlines=True,
-                                **kw)
+                                cwd=os.path.dirname(script))
         stdout, stderr = proc.communicate()
+
         exitcode = proc.returncode
-        self.cmd_result = CommandResult(command, exitcode, stdout, stderr)
-        if self.app.debug:
-            print("+ %s => exit code %s" % (cmd_text, exitcode))
-
-        if exitcode == vulntools.EXITCODE_FIXED:
-            self.result = FIXED
-        elif exitcode == vulntools.EXITCODE_VULNERABLE:
-            self.result = VULNERABLE
-        elif exitcode == vulntools.EXITCODE_SKIP:
-            self.result = SKIP
-        elif exitcode < 0:
-            # likely a crash
-            self.result = VULNERABLE
+        if exitcode:
+            test_result = TestResult.deserialize_error(exitcode, stdout, stderr)
         else:
-            self.result = CHECK_ERROR
+            test_result = TestResult.deserialize_result(stdout)
+        test_result.script = script
+        print("* %s" % test_result)
+        return test_result
 
-    def run_script(self, script):
-        filename = os.path.join(scripts_path, script)
-        if not os.path.exists(filename):
-            raise Exception("%s doesn't exist" % filename)
-        self.run_python(script, cwd=scripts_path)
-
-    def run(self):
-        self.run_script(self.SCRIPT)
-
-
-class SslCrlDpsDos(Checker):
-    NAME = "SSL CRL DPS DoS (CVE-2019-5010)"
-    SLUG = "ssl-crl-dps-dos"
-    SCRIPT = "ssl-crl-dps-dos.py"
-
-
-class GettextC2P(Checker):
-    NAME = "gettext.c2py (bpo-28563)"
-    SLUG = "gettext-c2py"
-    SCRIPT = "gettext_c2py.py"
-
-
-class SslNulSubjectNames(Checker):
-    NAME = "SLL NUL in subjectAltNames (CVE-2013-4238)"
-    SLUG = "ssl-null-subjectaltnames"
-    SCRIPT = "ssl_nul_in_subjectaltnames.py"
-
-
-class HashDos(Checker):
-    NAME = "Hash DoS (CVE-2012-1150)"
-    SLUG = "hash-dos"
-    SCRIPT = "hash_dos.py"
-
-
-class UrlsplitNormalization(Checker):
-    NAME = "urlsplit does not handle NFKC normalization (CVE-2019-9636)"
-    SLUG = "urlsplit-nfkc-normalization"
-    SCRIPT = "urlsplit_normalization.py"
-
-
-class CookieDomainCheck(Checker):
-    NAME = "Cookie domain check returns incorrect results"
-    SLUG = "cookie-domain-check"
-    SCRIPT = "cookie-domain-check.py"
-
-
-CHECKERS = [SslCrlDpsDos, GettextC2P, SslNulSubjectNames, HashDos, UrlsplitNormalization]
-
-
-class Application:
-    def __init__(self):
-        self.verbose = True
-        self.debug = False
-        self.python = [sys.executable]
-        root_dir = os.getcwd()
-        self.data_dir = os.path.join(root_dir, 'data')
-        self.checkers = []
-
-    def run_checkers(self):
-        for checker_class in CHECKERS:
-            checker = checker_class(self)
-            if self.verbose:
-                print("Check: %s" % checker.NAME)
-            checker.run()
-            self.checkers.append(checker)
-
+    def run_scripts(self):
+        python = ' '.join(self.python)
+        print("Result for %s (%s):" % (python, self.python_version))
+        for script in self.scripts:
+            test_result = self.run_script(script)
+            self.test_results.append(test_result)
         print("")
 
     def display_results(self):
-        python = ' '.join(self.python)
-        version = '%s.%s.%s' % tuple(sys.version_info[:3])
-        print("Result for %s (%s):" % (python, version))
-        vuln = 0
-        for checker in self.checkers:
-            result = checker.result
-            if result == CHECK_ERROR:
-                errmsg = checker.cmd_result.stdout.rstrip()
-                if errmsg:
-                    result = '%s (%s)' % (result, errmsg)
-            print("* %s: %s" % (checker.NAME, result))
-            if checker.result == VULNERABLE:
-                vuln += 1
-        print("")
+        any_error = any(test_result.result == ERROR
+                        for test_result in self.test_results)
+        vuln = sum(test_result.result == VULNERABLE
+                   for test_result in self.test_results)
 
         fixed = True
-        if any(checker.result == CHECK_ERROR for checker in self.checkers):
+        if any_error:
             print("CHECK ERROR :-(")
             fixed = False
+
         if vuln:
             print("Your Python %s has %s KNOWN VULNERABILIT%s!!!"
-                  % (version, vuln, 'IES' if vuln != 1 else 'Y'))
+                  % (self.python_version, vuln, 'IES' if vuln != 1 else 'Y'))
             fixed = False
         if fixed:
             print("All tested vulnerabilities are fixed in your Python %s :-)"
-                  % version)
+                  % self.python_version)
         print("Tested executable: %s" % sys.executable)
 
     def main(self):
-        self.run_checkers()
+        self.search_scripts()
+        self.run_scripts()
         self.display_results()
 
 

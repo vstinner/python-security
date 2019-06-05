@@ -1,17 +1,24 @@
 import gettext
-import vulntools
+from vulntools import Test
 
 
-def func():
-    vulntools.exit_vulnerable()
+class Check(Test):
+    NAME = "gettext.c2py (bpo-28563)"
+    SLUG = "gettext-c2py"
+
+    def callback(self):
+        self.exit_vulnerable()
+
+    def run(self):
+        try:
+            py = gettext.c2py("n()")
+        except ValueError:
+            self.exit_fixed()
+        else:
+            py(self.callback)
+
+        self.exit_error()
 
 
-vulntools.prepare_process()
-try:
-    py = gettext.c2py("n()")
-except ValueError:
-    vulntools.exit_fixed()
-else:
-    py(func)
-
-vulntools.exit_error()
+if __name__ == "__main__":
+    Check().main()
