@@ -1266,7 +1266,7 @@
     `http.cookiejar.DefaultCookiePolicy` policy.  Patch by Karthikeyan
     Singaravelan.
 
-- name: "bpo-35647: Incorrect validation of path in http.cookiejar"
+- name: "Incorrect validation of path in http.cookiejar"
   slug: cookie-path-check
   bpo: 35647
   fixed-in:
@@ -1276,10 +1276,10 @@
    - 3.7: 97c7d78fda49e03fc773c171ce0c736d02bb73f5
    - 3.8: 0e1f1f01058bd4a9b98cfe443214adecc019a38c
   description: |
-    Cookies of example.com with path=/any where sent to example.com/anybad/
-    while using a cookiejar with http.cookiejar.DefaultCookiePolicy policy.
-    The code did not check for the first non-matching character in prefix match
-    to be a slash.
+    Cookies of ``example.com`` with ``path=/any`` were sent to
+    ``example.com/anybad/`` while using a cookiejar with
+    `http.cookiejar.DefaultCookiePolicy` policy. The code did not check for
+    the first non-matching character in prefix match to be a slash.
 
 # Other issues:
 # CVE-2016-1494: vuln in 3rd party python-rsa
