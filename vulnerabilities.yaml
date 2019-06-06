@@ -1205,6 +1205,11 @@
   slug: urllib-local-file-scheme
   cve: CVE-2019-9948
   bpo: 35907
+  fixed-in:
+   - 2.7: b15bde8058e821b383d81fcae68b335a752083ca
+   - 3.8: 0c2b6a3943aa7b022e8eb4bfd9bffcddebf9a587
+   - 3.7: 34bab215596671d0dec2066ae7d7450cd73f638b
+   - 3.6: 4f06dae5d8d4400ba38d8502da620f07d4a5696e
   description: |
     urllib in Python 2.x through 2.7.16 supports the ``local_file:`` scheme,
     which makes it easier for remote attackers to bypass protection mechanisms
