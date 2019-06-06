@@ -1205,8 +1205,8 @@
   slug: urlsplit-nfkc-normalization2
   cve: CVE-2019-9636
   bpo: 36742
-  reported-at: "2019-02-16 (email to PSRT)"
-  reported-by: "Jonathan Birch of Microsoft Corporation and Panayiotis Panayiotou"
+  reported-at: "2019-06-03 (email to PSRT)"
+  reported-by: "Riccardo Schirone (Red Hat)"
   fixed-in:
    - 3.8: 8d0ef0b5edeae52960c7ed05ae8a12388324f87e
    - 3.7: 250b62acc59921d399f0db47db3b462cd6037e09
