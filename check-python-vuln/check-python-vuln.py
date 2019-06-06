@@ -2,14 +2,11 @@
 import os
 import subprocess
 import sys
-import textwrap
 
 SCRIPTS_PATH = os.path.join(os.path.dirname(__file__), 'scripts')
 sys.path.append(SCRIPTS_PATH)
 import vulntools
 from vulntools import TestResult, TestResultError, ERROR, VULNERABLE
-
-
 
 
 class CommandResult:

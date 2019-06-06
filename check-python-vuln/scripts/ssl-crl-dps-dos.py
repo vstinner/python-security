@@ -1,5 +1,3 @@
-import os.path
-import sys
 from vulntools import Test
 
 

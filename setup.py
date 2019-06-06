@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-import os, subprocess, sys
+import os
+import sys
+
 script = 'render_doc.py'
 # render_doc.py
 print("Run %s" % script)

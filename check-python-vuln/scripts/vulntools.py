@@ -40,7 +40,7 @@ ERROR = Status("ERROR", "script failed", 103)
 _ALL_STATUS = (FIXED, VULNERABLE, SKIP, ERROR)
 
 # used by deserialize_status()
-_STATUS_FROM_VALUE= dict((status.value, status) for status in _ALL_STATUS)
+_STATUS_FROM_VALUE = dict((status.value, status) for status in _ALL_STATUS)
 
 
 def set_memory_limit(size=None):
@@ -90,7 +90,7 @@ class TestResult:
     def __str__(self):
         text = '%s: %s' % (self.name, self.status)
         if self.status != FIXED and hasattr(self, 'message'):
-            text = '%s (%s)'%  (text, self.message)
+            text = '%s (%s)' % (text, self.message)
         return text
 
 

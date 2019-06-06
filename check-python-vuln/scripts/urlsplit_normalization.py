@@ -61,7 +61,8 @@ class Check(Test):
                 # vulnerability fixed
                 pass
             else:
-                sys.stderr.write("urlsplit(%s) succeed but must raises ValueError: vulnerable!\n"
+                sys.stderr.write("urlsplit(%s) succeed but must raises "
+                                 "ValueError: vulnerable!\n"
                                  % ascii(url))
                 # vulnerable!
                 self.exit_vulnerable()

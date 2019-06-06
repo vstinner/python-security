@@ -151,6 +151,3 @@ texinfo_documents = [
      author, 'PythonSecurity', 'One line description of project.',
      'Miscellaneous'),
 ]
-
-
-

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import argparse
 import configparser
 import datetime
 import glob
@@ -16,7 +15,7 @@ import xmlrpc.client
 import yaml
 
 OFFLINE = True
-PYTHON_SRCDIR =  '/home/vstinner/prog/python/master'
+PYTHON_SRCDIR = '/home/vstinner/prog/python/master'
 
 # Last update: 2019-05-13
 MAINTAINED_BRANCHES = ['2.7', '3.5', '3.6', '3.7']
@@ -26,7 +25,8 @@ CVE_URL = 'https://www.cvedetails.com/cve/%s/'
 CVE_API = 'http://cve.circl.lu/api/cve/%s'
 BPO_URL = 'https://bugs.python.org/issue%s'
 CVSS_SCORE_URL = 'https://nvd.nist.gov/cvss.cfm'
-RED_HAT_IMPACT_URL = 'https://access.redhat.com/security/updates/classification/'
+RED_HAT_IMPACT_URL = ('https://access.redhat.com/security/'
+                      'updates/classification/')
 BUGS_API = 'https://bugs.python.org/xmlrpc'
 BUGS_DATE_REGEX = re.compile(r'<Date (.*)>')
 
@@ -104,9 +104,11 @@ def parse_date(text):
         # CVE date: 2016-09-02T10:59:00.127-04:00
         if len(text) == 29 and text.count('.') == 1:
             text2 = re.sub(r'\.[0-9]{3}', '', text)
+
             def replace_timezone(regs):
                 text = regs.group(0)
                 return text[:2] + text[3:]
+
             text2 = re.sub(r'[0-9]{2}:[0-9]{2}$', replace_timezone, text2)
 
             dt = datetime.datetime.strptime(text2, "%Y-%m-%dT%H:%M:%S%z")
@@ -433,7 +435,8 @@ class PythonBugs:
         print("Download issue #%s" % number)
 
         bug = {}
-        server = xmlrpc.client.ServerProxy(BUGS_API, allow_none=True, transport=SpecialTransport())
+        server = xmlrpc.client.ServerProxy(BUGS_API, allow_none=True,
+                                           transport=SpecialTransport())
         with server:
             issue = server.display('issue%s' % number)
             bug['title'] = issue['title']
@@ -442,10 +445,12 @@ class PythonBugs:
             msg = server.display('msg%s' % msg)
             match = BUGS_DATE_REGEX.match(msg['date'])
             if not match:
-                raise Exception("unable to parse bug msg date: %r" % msg['date'])
+                raise Exception("unable to parse bug msg date: %r"
+                                % msg['date'])
             bug['date'] = match.group(1)
 
-            user = server.display('user%s' % msg['author'], 'username', 'realname')
+            user = server.display('user%s' % msg['author'], 'username',
+                                  'realname')
             bug['author'] = user['realname'] or user['username']
 
         self.bugs[number] = bug
@@ -556,7 +561,8 @@ class Vulnerability:
         try:
             self.parse(app, data)
         except KeyError as exc:
-            raise Exception("failed to parse %r: missing key %s" % (self.name, exc))
+            raise Exception("failed to parse %r: missing key %s"
+                            % (self.name, exc))
         except OfflineError:
             raise
         except Exception as exc:
@@ -665,7 +671,8 @@ class Vulnerability:
                 try:
                     release_date = app.python_releases.get_date(version)
                 except KeyError:
-                    print("WARNING: Ignore version %s: not released yet" % version)
+                    print("WARNING: Ignore version %s: not released yet"
+                          % version)
                     continue
                 fix = Fix(commit, version, release_date)
                 fixes.append(fix)
@@ -699,7 +706,8 @@ class Vulnerability:
             self.fixes.append(fix)
 
         affected_versions = data.pop('affected-versions', ())
-        affected_versions = ['%.1f' % version if isinstance(version, float) else version
+        affected_versions = ['%.1f' % version if isinstance(version, float)
+                             else version
                              for version in affected_versions]
         affected_versions = list(map(version_info, affected_versions))
 
@@ -868,7 +876,8 @@ def render_info(fp, vuln):
     if vuln.reported_by:
         print("* Reported by: {}".format(vuln.reported_by), file=fp)
     if vuln.redhat_impact:
-        print("* `Red Hat impact <%s>`_: %s" % (RED_HAT_IMPACT_URL, vuln.redhat_impact), file=fp)
+        print("* `Red Hat impact <%s>`_: %s"
+              % (RED_HAT_IMPACT_URL, vuln.redhat_impact), file=fp)
     print(file=fp)
 
 
@@ -883,7 +892,8 @@ def render_python_bug(fp, bug):
         text += '.'
     print(text, file=fp)
     print(file=fp)
-    print("* Python issue: `bpo-%s <%s>`_" % (bug.number, bug.get_url()), file=fp)
+    print("* Python issue: `bpo-%s <%s>`_" % (bug.number, bug.get_url()),
+          file=fp)
     print("* Creation date: %s" % format_date(bug.date), file=fp)
     print("* Reporter: %s" % bug.author, file=fp)
     print(file=fp)
@@ -902,7 +912,8 @@ def render_cve(fp, cve):
     print("* CVE ID: `%s <%s>`_" % (cve.number, url), file=fp)
     print("* Published: %s" % format_date(cve.published), file=fp)
     if cve.cvss is not None:
-        print("* `CVSS Score <%s>`_: %s" % (CVSS_SCORE_URL, cve.cvss), file=fp)
+        print("* `CVSS Score <%s>`_: %s" % (CVSS_SCORE_URL, cve.cvss),
+              file=fp)
     print(file=fp)
 
 
@@ -917,7 +928,8 @@ def render_fixes(fp, fixes):
         commit_date = format_date(fix.commit.date)
         commit_text = fix.commit.format()
 
-        print("* Python **{}** ({}) fixed by {} ({})".format(fix.python_version, release_date, commit_text, commit_date),
+        print("* Python **{}** ({}) fixed by {} ({})".format(
+                  fix.python_version, release_date, commit_text, commit_date),
               file=fp)
     print(file=fp)
 
@@ -977,10 +989,12 @@ def render_filenames(fp, filenames):
 
 
 class RenderDoc:
-    def __init__(self, python_path, date_filename, tags_filename, bugs_filename, cve_path, vuln_path):
+    def __init__(self, python_path, date_filename, tags_filename,
+                 bugs_filename, cve_path, vuln_path):
         self.commit_dates = CommitDates(python_path, date_filename)
         self.python_releases = PythonReleases()
-        self.commit_tags = CommitTags(self.python_releases, python_path, tags_filename)
+        self.commit_tags = CommitTags(self.python_releases, python_path,
+                                      tags_filename)
         self.bugs = PythonBugs(bugs_filename)
         self.cves = CVERegistry(cve_path)
         self.vuln_path = vuln_path
@@ -993,7 +1007,8 @@ class RenderDoc:
             try:
                 vuln = Vulnerability(self, data)
             except OfflineError as exc:
-                print("WARNING: missing data: skip the vulnerability: %s" % exc)
+                print("WARNING: missing data: skip the vulnerability: %s"
+                      % exc)
                 continue
             if vuln.slug in slugs:
                 raise Exception("slug %r is not unique" % vuln.slug)
@@ -1012,7 +1027,6 @@ class RenderDoc:
     def render_table(self, fp, vulnerabilities):
         headers = ['Vulnerability', 'Disclosure', 'Fixed In', 'Vulnerable']
         table = []
-        sections = []
 
         print('.. |br| raw:: html', file=fp)
         print(file=fp)
@@ -1144,7 +1158,8 @@ def main():
 
     parse_config(config_filename)
 
-    app = RenderDoc(python_path, date_filename, tags_filename, bugs_filename, cve_path, vuln_path)
+    app = RenderDoc(python_path, date_filename, tags_filename, bugs_filename,
+                    cve_path, vuln_path)
     app.main(yaml_filename, rst_filename)
 
     if not OFFLINE:
