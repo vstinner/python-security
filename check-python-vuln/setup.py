@@ -60,10 +60,9 @@ def main():
         'author_email': 'vstinner@redhat.com',
         'classifiers': CLASSIFIERS,
         'packages': ['check_python_vuln'],
-        # FIXME
-        #'entry_points': {
-        #    'console_scripts': ['check-python-vuln=check_python_vuln.__main__:main']
-        #}
+        'entry_points': {
+            'console_scripts': ['check-python-vuln=check_python_vuln.__main__:main']
+        }
     }
     setup(**options)
 
