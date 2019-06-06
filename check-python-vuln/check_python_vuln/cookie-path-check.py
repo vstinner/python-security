@@ -9,13 +9,13 @@ from vulntools import Test
 
 
 class Check(Test):
-    NAME = "Cookie domain check returns incorrect results"
-    SLUG = "cookie-domain-check"
+    NAME = "Cookie path check returns incorrect results"
+    SLUG = "cookie-path-check"
 
     def run(self):
         policy = DefaultCookiePolicy()
-        req = Request('https://xxxfoo.co.jp/')
-        if policy.domain_return_ok('foo.co.jp', req):
+        req = Request('https://example.com/anybad')
+        if policy.path_return_ok('/any', req):
             self.exit_vulnerable()
         else:
             self.exit_fixed()
