@@ -1250,6 +1250,9 @@
 
     The fix disallows control chars in HTTP URLs.
 
+    Note: Python 2 ``urllib.urlopen(url)`` always quotes the URL and so is not
+    vulnerable to HTTP Header Injection.
+
 - name: "Email folding function Denial-of-Service"
   slug: email-fold-dos
   bpo: 33529
