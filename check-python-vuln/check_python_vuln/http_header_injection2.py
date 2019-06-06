@@ -1,3 +1,4 @@
+from __future__ import print_function
 from vulntools import Test
 import socket
 import sys
@@ -6,10 +7,10 @@ import threading
 
 PY3 = (sys.version_info >= (3,))
 if PY3:
-    import http.client
+    import http.client as http_client
     import urllib.request
 else:
-    import httplib
+    import httplib as http_client
     import urllib
     import urllib2
 
@@ -20,6 +21,7 @@ class Server(threading.Thread):
         self.quit = False
         self.listening = threading.Event()
         self.got_connection = False
+        self.client_data = None
 
     def handle_connections(self, sock):
         # check every 50 ms if we have to quit
@@ -37,6 +39,12 @@ class Server(threading.Thread):
                 continue
 
             self.got_connection = True
+
+            client.settimeout(recv_timeout)
+            try:
+                self.client_data = client.recv(4096)
+            except socket.timeout:
+                pass
 
             # immediately close the connection
             client.close()
@@ -67,39 +75,46 @@ class Check(Test):
     SLUG = "http-header-injection2"
 
     def check_func(self, func_name, func, url):
-        sys.stderr.write("Test %s() with URL: %r\n" % (func_name, url))
-        sys.stderr.flush()
-
-        try:
-            if PY3:
-                invalid_url_exc = http.client.InvalidURL
-            else:
-                invalid_url_exc = httplib.InvalidURL
-        except AttributeError as exc:
-            self.exit_vulnerable("missing InvalidURL exception: %s" % exc)
-
+        msg = "%s(%r)" % (func_name, url)
         try:
             func(url)
-        except invalid_url_exc:
-            # not vulnerable
+        except http_client.InvalidURL:
+            print("%s raises InvalidURL: not vulnerable" % msg,
+                  file=sys.stderr)
             return
-        except IOError as exc:
-            if self.server.got_connection:
-                # handle the error below
-                pass
-            else:
-                self.exit_error(str(exc))
+        except Exception as exc:
+            err = str(exc)
+        else:
+            err = None
 
         if self.server.got_connection:
-            self.exit_vulnerable("%s sent a network connection"
-                                 % func_name)
+            print("%s sent a network connection: vulnerable!" % msg,
+                  file=sys.stderr)
+            data = self.server.client_data
+            if data is not None:
+                print("%s sent bytes: %r" % (msg, data), file=sys.stderr)
+            self.exit_vulnerable()
+        else:
+            if err:
+                print("%s raised %s: vulnerable!" % (msg, err),
+                      file=sys.stderr)
+                self.exit_error(err)
+            else:
+                print("%s succeeded with no network connection!" % msg,
+                      file=sys.stderr)
+                self.exit_error("%s succeeded with no network "
+                                "connection" % func_name)
+
 
     def check_url(self, url):
         if PY3:
             self.check_func('urllib.request.urlopen', urllib.request.urlopen, url)
         else:
-            #self.check_func('urllib.urlopen', urllib.urlopen, url)
             self.check_func('urllib2.urlopen', urllib2.urlopen, url)
+
+            # Note: Python 2 urllib.urlopen() always quotes the URL
+            # and so is not vulnerable to HTTP Header Injection
+
 
     def run(self):
         self.server = Server()
@@ -117,10 +132,20 @@ class Check(Test):
         host = self.server.host
         port = self.server.port
 
+        if PY3:
+            urllib_quote = urllib.request.quote
+        else:
+            urllib_quote = urllib.quote
+
         for scheme in ('http', 'https'):
-            # origin bug report
+            # original bug report
             inject = '\r\n\x20hihi\r\n'
             url = '%s://%s:%s%s' % (scheme, host, port, inject)
+            self.check_url(url)
+
+            # %HH escape syntax
+            quoted_inject = urllib_quote(inject)
+            url = '%s://%s:%s%s' % (scheme, host, port, quoted_inject)
             self.check_url(url)
 
             # Python unit test
