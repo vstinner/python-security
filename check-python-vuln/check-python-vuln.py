@@ -3,7 +3,7 @@ import os
 import subprocess
 import sys
 
-SCRIPTS_PATH = os.path.join(os.path.dirname(__file__), 'scripts')
+SCRIPTS_PATH = os.path.join(os.path.dirname(__file__), 'check_python_vuln')
 sys.path.append(SCRIPTS_PATH)
 import vulntools
 from vulntools import TestResult, TestResultError, ERROR, VULNERABLE
