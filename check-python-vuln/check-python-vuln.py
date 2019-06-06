@@ -7,7 +7,7 @@ import textwrap
 SCRIPTS_PATH = os.path.join(os.path.dirname(__file__), 'scripts')
 sys.path.append(SCRIPTS_PATH)
 import vulntools
-from vulntools import TestResult, ERROR, VULNERABLE
+from vulntools import TestResult, TestResultError, ERROR, VULNERABLE
 
 
 
@@ -29,7 +29,7 @@ class Application:
         root_dir = os.getcwd()
         self.data_dir = os.path.join(root_dir, 'data')
         self.scripts = []
-        self.test_results = []
+        self.results = []
 
     def search_scripts(self):
         vulntools_filename = os.path.basename(vulntools.__file__)
@@ -58,26 +58,26 @@ class Application:
 
         exitcode = proc.returncode
         if exitcode:
-            test_result = TestResult.deserialize_error(exitcode, stdout, stderr)
+            err_msg = ('%s failed with exit code %s: %s'
+                       % (os.path.basename(script),
+                          exitcode, stderr))
+            result = TestResultError(script, err_msg)
         else:
-            test_result = TestResult.deserialize_result(stdout)
-        test_result.script = script
-        print("* %s" % test_result)
-        return test_result
+            result = TestResult.from_json(script, stdout)
+        print("* %s" % result)
+        return result
 
     def run_scripts(self):
         python = ' '.join(self.python)
         print("Result for %s (%s):" % (python, self.python_version))
         for script in self.scripts:
-            test_result = self.run_script(script)
-            self.test_results.append(test_result)
+            result = self.run_script(script)
+            self.results.append(result)
         print("")
 
     def display_results(self):
-        any_error = any(test_result.result == ERROR
-                        for test_result in self.test_results)
-        vuln = sum(test_result.result == VULNERABLE
-                   for test_result in self.test_results)
+        any_error = any(result.status == ERROR for result in self.results)
+        vuln = sum(result.status == VULNERABLE for result in self.results)
 
         fixed = True
         if any_error:

@@ -17,25 +17,30 @@ MEMORY_LIMIT = 2 * 1024 ** 3   # 2 GiB
 TIMEOUT = 30.0   # seconds
 
 
-FIXED = "FIXED"
-VULNERABLE = "VULNERABLE"
-SKIP = "SKIP"
-ERROR = "ERROR"
+class Status:
+    def __init__(self, value, message, exitcode):
+        self.value = value
+        self.message = message
+        self.exitcode = exitcode
 
-# used by deserialize_result()
-RESULTS = {
-    FIXED: FIXED,
-    VULNERABLE: VULNERABLE,
-    SKIP: SKIP,
-    ERROR: ERROR,
-}
+    def __eq__(self, other):
+        if self is other:
+            return True
+        return (self.value == other.value)
 
-EXITCODES = {
-    FIXED: 100,
-    VULNERABLE: 101,
-    SKIP: 102,
-    ERROR: 103,
-}
+    def __str__(self):
+        return self.value
+
+
+FIXED = Status("FIXED", "vulnerability fixed", 100)
+VULNERABLE = Status("VULNERABLE", "Vulnerable!", 101)
+SKIP = Status("SKIP", "script skipped", 102)
+ERROR = Status("ERROR", "script failed", 103)
+
+_ALL_STATUS = (FIXED, VULNERABLE, SKIP, ERROR)
+
+# used by deserialize_status()
+_STATUS_FROM_VALUE= dict((status.value, status) for status in _ALL_STATUS)
 
 
 def set_memory_limit(size=None):
@@ -44,8 +49,6 @@ def set_memory_limit(size=None):
     if resource is None:
         return
     resource.setrlimit(resource.RLIMIT_AS, (size, size))
-    print("Memory limit set to %.1f GiB" % (size / (1024. ** 3)),
-          file=sys.stderr)
 
 
 class Timeout(BaseException):
@@ -65,39 +68,39 @@ def set_time_limit(timeout=None):
 
 
 class TestResult:
-    def __init__(self):
-        pass
+    def __init__(self, script, status):
+        self.script = script
+        self.status = status
 
     @staticmethod
-    def deserialize_result(stdout):
-        result_dict = json.loads(stdout)
-        result = result_dict['result']
-        result_dict['result'] = RESULTS[result]
+    def from_json(script, stdout):
+        try:
+            result_dict = json.loads(stdout)
+        except ValueError as exc:
+            return TestResultError(script, "json error: %s" % exc)
 
-        test_result = TestResult()
+        status = result_dict.pop('status')
+        status = _STATUS_FROM_VALUE[status]
+
+        result = TestResult(script, status)
         for name, value in result_dict.items():
-            setattr(test_result, name, value)
-        return test_result
-
-    @staticmethod
-    def deserialize_error(exitcode, stdout, stderr):
-        test_result = TestResult()
-        test_result.result = ERROR
-        test_result.exitcode = exitcode
-        test_result.stdout = stdout
-        test_result.stderr = stderr
-        return test_result
+            setattr(result, name, value)
+        return result
 
     def __str__(self):
-        if hasattr(self, 'exitcode'):
-            return ('%s failed with exit code %s: %s'
-                    % (os.path.basename(self.script),
-                       self.exitcode, self.stderr))
-        else:
-            text = '%s: %s' % (self.name, self.result)
-            if self.result != FIXED and hasattr(self, 'message'):
-                text = '%s (%s)'%  (text, self.message)
-            return text
+        text = '%s: %s' % (self.name, self.status)
+        if self.status != FIXED and hasattr(self, 'message'):
+            text = '%s (%s)'%  (text, self.message)
+        return text
+
+
+class TestResultError(TestResult):
+    def __init__(self, script, error_message):
+        TestResult.__init__(self, script, ERROR)
+        self.error_message = error_message
+
+    def __str__(self):
+        return "%s: %s" % (os.path.basename(self.script), self.error_message)
 
 
 class Test:
@@ -105,42 +108,45 @@ class Test:
     SLUG = None
 
     def __init__(self):
-        self.test_result = {}
+        self.result = {}
         self.json_mode = False
 
         if not self.NAME:
             raise ValueError("NAME is not set")
-        self.test_result['name'] = self.NAME
+        self.result['name'] = self.NAME
 
         if not self.SLUG:
             raise ValueError("SLUG is not set")
         slug = self.SLUG
 
         url = URL_FORMAT % slug
-        self.test_result['url'] = url
+        self.result['url'] = url
 
     @staticmethod
     def data_file(filename):
         return os.path.join(DATA_DIR, filename)
 
-    def _exit(self, result, message=None):
-        self.test_result['result'] = result
+    def _exit(self, status, message=None):
+        self.result['status'] = status.value
         if message is not None:
-            self.test_result['message'] = message
+            self.result['message'] = message
 
         if self.json_mode:
-            json.dump(self.test_result, sys.stdout)
+            json.dump(self.result, sys.stdout)
             sys.stdout.write("\n")
             exitcode = 0
         else:
-            print(message)
-            exitcode = EXITCODES[result]
+            if message:
+                print(message)
+            else:
+                print(status.message)
+            exitcode = status.exitcode
 
         sys.stdout.flush()
         sys.exit(exitcode)
 
-    def exit_fixed(self):
-        self._exit(FIXED, "vulnerability fixed")
+    def exit_fixed(self, msg=None):
+        self._exit(FIXED, msg)
 
     def exit_vulnerable(self, msg=None):
         self._exit(VULNERABLE, msg)
@@ -148,11 +154,7 @@ class Test:
     def exit_error(self, msg):
         self._exit(ERROR, msg)
 
-    def exit_skip(self, msg):
-        if msg:
-            msg = "SKIP CHECK: %s" % msg
-        else:
-            msg = "SKIP CHECK"
+    def exit_skip(self, msg=None):
         self._exit(SKIP, msg)
 
     @staticmethod
