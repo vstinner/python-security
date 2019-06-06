@@ -32,7 +32,7 @@ class Status:
         return self.value
 
 
-FIXED = Status("FIXED", "vulnerability fixed", 100)
+FIXED = Status("FIXED", "not vulnerable", 100)
 VULNERABLE = Status("VULNERABLE", "Vulnerable!", 101)
 SKIP = Status("SKIP", "script skipped", 102)
 ERROR = Status("ERROR", "script failed", 103)
@@ -137,9 +137,10 @@ class Test:
             exitcode = 0
         else:
             if message:
-                print(message)
+                message = "%s: %s" % (status.message, message)
             else:
-                print(status.message)
+                message = status.message
+            print(message)
             exitcode = status.exitcode
 
         sys.stdout.flush()
@@ -153,6 +154,9 @@ class Test:
 
     def exit_error(self, msg):
         self._exit(ERROR, msg)
+
+    def exit_exception(self, exc):
+        self.exit_error("[%s] %s" % (type(exc).__name__, exc))
 
     def exit_skip(self, msg=None):
         self._exit(SKIP, msg)
