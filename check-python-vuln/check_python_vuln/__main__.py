@@ -26,13 +26,12 @@ class Application:
         self.results = []
 
     def search_scripts(self):
-        vulntools_filename = os.path.basename(vulntools.__file__)
         module_path = os.path.dirname(__file__)
 
         for filename in os.listdir(module_path):
             if not filename.endswith(".py"):
                 continue
-            if filename == vulntools_filename:
+            if filename[:-3] == "vulntools":
                 continue
             if filename.startswith("_"):
                 # ignore __init__.py and __main__.py
