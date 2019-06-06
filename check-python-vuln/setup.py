@@ -45,9 +45,14 @@ CLASSIFIERS = [
 # check-python-vuln.__version__.
 def main():
     from setuptools import setup
+    import os.path
 
     with open('README.rst') as fp:
         long_description = fp.read().strip()
+
+    data_dir = os.path.join('check_python_vuln', 'data')
+    data_files = [os.path.join(data_dir, name)
+                  for name in os.listdir(data_dir)]
 
     options = {
         'name': 'check-python-vuln',
@@ -60,6 +65,7 @@ def main():
         'author_email': 'vstinner@redhat.com',
         'classifiers': CLASSIFIERS,
         'packages': ['check_python_vuln'],
+        'data_files': [('my_data', data_files)],
         'entry_points': {
             'console_scripts': ['check-python-vuln=check_python_vuln.__main__:main']
         }

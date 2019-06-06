@@ -32,7 +32,10 @@ class Application:
         for filename in os.listdir(module_path):
             if not filename.endswith(".py"):
                 continue
-            if filename[:-3] in ("vulntools", "__main__"):
+            if filename == vulntools_filename:
+                continue
+            if filename.startswith("_"):
+                # ignore __init__.py and __main__.py
                 continue
             filename = os.path.join(module_path, filename)
             if not os.path.isfile(filename):
