@@ -1201,6 +1201,22 @@
     See `Unicode® Technical Standard #46: Unicode IDNA Compatibility Processing
     <https://unicode.org/reports/tr46/>`_.
 
+- name: "urlsplit does not handle NFKC normalization (second fix)"
+  slug: urlsplit-nfkc-normalization2
+  cve: CVE-2019-9636
+  bpo: 36742
+  fixed-in:
+   - 3.8: 8d0ef0b5edeae52960c7ed05ae8a12388324f87e
+   - 3.7: 250b62acc59921d399f0db47db3b462cd6037e09
+   - 3.6: fd1771dbdd28709716bd531580c40ae5ed814468
+   - 2.7: f61599b050c621386a3fc6bc480359e2d3bb93de
+  description: |
+    Follow up of the urllib NFKC normalization vulnerability: the fix ignored
+    the user/password before ``@`` whereas it still allowed to exploit the
+    vulnerability.
+
+    The second fix no longer ignores the part before ``@``.
+
 - name: "urllib module local_file:// scheme"
   slug: urllib-local-file-scheme
   cve: CVE-2019-9948
