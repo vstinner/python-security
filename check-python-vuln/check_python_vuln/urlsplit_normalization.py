@@ -41,7 +41,6 @@ DENORM_CHARS = (
 def create_urls():
     for scheme in [u"http", u"https", u"ftp"]:
         for netloc in [u"netloc{0}false.netloc", u"n{0}user@netloc"]:
-            netloc = netloc
             for ch in DENORM_CHARS:
                 url = u"{0}://{1}/path".format(scheme, netloc.format(ch))
                 yield url
