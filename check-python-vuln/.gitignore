@@ -1,0 +1,6 @@
+MANIFEST
+build
+dist
+
+check_python_vuln.egg-info/
+.tox/
