@@ -52,7 +52,6 @@ class Server(threading.Thread):
         try:
             sock.bind(('127.0.0.1', 0))
             self.host, self.port = sock.getsockname()
-            print(self.host, self.port)
 
             self.handle_connections(sock)
         finally:
@@ -92,17 +91,14 @@ class Check(Test):
                 self.exit_error(str(exc))
 
         if self.server.got_connection:
-            self.exit_vulnerable("%s sent a real network connection"
+            self.exit_vulnerable("%s sent a network connection"
                                  % func_name)
-
-        if 0:
-            self.exit_vulnerable("HTTP Header Injection succeeded")
 
     def check_url(self, url):
         if PY3:
             self.check_func('urllib.request.urlopen', urllib.request.urlopen, url)
         else:
-            self.check_func('urllib.urlopen', urllib.urlopen, url)
+            #self.check_func('urllib.urlopen', urllib.urlopen, url)
             self.check_func('urllib2.urlopen', urllib2.urlopen, url)
 
     def run(self):
