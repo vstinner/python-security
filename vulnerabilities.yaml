@@ -1239,6 +1239,7 @@
 
 - name: "Zip Bomb vulnerability"
   slug: zip-bomb
+  cve: CVE-2019-9674
   bpo: 36260
   links:
    - https://bugs.python.org/issue36462

@@ -228,6 +228,10 @@
     author: "\u897F\u7530\u96C4\u6CBB"
     date: 2018-10-31.06:52:48.732
     title: Cookie domain check returns incorrect results
+35647:
+    author: Karthikeyan Singaravelan
+    date: 2019-01-03.07:59:56.185
+    title: Cookie path check returns incorrect results
 35746:
     author: Cisco Talos
     date: 2019-01-15.16:24:28.272
