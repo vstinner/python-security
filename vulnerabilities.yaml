@@ -1203,7 +1203,7 @@
 
 - name: "urlsplit does not handle NFKC normalization (second fix)"
   slug: urlsplit-nfkc-normalization2
-  cve: CVE-2019-9636
+  cve: CVE-2019-10160
   bpo: 36742
   reported-at: "2019-06-03 (email to PSRT)"
   reported-by: "Riccardo Schirone (Red Hat)"
