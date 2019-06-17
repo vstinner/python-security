@@ -1,6 +1,6 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
+SPHINXBUILD   = ./venv/bin/sphinx-build
 SPHINXPROJ    = PythonSecurity
 SOURCEDIR     = .
 BUILDDIR      = build
@@ -13,7 +13,7 @@ html: vulnerabilities.rst
 venv:
 	./venv.sh
 
-vulnerabilities.rst: render_doc.py vulnerabilities.yaml venv python_releases.txt
+vulnerabilities.rst: venv render_doc.py vulnerabilities.yaml venv python_releases.txt
 	./venv/bin/python render_doc.py
 
 update: venv
