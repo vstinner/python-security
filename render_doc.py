@@ -662,6 +662,9 @@ class Vulnerability:
             if date is None:
                 # offline mode and the date is unknown
                 continue
+            if isinstance(branch, float):
+                # convert 3.2 (float) to '3.2' (str)
+                branch = '%.1f' % branch
             commit = Commit(revision, branch, date)
 
             versions = app.commit_tags.get_tags(commit.revision,
@@ -739,11 +742,16 @@ class Vulnerability:
                 if not any(is_affected(version, affected)
                            for affected in affected_versions):
                     continue
-            vulnerable.append(version)
+            if any(commit.branch == version  for commit in self.unreleased_commits):
+                reason = "need release"
+            else:
+                reason = "need commit"
+            vulnerable.append((version, reason))
         vulnerable.sort()
         if vulnerable:
             print("%r vulnerable versions: %s"
-                  % (self.name, ', '.join(vulnerable)))
+                  % (self.name,
+                     ', '.join(version for version, reason in vulnerable if reason == 'need commit')))
         self.vulnerable_versions = vulnerable
 
     def get_disclosure_date(self):
@@ -940,8 +948,8 @@ def render_vulnerable(fp, versions):
 
     render_title(fp, "Vulnerable Versions", "-")
 
-    for version in versions:
-        print("* Python **{}**".format(version), file=fp)
+    for version, reason in versions:
+        print("* Python **{}** ({})".format(version, reason), file=fp)
     print(file=fp)
 
 
@@ -1040,7 +1048,7 @@ class RenderDoc:
             doc_link = os.path.join(self.vuln_path, vuln.slug)
             name = ":doc:`%s <%s>`" % (vuln.name, doc_link)
             disclosure = format_date(vuln.get_disclosure_date())
-            vulnerable = break_line.join(vuln.vulnerable_versions)
+            vulnerable = break_line.join(version for version, reason in vuln.vulnerable_versions)
             if not fixes:
                 fixes = ['--']
             if not vulnerable:
