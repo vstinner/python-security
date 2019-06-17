@@ -1283,8 +1283,9 @@
    - 3.8: ca7fe5063593958e5efdf90f068582837f07bd14
    - 3.7: e5123d81ffb3be35a1b2767d6ced1a097aaf77be
    - 3.6: b241af861b37e20ad30533bc0b7e2e5491cc470f
-   - 3.4: 42ad4101d3ba7ca3c371dadf0f8880764c9f15fb
    - 3.5: 4749f1b69000259e23b4cc6f63c542a9bdc62f1b
+   - 3.4: 42ad4101d3ba7ca3c371dadf0f8880764c9f15fb
+   - 2.7: 979daae300916adb399ab5b51410b6ebd0888f13
   description: |
     http.cookiejar.DefaultPolicy.domain_return_ok returns incorrect results.
 
@@ -1293,15 +1294,16 @@
     `http.cookiejar.DefaultCookiePolicy` policy.  Patch by Karthikeyan
     Singaravelan.
 
-- name: "Incorrect validation of path in http.cookiejar"
+- name: "http.cookiejar: Incorrect validation of path"
   slug: cookie-path-check
   bpo: 35647
   fixed-in:
-   - 3.4: 382981b25092b5e9285f1e4894142af1e8f2ca86
-   - 3.5: e260f092cd0d8975c777e73ca6fb549d59b5d452
-   - 3.6: 5565b1db6f37f244890369e0d68a3e906aca28b9
-   - 3.7: 97c7d78fda49e03fc773c171ce0c736d02bb73f5
    - 3.8: 0e1f1f01058bd4a9b98cfe443214adecc019a38c
+   - 3.7: 97c7d78fda49e03fc773c171ce0c736d02bb73f5
+   - 3.6: 5565b1db6f37f244890369e0d68a3e906aca28b9
+   - 3.5: e260f092cd0d8975c777e73ca6fb549d59b5d452
+   - 3.4: 382981b25092b5e9285f1e4894142af1e8f2ca86
+   - 2.7: ee15aa2b8501718cb77e339381f72409a416f801
   description: |
     Cookies of ``example.com`` with ``path=/any`` were sent to
     ``example.com/anybad/`` while using a cookiejar with
