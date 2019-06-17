@@ -15,6 +15,12 @@ class Check(Test):
     SLUG = "email-fold-dos"
 
     def run(self):
+        try:
+            import email.policy
+        except ImportError:
+            # Python 2.7 doesn't have the email.policy module
+            self.exit_fixed()
+
         args = [sys.executable, '-c', code]
         proc = subprocess.Popen(args)
         if not wait_process(proc, TIMEOUT):
