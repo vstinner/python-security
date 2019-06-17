@@ -5,15 +5,22 @@ import math
 import os.path
 import signal
 import sys
+import time
 try:
     import resource
 except ImportError:
     resource = None
+try:
+    from time import monotonic as deadline_clock
+except ImportError:
+    # Python 2
+    from time import time as deadline_clock
 
 
 URL_FORMAT = 'https://python-security.readthedocs.io/vuln/%s.html'
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 MEMORY_LIMIT = 2 * 1024 ** 3   # 2 GiB
+SHORT_TIMEOUT = 3.0   # seconds
 TIMEOUT = 30.0   # seconds
 
 
@@ -33,7 +40,7 @@ class Status:
 
 
 FIXED = Status("FIXED", "not vulnerable", 100)
-VULNERABLE = Status("VULNERABLE", "Vulnerable!", 101)
+VULNERABLE = Status("VULNERABLE", "Vulnerable", 101)
 SKIP = Status("SKIP", "script skipped", 102)
 ERROR = Status("ERROR", "script failed", 103)
 
@@ -191,3 +198,18 @@ class Test:
 
     def run(self):
         raise NotImplementedError
+
+
+def wait_process(proc, timeout):
+    deadline = deadline_clock() + timeout
+    while True:
+        proc.poll()
+        if proc.returncode is not None:
+            return True
+        if deadline_clock() > deadline:
+            break
+        time.sleep(0.050)
+
+    proc.kill()
+    proc.wait()
+    return False
