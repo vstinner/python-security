@@ -748,10 +748,11 @@ class Vulnerability:
                 reason = "need commit"
             vulnerable.append((version, reason))
         vulnerable.sort()
-        if vulnerable:
-            print("%r vulnerable versions: %s"
-                  % (self.name,
-                     ', '.join(version for version, reason in vulnerable if reason == 'need commit')))
+
+        need_commit_versions = [version for version, reason in vulnerable if reason == 'need commit']
+        if need_commit_versions:
+            print("%r vulnerable versions (need commit): %s"
+                  % (self.name, ', '.join(need_commit_versions)))
         self.vulnerable_versions = vulnerable
 
     def get_disclosure_date(self):
