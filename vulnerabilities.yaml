@@ -1259,9 +1259,16 @@
   fixed-in:
    - 3.8: c1f5667be1e3ec5871560c677402c1252c6018a6
    - 3.7: 2fef5b01e36a17e36fd7e65c4b51f5ede8880dda
+   - 3.6: 516a6a254814d2bc6a90290dfc44d77fdfb4050b
+  affected-versions:
+   - "3.6"
+   - "3.7"
+   - "3.8"
   description: |
     The email folding function enters an infinite loop if a header is longer
-    than the policy maximum line length and contains many non-ASCII characters
+    than the policy maximum line length and contains many non-ASCII characters.
+
+    Regression introduced in Python 3.6.4.
 
 - name: "Zip Bomb vulnerability"
   slug: zip-bomb
