@@ -1316,7 +1316,3 @@
     ``example.com/anybad/`` while using a cookiejar with
     `http.cookiejar.DefaultCookiePolicy` policy. The code did not check for
     the first non-matching character in prefix match to be a slash.
-
-# Other issues:
-# CVE-2016-1494: vuln in 3rd party python-rsa
-# CVE-2015-5652: sys.path on Windows
