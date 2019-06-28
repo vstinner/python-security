@@ -742,14 +742,16 @@ class Vulnerability:
                 if not any(is_affected(version, affected)
                            for affected in affected_versions):
                     continue
-            if any(commit.branch == version  for commit in self.unreleased_commits):
+            if any(commit.branch == version
+                   for commit in self.unreleased_commits):
                 reason = "need release"
             else:
                 reason = "need commit"
             vulnerable.append((version, reason))
         vulnerable.sort()
 
-        need_commit_versions = [version for version, reason in vulnerable if reason == 'need commit']
+        need_commit_versions = [version for version, reason in vulnerable
+                                if reason == 'need commit']
         if need_commit_versions:
             print("%r vulnerable versions (need commit): %s"
                   % (self.name, ', '.join(need_commit_versions)))
@@ -1049,7 +1051,8 @@ class RenderDoc:
             doc_link = os.path.join(self.vuln_path, vuln.slug)
             name = ":doc:`%s <%s>`" % (vuln.name, doc_link)
             disclosure = format_date(vuln.get_disclosure_date())
-            vulnerable = break_line.join(version for version, reason in vuln.vulnerable_versions)
+            vulnerable = break_line.join(version for version, reason
+                                         in vuln.vulnerable_versions)
             if not fixes:
                 fixes = ['--']
             if not vulnerable:
