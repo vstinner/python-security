@@ -1,3 +1,4 @@
+from __future__ import print_function
 try:
     from urllib import request as urllib_request
     from urllib.request import URLopener
@@ -5,6 +6,7 @@ except ImportError:
     # Python 2
     from urllib import URLopener
     import urllib2 as urllib_request
+import sys
 import warnings
 from vulntools import Test
 
@@ -15,12 +17,13 @@ class Check(Test):
 
     def check_func(self, func_name, func):
         for url in ('local_file://example', 'local-file://example'):
+            print("Test %s(%r)" % (func_name, url), file=sys.stderr)
             try:
                 func(url)
             except IOError:
                 pass
             else:
-                self.exit_vulnerable("%s(%s) didn't raise an exception"
+                self.exit_vulnerable("%s(%r) didn't raise an exception"
                                      % (func_name, url))
 
     def run(self):
