@@ -1323,6 +1323,10 @@
   bpo: 37463
   reported-at: "2019-06-07 (email to PSRT)"
   reported-by: "bug found by Dominik Czarnota, reported by Paul Kehrer"
+  affected-versions:
+   - "3.7"
+   - "3.8"
+   - "3.9"
   fixed-in:
    - 3.9: 477b1b25768945621d466a8b3f0739297a842439
    - 3.8: 3cba3d3c55f230a59174a0dfcafb1d4685269e60
