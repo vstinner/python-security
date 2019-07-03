@@ -196,6 +196,8 @@ class Test:
         except Timeout as exc:
             self.exit_error(str(exc))
 
+        self.exit_error("no exit_xxx() method has been called")
+
     def run(self):
         raise NotImplementedError
 
