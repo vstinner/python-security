@@ -253,3 +253,7 @@
     author: Chihiro Ito
     date: 2019-04-27.12:30:16.745
     title: urlsplit doesn't accept a NFKD hostname with a port number
+37463:
+    author: Christian Heimes
+    date: 2019-07-01.06:47:03.811
+    title: socket.inet_aton IP parsing issue in ssl.match_hostname

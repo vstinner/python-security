@@ -1316,3 +1316,43 @@
     ``example.com/anybad/`` while using a cookiejar with
     `http.cookiejar.DefaultCookiePolicy` policy. The code did not check for
     the first non-matching character in prefix match to be a slash.
+
+- name: "socket.inet_aton IP parsing issue in ssl.match_hostname"
+  slug: ssl-match_hostname-ipv4-trailing
+  cve: CVE-2016-10739
+  bpo: 37463
+  reported-at: "2019-06-07 (email to PSRT)"
+  reported-by: "bug found by Dominik Czarnota, reported by Paul Kehrer"
+  fixed-in:
+   - 3.9: 477b1b25768945621d466a8b3f0739297a842439
+   - 3.8: 3cba3d3c55f230a59174a0dfcafb1d4685269e60
+   - 3.7: 024ea2170b7c1652a62cc7458e736c63d4970eb1
+  links:
+   - https://bugzilla.redhat.com/show_bug.cgi?id=1347549
+   - https://sourceware.org/bugzilla/show_bug.cgi?id=20018
+   - https://bugzilla.redhat.com/show_bug.cgi?id=1303699#c3
+  description: |
+    ``inet_aton()`` accepts trailing characterrs after a valid IP.  Because of
+    that, Python ``ssl.match_hostname('1.1.1.1 ; this should not work but does')``
+    succeeded when it should fail.
+
+    The issue was introduced in bpo-32819 by commit
+    aef1283ba428e33397d87cee3c54a5110861552d. Only Python 3.7 and newer are
+    affected. It's a potential security bug although low severity. For one
+    Python 3.7 and newer no longer use ``ssl.match_hostname()`` to verify
+    hostnames and IP addresses of a certificate.  Matching is performed by
+    OpenSSL.
+
+    It should not possible to register a x509 certificate with a hostname with
+    spaces.
+
+    The glibc function ``inet_aton accepts()`` input as valid if said input is
+    a IPv4 address followed by zero or more characters that are valid space as
+    decided by ``isspace()``, with the rest of the string after the first space
+    being ignored. As ``'\r'`` is a valid space character the rest of the
+    string is ignored (includeing the ``'\r'``).
+
+    `Red Hat bugzilla issue #1347549 "CVE-2016-10739 glibc: getaddrinfo should
+    reject IP addresses with trailing characters"
+    <https://bugzilla.redhat.com/show_bug.cgi?id=1347549>`_ was closed as
+    WONTFIX.
