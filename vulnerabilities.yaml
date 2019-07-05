@@ -1319,7 +1319,6 @@
 
 - name: "ssl.match_hostname() ignores extra string after whitespace in IPv4 address"
   slug: ssl-match_hostname-ipv4-trailing
-  cve: CVE-2016-10739
   bpo: 37463
   reported-at: "2019-06-07 (email to PSRT)"
   reported-by: "bug found by Dominik Czarnota, reported by Paul Kehrer"
