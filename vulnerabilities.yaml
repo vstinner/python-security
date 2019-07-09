@@ -1329,7 +1329,8 @@
   fixed-in:
    - 3.9: 477b1b25768945621d466a8b3f0739297a842439
    - 3.8: 3cba3d3c55f230a59174a0dfcafb1d4685269e60
-   - 3.7: 024ea2170b7c1652a62cc7458e736c63d4970eb1
+   - 3.7: 070fae6d0ff49e63bfd5f2bdc66f8eb1df3b6557
+   # 3.7 also got: 024ea2170b7c1652a62cc7458e736c63d4970eb1
   description: |
     ``inet_aton()`` accepts trailing characters after a valid IP.  Because of
     that, Python ``ssl.match_hostname('1.1.1.1 ; this should not work but does')``
