@@ -19,11 +19,13 @@ After a release, get new commit tags using::
 
     make update
 
-Update needs a configuration file ``config.ini``::
+Update needs a configuration file ``config.ini``, see ``config.ini.template``::
 
     [config]
-    bpo_username = xxx
-    bpo_password = xxx
+    bpo_username = LOGIN
+    bpo_password = PASSWORD
+    # Git checkout of https://github.com/python/cpython/
+    python_srcdir = /path/to/python
 
 For a X.Y.0 release, add X.Y to ``MAINTAINED_BRANCHES`` of ``render_doc.py``.
 

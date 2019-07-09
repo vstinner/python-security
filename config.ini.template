@@ -1,0 +1,5 @@
+[config]
+bpo_username = LOGIN
+bpo_password = PASSWORD
+# Git checkout of https://github.com/python/cpython/
+python_srcdir = /path/to/python

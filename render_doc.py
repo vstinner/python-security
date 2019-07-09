@@ -15,7 +15,6 @@ import xmlrpc.client
 import yaml
 
 OFFLINE = True
-PYTHON_SRCDIR = '/home/vstinner/prog/python/master'
 
 # Last update: 2019-05-13
 MAINTAINED_BRANCHES = ['2.7', '3.5', '3.6', '3.7']
@@ -435,7 +434,7 @@ class PythonBugs:
         print("Download issue #%s" % number)
 
         bug = {}
-        server = xmlrpc.client.ServerProxy(BUGS_API, allow_none=True,
+        server = xmlrpc.client.ServerProxy(self.bugs_api, allow_none=True,
                                            transport=SpecialTransport())
         with server:
             issue = server.display('issue%s' % number)
@@ -1000,15 +999,42 @@ def render_filenames(fp, filenames):
 
 
 class RenderDoc:
-    def __init__(self, python_path, date_filename, tags_filename,
+    def __init__(self, config_filename, date_filename, tags_filename,
                  bugs_filename, cve_path, vuln_path):
-        self.commit_dates = CommitDates(python_path, date_filename)
+        self.python_srcdir = None
+        self.bugs_api = None
+        self.parse_config(config_filename)
+
+        self.commit_dates = CommitDates(self.python_srcdir, date_filename)
         self.python_releases = PythonReleases()
-        self.commit_tags = CommitTags(self.python_releases, python_path,
+        self.commit_tags = CommitTags(self.python_releases, self.python_srcdir,
                                       tags_filename)
         self.bugs = PythonBugs(bugs_filename)
         self.cves = CVERegistry(cve_path)
         self.vuln_path = vuln_path
+
+    def parse_config(self, filename):
+        cfgobj = configparser.RawConfigParser()
+        ok = cfgobj.read(filename)
+        if not ok:
+            print("Skip missing configuration file: %s" % filename)
+            return
+        print("Parse configuration file: %s" % filename)
+
+        bpo_username = cfgobj['config']['bpo_username'].strip()
+        bpo_password = cfgobj['config']['bpo_password'].strip()
+        self.python_srcdir = cfgobj['config']['python_srcdir'].strip()
+
+        bpo_username = urllib.parse.quote(bpo_username, safe='')
+        bpo_password = urllib.parse.quote(bpo_password, safe='')
+
+        if not bpo_username and not bpo_password:
+            return
+
+        i = len('https://')
+        url = BUGS_API
+        url = '%s%s:%s@%s' % (url[:i], bpo_username, bpo_password, url[i:])
+        self.bugs_api = url
 
     def load_vulnerabilities(self, filename):
         vulnerabilities = []
@@ -1125,30 +1151,6 @@ class RenderDoc:
         print("{} generated".format(output_filename))
 
 
-def parse_config(filename):
-    global BUGS_API
-
-    cfgobj = configparser.RawConfigParser()
-    ok = cfgobj.read(filename)
-    if not ok:
-        print("Skip missing configuration file: %s" % filename)
-        return
-
-    bpo_username = cfgobj['config']['bpo_username'].strip()
-    bpo_password = cfgobj['config']['bpo_password'].strip()
-
-    bpo_username = urllib.parse.quote(bpo_username, safe='')
-    bpo_password = urllib.parse.quote(bpo_password, safe='')
-
-    if not bpo_username and not bpo_password:
-        return
-
-    i = len('https://')
-    url = BUGS_API
-    url = '%s%s:%s@%s' % (url[:i], bpo_username, bpo_password, url[i:])
-    BUGS_API = url
-
-
 def main():
     global OFFLINE
 
@@ -1160,7 +1162,6 @@ def main():
     bugs_filename = 'bugs.txt'
     cve_path = 'cve'
     vuln_path = 'vuln'
-    python_path = PYTHON_SRCDIR
 
     if sys.argv[1:] == ['update']:
         OFFLINE = False
@@ -1168,9 +1169,7 @@ def main():
         print("usage: %s %s [update]" % (sys.executable, sys.argv[0]))
         sys.exit(1)
 
-    parse_config(config_filename)
-
-    app = RenderDoc(python_path, date_filename, tags_filename, bugs_filename,
+    app = RenderDoc(config_filename, date_filename, tags_filename, bugs_filename,
                     cve_path, vuln_path)
     app.main(yaml_filename, rst_filename)
 
