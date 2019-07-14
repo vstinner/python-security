@@ -1211,6 +1211,7 @@
    - 3.8: 8d0ef0b5edeae52960c7ed05ae8a12388324f87e
    - 3.7: 250b62acc59921d399f0db47db3b462cd6037e09
    - 3.6: fd1771dbdd28709716bd531580c40ae5ed814468
+   - 3.5: 4655d576141ee56a69d2052431c636858fcb916a
    - 2.7: f61599b050c621386a3fc6bc480359e2d3bb93de
   description: |
     Follow up of the urllib NFKC normalization vulnerability: the fix ignored
@@ -1228,6 +1229,7 @@
    - 3.8: 0c2b6a3943aa7b022e8eb4bfd9bffcddebf9a587
    - 3.7: 34bab215596671d0dec2066ae7d7450cd73f638b
    - 3.6: 4f06dae5d8d4400ba38d8502da620f07d4a5696e
+   - 3.5: 4fe82a8eef7aed60de05bfca0f2c322730ea921e
   description: |
     urllib in Python 2.x through 2.7.16 supports the ``local_file:`` scheme,
     which makes it easier for remote attackers to bypass protection mechanisms
@@ -1244,6 +1246,7 @@
    - 3.8: c4e671eec20dfcb29b18596a89ef075f826c9f96
    - 3.7: 7e200e0763f5b71c199aaf98bd5588f291585619
    - 3.6: c50d437e942d4c4c45c8cd76329b05340c02eb31
+   - 3.5: afe3a4975cf93c97e5d6eb8800e48f368011d37a
    - 2.7: bb8071a4cae5ab3fe321481dd3d73662ffb26052
   description: |
     HTTP Header Injection, follow-up of CVE-2016-5699.
