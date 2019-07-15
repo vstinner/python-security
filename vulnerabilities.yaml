@@ -1289,6 +1289,7 @@
 - name: "Cookie domain check returns incorrect results"
   slug: cookie-domain-check
   bpo: 35121
+  cve: CVE-2018-20852
   fixed-in:
    - 3.8: ca7fe5063593958e5efdf90f068582837f07bd14
    - 3.7: e5123d81ffb3be35a1b2767d6ced1a097aaf77be

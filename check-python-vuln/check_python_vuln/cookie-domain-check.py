@@ -9,7 +9,7 @@ from vulntools import Test
 
 
 class Check(Test):
-    NAME = "Cookie domain check returns incorrect results"
+    NAME = "Cookie domain check returns incorrect results (CVE-2018-20852)"
     SLUG = "cookie-domain-check"
 
     def run(self):
