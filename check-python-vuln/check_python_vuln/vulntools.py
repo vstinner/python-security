@@ -130,6 +130,10 @@ class Test:
         self.result['url'] = url
 
     @staticmethod
+    def log(msg):
+        print(msg, file=sys.stderr)
+
+    @staticmethod
     def data_file(filename):
         return os.path.join(DATA_DIR, filename)
 

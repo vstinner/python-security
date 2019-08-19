@@ -1358,3 +1358,21 @@
     character the rest of the string is ignored (including the ``'\r'``). See
     `glibc bug 24111: Deprecate inet_addr, inet_aton
     <https://sourceware.org/bugzilla/show_bug.cgi?id=24111>`_.
+
+- name: "email.utils.parseaddr mistakenly parse an email"
+  slug: email-parseaddr-domain
+  bpo: 34155
+  links:
+    - https://medium.com/@fs0c131y/tchap-the-super-not-secure-app-of-the-french-government-84b31517d144
+    - https://twitter.com/fs0c131y/status/1119143946687434753
+  fixed-in:
+   - 3.9: 8cb65d1381b027f0b09ee36bfed7f35bb4dec9a9
+   - 3.8: 217077440a6938a0b428f67cfef6e053c4f8673c
+   - 3.7: c48d606adcef395e59fd555496c42203b01dd3e8
+   - 3.6: 13a19139b5e76175bc95294d54afc9425e4f36c9
+  description: |
+    email.utils.parseaddr wrongly parse the From field of an email.
+
+    ``email.utils.parseaddr('John Doe jdoe@example.com <other@example.net>')``
+    returns ``('', 'John Doe jdoe@example.com')``, whereas it should return
+    ``('John Doe jdoe@example.com', 'other@example.net')``.

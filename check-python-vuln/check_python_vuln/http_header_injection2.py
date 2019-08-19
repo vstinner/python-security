@@ -79,8 +79,7 @@ class Check(Test):
         try:
             func(url)
         except http_client.InvalidURL:
-            print("%s raises InvalidURL: not vulnerable" % msg,
-                  file=sys.stderr)
+            self.log("%s raises InvalidURL: not vulnerable" % msg)
             return
         except Exception as exc:
             err = str(exc)
@@ -88,20 +87,17 @@ class Check(Test):
             err = None
 
         if self.server.got_connection:
-            print("%s sent a network connection: vulnerable!" % msg,
-                  file=sys.stderr)
+            self.log("%s sent a network connection: vulnerable!" % msg)
             data = self.server.client_data
             if data is not None:
-                print("%s sent bytes: %r" % (msg, data), file=sys.stderr)
+                self.log("%s sent bytes: %r" % (msg, data))
             self.exit_vulnerable()
         else:
             if err:
-                print("%s raised %s: vulnerable!" % (msg, err),
-                      file=sys.stderr)
+                self.log("%s raised %s: vulnerable!" % (msg, err))
                 self.exit_error(err)
             else:
-                print("%s succeeded with no network connection!" % msg,
-                      file=sys.stderr)
+                self.log("%s succeeded with no network connection!" % msg)
                 self.exit_error("%s succeeded with no network "
                                 "connection" % func_name)
 
