@@ -212,6 +212,10 @@
     date: 2018-05-16.00:12:26.510
     title: '[security] Infinite loop on folding email (_fold_as_ew()) if an header
         has no spaces'
+34155:
+    author: "Cyril Nicod\xE8me"
+    date: 2018-07-19.14:53:43.641
+    title: email.utils.parseaddr mistakenly parse an email
 34623:
     author: Christian Heimes
     date: 2018-09-10.22:47:44.343
