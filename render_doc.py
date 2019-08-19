@@ -406,8 +406,9 @@ class SpecialTransport(xmlrpc.client.SafeTransport):
 
 
 class PythonBugs:
-    def __init__(self, filename):
+    def __init__(self, filename, bugs_api):
         self.filename = filename
+        self.bugs_api = bugs_api
         self.bugs = {}
         self.load()
 
@@ -1009,7 +1010,7 @@ class RenderDoc:
         self.python_releases = PythonReleases()
         self.commit_tags = CommitTags(self.python_releases, self.python_srcdir,
                                       tags_filename)
-        self.bugs = PythonBugs(bugs_filename)
+        self.bugs = PythonBugs(bugs_filename, self.bugs_api)
         self.cves = CVERegistry(cve_path)
         self.vuln_path = vuln_path
 
