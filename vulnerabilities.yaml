@@ -1361,6 +1361,7 @@
 
 - name: "email.utils.parseaddr mistakenly parse an email"
   slug: email-parseaddr-domain
+  cve: CVE-2019-16056
   bpo: 34155
   links:
     - https://medium.com/@fs0c131y/tchap-the-super-not-secure-app-of-the-french-government-84b31517d144
