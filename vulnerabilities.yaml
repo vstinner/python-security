@@ -1372,6 +1372,7 @@
    - 3.7: c48d606adcef395e59fd555496c42203b01dd3e8
    - 3.6: 13a19139b5e76175bc95294d54afc9425e4f36c9
    - 3.5: 063eba280a11d3c9a5dd9ee5abe4de640907951b
+   - 2.7: 4cbcd2f8c4e12b912e4d21fd892eedf7a3813d8e
   description: |
     email.utils.parseaddr wrongly parse the From field of an email.
 
