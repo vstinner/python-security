@@ -72,16 +72,46 @@ Dangerous functions and modules
   (Armin Ronacher, December 2016)
 * The ``pickle`` module executes arbitrary Python code: never use it with
   untrusted data.
-* archives:
 
-  * tarfile: Never extract archives from untrusted sources without prior
-    inspection. It is possible that files are created outside of path, e.g.
-    members that have absolute filenames starting with "/" or filenames with
-    two dots "..".
-  * zipfile: Never extract archives from untrusted sources without prior
-    inspection. It is possible that files are created outside of path, e.g.
-    members that have absolute filenames starting with "/" or filenames with
-    two dots "..". zipfile attempts to prevent that.
+Archives and absolute paths
+---------------------------
+
+* tarfile: Never extract archives from untrusted sources without prior
+  inspection. It is possible that files are created outside of path, e.g.
+  members that have absolute filenames starting with "/" or filenames with
+  two dots "..".
+* zipfile: Never extract archives from untrusted sources without prior
+  inspection. It is possible that files are created outside of path, e.g.
+  members that have absolute filenames starting with "/" or filenames with
+  two dots "..". zipfile attempts to prevent that.
+
+Archives and Zip Bomb
+---------------------
+
+Be careful of "Zip Bombs": a very small archive can use a huge amount of memory
+and disk space once decompressed.
+
+The zlib module allows to limit the maximum length:
+https://docs.python.org/dev/library/zlib.html#zlib.Decompress.decompress
+
+For example, the OpenStack Nova was vulnerable of denial of service if a
+compressed virtual machine was a Zip Bomb: OSSA 2016-012 and CVE-2015-5162.
+
+    Turns out qemu image parser is not hardened against malicious input and can
+    be abused to allocated an arbitrary amount of memory and/or dump a lot of
+    information when used with "--output=json".
+
+Nova has been fixed using the ``prlimit`` command (with one implementation
+written in Python: `prlimit.py
+<https://github.com/openstack/oslo.concurrency/blob/master/oslo_concurrency/prlimit.py>`_)
+to limit the maximum memory of the process.
+
+See:
+
+* `zipfile: Decompression pitfalls
+  <https://docs.python.org/dev/library/zipfile.html#decompression-pitfalls>`_.
+* `Wikipedia: Zip bomb
+  <https://en.wikipedia.org/wiki/Zip_bomb>`_
 
 
 Shell command injection
