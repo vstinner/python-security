@@ -16,8 +16,8 @@ import yaml
 
 OFFLINE = True
 
-# Last update: 2019-05-13
-MAINTAINED_BRANCHES = ['2.7', '3.5', '3.6', '3.7']
+# Last update: 2019-10-15
+MAINTAINED_BRANCHES = ['2.7', '3.5', '3.6', '3.7', '3.8']
 
 CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
 CVE_URL = 'https://www.cvedetails.com/cve/%s/'
