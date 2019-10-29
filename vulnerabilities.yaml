@@ -1347,3 +1347,18 @@
     ``email.utils.parseaddr('John Doe jdoe@example.com <other@example.net>')``
     returns ``('', 'John Doe jdoe@example.com')``, whereas it should return
     ``('John Doe jdoe@example.com', 'other@example.net')``.
+
+- name: "Reflected XSS in DocXMLRPCServer"
+  slug: docxmlrpcserver-xss
+  bpo: 38243
+  fixed-in:
+   - 3.9: e8650a4f8c7fb76f570d4ca9c1fbe44e91c8dfaa
+   - 3.8: 6447b9f9bd27e1f6b04cef674dd3a7ab27bf4f28
+   - 3.7: 39a0c7555530e31c6941a78da19b6a5b61170687
+   - 3.6: 1698cacfb924d1df452e78d11a4bf81ae7777389
+   - 3.5: 3fe1b19265b55c290fc956e9aafcf661803782de
+   - 2.7: 8eb64155ff26823542ccf0225b3d57b6ae36ea89
+  description: |
+    DocXMLRPCServer does not escape the server title.
+
+    The attacker has to find a way to control the server title.
