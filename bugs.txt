@@ -265,3 +265,7 @@
     author: longwenzhang
     date: 2019-09-21.02:17:29.833
     title: A reflected XSS in python/Lib/DocXMLRPCServer.py
+38804:
+    author: Ben Caller
+    date: 2019-11-14.23:37:59.309
+    title: Regular Expression Denial of Service in http.cookiejar

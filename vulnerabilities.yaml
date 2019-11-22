@@ -1362,3 +1362,16 @@
     DocXMLRPCServer does not escape the server title.
 
     The attacker has to find a way to control the server title.
+
+- name: "Regular Expression Denial of Service in http.cookiejar"
+  slug: cookiejar-redos
+  bpo: 38804
+  fixed-in:
+   - 3.9: 1b779bfb8593739b11cbb988ef82a883ec9d077e
+  description: |
+    The regex ``http.cookiejar.LOOSE_HTTP_DATE_RE`` is vulnerable to regular
+    expression denial of service ("REDoS"). ``LOOSE_HTTP_DATE_RE.match()`` is
+    called when using ``http.cookiejar.CookieJar`` to parse ``Set-Cookie``
+    headers returned by a HTTP server. Processing a response from a malicious
+    HTTP server can lead to extreme CPU usage and execution will be blocked
+    for a long time.
