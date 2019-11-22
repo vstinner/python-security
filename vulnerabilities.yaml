@@ -1368,6 +1368,8 @@
   bpo: 38804
   fixed-in:
    - 3.9: 1b779bfb8593739b11cbb988ef82a883ec9d077e
+   - 3.8: a1e1be4c4969c7c20c8c958e5ab5279ae6a66a16
+   - 3.7: cb6085138a845f8324adc011b65754acc2086cc0
   description: |
     The regex ``http.cookiejar.LOOSE_HTTP_DATE_RE`` is vulnerable to regular
     expression denial of service ("REDoS"). ``LOOSE_HTTP_DATE_RE.match()`` is
