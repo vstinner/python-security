@@ -269,3 +269,7 @@
     author: Ben Caller
     date: 2019-11-14.23:37:59.309
     title: Regular Expression Denial of Service in http.cookiejar
+39401:
+    author: Anthony Wee
+    date: 2020-01-21.01:02:14.204
+    title: '[CVE-2020-8315] Unsafe dll loading in getpathp.c on Win7'

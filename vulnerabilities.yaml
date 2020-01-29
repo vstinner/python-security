@@ -1379,3 +1379,13 @@
     headers returned by a HTTP server. Processing a response from a malicious
     HTTP server can lead to extreme CPU usage and execution will be blocked
     for a long time.
+
+- name: "CVE-2020-8315: Unsafe DLL loading in getpathp.c on Windows 7"
+  slug: unsafe-dll-load-windows-7
+  cve: CVE-2020-8315
+  bpo: 39401
+  fixed-in:
+   - 3.9: 6a65eba44bfd82ccc8bed4b5c6dd6637549955d5
+  description: |
+    At Python startup, ``api-ms-win-core-path-l1-1-0.dll`` is loaded with
+    LoadLibraryW() without ``LOAD_LIBRARY_SEARCH_xxx`` flags.
