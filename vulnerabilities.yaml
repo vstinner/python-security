@@ -1404,6 +1404,7 @@
 
 - name: "urllib basic auth regex denial of service"
   slug: urllib-basic-auth-regex
+  cve: CVE-2020-8492
   bpo: 39503
   reported-at: "2020-01-21 (email to the PSRT)"
   reported-by: "Matt Schwager"
