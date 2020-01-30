@@ -1401,3 +1401,14 @@
     LoadLibraryW() without ``LOAD_LIBRARY_SEARCH_xxx`` flags.
 
     Python 3.5 and older are not affected.
+
+- name: "urllib basic auth regex denial of service"
+  slug: urllib-basic-auth-regex
+  bpo: 39503
+  reported-at: "2020-01-21 (email to the PSRT)"
+  reported-by: "Matt Schwager"
+  fixed-in:
+  description: |
+    The AbstractBasicAuthHandler class of the urllib.request module uses an
+    inefficient regular expression (catastrophic backtracking) which can be
+    exploited by an attacker to cause a denial of service.

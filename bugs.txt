@@ -273,3 +273,7 @@
     author: Anthony Wee
     date: 2020-01-21.01:02:14.204
     title: '[CVE-2020-8315] Unsafe dll loading in getpathp.c on Win7'
+39503:
+    author: STINNER Victor
+    date: 2020-01-30.15:11:28.336
+    title: '[security] Denial of service in urllib.request.AbstractBasicAuthHandler'
