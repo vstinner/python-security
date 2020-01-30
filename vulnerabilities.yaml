@@ -1384,8 +1384,18 @@
   slug: unsafe-dll-load-windows-7
   cve: CVE-2020-8315
   bpo: 39401
+  affected-versions:
+   # The issue was added in 3.6 when Steve Dower added support for installing
+   # Python into a long path name on up-to-date OS, which required dynamically
+   # loading an OS function. That dynamic load was the problem.
+   - '3.6'
+   - '3.7'
+   - '3.8'
+   - '3.9'
   fixed-in:
    - 3.9: 6a65eba44bfd82ccc8bed4b5c6dd6637549955d5
   description: |
     At Python startup, ``api-ms-win-core-path-l1-1-0.dll`` is loaded with
     LoadLibraryW() without ``LOAD_LIBRARY_SEARCH_xxx`` flags.
+
+    Python 3.5 and older are not affected.
