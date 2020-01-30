@@ -1394,6 +1394,8 @@
    - '3.9'
   fixed-in:
    - 3.9: 6a65eba44bfd82ccc8bed4b5c6dd6637549955d5
+   - 3.8: ad4a20b87d79a619ffbdea3f26848780899494e5
+   - 3.7: 561c59777c8426fde0ef48b57cf02eddaeb2a5b8
   description: |
     At Python startup, ``api-ms-win-core-path-l1-1-0.dll`` is loaded with
     LoadLibraryW() without ``LOAD_LIBRARY_SEARCH_xxx`` flags.
