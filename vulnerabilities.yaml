@@ -1349,6 +1349,7 @@
     ``('John Doe jdoe@example.com', 'other@example.net')``.
 
 - name: "Reflected XSS in DocXMLRPCServer"
+  cve: CVE-2019-16935
   slug: docxmlrpcserver-xss
   bpo: 38243
   fixed-in:
