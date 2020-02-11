@@ -1352,6 +1352,7 @@
   cve: CVE-2019-16935
   slug: docxmlrpcserver-xss
   bpo: 38243
+  redhat-impact: "Moderate"
   fixed-in:
    - 3.9: e8650a4f8c7fb76f570d4ca9c1fbe44e91c8dfaa
    - 3.8: 6447b9f9bd27e1f6b04cef674dd3a7ab27bf4f28
@@ -1373,6 +1374,8 @@
    - 3.7: cb6085138a845f8324adc011b65754acc2086cc0
    - 3.6: 0716056c49e9505041e30386dad9b2e788f67aaf
    - 2.7: e6499033032d5b647e43a3b49da0c1c64b151743
+  links:
+   - https://access.redhat.com/security/cve/CVE-2019-16935
   description: |
     The regex ``http.cookiejar.LOOSE_HTTP_DATE_RE`` is vulnerable to regular
     expression denial of service ("REDoS"). ``LOOSE_HTTP_DATE_RE.match()`` is
