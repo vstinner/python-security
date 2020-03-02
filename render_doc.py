@@ -627,6 +627,7 @@ class Vulnerability:
                 else:
                     # Add a link if there is no CVE detail
                     cves.add(cve_id)
+        self.cve_list.sort(key=lambda cve: cve.number)
 
         for cve in CVE_REGEX.findall(self.description):
             cves.add(cve)
@@ -1063,7 +1064,7 @@ class RenderDoc:
         return vulnerabilities
 
     def render_table(self, fp, vulnerabilities):
-        headers = ['Vulnerability', 'Disclosure', 'Fixed In', 'Vulnerable']
+        headers = ['Vulnerability', 'Disclosure', 'Fixed In', 'Vulnerable', 'CVE']
         table = []
 
         print('.. |br| raw:: html', file=fp)
@@ -1084,8 +1085,11 @@ class RenderDoc:
                 fixes = ['--']
             if not vulnerable:
                 vulnerable = ['--']
+            cves = [cve.number for cve in vuln.cve_list]
+            if not cves:
+                cves = ['--']
 
-            row = [name, disclosure, fixes, vulnerable]
+            row = [name, disclosure, fixes, vulnerable, cves]
             table.append(row)
 
         widths = [len(header) for header in headers]
