@@ -1085,7 +1085,7 @@ class RenderDoc:
                 fixes = ['--']
             if not vulnerable:
                 vulnerable = ['--']
-            cves = [cve.number for cve in vuln.cve_list]
+            cves = break_line.join(cve.number for cve in vuln.cve_list)
             if not cves:
                 cves = ['--']
 
