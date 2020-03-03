@@ -85,8 +85,8 @@ Archives and absolute paths
   members that have absolute filenames starting with "/" or filenames with
   two dots "..". zipfile attempts to prevent that.
 
-Archives and Zip Bomb
----------------------
+Archives and Zip Bomb (CVE-2019-9674)
+-------------------------------------
 
 Be careful of "Zip Bombs": a very small archive can use a huge amount of memory
 and disk space once decompressed.
@@ -110,6 +110,9 @@ See:
 
 * `zipfile: Decompression pitfalls
   <https://docs.python.org/dev/library/zipfile.html#decompression-pitfalls>`_.
+* `bpo-36260: [security] CVE-2019-9674: Zip Bomb vulnerability
+  <https://bugs.python.org/issue36260>`_
+* `CVE-2019-9674 <https://nvd.nist.gov/vuln/detail/CVE-2019-9674>`_
 * `Wikipedia: Zip bomb
   <https://en.wikipedia.org/wiki/Zip_bomb>`_
 
