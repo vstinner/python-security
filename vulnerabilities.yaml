@@ -1416,6 +1416,9 @@
   reported-at: "2019-11-17 (bpo-38826)"
   reported-by: "Ben Caller and Matt Schwager"
   fixed-in:
+   - 3.9: 0b297d4ff1c0e4480ad33acae793fbaf4bf015b4
+   - 3.8: ea9e240aa02372440be8024acb110371f69c9d41
+   - 3.7: b57a73694e26e8b2391731b5ee0b1be59437388e
   description: |
     The AbstractBasicAuthHandler class of the urllib.request module uses an
     inefficient regular expression (catastrophic backtracking) which can be
