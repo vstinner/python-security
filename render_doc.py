@@ -14,6 +14,12 @@ import urllib.request
 import xmlrpc.client
 import yaml
 
+STATUS_BRANCHES = """
+`Status of Python branches
+<https://docs.python.org/devguide/#status-of-python-branches>`_ lists Python
+branches which get security fixes.
+""".strip()
+
 OFFLINE = True
 
 # Last update: 2020-02-13
@@ -1101,12 +1107,6 @@ class RenderDoc:
                     cell_len = max(len(subcell) for subcell in cell)
                 widths[column] = max(widths[column], cell_len)
 
-        title = 'Security vulnerabilities'
-        print("+" * len(title), file=fp)
-        print(title, file=fp)
-        print("+" * len(title), file=fp)
-        print(file=fp)
-
         def table_line(char='-'):
             parts = ['']
             for width in widths:
@@ -1143,6 +1143,15 @@ class RenderDoc:
         os.mkdir(self.vuln_path)
 
         with open(output_filename, 'w', encoding='utf-8') as fp:
+            title = 'Security vulnerabilities'
+            print("+" * len(title), file=fp)
+            print(title, file=fp)
+            print("+" * len(title), file=fp)
+            print(file=fp)
+
+            print(STATUS_BRANCHES, file=fp)
+            print(file=fp)
+
             self.render_table(fp, vulnerabilities)
 
             filenames = []

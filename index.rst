@@ -15,3 +15,7 @@ Pages
    packages
    ssl
    security
+
+`Status of Python branches
+<https://docs.python.org/devguide/#status-of-python-branches>`_ lists Python
+branches which get security fixes.
