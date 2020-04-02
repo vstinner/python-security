@@ -1423,3 +1423,16 @@
     The AbstractBasicAuthHandler class of the urllib.request module uses an
     inefficient regular expression (catastrophic backtracking) which can be
     exploited by an attacker to cause a denial of service.
+
+- name: "CVE-2019-18348: CRLF injection via the host part of the url passed to urlopen()"
+  slug: urlopen-host-http-header-injection
+  cve: CVE-2019-18348
+  bpo: 38576
+  fixed-in:
+   - 3.9: 9165addc22d05e776a54319a8531ebd0b2fe01ef
+   - 3.8: ff69c9d12c1b06af58e5eae5db4630cedd94740e
+   - 3.7: 34f85af3229f86c004a954c3f261ceea1f5e9f95
+   - 2.7: e176e0c105786e9f476758eb5438c57223b65e7f
+  description: |
+    http.client allows to pass control characters like CRLF newlines which can
+    be abused to inject HTTP headers.

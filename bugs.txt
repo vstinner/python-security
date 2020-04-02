@@ -265,6 +265,11 @@
     author: longwenzhang
     date: 2019-09-21.02:17:29.833
     title: A reflected XSS in python/Lib/DocXMLRPCServer.py
+38576:
+    author: Riccardo Schirone
+    date: 2019-10-24.07:51:17.766
+    title: 'CVE-2019-18348: CRLF injection via the host part of the url passed to
+        urlopen()'
 38804:
     author: Ben Caller
     date: 2019-11-14.23:37:59.309
