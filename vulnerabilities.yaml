@@ -1253,6 +1253,11 @@
 
     The fix disallows control chars in HTTP URLs.
 
+    This change broke applications sending invalid HTTP requests on purpose:
+    `bpo-36274 <https://bugs.python.org/issue36274>`_ added private methods
+    to the ``http.client.HTTPConnection`` class (``_encode_request()`` and
+    ``_validate_path()``) which can be overriden in a subclass for that.
+
     Note: Python 2 ``urllib.urlopen(url)`` always quotes the URL and so is not
     vulnerable to HTTP Header Injection.
 
