@@ -1443,3 +1443,16 @@
   description: |
     http.client allows to pass control characters like CRLF newlines which can
     be abused to inject HTTP headers.
+
+- name: "Email header injection in Address objects"
+  slug: email-address-header-injection
+  bpo: 39073
+  fixed-in:
+   - 3.9: 614f17211c5fc0e5b828be1d3320661d1038fe8f
+   - 3.8: 75635c6095bcfbb9fccc239115d3d03ae20a307f
+   - 3.7: a93bf82980d7c02217a088bafa193f32a4d13abb
+  description: |
+    It is possible to inject email headers using CR or LF character.
+
+    The fix disallows CR and LF characters in ``email.headerregistry.Address``
+    arguments to guard against header injection attacks.
