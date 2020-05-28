@@ -1457,3 +1457,23 @@
 
     The fix disallows CR and LF characters in ``email.headerregistry.Address``
     arguments to guard against header injection attacks.
+
+- name: "Remove newline characters from uu encoding methods"
+  slug: uu-encoding-newline
+  bpo: 38945
+  reported-at: "2019-11-28 (PSRT list)"
+  reported-by: "Matthew Rollings"
+  fixed-in:
+   - 3.9: a62ad4730c9b575f140f24074656c0257c86a09a
+   - 3.8: 8859fc629474ab1ca7eb2e67aec538097c327e58
+   - 3.7: 87f2d261ee1c63ed39517355833d087c5a78b4bf
+   - 3.6: 30afc91f5e70cf4748ffac77a419ba69ebca6f6a
+   - 3.5: 8835f465fa94f114dcf865429c0410821d365dae
+   - 2.7: a016d4e32cc9faa48105d00db275439c3dc93559
+  description: |
+    Filenames passed to the UU encoding methods (uu.py and uu_codec.py) that
+    contain a newline character will overflow data into the UU content section.
+    This can potentially be used to inject replace or corrupt data content in a
+    file during the decode process.
+
+    The fix removes newline characters from filenames.

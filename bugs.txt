@@ -278,6 +278,10 @@
     author: Ben Caller
     date: 2019-11-17.01:45:42.314
     title: Regular Expression Denial of Service in urllib.request.AbstractBasicAuthHandler
+38945:
+    author: stealthcopter
+    date: 2019-11-30.17:06:01.247
+    title: Remove newline characters from uu encoding methods
 39073:
     author: Jasper Spaans
     date: 2019-12-17.12:46:42.840
