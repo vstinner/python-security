@@ -1452,6 +1452,7 @@
    - 3.8: 75635c6095bcfbb9fccc239115d3d03ae20a307f
    - 3.7: a93bf82980d7c02217a088bafa193f32a4d13abb
    - 3.6: 7df32f844efed33ca781a016017eab7050263b90
+   - 3.5: f91a0b6df14d6c5133fe3d5889fad7d84fc0c046
   description: |
     It is possible to inject email headers using CR or LF character.
 
