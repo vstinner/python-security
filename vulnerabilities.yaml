@@ -1440,6 +1440,8 @@
    - 3.9: 9165addc22d05e776a54319a8531ebd0b2fe01ef
    - 3.8: ff69c9d12c1b06af58e5eae5db4630cedd94740e
    - 3.7: 34f85af3229f86c004a954c3f261ceea1f5e9f95
+   - 3.6: 83fc70159b24f5b11a5ef87c9b05c2cf4c7faeba
+   - 3.5: 09d8172837b6985c4ad90ee025f6b5a554a9f0ac
    - 2.7: e176e0c105786e9f476758eb5438c57223b65e7f
   description: |
     http.client allows to pass control characters like CRLF newlines which can
