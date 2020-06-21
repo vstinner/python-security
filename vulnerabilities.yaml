@@ -1426,6 +1426,7 @@
    - 3.8: ea9e240aa02372440be8024acb110371f69c9d41
    - 3.7: b57a73694e26e8b2391731b5ee0b1be59437388e
    - 3.6: 69cdeeb93e0830004a495ed854022425b93b3f3e
+   - 3.5: 37fe316479e0b6906a74b0c0a5e495c55037fdfd
   description: |
     The AbstractBasicAuthHandler class of the urllib.request module uses an
     inefficient regular expression (catastrophic backtracking) which can be
