@@ -1143,7 +1143,7 @@ class RenderDoc:
         os.mkdir(self.vuln_path)
 
         with open(output_filename, 'w', encoding='utf-8') as fp:
-            title = 'Security vulnerabilities'
+            title = 'Python Security Vulnerabilities'
             print("+" * len(title), file=fp)
             print(title, file=fp)
             print("+" * len(title), file=fp)
