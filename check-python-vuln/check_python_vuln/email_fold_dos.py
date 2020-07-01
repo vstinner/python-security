@@ -1,13 +1,12 @@
-from vulntools import Test, SHORT_TIMEOUT, wait_process
-import subprocess
+from vulntools import Test, check_subprocess_denial_service
 import sys
 
-code = r"""
+
+CODE = r"""
 import email.policy
 policy = email.policy.default.clone(max_line_length=20)
 actual = policy.fold('Subject', '\u0105' * 12)
 """
-TIMEOUT = SHORT_TIMEOUT
 
 
 class Check(Test):
@@ -21,11 +20,7 @@ class Check(Test):
             # Python 2.7 doesn't have the email.policy module
             self.exit_fixed()
 
-        args = [sys.executable, '-c', code]
-        proc = subprocess.Popen(args)
-        if not wait_process(proc, TIMEOUT):
-            self.exit_vulnerable("Timeout after %.1f sec" % TIMEOUT)
-        self.exit_fixed()
+        check_subprocess_denial_service(CODE)
 
 
 if __name__ == "__main__":

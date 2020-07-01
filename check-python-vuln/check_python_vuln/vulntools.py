@@ -219,3 +219,13 @@ def wait_process(proc, timeout):
     proc.kill()
     proc.wait()
     return False
+
+
+def check_subprocess_denial_service(code):
+    import subprocess
+
+    args = [sys.executable, '-c', CODE]
+    proc = subprocess.Popen(args)
+    if not wait_process(proc, SHORT_TIMEOUT):
+        self.exit_vulnerable("Timeout after %.1f sec" % SHORT_TIMEOUT)
+    self.exit_fixed()
