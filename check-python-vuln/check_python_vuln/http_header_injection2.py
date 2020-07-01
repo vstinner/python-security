@@ -101,16 +101,16 @@ class Check(Test):
                 self.exit_error("%s succeeded with no network "
                                 "connection" % func_name)
 
-
     def check_url(self, url):
         if PY3:
-            self.check_func('urllib.request.urlopen', urllib.request.urlopen, url)
+            self.check_func('urllib.request.urlopen',
+                            urllib.request.urlopen, url)
         else:
-            self.check_func('urllib2.urlopen', urllib2.urlopen, url)
+            self.check_func('urllib2.urlopen',
+                            urllib2.urlopen, url)
 
             # Note: Python 2 urllib.urlopen() always quotes the URL
             # and so is not vulnerable to HTTP Header Injection
-
 
     def run(self):
         self.server = Server()

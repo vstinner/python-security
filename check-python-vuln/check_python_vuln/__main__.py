@@ -2,7 +2,6 @@ import os
 import subprocess
 import sys
 
-from . import vulntools
 from .vulntools import TestResult, TestResultError, ERROR, VULNERABLE
 
 

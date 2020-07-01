@@ -1,5 +1,4 @@
-from vulntools import Test, check_subprocess_denial_service
-import sys
+from vulntools import Test
 
 
 CODE = r"""
@@ -15,12 +14,12 @@ class Check(Test):
 
     def run(self):
         try:
-            import email.policy
+            import email.policy   # noqa
         except ImportError:
             # Python 2.7 doesn't have the email.policy module
             self.exit_fixed()
 
-        check_subprocess_denial_service(CODE)
+        self.check_subprocess_denial_service(CODE)
 
 
 if __name__ == "__main__":

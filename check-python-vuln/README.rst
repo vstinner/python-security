@@ -12,3 +12,10 @@ Usage
 Check for vulnerabilities::
 
     python check-python-vuln.py
+
+Run tests
+=========
+
+Command to run types::
+
+    tox --parallel auto

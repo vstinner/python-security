@@ -1,6 +1,4 @@
-import email
-import sys
-from vulntools import Test, check_subprocess_denial_service
+from vulntools import Test
 
 
 CODE = """
@@ -50,9 +48,8 @@ class Check(Test):
     SLUG = "urllib-basic-auth-regex"
 
     def run(self):
-        check_subprocess_denial_service(CODE)
+        self.check_subprocess_denial_service(CODE)
 
 
 if __name__ == "__main__":
     Check().main()
-
