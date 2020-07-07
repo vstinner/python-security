@@ -164,6 +164,11 @@
     date: 2017-02-17.15:39:39.187
     title: 'expat 2.2.0: Various security vulnerabilities in bundled expat (CVE-2016-0718
         and CVE-2016-4472)'
+29778:
+    author: Tibor Csonka
+    date: 2017-03-10.04:58:17.302
+    title: '[CVE-2020-15523] _Py_CheckPython3 uses uninitialized dllpath when embedder
+        sets module path with Py_SetPath'
 30119:
     author: Dong-hee Na
     date: 2017-04-20.17:57:20.197

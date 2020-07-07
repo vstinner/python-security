@@ -1481,3 +1481,41 @@
     file during the decode process.
 
     The fix removes newline characters from filenames.
+
+- name: "[CVE-2020-15523] _Py_CheckPython3 uses uninitialized dllpath when embedder sets module path with Py_SetPath"
+  slug: pysetpath-python-dll-path
+  # CVE can be a single string or a list
+  cve: CVE-2020-15523
+  # Bug number at bugs.python.org (bpo)
+  bpo: 29778
+  reported-at: "2020-06-24 (email to PSRT)"
+  reported-by: "Erdenebat (Eric) Gantumur"
+  fixed-in:
+   - 3.10: dcbaa1b49cd9062fb9ba2b9d49555ac6cd8c60b5
+   - 3.9: 4981fe36c7477303de830e8dca929a02caaaffe4
+   - 3.8: aa7f7756149a10c64d01f583b71e91814db886ab
+   - 3.7: 110dd153662a13b8ae1bb06348e5b1f118ab26d7
+   - 3.6: 46cbf6148a46883110883488d3e9febbe46ba861
+  description: |
+    CVE-2020-15523 is an invalid search path in Python 3.6 and later on
+    Windows. It occurs during Py_Initialize() when the runtime attempts to
+    pre-load python3.dll. If Py_SetPath() has been called, the expected
+    location is not set, and locations elsewhere on the user's system will be
+    searched.
+
+    This issue is not triggered when running python.exe. It only applies when
+    CPython has been embedded in another application.
+
+    * Issue: https://bugs.python.org/issue29778
+    * Patch: https://github.com/python/cpython/pull/21297
+
+    The next patched releases will be: 3.9.0b5, 3.8.4, 3.7.9 (source only),
+    3.6.12 (source only).
+
+    Other than applying the patch, applications may mitigate the vulnerability
+    by explicitly calling LoadLibrary() on their copy of python3.dll before
+    calling Py_Initialize(). Even with the patch applied, applications should
+    include a copy of python3.dll alongside their main Python DLL.
+
+    Thanks to Eric Gantumur for detecting and reporting the issue to the Python
+    Security Response Team.
