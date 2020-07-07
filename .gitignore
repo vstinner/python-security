@@ -7,5 +7,3 @@ vulnerabilities.rst
 vuln/
 # downlaoded by render_doc.py to create the venv
 get-pip.py
-# configuration file
-config.ini
