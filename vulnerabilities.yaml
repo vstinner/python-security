@@ -1519,3 +1519,26 @@
 
     Thanks to Eric Gantumur for detecting and reporting the issue to the Python
     Security Response Team.
+
+- name: "[CVE-2020-14422] Hash collisions in IPv4Interface and IPv6Interface"
+  slug: ipaddress-hash-collisions
+  cve: CVE-2020-14422
+  bpo: 41004
+  fixed-in:
+   - 3.10: b30ee26e366bf509b7538d79bfec6c6d38d53f28
+   - 3.8: dc8ce8ead182de46584cc1ed8a8c51d48240cbd5
+   - 3.9: 9a646aa82dfa62d70ca2a99ada901ee6cf9f82bd
+   - 3.7: b98e7790c77a4378ec4b1c71b84138cb930b69b7
+   - 3.6: cfc7ff8d05f7a949a88b8a8dd506fb5c1c30d3e9
+  description: |
+    In the ipaddress library there exists two classes IPv4Interface, and
+    IPv6Interface. These classes' hash functions will always return 32 and 64
+    respectively. If IPv4Interface or IPv6Interface objects then are put in a
+    dictionary, on for example a server storing IPs, this will cause hash
+    collisions, which in turn can lead to DOS.
+
+    Resolve hash collisions for IPv4Interface and IPv6Interface. The __hash__()
+    methods of classes IPv4Interface and IPv6Interface had issue of generating
+    constant hash values of 32 and 128 respectively causing hash collisions.
+    The fix uses the hash() function to generate hash values for the objects
+    instead of XOR operation.

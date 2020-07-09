@@ -299,3 +299,7 @@
     author: STINNER Victor
     date: 2020-01-30.15:11:28.336
     title: '[security] Denial of service in urllib.request.AbstractBasicAuthHandler'
+41004:
+    author: martin wennberg
+    date: 2020-06-17.13:11:52.234
+    title: '[CVE-2020-14422] Hash collisions in IPv4Interface and IPv6Interface'
