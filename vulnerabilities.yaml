@@ -1560,3 +1560,16 @@
 
      Avoid infinite loop when reading specially crafted TAR files using the
      tarfile module (CVE-2019-20907).
+
+- name: "http.client: HTTP Header Injection in the HTTP method"
+  slug: http-header-injection-method
+  bpo: 39603
+  fixed-in:
+   - 3.6: f02de961b9f19a5db0ead56305fe0057a78787ae
+   - 3.7: ca75fec1ed358f7324272608ca952b2d8226d11a
+   - 3.8: 668d321476d974c4f51476b33aaca870272523bf
+   - 3.9: 27b811057ff5e93b68798e278c88358123efdc71
+   - 3.10: 8ca8a2e8fb068863c1138f07e3098478ef8be12e
+  description: |
+    It is possible to inject HTTP headers via the HTTP method which doesn't
+    reject newline characters.
