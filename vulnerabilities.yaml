@@ -1521,7 +1521,10 @@
     Security Response Team.
 
     The https://bugs.python.org/issue41304 issue fixed a regression in this
-    vulnerability fix
+    vulnerability fix.
+
+    The original discovery credit goes to Eran Shimony and Ido Hoorvitch from
+    CyberArk.
 
 - name: "[CVE-2020-14422] Hash collisions in IPv4Interface and IPv6Interface"
   slug: ipaddress-hash-collisions
