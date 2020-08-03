@@ -1520,6 +1520,9 @@
     Thanks to Eric Gantumur for detecting and reporting the issue to the Python
     Security Response Team.
 
+    The https://bugs.python.org/issue41304 issue fixed a regression in this
+    vulnerability fix
+
 - name: "[CVE-2020-14422] Hash collisions in IPv4Interface and IPv6Interface"
   slug: ipaddress-hash-collisions
   cve: CVE-2020-14422

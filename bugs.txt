@@ -303,6 +303,10 @@
     author: STINNER Victor
     date: 2020-01-30.15:11:28.336
     title: '[security] Denial of service in urllib.request.AbstractBasicAuthHandler'
+39603:
+    author: Max
+    date: 2020-02-10.19:29:35.213
+    title: '[security] http.client: HTTP Header Injection in the HTTP method'
 41004:
     author: martin wennberg
     date: 2020-06-17.13:11:52.234
