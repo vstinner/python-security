@@ -287,6 +287,10 @@
     author: stealthcopter
     date: 2019-11-30.17:06:01.247
     title: Remove newline characters from uu encoding methods
+39017:
+    author: jvoisin
+    date: 2019-12-10.16:19:56.442
+    title: '[CVE-2019-20907] Infinite loop in the tarfile module'
 39073:
     author: Jasper Spaans
     date: 2019-12-17.12:46:42.840

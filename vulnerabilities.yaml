@@ -1542,3 +1542,21 @@
     constant hash values of 32 and 128 respectively causing hash collisions.
     The fix uses the hash() function to generate hash values for the objects
     instead of XOR operation.
+
+- name: "Infinite loop in tarfile module while opening a crafted file"
+  slug: tarfile-pax-dos
+  cve: CVE-2019-20907
+  bpo: 39017
+  fixed-in:
+   - 3.5: cac9ca8ed99bd98f4c0dcd1913a146192bf5ee84
+   - 3.6: 47a2955589bdb1a114d271496ff803ad73f954b8
+   - 3.7: 79c6b602efc9a906c8496f3d5f4d54c54b48fa06
+   - 3.8: c55479556db015f48fc8bbca17f64d3e65598559
+   - 3.9: f3232294ee695492f43d424cc6969d018d49861d
+   - 3.10: 5a8d121a1f3ef5ad7c105ee378cc79a3eac0c7d4
+  description: |
+     Infinite loop in tarfile module while opening a crafted TAR archive in
+     the PAX format with a length of zero.
+
+     Avoid infinite loop when reading specially crafted TAR files using the
+     tarfile module (CVE-2019-20907).
