@@ -1496,6 +1496,7 @@
    - 3.8: aa7f7756149a10c64d01f583b71e91814db886ab
    - 3.7: 110dd153662a13b8ae1bb06348e5b1f118ab26d7
    - 3.6: 46cbf6148a46883110883488d3e9febbe46ba861
+   - 3.5: f205f1000a2d7f8b044caf281041b3705f293480
   description: |
     CVE-2020-15523 is an invalid search path in Python 3.6 and later on
     Windows. It occurs during Py_Initialize() when the runtime attempts to
@@ -1536,6 +1537,7 @@
    - 3.9: 9a646aa82dfa62d70ca2a99ada901ee6cf9f82bd
    - 3.7: b98e7790c77a4378ec4b1c71b84138cb930b69b7
    - 3.6: cfc7ff8d05f7a949a88b8a8dd506fb5c1c30d3e9
+   - 3.5: 11d258ceafdf60ab3840f9a5700f2d0ad3e2e2d1
   description: |
     In the ipaddress library there exists two classes IPv4Interface, and
     IPv6Interface. These classes' hash functions will always return 32 and 64
