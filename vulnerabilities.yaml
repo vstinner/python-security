@@ -1573,6 +1573,7 @@
   slug: http-header-injection-method
   bpo: 39603
   fixed-in:
+   - 3.5: 524b8de630036a29ca340bc2ae6fd6dc7dda8f40
    - 3.6: f02de961b9f19a5db0ead56305fe0057a78787ae
    - 3.7: ca75fec1ed358f7324272608ca952b2d8226d11a
    - 3.8: 668d321476d974c4f51476b33aaca870272523bf
