@@ -1571,6 +1571,7 @@
 
 - name: "http.client: HTTP Header Injection in the HTTP method"
   slug: http-header-injection-method
+  cve: CVE-2020-26116
   bpo: 39603
   fixed-in:
    - 3.5: 524b8de630036a29ca340bc2ae6fd6dc7dda8f40
