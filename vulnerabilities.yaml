@@ -1583,3 +1583,29 @@
   description: |
     It is possible to inject HTTP headers via the HTTP method which doesn't
     reject newline characters.
+
+- name: "CJK codec tests use eval"
+  slug: cjk-codec-download-eval
+  bpo: 41944
+  reported-at: "2020-10-05 (email sent to the PSRT list)"
+  reported-by: "Florian Bruhin"
+  description: |
+    The CJK codec tests of the Python test suite run ``eval()`` on content
+    received via HTTP from ``pythontest.net``.
+
+    If an attacker can compromise the ``pythontest.net`` server, they gain
+    arbitrary code execution on all buildbots.
+
+    If an attacker has control over the network connection of a machine running
+    the Python test suite, they gain arbitrary code execution there.
+
+    By default, downloaded from the Internet are disabled in the Python test
+    suite. The command line option ``-u network`` (or ``-u all`` which enables
+    the ``network`` resource) of ``./python -m test`` must be used explicitly to
+    allow downloads from the Internet.
+
+    ``make testall``, ``make testuniversal`` and ``make buildbottest`` commands
+    are impacted (pass ``-u all`` option to the test suite).
+
+    The CI of the Python project is impacted (buildbot, Travis CI,
+    GitHub Action, Azure Pipelines).

@@ -14,6 +14,9 @@ import urllib.request
 import xmlrpc.client
 import yaml
 
+# Last update: 2020-10-06
+MAINTAINED_BRANCHES = ['3.6', '3.7', '3.8', '3.9']
+
 STATUS_BRANCHES = """
 `Status of Python branches
 <https://docs.python.org/devguide/#status-of-python-branches>`_ lists Python
@@ -21,9 +24,6 @@ branches which get security fixes.
 """.strip()
 
 OFFLINE = True
-
-# Last update: 2020-02-13
-MAINTAINED_BRANCHES = ['3.5', '3.6', '3.7', '3.8']
 
 CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
 CVE_URL = 'https://www.cvedetails.com/cve/%s/'

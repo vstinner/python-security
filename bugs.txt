@@ -311,3 +311,7 @@
     author: martin wennberg
     date: 2020-06-17.13:11:52.234
     title: '[CVE-2020-14422] Hash collisions in IPv4Interface and IPv6Interface'
+41944:
+    author: Serhiy Storchaka
+    date: 2020-10-05.14:40:52.209
+    title: '[security] Python testsuite calls eval() on content received via HTTP'
