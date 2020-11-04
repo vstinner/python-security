@@ -1584,14 +1584,28 @@
     It is possible to inject HTTP headers via the HTTP method which doesn't
     reject newline characters.
 
-- name: "CJK codec tests use eval"
+- name: "CJK codecs tests call eval() on content retrieved via HTTP"
   slug: cjk-codec-download-eval
+  cve: CVE-2020-27619
   bpo: 41944
   reported-at: "2020-10-05 (email sent to the PSRT list)"
   reported-by: "Florian Bruhin"
+  fixed-in:
+   - 3.10: 2ef5caa58febc8968e670e39e3d37cf8eef3cab8
+   - 3.9: b664a1df4ee71d3760ab937653b10997081b1794
+   - 3.8: 6c6c256df3636ff6f6136820afaefa5a10a3ac33
+   - 3.7: 43e523103886af66d6c27cd72431b5d9d14cd2a9
+   - 3.6: e912e945f2960029d039d3390ea08835ad39374b
+  links:
+    - https://access.redhat.com/security/cve/CVE-2020-27619
   description: |
-    The CJK codec tests of the Python test suite run ``eval()`` on content
-    received via HTTP from ``pythontest.net``.
+    By default, the tests are not run with network resources enabled and so the
+    Python test suite is safe.
+
+    But if the Python test suite is run explicitly with the "network" resource
+    enabled (``-u network`` or ``-u all`` command line option), the CJK codecs
+    tests of the Python test suite run ``eval()`` on content received via HTTP
+    from ``pythontest.net``.
 
     If an attacker can compromise the ``pythontest.net`` server, they gain
     arbitrary code execution on all buildbots.
@@ -1599,13 +1613,12 @@
     If an attacker has control over the network connection of a machine running
     the Python test suite, they gain arbitrary code execution there.
 
-    By default, downloaded from the Internet are disabled in the Python test
-    suite. The command line option ``-u network`` (or ``-u all`` which enables
-    the ``network`` resource) of ``./python -m test`` must be used explicitly to
-    allow downloads from the Internet.
-
     ``make testall``, ``make testuniversal`` and ``make buildbottest`` commands
     are impacted (pass ``-u all`` option to the test suite).
 
     The CI of the Python project is impacted (buildbot, Travis CI,
     GitHub Action, Azure Pipelines).
+
+    With the fix, content is still retrieved via HTTP, but the unsafe eval()
+    function is no longer used.
+
