@@ -1622,3 +1622,14 @@
     With the fix, content is still retrieved via HTTP, but the unsafe eval()
     function is no longer used.
 
+- name: "ctypes: Buffer overflow in PyCArg_repr"
+  slug: ctypes-buffer-overflow-pycarg_repr
+  bpo: 42938
+  fixed-in:
+   - 3.6: 34df10a9a16b38d54421eeeaf73ec89828563be7
+   - 3.7: d9b8f138b7df3b455b54653ca59f491b4840d6fa
+   - 3.8: ece5dfd403dac211f8d3c72701fe7ba7b7aa5b5f
+   - 3.9: c347cbe694743cee120457aa6626712f7799a932
+   - 3.10: 916610ef90a0d0761f08747f7b0905541f0977c7
+  description: |
+    There's a buffer overflow in the ctypes ``PyCArg_repr()`` function.

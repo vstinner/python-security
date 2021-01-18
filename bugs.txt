@@ -315,3 +315,7 @@
     author: Serhiy Storchaka
     date: 2020-10-05.14:40:52.209
     title: '[security] Python testsuite calls eval() on content received via HTTP'
+42938:
+    author: Jordy Zomer
+    date: 2021-01-16.08:03:26.704
+    title: '[security] ctypes double representation BoF'
