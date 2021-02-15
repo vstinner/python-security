@@ -1646,6 +1646,8 @@
    - 3.8: e3110c3cfbb7daa690d54d0eff6c264c870a71bf
    - 3.7: d0d4d30882fe3ab9b1badbecf5d15d94326fd13e
    - 3.6: 5c17dfc5d70ce88be99bc5769b91ce79d7a90d61
+  reported-at: "2020-10-19 (email sent to the PSRT list)"
+  reported-by: "Adam Goldschmidt (Snyk)"
   description: |
     The urlparse module treats semicolon as a separator, whereas most proxies
     today only take ampersands as separators.
