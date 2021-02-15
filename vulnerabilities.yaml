@@ -1640,6 +1640,7 @@
   bpo: 42967
   links:
    - https://snyk.io/blog/cache-poisoning-in-popular-open-source-packages/
+   - https://snyk.io/vuln/SNYK-UPSTREAM-PYTHONCPYTHON-1074933
   fixed-in:
    - 3.10: fcbe0cb04d35189401c0c880ebfb4311e952d776
    - 3.9: c9f07813ab8e664d8c34413c4fc2d4f86c061a92
