@@ -319,3 +319,8 @@
     author: Jordy Zomer
     date: 2021-01-16.08:03:26.704
     title: '[security] ctypes double representation BoF'
+42967:
+    author: Adam Goldschmidt
+    date: 2021-01-19.15:06:48.939
+    title: '[CVE-2021-23336] urllib.parse.parse_qsl(): Web cache poisoning - `; `
+        as a query args separator'
