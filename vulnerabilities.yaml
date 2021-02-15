@@ -1634,7 +1634,7 @@
   description: |
     There's a buffer overflow in the ctypes ``PyCArg_repr()`` function.
 
-- name: "urllib.parse.parse_qsl(): Web cache poisoning - `; ` as a query args separator"
+- name: "urllib parse_qsl(): Web cache poisoning - semicolon as a query args separator"
   slug: urllib-query-string-semicolon-separator
   cve: CVE-2021-23336
   bpo: 42967
