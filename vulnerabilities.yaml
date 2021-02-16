@@ -34,12 +34,12 @@
   reported-at: "2016-01-15 (email sent to the PSRT list)"
   reported-by: "Timothy D. Morgan (Blindspot)"
   fixed-in:
-   - 2.7: e5eae474c431af2880a68f6329840b9288fc4bc1
-   - 3.3: a4e774f86224cd8c997deaa4e71312cf1a7b023c
-   - 3.4: 2a5a26c87e82c7d9a348792891feccd1b5e9a769
-   - 3.5: 19b2890014d3098147d16475c492a47a43893768
-   - 3.6: 8c2d4cf092c5f0335e7982392a33927579c4d512
-   - 3.7: 2b1e6e9696cb433c0e0da11145157d54275d119f
+   - '2.7': e5eae474c431af2880a68f6329840b9288fc4bc1
+   - '3.3': a4e774f86224cd8c997deaa4e71312cf1a7b023c
+   - '3.4': 2a5a26c87e82c7d9a348792891feccd1b5e9a769
+   - '3.5': 19b2890014d3098147d16475c492a47a43893768
+   - '3.6': 8c2d4cf092c5f0335e7982392a33927579c4d512
+   - '3.7': 2b1e6e9696cb433c0e0da11145157d54275d119f
   description: |
     FTP protocol stream injection via malicious URLs.
 
@@ -51,12 +51,12 @@
     The urllib module doesn't parse correctly password containing the ``#``
     character.
   fixed-in:
-    - 3.7: 90e01e50ef8a9e6c91f30d965563c378a4ad26de
-    - 3.6: b0fba8874a4bd6bf4773e6efdbd8fa762e9f05bd
-    - 3.5: 4899d847ed3f56b2a712799f896aa1f28540a5c0
-    - 3.4: cc54c1c0d2d05fe7404ba64c53df4b1352ed2262
-    - 3.3: 052f9d6860c48c5abcff8e16212e77cf4249d66c
-    - 2.7: d4324baca4c03eb8d55446cd1b74b32ec5633af5
+    - '3.7': 90e01e50ef8a9e6c91f30d965563c378a4ad26de
+    - '3.6': b0fba8874a4bd6bf4773e6efdbd8fa762e9f05bd
+    - '3.5': 4899d847ed3f56b2a712799f896aa1f28540a5c0
+    - '3.4': cc54c1c0d2d05fe7404ba64c53df4b1352ed2262
+    - '3.3': 052f9d6860c48c5abcff8e16212e77cf4249d66c
+    - '2.7': d4324baca4c03eb8d55446cd1b74b32ec5633af5
 
 - name: "smtplib TLS stripping"
   slug: smtplib-tls-stripping
@@ -76,18 +76,18 @@
     code does not explicitly check the response code for startTLS.
 
   fixed-in:
-    - 2.7: 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f
-    - 3.3: 3625f7fd11679ecb390ffa58ef36d487acc8159b
-    - 3.4: 46b32f307c48bcb999b22eebf65ffe8ed5cca544
+    - '2.7': 2e1b7fc998e1744eeb3bb31b131eba0145b88a2f
+    - '3.3': 3625f7fd11679ecb390ffa58ef36d487acc8159b
+    - '3.4': 46b32f307c48bcb999b22eebf65ffe8ed5cca544
 
 - name: "Issue #26657: HTTP server directory traversal"
   slug: http-server-directory-traversal
   bpo: 26657
   fixed-in:
-    - 2.7: 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb
-    - 3.4: 6f6bc1da8aaae52664e7747e328d26eb59c0e74f
-    - 3.5: d274b3f1f1e2d8811733fb952c9f18d7da3a376a
-    - 3.3: 7b92f9fa47df754b50c64aac84cf1c09693571af
+    - '2.7': 0cf2cf2b7d726d12a6046441e4067d32c7dd4feb
+    - '3.4': 6f6bc1da8aaae52664e7747e328d26eb59c0e74f
+    - '3.5': d274b3f1f1e2d8811733fb952c9f18d7da3a376a
+    - '3.3': 7b92f9fa47df754b50c64aac84cf1c09693571af
   description: |
     Fix directory traversal vulnerability with ``http.server`` and
     ``SimpleHTTPServer`` on Windows.
@@ -105,9 +105,9 @@
   reported-at: "2015-07-24 (Expat issue #528 reported)"
   reported-by: David Dillard (Expat issue)
   fixed-in:
-    - 2.7: d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e
-    - 3.4: 196d7db3956f4c0b03e87b570771b3460a61bab5
-    - 3.3: ab90986600ba7dea2aa41e5c1773791070725453
+    - '2.7': d244a8f7cb0ec6979ec9fc7acd39e95f5339ad0e
+    - '3.4': 196d7db3956f4c0b03e87b570771b3460a61bab5
+    - '3.3': ab90986600ba7dea2aa41e5c1773791070725453
   description: |
     Multiple integer overflows have been discovered in Expat, an XML parsing C
     library, which may result in denial of service or the execution of
@@ -124,10 +124,10 @@
     - http://blog.blindspotsecurity.com/2016/06/advisory-http-header-injection-in.html
   redhat-impact: "Moderate"
   fixed-in:
-    - 2.7: 59bdf6392de446de8a19bfa37cee52981612830e
-    - 3.4: a112a8ae47813f75aa8ad27ee8c42a7c2e937d13
-    - 3.5: b669bfc2bed1f5487ac2762bff53b55f6155bb60
-    - 3.3: 8e88f6b5e2a35ee458c161aa3f2b7f1f17fb45d1
+    - '2.7': 59bdf6392de446de8a19bfa37cee52981612830e
+    - '3.4': a112a8ae47813f75aa8ad27ee8c42a7c2e937d13
+    - '3.5': b669bfc2bed1f5487ac2762bff53b55f6155bb60
+    - '3.3': 8e88f6b5e2a35ee458c161aa3f2b7f1f17fb45d1
   description: |
     HTTP header injection in ``urllib``, ``urrlib2``, ``httplib`` and
     ``http.client`` modules.
@@ -150,8 +150,8 @@
    - https://events.ccc.de/congress/2011/Fahrplan/events/4680.en.html
    - http://www.ocert.org/advisories/ocert-2011-003.html
   fixed-in:
-    - 2.6: 1e13eb084f72d5993cbb726e45b36bdb69c83a24
-    - 2.7: 2daf6ae2495c862adf8bc717bfe9964081ea0b10
+    - '2.6': 1e13eb084f72d5993cbb726e45b36bdb69c83a24
+    - '2.7': 2daf6ae2495c862adf8bc717bfe9964081ea0b10
   description: |
     Hash collision denial of service.
 
@@ -176,9 +176,9 @@
   cve: CVE-2016-5636
   bpo: 26171
   fixed-in:
-   - 2.7: 64ea192b73e39e877d8b39ce6584fa580eb0e9b4
-   - 3.3: d751040b1a4e35fd3b01fc919cd8f9374ed714fd
-   - 3.4: c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf
+   - '2.7': 64ea192b73e39e877d8b39ce6584fa580eb0e9b4
+   - '3.3': d751040b1a4e35fd3b01fc919cd8f9374ed714fd
+   - '3.4': c4032da2012d75c6c358f74d8bf9ee98a7fe8ecf
   description: |
     Heap overflow in ``zipimporter`` module.
 
@@ -190,8 +190,8 @@
     - https://access.redhat.com/security/cve/cve-2013-1752
   redhat-impact: "Moderate"
   fixed-in:
-    - 2.7: dabfc56b57f5086eb5522d8e6cd7670c62d2482d
-    - 3.2: 210ee47e3340d8e689d8cce584e7c918d368f16b
+    - '2.7': dabfc56b57f5086eb5522d8e6cd7670c62d2482d
+    - '3.2': 210ee47e3340d8e689d8cce584e7c918d368f16b
   description: |
     The smtplib module doesn't limit the amount of read data in
     its call to readline(). An erroneous or malicious SMTP server can trick the
@@ -203,9 +203,9 @@
   bpo: 6791
   redhat-impact: "Moderate"
   fixed-in:
-    - 2.7: d7b6ac66c1b81d13f2efa8d9ebba69e17c158c0a
-    - 3.2: ff1bbba92aad261df1ebd8fd8cc189c104e113b0
-    - 3.3: 5466bf1c94d38e75bc053b0cfc163e2f948fe345
+    - '2.7': d7b6ac66c1b81d13f2efa8d9ebba69e17c158c0a
+    - '3.2': ff1bbba92aad261df1ebd8fd8cc189c104e113b0
+    - '3.3': 5466bf1c94d38e75bc053b0cfc163e2f948fe345
   description: |
     Limit the HTTP header readline.
 
@@ -217,9 +217,9 @@
     - https://access.redhat.com/security/cve/cve-2013-1752
   redhat-impact: "Moderate"
   fixed-in:
-   - 2.7: 2585e1e48abb3013abeb8a1fe9dccb5f79ac4091
-   - 3.2: c9cb18d3f7e5bf03220c213183ff0caa75905bdd
-   - 3.3: c30b178cbc92e62c22527cd7e1af2f02723ba679
+   - '2.7': 2585e1e48abb3013abeb8a1fe9dccb5f79ac4091
+   - '3.2': c9cb18d3f7e5bf03220c213183ff0caa75905bdd
+   - '3.3': c30b178cbc92e62c22527cd7e1af2f02723ba679
   description: |
     ftplib: unlimited read from connection.
 
@@ -231,8 +231,8 @@
     - https://access.redhat.com/security/cve/cve-2013-1752
   redhat-impact: "Moderate"
   fixed-in:
-   - 2.7: 42faa55124abcbb132c57745dec9e0489ac74406
-   - 3.2: b3ac84322fe6dd542aa755779cdbc155edca8064
+   - '2.7': 42faa55124abcbb132c57745dec9e0489ac74406
+   - '3.2': b3ac84322fe6dd542aa755779cdbc155edca8064
   description: |
     Unlimited read from connection in nntplib.
 
@@ -244,8 +244,8 @@
     - https://access.redhat.com/security/cve/cve-2013-1752
   redhat-impact: "Moderate"
   fixed-in:
-   - 2.7: faad6bbea6c86e30c770eb0a3648e2cd52b2e55e
-   - 3.2: eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e
+   - '2.7': faad6bbea6c86e30c770eb0a3648e2cd52b2e55e
+   - '3.2': eaca8616ab0e219ebb5cf37d495f4bf336ec0f5e
   description: |
     poplib: unlimited read from connection.
 
@@ -257,8 +257,8 @@
     - https://access.redhat.com/security/cve/cve-2013-1753
   redhat-impact: "Moderate"
   fixed-in:
-   - 2.7: 9e8f523c5b1c354097753084054eadf14d33238d
-   - 3.2: 4e9cefaf86035f8014e09049328d197b6506532f
+   - '2.7': 9e8f523c5b1c354097753084054eadf14d33238d
+   - '3.2': 4e9cefaf86035f8014e09049328d197b6506532f
   description: |
     Add a default limit for the amount of data ``xmlrpclib.gzip_decode()`` will
     return.
@@ -272,8 +272,8 @@
   links:
     - https://access.redhat.com/security/cve/cve-2014-4616
   fixed-in:
-   - 2.7: 6c939cb6f6dfbd273609577b0022542d31ae2802
-   - 3.2: 99b5afab74428e5ddfd877bdf3aa8a8c479696b1
+   - '2.7': 6c939cb6f6dfbd273609577b0022542d31ae2802
+   - '3.2': 99b5afab74428e5ddfd877bdf3aa8a8c479696b1
   reported-by: Guido Vranken
   description: |
     Fix arbitrary memory access in ``JSONDecoder.raw_decode()`` with a negative
@@ -287,8 +287,8 @@
   links:
     - https://www.xil.se/post/is-eval-safe-yet-rspkt/
   fixed-in:
-   - 2.7: a8760275bd59fb8d8be1f1bf05313fed31c08321
-   - 3.3: 07bcf05fcf3fd1d4001e8e3489162e6d67638285
+   - '2.7': a8760275bd59fb8d8be1f1bf05313fed31c08321
+   - '3.3': 07bcf05fcf3fd1d4001e8e3489162e6d67638285
   description: |
     Arbitrary code execution in ``gettext.c2py()``.
 
@@ -301,8 +301,8 @@
     - https://access.redhat.com/security/cve/cve-2016-1000110
   reported-by: Scott Geary (HTTPoxy)
   fixed-in:
-   - 2.7: 75d7b615ba70fc5759d16dee95bbd8f0474d8a9c
-   - 3.3: 4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d
+   - '2.7': 75d7b615ba70fc5759d16dee95bbd8f0474d8a9c
+   - '3.3': 4cbb23f8f278fd1f71dcd5968aa0b3f0b4f3bd5d
   description: |
     It was discovered that the Python ``CGIHandler`` class did not properly
     protect against the ``HTTP_PROXY`` variable name clash in a CGI context.
@@ -321,8 +321,8 @@
   cve: CVE-2014-1912
   bpo: 20246
   fixed-in:
-   - 2.7: 28cf368c1baba3db1f01010e921f63017af74c8f
-   - 3.3: fbf648ebba32bbc5aa571a4b09e2062a65fd2492
+   - '2.7': 28cf368c1baba3db1f01010e921f63017af74c8f
+   - '3.3': fbf648ebba32bbc5aa571a4b09e2062a65fd2492
   description: |
     ``socket.recvfrom_into()`` fails to check that the supplied buffer object
     is big enough for the requested read and so will happily write off the end.
@@ -331,8 +331,8 @@
   slug: cgi-directory-traversal-url-parsing
   bpo: 19435
   fixed-in:
-   - 2.7: 1ef959ac3ddc4d96dfa1a613db5cb206cdaeb662
-   - 3.2: 04e9de40f380b2695f955d68f2721d57cecbf858
+   - '2.7': 1ef959ac3ddc4d96dfa1a613db5cb206cdaeb662
+   - '3.2': 04e9de40f380b2695f955d68f2721d57cecbf858
   description: |
     An error in separating the path and filename of the CGI script to run in
     ``http.server.CGIHTTPRequestHandler`` allows running arbitrary executables
@@ -348,8 +348,8 @@
    # (commit daeb925cc88cc8fed2030166ade641de28edb396).
    - '3.2'
   fixed-in:
-   - 3.2: 86d53caddad11808ca332ab93ec35508b602a0dd
-   - 3.3: 636f93c63ba286249c1207e3a903f8429efb2041
+   - '3.2': 86d53caddad11808ca332ab93ec35508b602a0dd
+   - '3.3': 636f93c63ba286249c1207e3a903f8429efb2041
   description: |
     If the name in the certificate contains many ``*`` characters (wildcard),
     matching the compiled regular expression against the host name can take a
@@ -365,8 +365,8 @@
   bpo: 14579
   disclosure: "2012-04-14"
   fixed-in:
-   - 2.7: 715a63b78349952ccc0fb3dd3139e2d822006d35
-   - 3.3: b4bbee25b1e3f4bccac222f806b3138fb72439d6
+   - '2.7': 715a63b78349952ccc0fb3dd3139e2d822006d35
+   - '3.3': b4bbee25b1e3f4bccac222f806b3138fb72439d6
   description: |
     Vulnerability in the UTF-16 decoder after error handling.
 
@@ -375,8 +375,8 @@
   cve: CVE-2012-0845
   bpo: 14001
   fixed-in:
-   - 2.6: 66f3cc6f8de83c447d937160e4a1630c4482b5f5
-   - 3.2: ec1712a1662282c909b4cd4cc0c7486646bc9246
+   - '2.6': 66f3cc6f8de83c447d937160e4a1630c4482b5f5
+   - '3.2': ec1712a1662282c909b4cd4cc0c7486646bc9246
   description: |
     A denial of service flaw was found in the way Simple XML-RPC Server module
     of Python processed client connections, that were closed prior the complete
@@ -391,9 +391,9 @@
   disclosure: "2013-06-27 (Ruby issue)"
   reported-by: Ryan Sleevi of the Google Chrome Security Team
   fixed-in:
-   - 2.7: 82f88283171933127f20f866a7f98694b29cca56
-   - 3.2: ec3c103520a5061e657581b388e2b8ba6f74602a
-   - 3.3: 824f7f366d1b54d2d3100c3130c04cf1dfb4b47c
+   - '2.7': 82f88283171933127f20f866a7f98694b29cca56
+   - '3.2': ec3c103520a5061e657581b388e2b8ba6f74602a
+   - '3.3': 824f7f366d1b54d2d3100c3130c04cf1dfb4b47c
   description: |
     SSL module fails to handle NULL bytes inside subjectAltNames general names.
 
@@ -408,8 +408,8 @@
   bpo: 13885
   reported-by: Apple security team
   fixed-in:
-   - 2.6: d358e0554bc520768041652676ec8e6076f221a9
-   - 2.7: f2bf8a6ac51530e14d798a03c8e950dd934d85cd
+   - '2.6': d358e0554bc520768041652676ec8e6076f221a9
+   - '2.7': f2bf8a6ac51530e14d798a03c8e950dd934d85cd
   description: |
     The ssl module would always disable the CBC IV attack countermeasure.
     Disable OpenSSL ``SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS`` option.
@@ -420,8 +420,8 @@
   bpo: 11662
   reported-by: email received on the Python security list
   fixed-in:
-   - 2.5: 60a4a90c8dd2972eb4bb977e70835be9593cbbac
-   - 3.1: a119df91f33724f64e6bc1ecb484eeaa30ace014
+   - '2.5': 60a4a90c8dd2972eb4bb977e70835be9593cbbac
+   - '3.1': a119df91f33724f64e6bc1ecb484eeaa30ace014
   description: |
     The Python urllib and urllib2 modules are typically used to fetch web pages
     but by default also contains handlers for ``ftp://`` and ``file://`` URL
@@ -444,9 +444,9 @@
    - '2.7'
    - '3.4'
   fixed-in:
-   - 2.7: d988f429fe43808345812ef63dfa8da170c61871
-   - 3.5: 03d13c0cbfe912eb0f9b9a02987b9e569f25fe19
-   - 3.4: fa53dbdec818b0f2a0e22ca12a49d83ec948fc91
+   - '2.7': d988f429fe43808345812ef63dfa8da170c61871
+   - '3.5': 03d13c0cbfe912eb0f9b9a02987b9e569f25fe19
+   - '3.4': fa53dbdec818b0f2a0e22ca12a49d83ec948fc91
   description: |
     Remove 3DES from ssl default cipher list.
 
@@ -463,8 +463,8 @@
   disclosure: "2014-08-28 (PEP 476 created)"
   reported-by: Alex Gaynor (PEP 476 author)
   fixed-in:
-   - 2.7: e3e7d40514e5dd0c3847682a719577efcfae1d8f
-   - 3.4: 4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd
+   - '2.7': e3e7d40514e5dd0c3847682a719577efcfae1d8f
+   - '3.4': 4ffb0752710f0c0720d4f2af0c4b7ce1ebb9d2bd
    # WONTFIX: 3.3, backward incompatible change, too late for 3.3
   description: |
     The HTTP clients in the (1) httplib, (2) urllib, (3) urllib2, and (4)
@@ -489,7 +489,7 @@
    # buffer() type was removed from Python 3
    - '2.0'
   fixed-in:
-   - 2.7: 550b945fd66f1c6837a53fbf29dc8e524297b8c3
+   - '2.7': 550b945fd66f1c6837a53fbf29dc8e524297b8c3
   description: |
     Integer overflow in ``bufferobject.c`` in Python before 2.7.8 allows
     context-dependent attackers to obtain sensitive information from process
@@ -503,7 +503,7 @@
    # os.makedirs() exist_ok parameter added to Python 3.2
    - '3.2'
   fixed-in:
-   - 3.2: ee5f1c13d1ea21c628068fdf142823177f5526c2
+   - '3.2': ee5f1c13d1ea21c628068fdf142823177f5526c2
   description: |
     ``os.makedirs(exist_ok=True)`` is not thread-safe: umask is set temporary
     to ``0``, serious security problem.
@@ -525,7 +525,7 @@
    # (commit daeb925cc88cc8fed2030166ade641de28edb396).
    - '3.2'
   fixed-in:
-   - 3.3: 72c98d3a761457a4f2b8054458b19f051dfb5886
+   - '3.3': 72c98d3a761457a4f2b8054458b19f051dfb5886
   description: |
     ``ssl.match_hostname()``: sub string wildcard should not match IDNA prefix.
 
@@ -544,7 +544,7 @@
    # ZipExtFile._read2() was added to Python 3.3
    - '3.3'
   fixed-in:
-   - 3.3: 5ce3f10aeea711bb912e948fa5d9f63736df1327
+   - '3.3': 5ce3f10aeea711bb912e948fa5d9f63736df1327
   description: |
     Python before 3.3.4 RC1 allows remote attackers to cause a denial of
     service (infinite loop and CPU consumption) via a file size value larger
@@ -564,7 +564,7 @@
   cve: CVE-2013-7040
   bpo: 14621
   fixed-in:
-   - 3.4: 985ecdcfc29adfc36ce2339acf03f819ad414869
+   - '3.4': 985ecdcfc29adfc36ce2339acf03f819ad414869
   description: |
     The hash function is not randomized properly.
 
@@ -577,8 +577,8 @@
   cve: CVE-2011-4944
   bpo: 13512
   fixed-in:
-   - 2.6: e5567ccc863cadb68f5e57a2760e021e0d3807cf
-   - 3.3: d61926e6bef6c4d8105a2848362377dce91d7fc8
+   - '2.6': e5567ccc863cadb68f5e57a2760e021e0d3807cf
+   - '3.3': d61926e6bef6c4d8105a2848362377dce91d7fc8
   description: |
     Python 2.6 through 3.2 creates ``~/.pypirc`` configuration file with
     world-readable permissions before changing them after data has been
@@ -591,7 +591,7 @@
   bpo: 11442
   reported-by: email received on the Python security list
   fixed-in:
-   - 2.5: 3853586e0caa0d5c4342ac8bd7e78cb5766fa8cc
+   - '2.5': 3853586e0caa0d5c4342ac8bd7e78cb5766fa8cc
   description: |
     The ``list_directory()`` function in ``Lib/SimpleHTTPServer.py`` in
     ``SimpleHTTPServer`` in Python before 2.5.6c1, 2.6.x before 2.6.7 rc2, and
@@ -605,7 +605,7 @@
   cve: CVE-2011-1015
   bpo: 2254
   fixed-in:
-   - 2.7: 923ba361d8f757f0656cfd216525aca4848e02aa
+   - '2.7': 923ba361d8f757f0656cfd216525aca4848e02aa
   description: |
     The ``is_cgi()`` method in ``CGIHTTPServer.py`` in the ``CGIHTTPServer``
     module in Python 2.5, 2.6, and 3.0 allows remote attackers to read script
@@ -619,9 +619,9 @@
    - CVE-2010-3493
   bpo: 6706
   fixed-in:
-   - 2.7: 19e9fefc660d623ce7c31fb008cde1157ae12aba
-   - 3.1: 5ea3d0f95b51009fa1c3409e7dd1c12006427ccc
-   - 3.2: 977c707b425ee753d54f3e9010f07ec77ef61274
+   - '2.7': 19e9fefc660d623ce7c31fb008cde1157ae12aba
+   - '3.1': 5ea3d0f95b51009fa1c3409e7dd1c12006427ccc
+   - '3.2': 977c707b425ee753d54f3e9010f07ec77ef61274
   description: |
     CVE-2010-3492: The ``asyncore`` module in Python before 3.2 does not properly handle
     unsuccessful calls to the accept function, and does not have accompanying
@@ -643,9 +643,9 @@
   cve: CVE-2010-2089
   bpo: 7673
   fixed-in:
-   - 2.6: e9123efa21a16584758b5ce7da93d3966cf0cd81
-   - 3.1: 8e42fb7ada3198e66d3f060c5c87c52465a86e36
-   - 3.2: bc5c54bca24fdb1fcf7fa055831ec997a65f3ce8
+   - '2.6': e9123efa21a16584758b5ce7da93d3966cf0cd81
+   - '3.1': 8e42fb7ada3198e66d3f060c5c87c52465a86e36
+   - '3.2': bc5c54bca24fdb1fcf7fa055831ec997a65f3ce8
   description: |
     The ``audioop`` module in Python 2.7 and 3.2 does not verify the relationships
     between size arguments and byte string lengths, which allows
@@ -659,10 +659,10 @@
   cve: CVE-2010-1634
   bpo: 8674
   fixed-in:
-   - 2.6: 7ceb497ae6f554274399bd9916ea5a21de443208
-   - 2.7: 11bb2cdc6aa8db142a87de281b83293d500847b2
-   - 3.1: ee289e6cd5c009e641ee970cfc67996d8f871221
-   - 3.2: 393b97a7b61583f3e0401f385da8b741ef1684d6
+   - '2.6': 7ceb497ae6f554274399bd9916ea5a21de443208
+   - '2.7': 11bb2cdc6aa8db142a87de281b83293d500847b2
+   - '3.1': ee289e6cd5c009e641ee970cfc67996d8f871221
+   - '3.2': 393b97a7b61583f3e0401f385da8b741ef1684d6
   description: |
     Multiple integer overflows in ``audioop.c`` in the ``audioop`` module in Python
     2.6, 2.7, 3.1, and 3.2 allow context-dependent attackers to cause a denial
@@ -693,8 +693,8 @@
    # rgbimg and imageop modules were removed in Python 3
    - '2.0'
   fixed-in:
-   - 2.5: 4df1b6d478020ac51c84467f47e42083f53adbad
-   - 2.6: 93ebfb154456daa841aa223bd296422787b3074c
+   - '2.5': 4df1b6d478020ac51c84467f47e42083f53adbad
+   - '2.6': 93ebfb154456daa841aa223bd296422787b3074c
   description: |
     Multiple integer overflows in the ``imageop`` module in Python 2.5.1 and
     earlier allow context-dependent attackers to cause a denial of service
@@ -712,9 +712,9 @@
   cve: CVE-2008-3143
   bpo: 2620
   fixed-in:
-   - 2.5: 83ac0144fa3041556aa4f3952ebd979e0189a19c
-   - 2.6: 0470bab69783c13447cb634fa403ef1067fe56d1
-   - 3.1: d492ad80c872d264ed46bec71e31a00f174ac819
+   - '2.5': 83ac0144fa3041556aa4f3952ebd979e0189a19c
+   - '2.6': 0470bab69783c13447cb634fa403ef1067fe56d1
+   - '3.1': d492ad80c872d264ed46bec71e31a00f174ac819
   description: |
     Multiple integer overflows in Python before 2.5.2 might allow
     context-dependent attackers to have an unknown impact via vectors related
@@ -760,9 +760,9 @@
   disclosure: "2008-03-11 (commit date)"
   reported-by: Chris Evans
   fixed-in:
-   - 2.5: 44a93e54f4b0f90634d16d53c437fabb6946ea9d
-   - 2.6: 5bdff60617e6fc1d2e387a0b165cb23b82d7dae6
-   - 3.0: dd15f6c315f20c1a9a540dd757cd63e27dbe9f3c
+   - '2.5': 44a93e54f4b0f90634d16d53c437fabb6946ea9d
+   - '2.6': 5bdff60617e6fc1d2e387a0b165cb23b82d7dae6
+   - '3.0': dd15f6c315f20c1a9a540dd757cd63e27dbe9f3c
   description: |
     Multiple integer overflows in Python 2.2.3 through 2.5.1, and 2.6, allow
     context-dependent attackers to have an unknown impact via a large integer
@@ -790,8 +790,8 @@
   disclosure: "2008-07-31 (commit)"
   reported-by: Apple
   fixed-in:
-   - 2.6: e7d8be80ba634fa15ece6f503c33592e0d333361
-   - 2.7: 3ce5d9207e66d61d4b0502cf47ed2d2bcdd2212f
+   - '2.6': e7d8be80ba634fa15ece6f503c33592e0d333361
+   - '2.7': 3ce5d9207e66d61d4b0502cf47ed2d2bcdd2212f
   description: |
     Security patches from Apple: prevent integer overflows when allocating
     memory.
@@ -819,12 +819,12 @@
    - https://bugs.python.org/issue30610
   reported-by: "2016-05-27 (expat bug #537 reported)"
   fixed-in:
-   - 3.7: 23ec4b57e1359f9c539b8defc317542173ae087e
-   - 3.6: 86b95370c45dedb8a56c9894372a43681de47a73
-   - 3.5: 8c797ed8a0fea5e3162b9415f13e270d4d5d9549
-   - 3.4: 71572bbe82aa0836c036d44d41c8269ba6a321be
-   - 3.3: ab90986600ba7dea2aa41e5c1773791070725453
-   - 2.7: 0e4571a68a7f48e8469ef05b04ba3463d3fd82c0
+   - '3.7': 23ec4b57e1359f9c539b8defc317542173ae087e
+   - '3.6': 86b95370c45dedb8a56c9894372a43681de47a73
+   - '3.5': 8c797ed8a0fea5e3162b9415f13e270d4d5d9549
+   - '3.4': 71572bbe82aa0836c036d44d41c8269ba6a321be
+   - '3.3': ab90986600ba7dea2aa41e5c1773791070725453
+   - '2.7': 0e4571a68a7f48e8469ef05b04ba3463d3fd82c0
   description: |
     The Expat XML parser mishandles certain kinds of malformed input documents,
     resulting in buffer overflows during processing and error reporting. The
@@ -846,12 +846,12 @@
     - https://github.com/libexpat/libexpat/blob/R_2_2_1/expat/Changes
   disclosure: "2017-06-17 (Expat 2.2.1 release)"
   fixed-in:
-   - 3.7: 5ff7132313eb651107b179d20218dfe5d4e47f13
-   - 3.6: ea1ab803ddc14ab02ffed50ecc5089897f259623
-   - 3.5: 91d171be45942d37a973b0675521b5159a96be31
-   - 3.4: 71572bbe82aa0836c036d44d41c8269ba6a321be
-   - 3.3: ab90986600ba7dea2aa41e5c1773791070725453
-   - 2.7: 2ada64d2a073f85f135461833952dbe8d656810d
+   - '3.7': 5ff7132313eb651107b179d20218dfe5d4e47f13
+   - '3.6': ea1ab803ddc14ab02ffed50ecc5089897f259623
+   - '3.5': 91d171be45942d37a973b0675521b5159a96be31
+   - '3.4': 71572bbe82aa0836c036d44d41c8269ba6a321be
+   - '3.3': ab90986600ba7dea2aa41e5c1773791070725453
+   - '2.7': 2ada64d2a073f85f135461833952dbe8d656810d
   description: |
     Upgrade expat copy from 2.2.0 to 2.2.1 to get fixes of multiple security
     vulnerabilities including:
@@ -869,12 +869,12 @@
   slug: env-var-injection-subprocess-windows
   bpo: 30730
   fixed-in:
-   - 3.7: d174d24a5d37d1516b885dc7c82f71ecd5930700
-   - 3.6: a9b16cff35811f88cdfeb4f50758140dfff36ebc
-   - 3.5: a7c0264735f46afab13771be4218d8eab0d7dc91
-   - 3.4: fe82c46327effc124ff166e1fa1e611579e1176b
-   - 3.3: e46f1c19642ea1882f427d8246987ba49351a97d
-   - 2.7: 9dda2caca8edc7ff1285f6b0d1c5279b51854b7d
+   - '3.7': d174d24a5d37d1516b885dc7c82f71ecd5930700
+   - '3.6': a9b16cff35811f88cdfeb4f50758140dfff36ebc
+   - '3.5': a7c0264735f46afab13771be4218d8eab0d7dc91
+   - '3.4': fe82c46327effc124ff166e1fa1e611579e1176b
+   - '3.3': e46f1c19642ea1882f427d8246987ba49351a97d
+   - '2.7': 9dda2caca8edc7ff1285f6b0d1c5279b51854b7d
   description: |
     On Windows, prevent passing invalid environment variables and command
     arguments to subprocess.Popen.
@@ -895,9 +895,9 @@
   bpo: 29169
   reported-at: "2017-01-02 (zlib 1.2.10 released)"
   fixed-in:
-   - 2.7: 80b24a9354c60f6b800d462c941c6d4cde3cf783
-   - 3.4: d0e61bded5256e775e470e2c0da22367a1a81970
-   - 3.5: 34e7e2ecb1741850190e78f42875480693d3537b
+   - '2.7': 80b24a9354c60f6b800d462c941c6d4cde3cf783
+   - '3.4': d0e61bded5256e775e470e2c0da22367a1a81970
+   - '3.5': 34e7e2ecb1741850190e78f42875480693d3537b
    # Python 3.3 uses zlib 1.2.5 and is not going to be fixed:
    # https://github.com/python/cpython/pull/3108
   description: |
@@ -914,12 +914,12 @@
   slug: expat-2.2.3
   bpo: 30947
   fixed-in:
-   - 2.7: ec4ab09b7c0b5070bdb27351f979cbecc4636245
-   - 3.3: 297516ea509c72d8ebed3a9b3ce200f023aca0b7 # expat 2.2.1 to 2.2.4
-   - 3.4: 86a713cb0c110b6798ca7f9e630fc511ee0a4028
-   - 3.5: f2492bb6aae061aea47e21fc7e56b7ab9bfdf543
-   - 3.6: 83e37e16f3065086d721d4e62a3788e01db3431c
-   - 3.7: 93d0cb58b4da2a88c56f472c6c19491cc7a390df
+   - '2.7': ec4ab09b7c0b5070bdb27351f979cbecc4636245
+   - '3.3': 297516ea509c72d8ebed3a9b3ce200f023aca0b7 # expat 2.2.1 to 2.2.4
+   - '3.4': 86a713cb0c110b6798ca7f9e630fc511ee0a4028
+   - '3.5': f2492bb6aae061aea47e21fc7e56b7ab9bfdf543
+   - '3.6': 83e37e16f3065086d721d4e62a3788e01db3431c
+   - '3.7': 93d0cb58b4da2a88c56f472c6c19491cc7a390df
   description: |
    Expat 2.2.2 was released with multiple security fixes:
 
@@ -942,9 +942,9 @@
   cve: CVE-2017-1000158
   bpo: 30657
   fixed-in:
-   - 2.7: c3c9db89273fabc62ea1b48389d9a3000c1c03ae
-   - 3.4: 6c004b40f9d51872d848981ef1a18bb08c2dfc42
-   - 3.5: fd8614c5c5466a14a945db5b059c10c0fb8f76d9
+   - '2.7': c3c9db89273fabc62ea1b48389d9a3000c1c03ae
+   - '3.4': 6c004b40f9d51872d848981ef1a18bb08c2dfc42
+   - '3.5': fd8614c5c5466a14a945db5b059c10c0fb8f76d9
   affected-versions:
    # <2.7 and <3.4 is likely impacted as well
    - '2.7'
@@ -970,11 +970,11 @@
   # os.symlink() is not available on Windows in Python 2.7
    - "3.2"
   fixed-in:
-    - 3.8: 6921e73e33edc3c61bc2d78ed558eaa22a89a564
-    - 3.7: 96fdbacb7797a564249fd59ccf86ec153c4bb095
-    - 3.6: baa45079466eda1f5636a6d13f3a60c2c00fdcd3
-    - 3.4: 77c02cdce2d7b8360771be35b7676a4977e070c1
-    - 3.5: f381cfe07d15d52f27de771a62a8167668f0dd51
+    - '3.8': 6921e73e33edc3c61bc2d78ed558eaa22a89a564
+    - '3.7': 96fdbacb7797a564249fd59ccf86ec153c4bb095
+    - '3.6': baa45079466eda1f5636a6d13f3a60c2c00fdcd3
+    - '3.4': 77c02cdce2d7b8360771be35b7676a4977e070c1
+    - '3.5': f381cfe07d15d52f27de771a62a8167668f0dd51
   description: |
     On February 27th, 2018, the Python Security Response team was notified
     of a buffer overflow issue in the ``os.symlink()`` method on Windows. The
@@ -1018,12 +1018,12 @@
   # Bug number at bugs.python.org (bpo)
   bpo: 32981
   fixed-in:
-    - 3.8: 0e6c8ee2358a2e23117501826c008842acb835ac
-    - 3.7: 0902a2d6b2d1d9dbde36aeaaccf1788ceaa97143
-    - 3.6: c9516754067d71fd7429a25ccfcb2141fc583523
-    - 3.5: 937ac1fe069a4dc8471dff205f553d82e724015b
-    - 3.4: 942cc04ae44825ea120e3a19a80c9b348b8194d0
-    - 2.7: e052d40cea15f582b50947f7d906b39744dc62a2
+    - '3.8': 0e6c8ee2358a2e23117501826c008842acb835ac
+    - '3.7': 0902a2d6b2d1d9dbde36aeaaccf1788ceaa97143
+    - '3.6': c9516754067d71fd7429a25ccfcb2141fc583523
+    - '3.5': 937ac1fe069a4dc8471dff205f553d82e724015b
+    - '3.4': 942cc04ae44825ea120e3a19a80c9b348b8194d0
+    - '2.7': e052d40cea15f582b50947f7d906b39744dc62a2
   description: |
     Regexes in difflib and poplib were vulnerable to catastrophic backtracking.
     These regexes formed potential DOS vectors (REDOS). They have been
@@ -1042,7 +1042,7 @@
     - https://access.redhat.com/security/cve/cve-2018-1000030
   reported-by: "email to PSRT"
   fixed-in:
-   - 2.7: dbf52e02f18dac6f5f0a64f78932f3dc6efc056b
+   - '2.7': dbf52e02f18dac6f5f0a64f78932f3dc6efc056b
   affected-versions:
    - "2.7"
   description: |
@@ -1062,7 +1062,7 @@
   cve: CVE-2013-1752
   bpo: 16039
   fixed-in:
-   - 2.7: 16d63202af35dadd652a5e3eae687ea709e95b11
+   - '2.7': 16d63202af35dadd652a5e3eae687ea709e95b11
   affected-versions:
    - "2.7"
   description: |
@@ -1075,12 +1075,12 @@
   cve: CVE-2018-14647
   bpo: 34623
   fixed-in:
-   - 3.8: cb5778f00ce48631c7140f33ba242496aaf7102b
-   - 3.7: 470a435f3b42c9be5fdb7f7b04f3df5663ba7305
-   - 3.6: f7666e828cc3d5873136473ea36ba2013d624fa1
-   - 3.5: d16eaf36795da48b930b80b20d3805bc27820712
-   - 3.4: 41b48e71ac8a71f56694b548f118bd20ce203410
-   - 2.7: 18b20bad75b4ff0486940fba4ec680e96e70f3a2
+   - '3.8': cb5778f00ce48631c7140f33ba242496aaf7102b
+   - '3.7': 470a435f3b42c9be5fdb7f7b04f3df5663ba7305
+   - '3.6': f7666e828cc3d5873136473ea36ba2013d624fa1
+   - '3.5': d16eaf36795da48b930b80b20d3805bc27820712
+   - '3.4': 41b48e71ac8a71f56694b548f118bd20ce203410
+   - '2.7': 18b20bad75b4ff0486940fba4ec680e96e70f3a2
   links:
    - https://bugzilla.redhat.com/show_bug.cgi?id=1632095
   description: |
@@ -1097,12 +1097,12 @@
   reported-at: "2019-01-15"
   reported-by: "Colin Read and Nicolas Edet of Cisco."
   fixed-in:
-   - 3.8: a37f52436f9aa4b9292878b72f3ff1480e2606c3
-   - 3.7: be5de958e9052e322b0087c6dba81cdad0c3e031
-   - 3.6: 216a4d83c3b72f4fdcd81b588dc3f42cc461739a
-   - 3.5: efec7631edf3b9480dc3988c97ffef94df8800da
-   - 3.4: 6c655ce34ae54adb8eef22b73108e22cc381cb8d
-   - 2.7: 06b15424b0dcacb1c551b2a36e739fffa8d0c595
+   - '3.8': a37f52436f9aa4b9292878b72f3ff1480e2606c3
+   - '3.7': be5de958e9052e322b0087c6dba81cdad0c3e031
+   - '3.6': 216a4d83c3b72f4fdcd81b588dc3f42cc461739a
+   - '3.5': efec7631edf3b9480dc3988c97ffef94df8800da
+   - '3.4': 6c655ce34ae54adb8eef22b73108e22cc381cb8d
+   - '2.7': 06b15424b0dcacb1c551b2a36e739fffa8d0c595
   links:
    - https://blog.talosintelligence.com/2019/01/vulnerability-spotlight-pythonorg.html
   description: |
@@ -1154,11 +1154,11 @@
   affected-versions:
    - "3.0"
   fixed-in:
-   - 3.8: a4ae828ee416a66d8c7bf5ee71d653c2cc6a26dd
-   - 3.7: ef4306b24c9034d6b37bb034e2ebe82e745d4b77
-   - 3.6: 71a9c65e74a70b6ed39adc4ba81d311ac1aa2acc
-   - 3.5: ef33dd6036aafbd3f06c1d56e2b1a81dae3da63c
-   - 3.4: 4b42d575bf0fb01192b3ec54b7e224b238691527
+   - '3.8': a4ae828ee416a66d8c7bf5ee71d653c2cc6a26dd
+   - '3.7': ef4306b24c9034d6b37bb034e2ebe82e745d4b77
+   - '3.6': 71a9c65e74a70b6ed39adc4ba81d311ac1aa2acc
+   - '3.5': ef33dd6036aafbd3f06c1d56e2b1a81dae3da63c
+   - '3.4': 4b42d575bf0fb01192b3ec54b7e224b238691527
   description: |
     A bug in ``pickle.load()`` function can cause memory exhaustion denial of
     service.
@@ -1168,12 +1168,12 @@
   description: |
   bpo: 34791
   fixed-in:
-   - 3.8: 223e501fb9c2b6ae21b96054e20c4c31d94a5d96
-   - 3.7: c119d5948f941d2f528dda3f099e196bd6383000
-   - 3.6: 5e808f92ea4eb238b17757526b99f97debf7dd57
-   - 3.5: 7cd08cf62086a8a2d84fd825dfcd8bfe33bf1986
-   - 3.4: 765d333512e9b58da4a4431595a0e81517ef0443
-   - 2.7: 2546ac8eeb56fc146adea9a03158440a9271714e
+   - '3.8': 223e501fb9c2b6ae21b96054e20c4c31d94a5d96
+   - '3.7': c119d5948f941d2f528dda3f099e196bd6383000
+   - '3.6': 5e808f92ea4eb238b17757526b99f97debf7dd57
+   - '3.5': 7cd08cf62086a8a2d84fd825dfcd8bfe33bf1986
+   - '3.4': 765d333512e9b58da4a4431595a0e81517ef0443
+   - '2.7': 2546ac8eeb56fc146adea9a03158440a9271714e
   description: |
     On two occasions, the xml package uses environment variables to override
     parser / DOM implementations: ``xml.sax package`` and ``xml.dom.domreg``
@@ -1188,11 +1188,11 @@
   cve: CVE-2019-9636
   bpo: 36216
   fixed-in:
-   - 3.8: 16e6f7dee7f02bb81aa6b385b982dcdda5b99286
-   - 3.7: daad2c482c91de32d8305abbccc76a5de8b3a8be
-   - 3.6: 23fc0416454c4ad5b9b23d520fbe6d89be3efc24
-   - 3.5: c0d95113b070799679bcb9dc49d4960d82e8bb08
-   - 2.7: e37ef41289b77e0f0bb9a6aedb0360664c55bdd5
+   - '3.8': 16e6f7dee7f02bb81aa6b385b982dcdda5b99286
+   - '3.7': daad2c482c91de32d8305abbccc76a5de8b3a8be
+   - '3.6': 23fc0416454c4ad5b9b23d520fbe6d89be3efc24
+   - '3.5': c0d95113b070799679bcb9dc49d4960d82e8bb08
+   - '2.7': e37ef41289b77e0f0bb9a6aedb0360664c55bdd5
   description: |
     URLs encoded with Punycode/IDNA use NFKC normalization to decompose
     characters. This can result in some characters introducing new segments
@@ -1208,11 +1208,11 @@
   reported-at: "2019-06-03 (email to PSRT)"
   reported-by: "Riccardo Schirone (Red Hat)"
   fixed-in:
-   - 3.8: 8d0ef0b5edeae52960c7ed05ae8a12388324f87e
-   - 3.7: 250b62acc59921d399f0db47db3b462cd6037e09
-   - 3.6: fd1771dbdd28709716bd531580c40ae5ed814468
-   - 3.5: 4655d576141ee56a69d2052431c636858fcb916a
-   - 2.7: f61599b050c621386a3fc6bc480359e2d3bb93de
+   - '3.8': 8d0ef0b5edeae52960c7ed05ae8a12388324f87e
+   - '3.7': 250b62acc59921d399f0db47db3b462cd6037e09
+   - '3.6': fd1771dbdd28709716bd531580c40ae5ed814468
+   - '3.5': 4655d576141ee56a69d2052431c636858fcb916a
+   - '2.7': f61599b050c621386a3fc6bc480359e2d3bb93de
   description: |
     Follow up of the urllib NFKC normalization vulnerability: the fix ignored
     the user/password before ``@`` whereas it still allowed to exploit the
@@ -1225,11 +1225,11 @@
   cve: CVE-2019-9948
   bpo: 35907
   fixed-in:
-   - 2.7: b15bde8058e821b383d81fcae68b335a752083ca
-   - 3.8: 0c2b6a3943aa7b022e8eb4bfd9bffcddebf9a587
-   - 3.7: 34bab215596671d0dec2066ae7d7450cd73f638b
-   - 3.6: 4f06dae5d8d4400ba38d8502da620f07d4a5696e
-   - 3.5: 4fe82a8eef7aed60de05bfca0f2c322730ea921e
+   - '2.7': b15bde8058e821b383d81fcae68b335a752083ca
+   - '3.8': 0c2b6a3943aa7b022e8eb4bfd9bffcddebf9a587
+   - '3.7': 34bab215596671d0dec2066ae7d7450cd73f638b
+   - '3.6': 4f06dae5d8d4400ba38d8502da620f07d4a5696e
+   - '3.5': 4fe82a8eef7aed60de05bfca0f2c322730ea921e
   description: |
     urllib in Python 2.x through 2.7.16 supports the ``local_file:`` scheme,
     which makes it easier for remote attackers to bypass protection mechanisms
@@ -1243,11 +1243,11 @@
    - CVE-2019-9947
   bpo: 30458
   fixed-in:
-   - 3.8: c4e671eec20dfcb29b18596a89ef075f826c9f96
-   - 3.7: 7e200e0763f5b71c199aaf98bd5588f291585619
-   - 3.6: c50d437e942d4c4c45c8cd76329b05340c02eb31
-   - 3.5: afe3a4975cf93c97e5d6eb8800e48f368011d37a
-   - 2.7: bb8071a4cae5ab3fe321481dd3d73662ffb26052
+   - '3.8': c4e671eec20dfcb29b18596a89ef075f826c9f96
+   - '3.7': 7e200e0763f5b71c199aaf98bd5588f291585619
+   - '3.6': c50d437e942d4c4c45c8cd76329b05340c02eb31
+   - '3.5': afe3a4975cf93c97e5d6eb8800e48f368011d37a
+   - '2.7': bb8071a4cae5ab3fe321481dd3d73662ffb26052
   description: |
     HTTP Header Injection, follow-up of CVE-2016-5699.
 
@@ -1265,9 +1265,9 @@
   slug: email-fold-dos
   bpo: 33529
   fixed-in:
-   - 3.8: c1f5667be1e3ec5871560c677402c1252c6018a6
-   - 3.7: 2fef5b01e36a17e36fd7e65c4b51f5ede8880dda
-   - 3.6: 516a6a254814d2bc6a90290dfc44d77fdfb4050b
+   - '3.8': c1f5667be1e3ec5871560c677402c1252c6018a6
+   - '3.7': 2fef5b01e36a17e36fd7e65c4b51f5ede8880dda
+   - '3.6': 516a6a254814d2bc6a90290dfc44d77fdfb4050b
   affected-versions:
    - "3.6"
    - "3.7"
@@ -1282,12 +1282,12 @@
   slug: cookie-path-check
   bpo: 35647
   fixed-in:
-   - 3.8: 0e1f1f01058bd4a9b98cfe443214adecc019a38c
-   - 3.7: 97c7d78fda49e03fc773c171ce0c736d02bb73f5
-   - 3.6: 5565b1db6f37f244890369e0d68a3e906aca28b9
-   - 3.5: e260f092cd0d8975c777e73ca6fb549d59b5d452
-   - 3.4: 382981b25092b5e9285f1e4894142af1e8f2ca86
-   - 2.7: ee15aa2b8501718cb77e339381f72409a416f801
+   - '3.8': 0e1f1f01058bd4a9b98cfe443214adecc019a38c
+   - '3.7': 97c7d78fda49e03fc773c171ce0c736d02bb73f5
+   - '3.6': 5565b1db6f37f244890369e0d68a3e906aca28b9
+   - '3.5': e260f092cd0d8975c777e73ca6fb549d59b5d452
+   - '3.4': 382981b25092b5e9285f1e4894142af1e8f2ca86
+   - '2.7': ee15aa2b8501718cb77e339381f72409a416f801
   description: |
     Cookies of ``example.com`` with ``path=/any`` were sent to
     ``example.com/anybad/`` while using a cookiejar with
@@ -1304,9 +1304,9 @@
    - "3.8"
    - "3.9"
   fixed-in:
-   - 3.9: 477b1b25768945621d466a8b3f0739297a842439
-   - 3.8: 3cba3d3c55f230a59174a0dfcafb1d4685269e60
-   - 3.7: 070fae6d0ff49e63bfd5f2bdc66f8eb1df3b6557
+   - '3.9': 477b1b25768945621d466a8b3f0739297a842439
+   - '3.8': 3cba3d3c55f230a59174a0dfcafb1d4685269e60
+   - '3.7': 070fae6d0ff49e63bfd5f2bdc66f8eb1df3b6557
    # 3.7 also got: 024ea2170b7c1652a62cc7458e736c63d4970eb1
   description: |
     ``inet_aton()`` accepts trailing characters after a valid IP.  Because of
@@ -1340,12 +1340,12 @@
     - https://medium.com/@fs0c131y/tchap-the-super-not-secure-app-of-the-french-government-84b31517d144
     - https://twitter.com/fs0c131y/status/1119143946687434753
   fixed-in:
-   - 3.9: 8cb65d1381b027f0b09ee36bfed7f35bb4dec9a9
-   - 3.8: 217077440a6938a0b428f67cfef6e053c4f8673c
-   - 3.7: c48d606adcef395e59fd555496c42203b01dd3e8
-   - 3.6: 13a19139b5e76175bc95294d54afc9425e4f36c9
-   - 3.5: 063eba280a11d3c9a5dd9ee5abe4de640907951b
-   - 2.7: 4cbcd2f8c4e12b912e4d21fd892eedf7a3813d8e
+   - '3.9': 8cb65d1381b027f0b09ee36bfed7f35bb4dec9a9
+   - '3.8': 217077440a6938a0b428f67cfef6e053c4f8673c
+   - '3.7': c48d606adcef395e59fd555496c42203b01dd3e8
+   - '3.6': 13a19139b5e76175bc95294d54afc9425e4f36c9
+   - '3.5': 063eba280a11d3c9a5dd9ee5abe4de640907951b
+   - '2.7': 4cbcd2f8c4e12b912e4d21fd892eedf7a3813d8e
   description: |
     email.utils.parseaddr wrongly parse the From field of an email.
 
@@ -1359,12 +1359,12 @@
   bpo: 38243
   redhat-impact: "Moderate"
   fixed-in:
-   - 3.9: e8650a4f8c7fb76f570d4ca9c1fbe44e91c8dfaa
-   - 3.8: 6447b9f9bd27e1f6b04cef674dd3a7ab27bf4f28
-   - 3.7: 39a0c7555530e31c6941a78da19b6a5b61170687
-   - 3.6: 1698cacfb924d1df452e78d11a4bf81ae7777389
-   - 3.5: 3fe1b19265b55c290fc956e9aafcf661803782de
-   - 2.7: 8eb64155ff26823542ccf0225b3d57b6ae36ea89
+   - '3.9': e8650a4f8c7fb76f570d4ca9c1fbe44e91c8dfaa
+   - '3.8': 6447b9f9bd27e1f6b04cef674dd3a7ab27bf4f28
+   - '3.7': 39a0c7555530e31c6941a78da19b6a5b61170687
+   - '3.6': 1698cacfb924d1df452e78d11a4bf81ae7777389
+   - '3.5': 3fe1b19265b55c290fc956e9aafcf661803782de
+   - '2.7': 8eb64155ff26823542ccf0225b3d57b6ae36ea89
   description: |
     DocXMLRPCServer does not escape the server title.
 
@@ -1374,12 +1374,12 @@
   slug: cookiejar-redos
   bpo: 38804
   fixed-in:
-   - 3.9: 1b779bfb8593739b11cbb988ef82a883ec9d077e
-   - 3.8: a1e1be4c4969c7c20c8c958e5ab5279ae6a66a16
-   - 3.7: cb6085138a845f8324adc011b65754acc2086cc0
-   - 3.6: 0716056c49e9505041e30386dad9b2e788f67aaf
-   - 3.5: 55a6a16a46239a71b635584e532feb8b17ae7fdf
-   - 2.7: e6499033032d5b647e43a3b49da0c1c64b151743
+   - '3.9': 1b779bfb8593739b11cbb988ef82a883ec9d077e
+   - '3.8': a1e1be4c4969c7c20c8c958e5ab5279ae6a66a16
+   - '3.7': cb6085138a845f8324adc011b65754acc2086cc0
+   - '3.6': 0716056c49e9505041e30386dad9b2e788f67aaf
+   - '3.5': 55a6a16a46239a71b635584e532feb8b17ae7fdf
+   - '2.7': e6499033032d5b647e43a3b49da0c1c64b151743
   links:
    - https://access.redhat.com/security/cve/CVE-2019-16935
   description: |
@@ -1403,10 +1403,10 @@
    - '3.8'
    - '3.9'
   fixed-in:
-   - 3.9: 6a65eba44bfd82ccc8bed4b5c6dd6637549955d5
-   - 3.8: ad4a20b87d79a619ffbdea3f26848780899494e5
-   - 3.7: 561c59777c8426fde0ef48b57cf02eddaeb2a5b8
-   - 3.6: 51332c467ed2e07a191f903d554d0c54248e4d88
+   - '3.9': 6a65eba44bfd82ccc8bed4b5c6dd6637549955d5
+   - '3.8': ad4a20b87d79a619ffbdea3f26848780899494e5
+   - '3.7': 561c59777c8426fde0ef48b57cf02eddaeb2a5b8
+   - '3.6': 51332c467ed2e07a191f903d554d0c54248e4d88
   description: |
     At Python startup, ``api-ms-win-core-path-l1-1-0.dll`` is loaded with
     LoadLibraryW() without ``LOAD_LIBRARY_SEARCH_xxx`` flags.
@@ -1422,11 +1422,11 @@
   reported-at: "2019-11-17 (bpo-38826)"
   reported-by: "Ben Caller and Matt Schwager"
   fixed-in:
-   - 3.9: 0b297d4ff1c0e4480ad33acae793fbaf4bf015b4
-   - 3.8: ea9e240aa02372440be8024acb110371f69c9d41
-   - 3.7: b57a73694e26e8b2391731b5ee0b1be59437388e
-   - 3.6: 69cdeeb93e0830004a495ed854022425b93b3f3e
-   - 3.5: 37fe316479e0b6906a74b0c0a5e495c55037fdfd
+   - '3.9': 0b297d4ff1c0e4480ad33acae793fbaf4bf015b4
+   - '3.8': ea9e240aa02372440be8024acb110371f69c9d41
+   - '3.7': b57a73694e26e8b2391731b5ee0b1be59437388e
+   - '3.6': 69cdeeb93e0830004a495ed854022425b93b3f3e
+   - '3.5': 37fe316479e0b6906a74b0c0a5e495c55037fdfd
   description: |
     The AbstractBasicAuthHandler class of the urllib.request module uses an
     inefficient regular expression (catastrophic backtracking) which can be
@@ -1437,12 +1437,12 @@
   cve: CVE-2019-18348
   bpo: 38576
   fixed-in:
-   - 3.9: 9165addc22d05e776a54319a8531ebd0b2fe01ef
-   - 3.8: ff69c9d12c1b06af58e5eae5db4630cedd94740e
-   - 3.7: 34f85af3229f86c004a954c3f261ceea1f5e9f95
-   - 3.6: 83fc70159b24f5b11a5ef87c9b05c2cf4c7faeba
-   - 3.5: 09d8172837b6985c4ad90ee025f6b5a554a9f0ac
-   - 2.7: e176e0c105786e9f476758eb5438c57223b65e7f
+   - '3.9': 9165addc22d05e776a54319a8531ebd0b2fe01ef
+   - '3.8': ff69c9d12c1b06af58e5eae5db4630cedd94740e
+   - '3.7': 34f85af3229f86c004a954c3f261ceea1f5e9f95
+   - '3.6': 83fc70159b24f5b11a5ef87c9b05c2cf4c7faeba
+   - '3.5': 09d8172837b6985c4ad90ee025f6b5a554a9f0ac
+   - '2.7': e176e0c105786e9f476758eb5438c57223b65e7f
   description: |
     http.client allows to pass control characters like CRLF newlines which can
     be abused to inject HTTP headers.
@@ -1451,11 +1451,11 @@
   slug: email-address-header-injection
   bpo: 39073
   fixed-in:
-   - 3.9: 614f17211c5fc0e5b828be1d3320661d1038fe8f
-   - 3.8: 75635c6095bcfbb9fccc239115d3d03ae20a307f
-   - 3.7: a93bf82980d7c02217a088bafa193f32a4d13abb
-   - 3.6: 7df32f844efed33ca781a016017eab7050263b90
-   - 3.5: f91a0b6df14d6c5133fe3d5889fad7d84fc0c046
+   - '3.9': 614f17211c5fc0e5b828be1d3320661d1038fe8f
+   - '3.8': 75635c6095bcfbb9fccc239115d3d03ae20a307f
+   - '3.7': a93bf82980d7c02217a088bafa193f32a4d13abb
+   - '3.6': 7df32f844efed33ca781a016017eab7050263b90
+   - '3.5': f91a0b6df14d6c5133fe3d5889fad7d84fc0c046
   description: |
     It is possible to inject email headers using CR or LF character.
 
@@ -1468,12 +1468,12 @@
   reported-at: "2019-11-28 (PSRT list)"
   reported-by: "Matthew Rollings"
   fixed-in:
-   - 3.9: a62ad4730c9b575f140f24074656c0257c86a09a
-   - 3.8: 8859fc629474ab1ca7eb2e67aec538097c327e58
-   - 3.7: 87f2d261ee1c63ed39517355833d087c5a78b4bf
-   - 3.6: 30afc91f5e70cf4748ffac77a419ba69ebca6f6a
-   - 3.5: 8835f465fa94f114dcf865429c0410821d365dae
-   - 2.7: a016d4e32cc9faa48105d00db275439c3dc93559
+   - '3.9': a62ad4730c9b575f140f24074656c0257c86a09a
+   - '3.8': 8859fc629474ab1ca7eb2e67aec538097c327e58
+   - '3.7': 87f2d261ee1c63ed39517355833d087c5a78b4bf
+   - '3.6': 30afc91f5e70cf4748ffac77a419ba69ebca6f6a
+   - '3.5': 8835f465fa94f114dcf865429c0410821d365dae
+   - '2.7': a016d4e32cc9faa48105d00db275439c3dc93559
   description: |
     Filenames passed to the UU encoding methods (uu.py and uu_codec.py) that
     contain a newline character will overflow data into the UU content section.
@@ -1491,12 +1491,12 @@
   reported-at: "2020-06-24 (email to PSRT)"
   reported-by: "Erdenebat (Eric) Gantumur"
   fixed-in:
-   - 3.10: dcbaa1b49cd9062fb9ba2b9d49555ac6cd8c60b5
-   - 3.9: 4981fe36c7477303de830e8dca929a02caaaffe4
-   - 3.8: aa7f7756149a10c64d01f583b71e91814db886ab
-   - 3.7: 110dd153662a13b8ae1bb06348e5b1f118ab26d7
-   - 3.6: 46cbf6148a46883110883488d3e9febbe46ba861
-   - 3.5: f205f1000a2d7f8b044caf281041b3705f293480
+   - '3.10': dcbaa1b49cd9062fb9ba2b9d49555ac6cd8c60b5
+   - '3.9': 4981fe36c7477303de830e8dca929a02caaaffe4
+   - '3.8': aa7f7756149a10c64d01f583b71e91814db886ab
+   - '3.7': 110dd153662a13b8ae1bb06348e5b1f118ab26d7
+   - '3.6': 46cbf6148a46883110883488d3e9febbe46ba861
+   - '3.5': f205f1000a2d7f8b044caf281041b3705f293480
   description: |
     CVE-2020-15523 is an invalid search path in Python 3.6 and later on
     Windows. It occurs during Py_Initialize() when the runtime attempts to
@@ -1532,12 +1532,12 @@
   cve: CVE-2020-14422
   bpo: 41004
   fixed-in:
-   - 3.10: b30ee26e366bf509b7538d79bfec6c6d38d53f28
-   - 3.8: dc8ce8ead182de46584cc1ed8a8c51d48240cbd5
-   - 3.9: 9a646aa82dfa62d70ca2a99ada901ee6cf9f82bd
-   - 3.7: b98e7790c77a4378ec4b1c71b84138cb930b69b7
-   - 3.6: cfc7ff8d05f7a949a88b8a8dd506fb5c1c30d3e9
-   - 3.5: 11d258ceafdf60ab3840f9a5700f2d0ad3e2e2d1
+   - '3.10': b30ee26e366bf509b7538d79bfec6c6d38d53f28
+   - '3.8': dc8ce8ead182de46584cc1ed8a8c51d48240cbd5
+   - '3.9': 9a646aa82dfa62d70ca2a99ada901ee6cf9f82bd
+   - '3.7': b98e7790c77a4378ec4b1c71b84138cb930b69b7
+   - '3.6': cfc7ff8d05f7a949a88b8a8dd506fb5c1c30d3e9
+   - '3.5': 11d258ceafdf60ab3840f9a5700f2d0ad3e2e2d1
   description: |
     In the ipaddress library there exists two classes IPv4Interface, and
     IPv6Interface. These classes' hash functions will always return 32 and 64
@@ -1556,12 +1556,12 @@
   cve: CVE-2019-20907
   bpo: 39017
   fixed-in:
-   - 3.5: cac9ca8ed99bd98f4c0dcd1913a146192bf5ee84
-   - 3.6: 47a2955589bdb1a114d271496ff803ad73f954b8
-   - 3.7: 79c6b602efc9a906c8496f3d5f4d54c54b48fa06
-   - 3.8: c55479556db015f48fc8bbca17f64d3e65598559
-   - 3.9: f3232294ee695492f43d424cc6969d018d49861d
-   - 3.10: 5a8d121a1f3ef5ad7c105ee378cc79a3eac0c7d4
+   - '3.5': cac9ca8ed99bd98f4c0dcd1913a146192bf5ee84
+   - '3.6': 47a2955589bdb1a114d271496ff803ad73f954b8
+   - '3.7': 79c6b602efc9a906c8496f3d5f4d54c54b48fa06
+   - '3.8': c55479556db015f48fc8bbca17f64d3e65598559
+   - '3.9': f3232294ee695492f43d424cc6969d018d49861d
+   - '3.10': 5a8d121a1f3ef5ad7c105ee378cc79a3eac0c7d4
   description: |
      Infinite loop in tarfile module while opening a crafted TAR archive in
      the PAX format with a length of zero.
@@ -1574,12 +1574,12 @@
   cve: CVE-2020-26116
   bpo: 39603
   fixed-in:
-   - 3.5: 524b8de630036a29ca340bc2ae6fd6dc7dda8f40
-   - 3.6: f02de961b9f19a5db0ead56305fe0057a78787ae
-   - 3.7: ca75fec1ed358f7324272608ca952b2d8226d11a
-   - 3.8: 668d321476d974c4f51476b33aaca870272523bf
-   - 3.9: 27b811057ff5e93b68798e278c88358123efdc71
-   - 3.10: 8ca8a2e8fb068863c1138f07e3098478ef8be12e
+   - '3.5': 524b8de630036a29ca340bc2ae6fd6dc7dda8f40
+   - '3.6': f02de961b9f19a5db0ead56305fe0057a78787ae
+   - '3.7': ca75fec1ed358f7324272608ca952b2d8226d11a
+   - '3.8': 668d321476d974c4f51476b33aaca870272523bf
+   - '3.9': 27b811057ff5e93b68798e278c88358123efdc71
+   - '3.10': 8ca8a2e8fb068863c1138f07e3098478ef8be12e
   description: |
     It is possible to inject HTTP headers via the HTTP method which doesn't
     reject newline characters.
@@ -1591,11 +1591,11 @@
   reported-at: "2020-10-05 (email sent to the PSRT list)"
   reported-by: "Florian Bruhin"
   fixed-in:
-   - 3.10: 2ef5caa58febc8968e670e39e3d37cf8eef3cab8
-   - 3.9: b664a1df4ee71d3760ab937653b10997081b1794
-   - 3.8: 6c6c256df3636ff6f6136820afaefa5a10a3ac33
-   - 3.7: 43e523103886af66d6c27cd72431b5d9d14cd2a9
-   - 3.6: e912e945f2960029d039d3390ea08835ad39374b
+   - '3.10': 2ef5caa58febc8968e670e39e3d37cf8eef3cab8
+   - '3.9': b664a1df4ee71d3760ab937653b10997081b1794
+   - '3.8': 6c6c256df3636ff6f6136820afaefa5a10a3ac33
+   - '3.7': 43e523103886af66d6c27cd72431b5d9d14cd2a9
+   - '3.6': e912e945f2960029d039d3390ea08835ad39374b
   links:
     - https://access.redhat.com/security/cve/CVE-2020-27619
   description: |
@@ -1626,11 +1626,11 @@
   slug: ctypes-buffer-overflow-pycarg_repr
   bpo: 42938
   fixed-in:
-   - 3.6: 34df10a9a16b38d54421eeeaf73ec89828563be7
-   - 3.7: d9b8f138b7df3b455b54653ca59f491b4840d6fa
-   - 3.8: ece5dfd403dac211f8d3c72701fe7ba7b7aa5b5f
-   - 3.9: c347cbe694743cee120457aa6626712f7799a932
-   - 3.10: 916610ef90a0d0761f08747f7b0905541f0977c7
+   - '3.6': 34df10a9a16b38d54421eeeaf73ec89828563be7
+   - '3.7': d9b8f138b7df3b455b54653ca59f491b4840d6fa
+   - '3.8': ece5dfd403dac211f8d3c72701fe7ba7b7aa5b5f
+   - '3.9': c347cbe694743cee120457aa6626712f7799a932
+   - '3.10': 916610ef90a0d0761f08747f7b0905541f0977c7
   description: |
     There's a buffer overflow in the ctypes ``PyCArg_repr()`` function.
 
@@ -1642,11 +1642,11 @@
    - https://snyk.io/blog/cache-poisoning-in-popular-open-source-packages/
    - https://snyk.io/vuln/SNYK-UPSTREAM-PYTHONCPYTHON-1074933
   fixed-in:
-   - 3.10: fcbe0cb04d35189401c0c880ebfb4311e952d776
-   - 3.9: c9f07813ab8e664d8c34413c4fc2d4f86c061a92
-   - 3.8: e3110c3cfbb7daa690d54d0eff6c264c870a71bf
-   - 3.7: d0d4d30882fe3ab9b1badbecf5d15d94326fd13e
-   - 3.6: 5c17dfc5d70ce88be99bc5769b91ce79d7a90d61
+   - '3.10': fcbe0cb04d35189401c0c880ebfb4311e952d776
+   - '3.9': c9f07813ab8e664d8c34413c4fc2d4f86c061a92
+   - '3.8': e3110c3cfbb7daa690d54d0eff6c264c870a71bf
+   - '3.7': d0d4d30882fe3ab9b1badbecf5d15d94326fd13e
+   - '3.6': 5c17dfc5d70ce88be99bc5769b91ce79d7a90d61
   reported-at: "2020-10-19 (email sent to the PSRT list)"
   reported-by: "Adam Goldschmidt (Snyk)"
   description: |

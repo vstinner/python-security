@@ -671,7 +671,8 @@ class Vulnerability:
                 continue
             if isinstance(branch, float):
                 # convert 3.2 (float) to '3.2' (str)
-                branch = '%.1f' % branch
+                raise Exception(f"Branch {branch!r} must be written "
+                                f"as a string in YAML")
             commit = Commit(revision, branch, date)
 
             versions = app.commit_tags.get_tags(commit.revision,
