@@ -1482,7 +1482,7 @@
 
     The fix removes newline characters from filenames.
 
-- name: "[CVE-2020-15523] _Py_CheckPython3 uses uninitialized dllpath when embedder sets module path with Py_SetPath"
+- name: "Py_SetPath(): _Py_CheckPython3 uses uninitialized DLL path"
   slug: pysetpath-python-dll-path
   # CVE can be a single string or a list
   cve: CVE-2020-15523
