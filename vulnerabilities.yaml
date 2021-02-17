@@ -1625,6 +1625,9 @@
 - name: "ctypes: Buffer overflow in PyCArg_repr"
   slug: ctypes-buffer-overflow-pycarg_repr
   bpo: 42938
+  cve: CVE-2021-3177
+  links:
+   - https://access.redhat.com/security/cve/cve-2021-3177
   fixed-in:
    - '3.6': 34df10a9a16b38d54421eeeaf73ec89828563be7
    - '3.7': d9b8f138b7df3b455b54653ca59f491b4840d6fa
