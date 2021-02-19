@@ -1664,5 +1664,5 @@
     would not include it in a cache key of an unkeyed parameter - such as
     `utm_*` parameters, which are usually unkeyed.
 
-    The fix is to only ampersands ``&`` as the only separator, and add
-    a *separator* parameter to chose the separator characters.
+    The fix is to only use ampersands ``&`` as separators, and add a
+    *separator* parameter to chose the separator characters.
