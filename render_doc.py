@@ -26,7 +26,7 @@ branches which get security fixes.
 OFFLINE = True
 
 CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
-CVE_URL = 'https://www.cvedetails.com/cve/%s/'
+CVE_URL = 'https://nvd.nist.gov/vuln/detail/%s/'
 CVE_API = 'http://cve.circl.lu/api/cve/%s'
 BPO_URL = 'https://bugs.python.org/issue%s'
 CVSS_SCORE_URL = 'https://nvd.nist.gov/cvss.cfm'
