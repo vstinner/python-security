@@ -1666,3 +1666,12 @@
 
     The fix is to only use ampersands ``&`` as separators, and add a
     *separator* parameter to chose the separator characters.
+
+- name: "Information disclosure via pydoc getfile"
+  slug: pydoc-getfile
+  bpo: 42988
+  description: |
+    Running "pydoc -p" allows other local users to extract arbitrary files.
+
+    The "/getfile?key=path" URL allows to read arbitrary file on the
+    filesystem.

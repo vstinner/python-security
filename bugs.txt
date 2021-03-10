@@ -324,3 +324,8 @@
     date: 2021-01-19.15:06:48.939
     title: '[CVE-2021-23336] urllib.parse.parse_qsl(): Web cache poisoning - semicolon
         as a query args separator'
+42988:
+    author: "Miro Hron\u010Dok"
+    date: 2021-01-21.12:18:37.585
+    title: '[security] Information disclosure via pydoc -p: /getfile?key=path allows
+        to read arbitrary file on the filesystem'
