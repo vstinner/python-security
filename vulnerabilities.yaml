@@ -1669,6 +1669,7 @@
 
 - name: "Information disclosure via pydoc getfile"
   slug: pydoc-getfile
+  cve: CVE-2021-3426
   bpo: 42988
   description: |
     Running "pydoc -p" allows other local users to extract arbitrary files.
