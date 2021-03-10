@@ -514,13 +514,10 @@ class CVERegistry:
 
     def dump(self):
         for number, cve in self.cves.items():
+            if cve is None:
+                continue
             filename = os.path.join(self.path, number + '.json')
-            if cve is not None:
-                dump_json(filename, cve)
-            else:
-                # create empty file
-                fp = open(filename, "wb")
-                fp.close()
+            dump_json(filename, cve)
 
     def get_cve(self, number):
         try:
@@ -536,6 +533,7 @@ class CVERegistry:
             data = data.decode('utf-8')
             cve = json.loads(data)
             if not cve:
+                print(f"WARNING: {url} returns empty JSON")
                 cve = None
             self.cves[number] = cve
             self.dump()
