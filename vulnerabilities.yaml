@@ -1671,6 +1671,10 @@
   slug: pydoc-getfile
   cve: CVE-2021-3426
   bpo: 42988
+  reported-at: "2021-01-19"
+  reported-by: "David Schwörer (on the Fedora bugzilla)"
+  links:
+    - https://bugzilla.redhat.com/show_bug.cgi?id=1917807
   description: |
     Running "pydoc -p" allows other local users to extract arbitrary files.
 
