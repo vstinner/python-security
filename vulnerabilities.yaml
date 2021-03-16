@@ -13,8 +13,8 @@
 #   reported-at: ""
 #   reported-by: ""
 #   fixed-in:
-#    - branch: commit_sha1
-#    - branch: commit_sha1
+#    - '3.x': commit_sha1
+#    - '3.y': commit_sha1
 #   affected-versions:
 #    - "x.y"
 #   description: |
@@ -1680,3 +1680,23 @@
 
     The "/getfile?key=path" URL allows to read arbitrary file on the
     filesystem.
+
+- name: "ftplib should not use the host from the PASV response"
+  slug: ftplib-pasv
+  bpo: 43285
+  fixed-in:
+   - '3.10': 0ab152c6b5d95caa2dc1a30fa96e10258b5f188e
+   - '3.9': 7dcb4baa4f0fde3aef5122a8e9f6a41853ec9335
+   - '3.8': 664d1d16274b47eea6ec92572e1ebf3939a6fa0c
+   # 3.7: https://github.com/python/cpython/pull/24883
+   # 3.6: https://github.com/python/cpython/pull/24882
+  description: |
+    The IPv4 address value returned from the server in response to the PASV
+    command should not be trusted. This prevents a malicious FTP server from
+    using the response to probe IPv4 address and port combinations on the
+    client network.
+
+    Instead of using the returned address, we use the IP address we're already
+    connected to. This is the strategy other ftp clients adopted, and matches
+    the only strategy available for the modern IPv6 EPSV command where the
+    server response must return a port number and nothing else.

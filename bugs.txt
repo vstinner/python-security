@@ -329,3 +329,7 @@
     date: 2021-01-21.12:18:37.585
     title: '[security] Information disclosure via pydoc -p: /getfile?key=path allows
         to read arbitrary file on the filesystem'
+43285:
+    author: confd0
+    date: 2021-02-21.11:49:34.565
+    title: ftplib should not use the host from the PASV response
