@@ -1684,6 +1684,8 @@
 - name: "ftplib should not use the host from the PASV response"
   slug: ftplib-pasv
   bpo: 43285
+  links:
+    - "curl vulnerability: `CVE-2020-8284: trusting FTP PASV responses <https://hackerone.com/reports/1040166>`_."
   fixed-in:
    - '3.10': 0ab152c6b5d95caa2dc1a30fa96e10258b5f188e
    - '3.9': 7dcb4baa4f0fde3aef5122a8e9f6a41853ec9335
