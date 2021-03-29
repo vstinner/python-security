@@ -1675,6 +1675,12 @@
   reported-by: "David Schwörer (on the Fedora bugzilla)"
   links:
     - https://bugzilla.redhat.com/show_bug.cgi?id=1917807
+  fixed-in:
+   - '3.10': 9b999479c0022edfc9835a8a1f06e046f3881048
+   - '3.9': ed753d94856213ae9fc028195f670e66a24e2334
+   - '3.8': 7e38d3309e0a5a7b9e23ef933aef0079c6e317f7
+   - '3.7': 7c2284f97d140c4e4a85382bfb3a42440be2464d
+   - '3.6': 5b1e50256b6532667b6d31debc350f6c7d3f30aa
   description: |
     Running "pydoc -p" allows other local users to extract arbitrary files.
 
@@ -1690,8 +1696,8 @@
    - '3.10': 0ab152c6b5d95caa2dc1a30fa96e10258b5f188e
    - '3.9': 7dcb4baa4f0fde3aef5122a8e9f6a41853ec9335
    - '3.8': 664d1d16274b47eea6ec92572e1ebf3939a6fa0c
-   # 3.7: https://github.com/python/cpython/pull/24883
-   # 3.6: https://github.com/python/cpython/pull/24882
+   - '3.7': 79373951b3eab585d42e0f0ab83718cbe1d0ee33
+   - '3.6': 4134f154ae2f621f25c5d698cc0f1748035a1b88
   description: |
     The IPv4 address value returned from the server in response to the PASV
     command should not be trusted. This prevents a malicious FTP server from
