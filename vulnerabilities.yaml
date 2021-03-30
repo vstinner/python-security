@@ -1708,3 +1708,13 @@
     connected to. This is the strategy other ftp clients adopted, and matches
     the only strategy available for the modern IPv6 EPSV command where the
     server response must return a port number and nothing else.
+
+- name: "ipaddress leading zeros in IPv4 address"
+  slug: ipaddress-ipv4-leading-zeros
+  bpo: 36384
+  links:
+    - https://sick.codes/universal-netmask-npm-package-used-by-270000-projects-vulnerable-to-octal-input-data-server-side-request-forgery-remote-file-inclusion-local-file-inclusion-and-more-cve-2021-28918/
+  fixed-in:
+   #- '3.x': commit_sha1
+  description: |
+    The ipaddress module accepts leading zeros in IPv4 addresses.
