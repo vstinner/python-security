@@ -258,6 +258,11 @@
     author: JUN-WEI SONG
     date: 2019-03-11.07:16:58.562
     title: '[security] CVE-2019-9674: Zip Bomb vulnerability'
+36384:
+    author: Joel Croteau
+    date: 2019-03-20.23:40:09.274
+    title: ipaddress Should not reject IPv4 addresses with leading zeroes as ambiguously
+        octal
 36742:
     author: Chihiro Ito
     date: 2019-04-27.12:30:16.745
