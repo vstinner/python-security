@@ -1709,11 +1709,16 @@
     the only strategy available for the modern IPv6 EPSV command where the
     server response must return a port number and nothing else.
 
-- name: "ipaddress leading zeros in IPv4 address"
+- name: "python stdlib ipaddress - Improper Input Validation of octal literals in python 3.8.0 thru v3.10 results in indeterminate SSRF & RFI vulnerabilities. -- ipaddress leading zeros in IPv4 address"
   slug: ipaddress-ipv4-leading-zeros
   bpo: 36384
   cve: CVE-2021-29921
+  reported-by: "Joel Croteau, Victor Viale, Sick Codes, Kelly Kaoudis, John Jackson and Nick Sahler"
   links:
+    - https://github.com/sickcodes/security/blob/master/advisories/SICK-2021-014.md
+    - https://sick.codes/sick-2021-014
+    - https://github.com/python/cpython/pull/12577
+    - https://github.com/python/cpython/pull/25099
     - https://sick.codes/universal-netmask-npm-package-used-by-270000-projects-vulnerable-to-octal-input-data-server-side-request-forgery-remote-file-inclusion-local-file-inclusion-and-more-cve-2021-28918/
   fixed-in:
    #- '3.x': commit_sha1
