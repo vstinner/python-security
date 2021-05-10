@@ -1432,6 +1432,8 @@
     inefficient regular expression (catastrophic backtracking) which can be
     exploited by an attacker to cause a denial of service.
 
+    See also https://bugs.python.org/issue43075
+
 - name: "CVE-2019-18348: CRLF injection via the host part of the url passed to urlopen()"
   slug: urlopen-host-http-header-injection
   cve: CVE-2019-18348
