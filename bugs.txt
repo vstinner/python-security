@@ -220,7 +220,7 @@
 34155:
     author: "Cyril Nicod\xE8me"
     date: 2018-07-19.14:53:43.641
-    title: email.utils.parseaddr mistakenly parse an email
+    title: '[CVE-2019-16056] email.utils.parseaddr mistakenly parse an email'
 34623:
     author: Christian Heimes
     date: 2018-09-10.22:47:44.343
@@ -233,10 +233,6 @@
     author: Christian Heimes
     date: 2018-09-24.16:47:30.436
     title: xml package does not obey sys.flags.ignore_environment
-35121:
-    author: "\u897F\u7530\u96C4\u6CBB"
-    date: 2018-10-31.06:52:48.732
-    title: Cookie domain check returns incorrect results
 35647:
     author: Karthikeyan Singaravelan
     date: 2019-01-03.07:59:56.185
@@ -248,33 +244,29 @@
 35907:
     author: Sihoon Lee
     date: 2019-02-06.08:19:50.837
-    title: '[security][CVE-2019-9948] Unnecessary URL scheme exists to allow file://
+    title: '[security][CVE-2019-9948] Unnecessary URL scheme exists to allow local_file://
         reading file  in urllib'
 36216:
     author: Steve Dower
     date: 2019-03-06.17:37:20.064
-    title: urlsplit does not handle NFKC normalization
-36260:
-    author: JUN-WEI SONG
-    date: 2019-03-11.07:16:58.562
-    title: '[security] CVE-2019-9674: Zip Bomb vulnerability'
+    title: 'CVE-2019-9636: urlsplit does not handle NFKC normalization'
 36384:
     author: Joel Croteau
     date: 2019-03-20.23:40:09.274
-    title: ipaddress Should not reject IPv4 addresses with leading zeroes as ambiguously
-        octal
+    title: '[security] CVE-2021-29921: ipaddress Should not reject IPv4 addresses
+        with leading zeroes as ambiguously octal'
 36742:
     author: Chihiro Ito
     date: 2019-04-27.12:30:16.745
-    title: urlsplit doesn't accept a NFKD hostname with a port number
+    title: 'CVE-2019-10160: urlsplit NFKD normalization vulnerability in user:password@'
 37463:
     author: Christian Heimes
     date: 2019-07-01.06:47:03.811
-    title: socket.inet_aton IP parsing issue in ssl.match_hostname
+    title: ssl.match_hostname() ignores extra string after whitespace in IPv4 address
 38243:
     author: longwenzhang
     date: 2019-09-21.02:17:29.833
-    title: A reflected XSS in python/Lib/DocXMLRPCServer.py
+    title: '[security][CVE-2019-16935] A reflected XSS in python/Lib/DocXMLRPCServer.py'
 38576:
     author: Riccardo Schirone
     date: 2019-10-24.07:51:17.766
@@ -299,19 +291,17 @@
 39073:
     author: Jasper Spaans
     date: 2019-12-17.12:46:42.840
-    title: email incorrect handling of crlf in Address objects.
+    title: '[security] email module incorrect handling of CR and LF newline characters
+        in Address objects.'
 39401:
     author: Anthony Wee
     date: 2020-01-21.01:02:14.204
     title: '[CVE-2020-8315] Unsafe dll loading in getpathp.c on Win7'
-39503:
-    author: STINNER Victor
-    date: 2020-01-30.15:11:28.336
-    title: '[security] Denial of service in urllib.request.AbstractBasicAuthHandler'
 39603:
     author: Max
     date: 2020-02-10.19:29:35.213
-    title: '[security] http.client: HTTP Header Injection in the HTTP method'
+    title: '[security][ CVE-2020-26116] http.client: HTTP Header Injection in the
+        HTTP method'
 41004:
     author: martin wennberg
     date: 2020-06-17.13:11:52.234
@@ -319,21 +309,22 @@
 41944:
     author: Serhiy Storchaka
     date: 2020-10-05.14:40:52.209
-    title: '[security] Python testsuite calls eval() on content received via HTTP'
+    title: '[security][CVE-2020-27619] Python testsuite calls eval() on content received
+        via HTTP'
 42938:
     author: Jordy Zomer
     date: 2021-01-16.08:03:26.704
-    title: '[security] ctypes double representation BoF'
+    title: '[security][CVE-2021-3177] ctypes double representation BoF'
 42967:
     author: Adam Goldschmidt
     date: 2021-01-19.15:06:48.939
-    title: '[CVE-2021-23336] urllib.parse.parse_qsl(): Web cache poisoning - semicolon
+    title: '[CVE-2021-23336] urllib.parse.parse_qsl(): Web cache poisoning - `; `
         as a query args separator'
 42988:
     author: "Miro Hron\u010Dok"
     date: 2021-01-21.12:18:37.585
-    title: '[security] Information disclosure via pydoc -p: /getfile?key=path allows
-        to read arbitrary file on the filesystem'
+    title: '[security] CVE-2021-3426: Information disclosure via pydoc -p: /getfile?key=path
+        allows to read arbitrary file on the filesystem'
 43285:
     author: confd0
     date: 2021-02-21.11:49:34.565
