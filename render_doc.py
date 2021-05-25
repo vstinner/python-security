@@ -809,46 +809,47 @@ def render_timeline(fp, vuln):
 
     day0 = vuln.get_disclosure_date()
 
+    # list of (date, sort_order, show_days, text)
     dates = []
-
-    if vuln.disclosure:
-        text = "Disclosure date"
-        if vuln.disclosure.comment:
-            text = '%s (%s)' % (text, vuln.disclosure.comment)
-        dates.append((vuln.disclosure.date, False, text))
-
-    if vuln.python_bug:
-        bug = vuln.python_bug
-        text = ("`Python issue bpo-%s <%s>`_ reported by %s"
-                % (bug.number, bug.get_url(), bug.author))
-        dates.append((bug.date, bool(vuln.disclosure), text))
-
-    for cve in vuln.cve_list:
-        text = "%s published" % cve.number
-        dates.append((cve.published, True, text))
 
     if vuln.reported_at:
         text = "Reported"
         if vuln.reported_at.comment:
             text = '%s (%s)' % (text, vuln.reported_at.comment)
-        dates.append((vuln.reported_at.date, True, text))
+        dates.append((vuln.reported_at.date, 0, True, text))
+
+    if vuln.disclosure:
+        text = "Disclosure date"
+        if vuln.disclosure.comment:
+            text = '%s (%s)' % (text, vuln.disclosure.comment)
+        dates.append((vuln.disclosure.date, 1, False, text))
+
+    if vuln.python_bug:
+        bug = vuln.python_bug
+        text = ("`Python issue bpo-%s <%s>`_ reported by %s"
+                % (bug.number, bug.get_url(), bug.author))
+        dates.append((bug.date, 2, bool(vuln.disclosure), text))
+
+    for cve in vuln.cve_list:
+        text = "%s published" % cve.number
+        dates.append((cve.published, 3, True, text))
 
     commit_seen = set()
-    for fix in vuln.fixes:
-        if fix.commit.revision in commit_seen:
-            continue
-        commit_seen.add(fix.commit.revision)
-
-        text = fix.commit.format()
-        dates.append((fix.commit.date, True, text))
-
     for commit in vuln.unreleased_commits:
         if commit.revision in commit_seen:
             continue
         commit_seen.add(commit.revision)
 
         text = commit.format()
-        dates.append((commit.date, True, text))
+        dates.append((commit.date, 4, True, text))
+
+    for fix in vuln.fixes:
+        if fix.commit.revision in commit_seen:
+            continue
+        commit_seen.add(fix.commit.revision)
+
+        text = fix.commit.format()
+        dates.append((fix.commit.date, 5, True, text))
 
     for index, fix in enumerate(vuln.fixes):
         pyver_info = version_info(fix.python_version)
@@ -858,7 +859,7 @@ def render_timeline(fp, vuln):
         show_days = (pyver_info[2] != 0 or index == 0)
 
         text = "Python %s released" % fix.python_version
-        dates.append((fix.release_date, show_days, text))
+        dates.append((fix.release_date, 6, show_days, text))
 
     dates.sort()
 
@@ -866,7 +867,7 @@ def render_timeline(fp, vuln):
           % (format_date(day0)), file=fp)
     print(file=fp)
 
-    for date, show_days, text in dates:
+    for date, sort_order, show_days, text in dates:
         days = timedelta_days(date - day0)
         date = format_date(date)
         if show_days:

@@ -1713,11 +1713,12 @@
 
 - name: "ipaddress leading zeros in IPv4 address"
   slug: ipaddress-ipv4-leading-zeros
-  bpo: 36384
   cve: CVE-2021-29921
   links:
     - https://sick.codes/universal-netmask-npm-package-used-by-270000-projects-vulnerable-to-octal-input-data-server-side-request-forgery-remote-file-inclusion-local-file-inclusion-and-more-cve-2021-28918/
-  disclosure: "2021-03-30 (George-Cristian Bîrzan sent an email to the PSRT list)"
+  reported-at: "2021-03-30"
+  reported-by: "George-Cristian Bîrzan (email to the PSRT list)"
+  disclosure: "2021-03-30 (comment on bpo-36384)"
   affected-versions:
    - '3.8'
    - '3.9'
@@ -1727,6 +1728,10 @@
    - '3.9': 5374fbc31446364bf5f12e5ab88c5493c35eaf04
   description: |
     The ipaddress module accepts leading zeros in IPv4 addresses.
+
+    Python 3.8 as modified in `bpo-36384 <https://bugs.python.org/issue36384>`_
+    to accept leading zeros. The vulnerability was made public `in a comment
+    of the issue <https://bugs.python.org/issue36384#msg389826>`_.
 
     Python 3.8 is left unchanged (accept leading zeros). Python 3.7 and older
     are not affected.
