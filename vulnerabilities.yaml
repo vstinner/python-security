@@ -1717,6 +1717,7 @@
   cve: CVE-2021-29921
   links:
     - https://sick.codes/universal-netmask-npm-package-used-by-270000-projects-vulnerable-to-octal-input-data-server-side-request-forgery-remote-file-inclusion-local-file-inclusion-and-more-cve-2021-28918/
+  disclosure: "2021-03-30 (George-Cristian Bîrzan sent an email to the PSRT list)"
   affected-versions:
    - '3.8'
    - '3.9'
