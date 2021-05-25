@@ -1717,10 +1717,15 @@
   cve: CVE-2021-29921
   links:
     - https://sick.codes/universal-netmask-npm-package-used-by-270000-projects-vulnerable-to-octal-input-data-server-side-request-forgery-remote-file-inclusion-local-file-inclusion-and-more-cve-2021-28918/
+  affected-versions:
+   - '3.8'
+   - '3.9'
+   - '3.10'
   fixed-in:
    - '3.10': 60ce8f0be6354ad565393ab449d8de5d713f35bc
    - '3.9': 5374fbc31446364bf5f12e5ab88c5493c35eaf04
   description: |
     The ipaddress module accepts leading zeros in IPv4 addresses.
 
-    Python 3.8 is left unchanged (accept leading zeros).
+    Python 3.8 is left unchanged (accept leading zeros). Python 3.7 and older
+    are not affected.
