@@ -318,7 +318,7 @@
 42967:
     author: Adam Goldschmidt
     date: 2021-01-19.15:06:48.939
-    title: '[CVE-2021-23336] urllib.parse.parse_qsl(): Web cache poisoning - `; `
+    title: '[CVE-2021-23336] urllib.parse.parse_qsl(): Web cache poisoning - semicolon
         as a query args separator'
 42988:
     author: "Miro Hron\u010Dok"
