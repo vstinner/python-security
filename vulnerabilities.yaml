@@ -1715,7 +1715,7 @@
   slug: ipaddress-ipv4-leading-zeros
   cve: CVE-2021-29921
   links:
-    - https://sick.codes/universal-netmask-npm-package-used-by-270000-projects-vulnerable-to-octal-input-data-server-side-request-forgery-remote-file-inclusion-local-file-inclusion-and-more-cve-2021-28918/
+    - https://sick.codes/sick-2021-014
   reported-at: "2021-03-30"
   reported-by: "George-Cristian Bîrzan, Felipe Rodrigues (emails to the PSRT list)"
   disclosure: "2021-03-30 (comment on bpo-36384)"
