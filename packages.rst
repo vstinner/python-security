@@ -45,6 +45,7 @@ Vulnerabilites in the Package Index
    pypi-vuln/index-2017-11-08-pypirc_exposure_on_github.rst
    pypi-vuln/index-2020-01-05-authentication_method_flaws.rst
    pypi-vuln/index-2020-02-22-upload_endpoint_csrf.rst
+   pypi-vuln/index-2021-06-15-unintended-deployments.rst
 
 
 
