@@ -30,7 +30,9 @@ The root cause of this vulnerability was misinterpretation of the ``check_suite`
 event from GitHub. Initially it was thought that the value for
 ``repository->full_name`` in the payload was the repository from which the commit
 under test originated, when in actuality it is the repository in which the
-check suite ran.::
+check suite ran.
+
+::
 
     installation_id = hook.payload['installation']['id']
     repository_name = hook.payload['repository']['full_name']
@@ -43,8 +45,8 @@ check suite ran.::
     )).all()
 
 When filtering the repository name and branch to determine if a deployment was
-required, as above, the this allowed for any Pull Request opened against the
-repository originating from a branch called ``main`` to initiate a deploy as
+required, as above, this allowed for any Pull Request opened against the
+repository originating from any branch called ``main`` to initiate a deploy as
 long as the continuous integration run succeeded.
 
 Mitigation
