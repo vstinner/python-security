@@ -1,10 +1,10 @@
 =================================================
-Vulnerability in GitHub Actions Workflow for PyPI
+Vulnerability in GitHub Actions workflow for PyPI
 =================================================
 
-An exploitable vulnerability in a GitHub Actions Workflow for PyPI's source
+An exploitable vulnerability in a GitHub Actions workflow for PyPI's source
 repository could allow an attacker to obtain write permissions against the
-pypa/warehouse repository.
+``pypa/warehouse`` repository.
 
 * Disclosure date: **2020-07-25** (Reported via security policy on `pypi.org <https://pypi.org/security/>`_)
 * Disclosed by: `RyotaK <https://twitter.com/ryotkak>`_
@@ -13,7 +13,17 @@ pypa/warehouse repository.
 Summary
 =======
 
-TODO - some details about why the workflow exists
+The PyPI team uses `Dependabot <https://dependabot.com/>`_ for automatic
+updates to the dependencies of the web application that powers PyPI. This tool
+generates a high volume of pull requests against the source repository, and
+`lacks a feature to group these updates into a single pull request
+<https://github.com/dependabot/dependabot-core/issues/1190>`_
+
+To reduce the burden of merging multiple individual pull requests, the
+maintainers use `an open-source GitHub Action workflow
+<https://github.com/hrvey/combine-prs-workflow>`_ to group all Dependabot pull
+requests.
+
 
 To quote the security researcher:
 
@@ -47,7 +57,7 @@ To quote the security researcher:
 Analysis
 ========
 
-TODO
+PyPI administrators analyzed the vulnerabilty and found it to be exploitable.
 
 Mitigation
 ==========
@@ -62,7 +72,23 @@ by matching against the PR creator username and not using an unecessary
 Audit
 =====
 
-TODO
+A successful exploitation of the vulnerability would be identifiable via an
+opened pull request against the ``pypa/warehouse`` repository, with the branch
+name prefixed with ``dependabot`` and created by a non-Dependabot user.
+
+The PyPI administrators analyzed all pull requests created against
+``pypa/warehouse`` and found 2,874 pull requests with branches starting with
+``dependabot``. All of these branches were created by the
+``dependabot[bot]`` or ``dependabot-preview[bot]`` users, with the exception of two:
+
+* https://github.com/pypa/warehouse/pull/7275, created by a PyPI administrator
+* https://github.com/pypa/warehouse/pull/6916, a drive-by PR from an unfamiliar
+  user
+
+The PyPI administrators analyzed the PR from the unknown user and determined
+that it was not attempting to exploit the vulnerabiltiy as it lacked a
+malicious branch name. In addition, this PR was not picked up by a run of the
+workflow at any point.
 
 Timeline
 ========
@@ -71,4 +97,5 @@ Timeline
 * 2021-07-25: Issue reported by `RyotaK <https://twitter.com/ryotkak>`_
   following guidelines in security policy on `pypi.org
   <https://pypi.org/security/>`_)
-* 2021-07-26 (**+1days**): Fix is implemented and deployed in `commit 33ad32 <https://github.com/pypa/warehouse/commit/33ad326aab676b74bde3ecad686cf144e8c98fc9>`_
+* 2021-07-26 (**+1days**): Fix is implemented and deployed in `commit 33ad32
+  <https://github.com/pypa/warehouse/commit/33ad326aab676b74bde3ecad686cf144e8c98fc9>`_
