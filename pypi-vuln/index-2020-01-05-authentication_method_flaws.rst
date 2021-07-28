@@ -15,6 +15,7 @@ access to, additionally bypassing two factor authentication.
 
 * Disclosure date: **2020-01-05** (Reported via security policy on `pypi.org <https://pypi.org/security/>`_)
 * Disclosed by: Joachim Jablon
+* Bounty awarded to discloser: $500 USD for multiple reports in Q1 2020
 
 Reported vulnerabilities
 ========================

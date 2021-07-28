@@ -10,6 +10,7 @@ vulnerability was discovered in the endpoint which accepts uploads to PyPI.
 
 * Disclosure date: **2020-02-22** (Reported via security policy on `pypi.org <https://pypi.org/security/>`_)
 * Disclosed by: Joachim Jablon
+* Bounty awarded to discloser: $500 USD for multiple reports in Q1 2020
 
 Reported vulnerability
 ======================

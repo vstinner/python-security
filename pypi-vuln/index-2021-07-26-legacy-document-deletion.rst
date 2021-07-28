@@ -8,6 +8,7 @@ discovered by a security researcher, which would allow an attacker to remove doc
 
 * Disclosure date: **2020-07-25** (Reported via security policy on `pypi.org <https://pypi.org/security/>`_)
 * Disclosed by: `RyotaK <https://twitter.com/ryotkak>`_
+* Bounty awarded to discloser: $1,000 USD for multiple reports in 2021-07
 
 Summary
 =======
