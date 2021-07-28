@@ -48,7 +48,12 @@ To quote the discloser:
 Analysis
 ========
 
-TODO
+Many projects implement "psuedonamespaces" on PyPI, for discoverability and
+organizational purposes, particularly those which implement plugin or extension
+frameworks. In our analysis, the only impact of this vulnerability appears to
+have been accidental, in which maintainers for a top-level project (e.g. ``framework``)
+intentionally initiated documentation deletion for their project, which then
+cascaded to plugin/extension projects which shared the prefix (e.g. ``framework.foo``, ``framework-bar``).
 
 Mitigation
 ==========
@@ -60,7 +65,26 @@ by adding a trailing slash to the project name used with ``remove_by_prefix``.
 Audit
 =====
 
-TODO
+A dump of Project ``name`` and ``has_docs`` flags from the database, Journal
+and Project Event records implemented by PyPI, along with a full listing of the
+documentation hosting S3 bucket were collected for audit and analysis.
+
+By comparing the ``has_docs`` flag for each Project with the status of matching
+documentation in the S3 bucket listing, we were able to identify 96 Projects
+out of 3,632 for which the flag in the database was incorrect.
+
+This delta represents projects for which documentation on the legacy hosting
+service is "missing".
+
+77 of the missing Project documents were identified as being accidentally
+deleted due to the extension/plugin concern discussed in the Analysis section.
+
+The remaining 19 missing Project documents are not explainable via the
+vulnerability disussed here, as no ``docdestroy`` events are recorded which
+share the prefix for their name. The legacy document hosting service
+administration has varied over the years, and it is very likely that these
+documents were directly removed by administrators or lost during migrations and
+recovery attempts.
 
 Timeline
 ========
