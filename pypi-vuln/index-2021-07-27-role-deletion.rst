@@ -34,12 +34,12 @@ Analysis
 
 Role IDs are represented on PyPI as UUIDs, and are therefore pseudo-random and
 not enumerable. In addition, role IDs for a given project are only exposed to
-any user with the ``Owner`` role on a given project (via the webform for
+any user with the ``Owner`` role on that project (via the same webform for
 deleting roles).
 
-Given this, the PyPI administrators determined that it would not be possible to
-know in advance a role ID that a given user didn't already have the ability to
-delete, and that any successful exploitation of this vulnerability would
+Given this, the PyPI administrators determined that it would not be possible
+for an attacker to acquire a role ID that they didn't already have the ability
+to delete, and that any successful exploitation of this vulnerability would
 require a high volume of requests in attempt to brute force a role ID. In
 addition, any successful exploitation would only have the ability to remove a
 random role ID, and not a role for a specific user or project.
@@ -56,7 +56,7 @@ Audit
 
 The PyPI administrators analyzed incidences of high-volume traffic to the role
 deletion endpoint, and found two days where the quantity of requests to this
-endpoint were far above the norm (>200 requests per day). The PyPI
+endpoint were far above average (>200 requests per day). The PyPI
 administrators analyzed all role deletions on these days and found them to be
 legitimate bulk removals of roles.
 
@@ -67,4 +67,5 @@ Timeline
 * 2021-07-26: Issue reported by `RyotaK <https://twitter.com/ryotkak>`_
   following guidelines in security policy on `pypi.org
   <https://pypi.org/security/>`_)
-* 2021-07-27 (**+1days**): Fix is implemented and deployed in `commit 7605be <https://github.com/pypa/warehouse/pull/9845/commits/7605bee1e77319000f71f5b60959a35c8e482161>`_
+* 2021-07-27 (**+1days**): Fix is implemented and deployed in `commit 7605be
+  <https://github.com/pypa/warehouse/pull/9845/commits/7605bee1e77319000f71f5b60959a35c8e482161>`_

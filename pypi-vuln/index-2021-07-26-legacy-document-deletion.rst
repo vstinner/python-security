@@ -37,7 +37,9 @@ To quote the discloser:
 
     Since ``remove_by_prefix`` uses list_objects_v2 with the prefix, all files
     that start with the specified project name will be returned. (e.g. If ``p``
-    is specified in the prefix, it will return pypi, pip, python... etc.)
+    is specified in the prefix, it will return ``pypi``, ``pip``, ``python``...
+    etc.)
+
     As far as I can see from these codes, there is no suffix in the project
     name (e.g. ``/``).
 
@@ -52,9 +54,10 @@ Analysis
 Many projects implement "psuedonamespaces" on PyPI, for discoverability and
 organizational purposes, particularly those which implement plugin or extension
 frameworks. In our analysis, the only impact of this vulnerability appears to
-have been accidental, in which maintainers for a top-level project (e.g. ``framework``)
-intentionally initiated documentation deletion for their project, which then
-cascaded to plugin/extension projects which shared the prefix (e.g. ``framework.foo``, ``framework-bar``).
+have been accidental, in which maintainers for a top-level project (e.g.
+``framework``) intentionally initiated documentation deletion for their
+project, which then cascaded to plugin/extension projects which shared the
+prefix (e.g. ``framework.foo``, ``framework-bar``).
 
 Mitigation
 ==========
@@ -81,7 +84,7 @@ service is "missing".
 deleted due to the extension/plugin concern discussed in the Analysis section.
 
 The remaining 19 missing Project documents are not explainable via the
-vulnerability disussed here, as no ``docdestroy`` events are recorded which
+vulnerability discussed here, as no ``docdestroy`` events are recorded which
 share the prefix for their name. The legacy document hosting service
 administration has varied over the years, and it is very likely that these
 documents were directly removed by administrators or lost during migrations and
@@ -94,4 +97,5 @@ Timeline
 * 2021-07-25: Issue reported by `RyotaK <https://twitter.com/ryotkak>`_
   following guidelines in security policy on `pypi.org
   <https://pypi.org/security/>`_)
-* 2021-07-26 (**+1days**): Fix is implemented and deployed in `commit 036fdc <https://github.com/pypa/warehouse/commit/036fdcb99106b8f26effec67d8c2e8caa44c3275>`_
+* 2021-07-26 (**+1days**): Fix is implemented and deployed in `commit 036fdc
+  <https://github.com/pypa/warehouse/commit/036fdcb99106b8f26effec67d8c2e8caa44c3275>`_
