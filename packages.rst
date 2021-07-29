@@ -46,6 +46,9 @@ Vulnerabilites in the Package Index
    pypi-vuln/index-2020-01-05-authentication_method_flaws.rst
    pypi-vuln/index-2020-02-22-upload_endpoint_csrf.rst
    pypi-vuln/index-2021-06-15-unintended-deployments.rst
+   pypi-vuln/index-2021-07-26-legacy-document-deletion.rst
+   pypi-vuln/index-2021-07-27-combine-prs-workflow.rst
+   pypi-vuln/index-2021-07-27-role-deletion.rst
 
 
 
