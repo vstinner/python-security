@@ -6,7 +6,7 @@ An exploitable vulnerability in a GitHub Actions workflow for PyPI's source
 repository could allow an attacker to obtain write permissions against the
 ``pypa/warehouse`` repository.
 
-* Disclosure date: **2020-07-27** (Reported via security policy on `pypi.org <https://pypi.org/security/>`_)
+* Disclosure date: **2021-07-27** (Reported via security policy on `pypi.org <https://pypi.org/security/>`_)
 * Disclosed by: `RyotaK <https://twitter.com/ryotkak>`_
 * Bounty awarded to discloser: $1,000 USD for multiple reports in 2021-07
 
