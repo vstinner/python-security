@@ -35,7 +35,7 @@ To quote the security researcher:
     repository, someone may create a branch name like ``dependabotasdf`` and
     it'll be picked by this workflow.)
 
-    Since branch names can contain shell metacharacters, this line would be
+    Since branch names can contain shell metacharacters, `this line <https://github.com/pypa/warehouse/blob/036fdcb99106b8f26effec67d8c2e8caa44c3275/.github/workflows/combine-prs.yml#L98>`_ would be
     unsafe as the ``${{ }}`` expression is used.  Because the ``${{ }}`` expression
     is evaluated before commands are passed to bash, it makes this workflow
     vulnerable to command injection.
@@ -94,8 +94,8 @@ Timeline
 ========
 
 * 2020-10-12: "Combine PRs" workflow added in (PR #8694)
-* 2021-07-25: Issue reported by `RyotaK <https://twitter.com/ryotkak>`_
+* 2021-07-27: Issue reported by `RyotaK <https://twitter.com/ryotkak>`_
   following guidelines in security policy on `pypi.org
   <https://pypi.org/security/>`_)
-* 2021-07-26 (**+1days**): Fix is implemented and deployed in `commit 33ad32
+* 2021-07-27 (**+0days**): Fix is implemented and deployed in `commit 33ad32
   <https://github.com/pypa/warehouse/commit/33ad326aab676b74bde3ecad686cf144e8c98fc9>`_
