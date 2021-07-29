@@ -6,7 +6,7 @@ An exploitable vulnerability in the mechanisms for deleting roles on `PyPI
 <https://pypi.org>`_ was discovered by a security researcher, which would allow
 an attacker to remove roles for projects not under their control.
 
-* Disclosure date: **2020-07-25** (Reported via security policy on `pypi.org <https://pypi.org/security/>`_)
+* Disclosure date: **2020-07-26** (Reported via security policy on `pypi.org <https://pypi.org/security/>`_)
 * Disclosed by: `RyotaK <https://twitter.com/ryotkak>`_
 * Bounty awarded to discloser: $1,000 USD for multiple reports in 2021-07
 
