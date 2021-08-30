@@ -329,3 +329,8 @@
     author: confd0
     date: 2021-02-21.11:49:34.565
     title: ftplib should not use the host from the PASV response
+44394:
+    author: STINNER Victor
+    date: 2021-06-11.14:14:07.073
+    title: '[security] CVE-2013-0340 "Billion Laughs" fixed in Expat >=2.4.0: Update
+        vendored copy to expat 2.4.1'

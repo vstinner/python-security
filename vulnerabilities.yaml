@@ -1726,6 +1726,7 @@
   fixed-in:
    - '3.10': 60ce8f0be6354ad565393ab449d8de5d713f35bc
    - '3.9': 5374fbc31446364bf5f12e5ab88c5493c35eaf04
+   - '3.8': 03dd89d62413c4a92831ed1b36e2ae8983bcb2d4
   description: |
     The ipaddress module accepts leading zeros in IPv4 addresses.
 
@@ -1738,3 +1739,21 @@
 
     Vulnerability discovered and reported the same day by two persons:
     George-Cristian Bîrzan and Felipe Rodrigues.
+
+- name: "CVE-2013-0340 Billion Laughs fixed in Expat 2.4.0"
+  slug: expat-billion-laughs
+  cve: CVE-2013-0340
+  bpo: 44394
+  links:
+    - https://blog.hartwork.org/posts/cve-2013-0340-billion-laughs-fixed-in-expat-2-4-0/
+  fixed-in:
+   - '3.11': 3fc5d84046ddbd66abac5b598956ea34605a4e5d
+   - '3.10': 270678564c16452614a8acd93763bdf64fb4d286
+   - '3.9': 007221a43e566db08c0c5c00756d80dfd9dccafe
+   - '3.8': c9c2a0bc9820f93f1020f3498f6893a3544c9b76
+  description: |
+    On Windows and macOS, Python uses a vendored copy of libexpat which is
+    vulnerable to the XML "Billion Laughs" expansion denial of service attack.
+
+    Updating libexpat copy in Python to libexpat 2.4.0 or newer fix the
+    vulnerability.
