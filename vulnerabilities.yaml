@@ -1751,6 +1751,8 @@
    - '3.10': 270678564c16452614a8acd93763bdf64fb4d286
    - '3.9': 007221a43e566db08c0c5c00756d80dfd9dccafe
    - '3.8': c9c2a0bc9820f93f1020f3498f6893a3544c9b76
+   - '3.7': 79101b890ee021a901a8b6837a3a320d57adb725
+   - '3.6': 910886a6448e4bf1edf49eeace4aa240b6403772
   description: |
     On Windows and macOS, Python uses a vendored copy of libexpat which is
     vulnerable to the XML "Billion Laughs" expansion denial of service attack.
