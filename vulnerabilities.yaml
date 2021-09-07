@@ -1759,3 +1759,20 @@
 
     Updating libexpat copy in Python to libexpat 2.4.0 or newer fix the
     vulnerability.
+
+- name: "CVE-2021-3733: ReDoS in urllib.request"
+  slug: urllib-basic-auth-regex2
+  cve: CVE-2021-3733
+  bpo: 43075
+  links:
+   - https://access.redhat.com/security/cve/cve-2021-3733
+  fixed-in:
+   - '3.10': 7215d1ae25525c92b026166f9d5cac85fb1defe1
+   - '3.8': e7654b6046090914a8323931ed759a94a5f85d60
+   - '3.9': a21d4fbd549ec9685068a113660553d7f80d9b09
+   - '3.7': ada14995870abddc277addf57dd690a2af04c2da
+   - '3.6': 3fbe96123aeb66664fa547a8f6022efa2dc8788f
+  description: |
+    The regular expression used by the AbstractBasicAuthHandler class of the
+    urllib module is inefficient and can be abused by an attacker with a
+    maliciuous HTTP server to cause a denial of service.

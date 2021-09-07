@@ -325,6 +325,10 @@
     date: 2021-01-21.12:18:37.585
     title: '[security] CVE-2021-3426: Information disclosure via pydoc -p: /getfile?key=path
         allows to read arbitrary file on the filesystem'
+43075:
+    author: yeting li
+    date: 2021-01-30.08:11:46.331
+    title: 'CVE-2021-3733: ReDoS in urllib.request'
 43285:
     author: confd0
     date: 2021-02-21.11:49:34.565
