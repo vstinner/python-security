@@ -333,6 +333,11 @@
     author: confd0
     date: 2021-02-21.11:49:34.565
     title: ftplib should not use the host from the PASV response
+44022:
+    author: guangli dong
+    date: 2021-05-03.17:13:03.819
+    title: 'CVE-2021-3737: urllib http client possible infinite loop on a 100 Continue
+        response'
 44394:
     author: STINNER Victor
     date: 2021-06-11.14:14:07.073

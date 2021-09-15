@@ -1776,3 +1776,21 @@
     The regular expression used by the AbstractBasicAuthHandler class of the
     urllib module is inefficient and can be abused by an attacker with a
     maliciuous HTTP server to cause a denial of service.
+
+- name: "CVE-2021-3737: urllib HTTP client possible infinite loop on a 100 Continue response"
+  slug: urllib-100-continue-loop
+  cve: CVE-2021-3737
+  bpo: 44022
+  links:
+    - https://access.redhat.com/security/cve/CVE-2021-3737
+    - https://bugzilla.redhat.com/show_bug.cgi?id=1995162
+  fixed-in:
+   - '3.10': 60ba0b68470a584103e28958d91e93a6db37ec92
+   - '3.9': ea9327036680acc92d9f89eaf6f6a54d2f8d78d9
+   - '3.8': f396864ddfe914531b5856d7bf852808ebfc01ae
+   - '3.6': f68d2d69f1da56c2aea1293ecf93ab69a6010ad7
+   - '3.7': 078b146f062d212919d0ba25e34e658a8234aa63
+  description: |
+    If a client request a HTTP/HTTPS/FTP service which is controlled by
+    attacker, attacker can make this client hang forever, even if the client
+    has set a *timeout* argument.
