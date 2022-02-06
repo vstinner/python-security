@@ -1795,3 +1795,63 @@
     If a client request a HTTP/HTTPS/FTP service which is controlled by
     attacker, attacker can make this client hang forever, even if the client
     has set a *timeout* argument.
+
+- name: "urllib.parse should sanitize urls containing ASCII newline and tabs."
+  slug: urllib_parse_newline_tabs
+  cve: CVE-2022-0391
+  reported-at: "2021-03-16 (email sent to the PSRT list)"
+  reported-by: "Mike Lissner"
+  bpo: 43882
+  links:
+    - https://bugzilla.redhat.com/show_bug.cgi?id=2047376
+  fixed-in:
+   - '3.10': 76cd81d60310d65d01f9d7b48a8985d8ab89c8b4
+   - '3.9': 491fde0161d5e527eeff8586dd3972d7d3a631a7
+   - '3.8': 515a7bc4e13645d0945b46a8e1d9102b918cd407
+   - '3.7': f4dac7ec55477a6c5d965e594e74bd6bda786903
+   - '3.6': 6c472d3a1d334d4eeb4a25eba7bf3b01611bf667
+  description: |
+    A security issue was reported by Mike Lissner wherein an attacker was able
+    to use ``\r\n`` in the url path, the urlparse method didn't sanitize and
+    allowed those characters be present in the request::
+
+        >>> from urllib.parse import urlsplit
+        >>> urlsplit("java\nscript:alert('bad')")
+        SplitResult(scheme='', netloc='', path="java\nscript:alert('bad')", query='', fragment='')
+
+    Firefox and other browsers ignore newlines in the scheme. From the
+    browser console::
+
+        >> new URL("java\nscript:alert(bad)")
+        << URL { href: "javascript:alert(bad)", origin: "null", protocol:
+        "javascript:", username: "", password: "", host: "", hostname: "", port: "", pathname: "alert(bad)", search: ""
+
+    Mozilla Developers informed about the controlling specification for URLs is
+    in fact defined by the "URL Spec" from WHATWG which updates RFC 3986 and
+    specifies that tabs and newlines should be stripped from the scheme.
+
+    See: https://url.spec.whatwg.org/#concept-basic-url-parser
+
+    That link defines an automaton for URL parsing. From that link, steps 2 and
+    3 of scheme parsing read:
+
+    If input contains any ASCII tab or newline, validation error.
+    3. Remove all ASCII tab or newline from input.
+
+    urlparse module behavior should be updated, and an ASCII tab or newline
+    should be removed from the url (sanitized) before it is sent to the
+    request, as WHATWG spec.
+
+    More commits:
+
+    * `3.11 <https://github.com/python/cpython/commit/985ac016373403e8ad41f8d563c4355ffa8d49ff>`__
+    * `3.10 <https://github.com/python/cpython/commit/24f1d1a8a2c4aa58a606b4b6d5fa4305a3b91705>`__
+    * `3.9 <https://github.com/python/cpython/commit/8a595744e696a0fb92dccc5d4e45da41571270a1>`__
+
+    Doc changes:
+
+    * `3.10 <https://github.com/python/cpython/commit/f14015adf52014c2345522fe32d43f15f001c986>`__
+    * `3.9 <https://github.com/python/cpython/commit/0593ae84af9e0e8332644e7ed13d7fd8306c4e1a>`__
+    * `3.8 <https://github.com/python/cpython/commit/634da2de88af06eb8c6ebdb90d8c00005847063d>`__
+    * `3.7 <https://github.com/python/cpython/commit/c723d5191110f99849f7b0944820f6c3cd5f7747>`__
+    * `3.6 <https://github.com/python/cpython/commit/6f743e7a4da904f61dfa84cc7d7385e4dcc79ac5>`__

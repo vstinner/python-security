@@ -333,6 +333,11 @@
     author: confd0
     date: 2021-02-21.11:49:34.565
     title: ftplib should not use the host from the PASV response
+43882:
+    author: Senthil Kumaran
+    date: 2021-04-18.19:36:58.184
+    title: '[security] urllib.parse should sanitize urls containing ASCII newline
+        and tabs.'
 44022:
     author: guangli dong
     date: 2021-05-03.17:13:03.819

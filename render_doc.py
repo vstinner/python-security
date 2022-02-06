@@ -884,6 +884,9 @@ def render_info(fp, vuln):
         date = vuln.python_bug.date
         comment = "Python issue bpo-%s reported" % vuln.python_bug.number
 
+    print("Dates:", file=fp)
+    print(file=fp)
+
     text = "**%s**" % format_date(date)
     if comment:
         text = "%s (%s)" % (text, comment)
