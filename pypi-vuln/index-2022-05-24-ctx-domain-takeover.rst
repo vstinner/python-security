@@ -183,7 +183,7 @@ multi factor authentication on their PyPI accounts following the references at
 https://pypi.org/help/#twofa.
 
 Additionally, version-pinning and using `hash checking mode
-<https://pip.pypa.io/en/stable/topics/secure-installs/#hash-checking-mode`_
+<https://pip.pypa.io/en/stable/topics/secure-installs/#hash-checking-mode>`_
 would prevent this attack, which depends on users automatically upgrading to
 the latest available version at install-time.
 
