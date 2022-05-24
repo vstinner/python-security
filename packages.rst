@@ -49,6 +49,7 @@ Vulnerabilites in the Package Index
    pypi-vuln/index-2021-07-26-legacy-document-deletion.rst
    pypi-vuln/index-2021-07-27-combine-prs-workflow.rst
    pypi-vuln/index-2021-07-27-role-deletion.rst
+   pypi-vuln/index-2022-05-24-ctx-domain-takeover.rst
 
 
 
