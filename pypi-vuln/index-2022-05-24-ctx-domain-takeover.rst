@@ -7,17 +7,17 @@ Summary
 
 The ``ctx`` hosted project on PyPI was taken over via user account compromise
 and replaced with a malicious project which contained runtime code which
-collected the content of ``os.environ.items()``` when instantiating ``Ctx``
+collected the content of ``os.environ.items()`` when instantiating ``Ctx``
 objects. The captured environment variables were sent as a base64 encoded query
 parameter to a heroku application running at ``https://anti-theft-web.herokuapp.com``.
 
 Between 2022-05-14T19:18:36Z and 2022-05-24T10:07:17Z the following release
 below files were hosted by PyPI at various times containing this malicious
-payload
+payload.
 
 If you installed the package between May 14, 2022 and May 24, 2022, and your
 environment variables contain sensitive data like passwords and API keys (like
-AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY), we advise you rotate your
+``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY``), we advise you rotate your
 passwords and keys, then perform an audit to determine if they were exploited.
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+------------------------------------------------------------------+
@@ -109,7 +109,7 @@ administrator used existing tools to:
 * Freeze the compromised user account of the owner
 
 The activity log of the user, action log on the project, metadata for all
-historical uploads---including malicious---, archives of the files, and their
+historical uploads (including malicious), archives of the files, and their
 locations in object storage were backed up for further analysis.
 
 WHOIS records were then queried to confirm that the domain associated with the
@@ -133,7 +133,8 @@ Impact Assessment
 The ``ctx`` project was registered and uploaded to PyPI in 2014. According to
 Libraries.io, the project on PyPI that declares it as a dependency is
 ``context-engine``. No known repositories that Libraries.io analyzes declares
-``ctx`` as a dependency.
+``ctx`` as a dependency. This is additionally confirmed by
+https://deps.dev/pypi/ctx/0.1.2/dependents.
 
 Before the malicious releases were uploaded, ``ctx`` saw on average 1600
 downloads per day. After malicious releases were uploaded, downloads rose to a
@@ -161,6 +162,14 @@ publicly visible email addresses associated with project metadata containing
 expired domains, which happened to match the domains of owner user accounts for
 projects.
 
+Currently, PyPI has some protections in place for expired email domains: if
+PyPI sends an email to a user's email address, and that email bounces, PyPI
+will disable the verified status of that email. As password resets require
+verified email addresses, an attacker would be unable to use the expired domain
+to gain access to the account. However, this depends on PyPI sending an email
+to the expired domain in the time period between expiry and an attacker
+attempting a takeover.
+
 Performing this analysis on an ongoing basis and freezing accounts with expired
 or near expiration domains is a potential mitigation that could protect absent
 maintainers in the future, at the cost of increased support burden on the team
@@ -169,8 +178,14 @@ of PyPI moderators and admins.
 Further Reccomendations
 =======================
 
-We also advise PyPI users to enable multi factor authentication on their PyPI
-accounts following the references at https://pypi.org/help/#twofa
+We also advise all PyPI users, but especially project maintainers, to enable
+multi factor authentication on their PyPI accounts following the references at
+https://pypi.org/help/#twofa.
+
+Additionally, version-pinning and using `hash checking mode
+<https://pip.pypa.io/en/stable/topics/secure-installs/#hash-checking-mode`_
+would prevent this attack, which depends on users automatically upgrading to
+the latest available version at install-time.
 
 The safety and pip-audit projects can be used to check for known
 vulnerabilities in your dependencies:
