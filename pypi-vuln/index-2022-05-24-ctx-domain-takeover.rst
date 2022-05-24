@@ -11,8 +11,8 @@ collected the content of ``os.environ.items()`` when instantiating ``Ctx``
 objects. The captured environment variables were sent as a base64 encoded query
 parameter to a heroku application running at ``https://anti-theft-web.herokuapp.com``.
 
-Between 2022-05-14T19:18:36Z and 2022-05-24T10:07:17Z the following release
-below files were hosted by PyPI at various times containing this malicious
+Between 2022-05-14T19:18:36Z and 2022-05-24T10:07:17Z the release files
+listed below were hosted by PyPI at various times containing this malicious
 payload.
 
 If you installed the package between May 14, 2022 and May 24, 2022, and your
@@ -183,7 +183,7 @@ multi factor authentication on their PyPI accounts following the references at
 https://pypi.org/help/#twofa.
 
 Additionally, version-pinning and using `hash checking mode
-<https://pip.pypa.io/en/stable/topics/secure-installs/#hash-checking-mode`_
+<https://pip.pypa.io/en/stable/topics/secure-installs/#hash-checking-mode>`_
 would prevent this attack, which depends on users automatically upgrading to
 the latest available version at install-time.
 
