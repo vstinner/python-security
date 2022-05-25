@@ -162,14 +162,6 @@ publicly visible email addresses associated with project metadata containing
 expired domains, which happened to match the domains of owner user accounts for
 projects.
 
-Currently, PyPI has some protections in place for expired email domains: if
-PyPI sends an email to a user's email address, and that email bounces, PyPI
-will disable the verified status of that email. As password resets require
-verified email addresses, an attacker would be unable to use the expired domain
-to gain access to the account. However, this depends on PyPI sending an email
-to the expired domain in the time period between expiry and an attacker
-attempting a takeover.
-
 Performing this analysis on an ongoing basis and freezing accounts with expired
 or near expiration domains is a potential mitigation that could protect absent
 maintainers in the future, at the cost of increased support burden on the team
