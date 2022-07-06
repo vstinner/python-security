@@ -109,10 +109,6 @@ fate0:
   * ztz
   * ...
 
-See also:
-
-* `pytosquatting.org project <https://www.pytosquatting.org/>`_
-
 Example of typos:
 
 * ``urllib``, ``urllib2``: part of the standard library
