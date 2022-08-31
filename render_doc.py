@@ -12,7 +12,10 @@ import sys
 import urllib.parse
 import urllib.request
 import xmlrpc.client
+
+import github
 import yaml
+
 
 # Last update: 2020-10-06
 MAINTAINED_BRANCHES = ['3.6', '3.7', '3.8', '3.9']
@@ -28,12 +31,17 @@ OFFLINE = True
 CVE_REGEX = re.compile('(?<!`)CVE-[0-9]+-[0-9]+')
 CVE_URL = 'https://nvd.nist.gov/vuln/detail/%s/'
 CVE_API = 'http://cve.circl.lu/api/cve/%s'
-BPO_URL = 'https://bugs.python.org/issue%s'
+BPO_URL = 'https://bugs.python.org/issue{}'
+GH_ISSUE_URL = 'https://github.com/python/cpython/issues/{}'
 CVSS_SCORE_URL = 'https://nvd.nist.gov/cvss.cfm'
 RED_HAT_IMPACT_URL = ('https://access.redhat.com/security/'
                       'updates/classification/')
 BUGS_API = 'https://bugs.python.org/xmlrpc'
 BUGS_DATE_REGEX = re.compile(r'<Date (.*)>')
+
+# Create a token at https://github.com/settings/tokens
+GITHUB_API_TOKEN = None
+GITHUB_REPO = "python/cpython"
 
 
 class OfflineError(Exception):
@@ -300,7 +308,7 @@ class CommitTags:
                     print(" %s" % tag, file=fp)
 
     def _get_tags(self, commit, ignore_python3):
-        print("Get %s tags" % commit)
+        print("Get commit %s tags" % commit)
 
         cmd = ["git", "tag", "--contains", commit]
         proc = run(cmd, self.python_path)
@@ -416,6 +424,7 @@ class PythonBugs:
         self.filename = filename
         self.bugs_api = bugs_api
         self.bugs = {}
+        self.github_api = None
         self.load()
 
     def load(self):
@@ -426,19 +435,17 @@ class PythonBugs:
         if not bugs:
             return
 
+        bugs = {number: PythonBug.from_yaml(number, bug)
+                for number, bug in bugs.items()}
+
         for number, bug in bugs.items():
             self.bugs[number] = bug
 
-    def download(self, number):
-        try:
-            return self.bugs[number]
-        except KeyError:
-            pass
-
+    def _get_bpo_bug(self, number):
         if OFFLINE:
             return None
 
-        print("Download issue #%s" % number)
+        print("Download Python issue bpo-%s" % number)
 
         bug = {}
         server = xmlrpc.client.ServerProxy(self.bugs_api, allow_none=True,
@@ -459,35 +466,71 @@ class PythonBugs:
                                   'realname')
             bug['author'] = user['realname'] or user['username']
 
-        self.bugs[number] = bug
+        date = bug['date']
+        date = datetime.datetime.strptime(date[:19], "%Y-%m-%d.%H:%M:%S")
+        return PythonBug(f"bpo-{number}", bug['author'], bug['title'], date)
+
+    def _get_bug(self, key, func, number):
+        try:
+            return self.bugs[key]
+        except KeyError:
+            pass
+
+        bug = func(number)
+        if bug is None:
+            return None
+
+        self.bugs[key] = bug
         self.dump()
         return bug
 
-    def get_bug(self, number):
-        bug = self.download(number)
-        if bug is None:
-            # Offline
-            return None
+    def get_bpo_bug(self, number):
+        return self._get_bug(f"bpo-{number}", self._get_bpo_bug, number)
 
-        date = bug['date']
-        date = datetime.datetime.strptime(date[:11], "%Y-%m-%d.").date()
-        return PythonBug(number, bug['author'], bug['title'], date)
+    def _get_gh_bug(self, number):
+        print(f"Get GitHub issue #{number}")
+        if self.github_api is None:
+            self.github_api = github.Github(GITHUB_API_TOKEN)
+        project = self.github_api.get_repo(GITHUB_REPO)
+        issue = project.get_issue(number)
+
+        author = issue.user.login
+        date = issue.created_at
+        return PythonBug(f"gh-{number}", author, issue.title, date)
+
+    def get_gh_bug(self, number):
+        return self._get_bug(f"gh-{number}", self._get_gh_bug, number)
 
     def dump(self):
-        data = self.bugs
+        data = {number: bug.to_yaml() for number, bug in self.bugs.items()}
         dump_yaml(self.filename, data)
 
 
 class PythonBug:
     def __init__(self, number, author, title, date):
+        if number.startswith("gh-"):
+            url = GH_ISSUE_URL.format(int(number[3:]))
+        elif number.startswith("bpo-"):
+            url = BPO_URL.format(int(number[4:]))
+        else:
+            raise ValueError(f"unknown bug number: {number!r}")
+
         self.number = number
         self.author = author
         self.date = date
+        self.datetime = datetime
         self.title = title
+        self.url = url
 
-    def get_url(self):
-        return BPO_URL % self.number
+    @staticmethod
+    def from_yaml(number, data):
+        date = data['date']
+        return PythonBug(number, data['author'], data['title'], date)
 
+    def to_yaml(self):
+        return dict(author=self.author,
+                    date=self.date,
+                    title=self.title)
 
 class CVERegistry:
     def __init__(self, path):
@@ -576,11 +619,14 @@ class Vulnerability:
         return '<Vulnerability %r>' % self.name
 
     def parse(self, app, data):
-        bpo = int(data.pop('bpo', 0))
-        if bpo:
-            self.python_bug = app.bugs.get_bug(bpo)
+        self.python_bug = None
+        gh = int(data.pop('gh', 0))
+        if gh:
+            self.python_bug = app.bugs.get_gh_bug(gh)
         else:
-            self.python_bug = None
+            bpo = int(data.pop('bpo', 0))
+            if bpo:
+                self.python_bug = app.bugs.get_bpo_bug(bpo)
         disclosure = data.pop('disclosure', None)
         if disclosure:
             self.disclosure = parse_date_comment(disclosure)
@@ -767,7 +813,7 @@ class Vulnerability:
         if self.disclosure:
             return self.disclosure.date
         else:
-            return self.python_bug.date
+            return self.python_bug.date.date()
 
     @staticmethod
     def sort_key(vuln):
@@ -826,9 +872,9 @@ def render_timeline(fp, vuln):
 
     if vuln.python_bug:
         bug = vuln.python_bug
-        text = ("`Python issue bpo-%s <%s>`_ reported by %s"
-                % (bug.number, bug.get_url(), bug.author))
-        dates.append((bug.date, 2, bool(vuln.disclosure), text))
+        text = ("`Python issue %s <%s>`_ reported by %s"
+                % (bug.number, bug.url, bug.author))
+        dates.append((bug.date.date(), 2, bool(vuln.disclosure), text))
 
     for cve in vuln.cve_list:
         text = "%s published" % cve.number
@@ -882,7 +928,7 @@ def render_info(fp, vuln):
         comment = vuln.disclosure.comment
     else:
         date = vuln.python_bug.date
-        comment = "Python issue bpo-%s reported" % vuln.python_bug.number
+        comment = "Python issue %s reported" % vuln.python_bug.number
 
     print("Dates:", file=fp)
     print(file=fp)
@@ -913,7 +959,7 @@ def render_python_bug(fp, bug):
         text += '.'
     print(text, file=fp)
     print(file=fp)
-    print("* Python issue: `bpo-%s <%s>`_" % (bug.number, bug.get_url()),
+    print("* Python issue: `%s <%s>`_" % (bug.number, bug.url),
           file=fp)
     print("* Creation date: %s" % format_date(bug.date), file=fp)
     print("* Reporter: %s" % bug.author, file=fp)

@@ -1,350 +1,345 @@
-1179:
-    author: Ismail Donmez
-    date: 2007-09-19.01:02:34.135
-    title: '[CVE-2007-4965] Integer overflow in imageop module'
-2254:
-    author: sumar
-    date: 2008-03-07.19:59:43.063
-    title: Python CGIHTTPServer information disclosure
-2620:
-    author: Justin Ferguson
-    date: 2008-04-11.22:35:34.407
-    title: Multiple buffer overflows in unicode processing
-6706:
-    author: Giampaolo Rodola'
-    date: 2009-08-14.23:03:34.855
-    title: asyncore's accept() is broken
-6791:
-    author: sumar
-    date: 2009-08-28.08:32:32.461
-    title: httplib read status memory usage
-7673:
-    author: STINNER Victor
-    date: 2010-01-11.01:05:03.678
-    title: 'audioop: check that length is a multiple of the size'
-8674:
-    author: Tomas Hoger
-    date: 2010-05-10.13:43:22.651
-    title: 'audioop: incorrect integer overflow checks'
-11442:
+bpo-11442:
     author: Guido van Rossum
-    date: 2011-03-08.19:05:14.954
+    date: 2011-03-08 19:05:14
     title: list_directory() in SimpleHTTPServer.py should add charset=... to Content-type
         header
-11662:
+bpo-11662:
     author: Guido van Rossum
-    date: 2011-03-24.15:06:56.972
+    date: 2011-03-24 15:06:56
     title: Redirect vulnerability in urllib/urllib2
-13512:
+bpo-1179:
+    author: Ismail Donmez
+    date: 2007-09-19 01:02:34
+    title: '[CVE-2007-4965] Integer overflow in imageop module'
+bpo-13512:
     author: Vincent Danen
-    date: 2011-11-30.23:23:22.338
+    date: 2011-11-30 23:23:22
     title: ~/.pypirc created insecurely
-13703:
+bpo-13703:
     author: Barry A. Warsaw
-    date: 2012-01-03.19:36:49.543
+    date: 2012-01-03 19:36:49
     title: Hash collision security issue
-13885:
+bpo-13885:
     author: Antoine Pitrou
-    date: 2012-01-27.08:25:52.527
+    date: 2012-01-27 08:25:52
     title: 'CVE-2011-3389: _ssl module always disables the CBC IV attack countermeasure'
-14001:
+bpo-14001:
     author: Jan Lieskovsky
-    date: 2012-02-13.13:45:32.834
+    date: 2012-02-13 13:45:32
     title: 'CVE-2012-0845 Python v2.7.2 / v3.2.2 (SimpleXMLRPCServer): DoS (excessive
         CPU usage) by processing malformed XMLRPC / HTTP POST request'
-14579:
+bpo-14579:
     author: Serhiy Storchaka
-    date: 2012-04-14.18:46:02.834
+    date: 2012-04-14 18:46:02
     title: 'CVE-2012-2135: Vulnerability in the utf-16 decoder after error handling'
-14621:
+bpo-14621:
     author: Vlado Boza
-    date: 2012-04-19.17:58:08.874
+    date: 2012-04-19 17:58:08
     title: Hash function is not randomized properly
-16038:
+bpo-16038:
     author: Christian Heimes
-    date: 2012-09-25.10:32:54.388
+    date: 2012-09-25 10:32:54
     title: 'ftplib: unlimited readline() from connection'
-16039:
+bpo-16039:
     author: Christian Heimes
-    date: 2012-09-25.10:36:09.924
+    date: 2012-09-25 10:36:09
     title: 'imaplib: unlimited readline() from connection'
-16040:
+bpo-16040:
     author: Christian Heimes
-    date: 2012-09-25.10:38:44.757
+    date: 2012-09-25 10:38:44
     title: 'nntplib: unlimited readline() from connection'
-16041:
+bpo-16041:
     author: Christian Heimes
-    date: 2012-09-25.10:39:22.625
+    date: 2012-09-25 10:39:22
     title: 'poplib: unlimited readline() from connection'
-16042:
+bpo-16042:
     author: Christian Heimes
-    date: 2012-09-25.10:40:09.309
+    date: 2012-09-25 10:40:09
     title: 'smtplib: unlimited readline() from connection'
-16043:
+bpo-16043:
     author: Christian Heimes
-    date: 2012-09-25.10:52:06.242
+    date: 2012-09-25 10:52:06
     title: 'xmlrpc: gzip_decode has unlimited read()'
-17980:
+bpo-17980:
     author: Florian Weimer
-    date: 2013-05-15.10:25:06.260
+    date: 2013-05-15 10:25:06
     title: "CVE-2013-2099 ssl.match_hostname() trips over crafted\twildcard names"
-17997:
+bpo-17997:
     author: Christian Heimes
-    date: 2013-05-17.14:04:53.621
+    date: 2013-05-17 14:04:53
     title: 'ssl.match_hostname(): sub string wildcard should not match IDNA prefix'
-18709:
+bpo-18709:
     author: Christian Heimes
-    date: 2013-08-12.11:32:51.937
+    date: 2013-08-12 11:32:51
     title: SSL module fails to handle NULL bytes inside subjectAltNames general names
         (CVE-2013-4238)
-19435:
+bpo-19435:
     author: Alexander Kruppa
-    date: 2013-10-29.16:34:01.203
+    date: 2013-10-29 16:34:01
     title: Directory traversal attack for CGIHTTPRequestHandler
-20078:
+bpo-20078:
     author: Nandiya
-    date: 2013-12-27.02:11:15.324
+    date: 2013-12-27 02:11:15
     title: zipfile - ZipExtFile.read goes into 100% CPU infinite loop on maliciously
         binary edited zips
-20246:
+bpo-20246:
     author: Ryan Smith-Roberts
-    date: 2014-01-14.00:43:59.073
+    date: 2014-01-14 00:43:59
     title: buffer overflow in socket.recvfrom_into
-21082:
+bpo-21082:
     author: Ryan Lortie
-    date: 2014-03-28.07:04:05.588
+    date: 2014-03-28 07:04:05
     title: 'os.makedirs(exist_ok=True) is not thread-safe: umask is set temporary
         to 0, serious security problem'
-21529:
+bpo-21529:
     author: Benjamin Peterson
-    date: 2014-05-19.00:40:48.909
+    date: 2014-05-19 00:40:48
     title: 'JSON module: reading arbitrary process memory'
-21831:
+bpo-21831:
     author: Benjamin Peterson
-    date: 2014-06-24.03:11:22.499
+    date: 2014-06-24 03:11:22
     title: integer overflow in 'buffer' type allows reading memory
-22417:
+bpo-22417:
     author: Nick Coghlan
-    date: 2014-09-15.12:34:29.145
+    date: 2014-09-15 12:34:29
     title: 'PEP 476: verify HTTPS certificates by default'
-22928:
+bpo-2254:
+    author: sumar
+    date: 2008-03-07 19:59:43
+    title: Python CGIHTTPServer information disclosure
+bpo-22928:
     author: Guido Vranken
-    date: 2014-11-24.02:50:23.165
+    date: 2014-11-24 02:50:23
     title: HTTP header injection in urrlib2/urllib/httplib/http.client (CVE-2016-5699)
-26171:
+bpo-26171:
     author: Insu Yun
-    date: 2016-01-21.03:52:31.863
+    date: 2016-01-21 03:52:31
     title: heap overflow in zipimporter module
-26556:
+bpo-2620:
+    author: Justin Ferguson
+    date: 2008-04-11 22:35:34
+    title: Multiple buffer overflows in unicode processing
+bpo-26556:
     author: Christian Heimes
-    date: 2016-03-14.10:31:35.077
+    date: 2016-03-14 10:31:35
     title: Update expat to 2.1.1
-26657:
+bpo-26657:
     author: Thomas
-    date: 2016-03-28.15:30:14.841
+    date: 2016-03-28 15:30:14
     title: Directory traversal with http.server and SimpleHTTPServer on windows
-27568:
+bpo-27568:
     author: "R\xE9mi Rampin"
-    date: 2016-07-18.22:30:13.649
+    date: 2016-07-18 22:30:13
     title: '"HTTPoxy", use of HTTP_PROXY flag supplied by attacker in CGI scripts'
-27850:
+bpo-27850:
     author: Christian Heimes
-    date: 2016-08-24.13:43:47.563
+    date: 2016-08-24 13:43:47
     title: Remove 3DES from cipher list (sweet32 CVE-2016-2183)
-28563:
+bpo-28563:
     author: Carl Ekerot
-    date: 2016-10-30.16:58:40.897
+    date: 2016-10-30 16:58:40
     title: Arbitrary code execution in gettext.c2py
-29169:
+bpo-29169:
     author: Matthias Klose
-    date: 2017-01-05.15:11:35.326
+    date: 2017-01-05 15:11:35
     title: update zlib to 1.2.11
-29591:
+bpo-29591:
     author: Natanael Copa
-    date: 2017-02-17.15:39:39.187
+    date: 2017-02-17 15:39:39
     title: 'expat 2.2.0: Various security vulnerabilities in bundled expat (CVE-2016-0718
         and CVE-2016-4472)'
-29778:
+bpo-29778:
     author: Tibor Csonka
-    date: 2017-03-10.04:58:17.302
+    date: 2017-03-10 04:58:17
     title: '[CVE-2020-15523] _Py_CheckPython3 uses uninitialized dllpath when embedder
         sets module path with Py_SetPath'
-30119:
+bpo-30119:
     author: Dong-hee Na
-    date: 2017-04-20.17:57:20.197
+    date: 2017-04-20 17:57:20
     title: (ftplib) A remote attacker could possibly attack by containing the newline
         characters
-30458:
+bpo-30458:
     author: Orange
-    date: 2017-05-24.15:01:31.674
+    date: 2017-05-24 15:01:31
     title: '[security][CVE-2019-9740][CVE-2019-9947] HTTP Header Injection (follow-up
         of CVE-2016-5699)'
-30500:
+bpo-30500:
     author: Nam Nguyen
-    date: 2017-05-29.04:04:11.735
+    date: 2017-05-29 04:04:11
     title: '[security] urllib connects to a wrong host'
-30657:
+bpo-30657:
     author: Jay Bosamiya
-    date: 2017-06-13.15:35:28.798
+    date: 2017-06-13 15:35:28
     title: '[security] CVE-2017-1000158: Unsafe arithmetic in PyString_DecodeEscape'
-30694:
+bpo-30694:
     author: Ned Deily
-    date: 2017-06-18.03:01:26.301
+    date: 2017-06-18 03:01:26
     title: Update embedded copy of expat to 2.2.1
-30730:
+bpo-30730:
     author: Serhiy Storchaka
-    date: 2017-06-22.08:06:59.735
+    date: 2017-06-22 08:06:59
     title: '[security] Injecting environment variable in subprocess on Windows'
-30947:
+bpo-30947:
     author: STINNER Victor
-    date: 2017-07-17.14:18:15.565
+    date: 2017-07-17 14:18:15
     title: Update embeded copy of libexpat from 2.2.1 to 2.2.3
-31530:
+bpo-31530:
     author: STINNER Victor
-    date: 2017-09-20.13:27:12.407
+    date: 2017-09-20 13:27:12
     title: 'CVE-2018-1000030: Python 2.7 readahead feature of file objects is not
         thread safe'
-32981:
+bpo-32981:
     author: James Davis
-    date: 2018-03-02.00:36:19.614
+    date: 2018-03-02 00:36:19
     title: Catastrophic backtracking in poplib (CVE-2018-1060) and difflib (CVE-2018-1061)
-33001:
+bpo-33001:
     author: Steve Dower
-    date: 2018-03-05.18:04:42.468
+    date: 2018-03-05 18:04:42
     title: Buffer overflow vulnerability in os.symlink on Windows (CVE-2018-1000117)
-33529:
+bpo-33529:
     author: Rad164
-    date: 2018-05-16.00:12:26.510
+    date: 2018-05-16 00:12:26
     title: '[security] Infinite loop on folding email (_fold_as_ew()) if an header
         has no spaces'
-34155:
+bpo-34155:
     author: "Cyril Nicod\xE8me"
-    date: 2018-07-19.14:53:43.641
+    date: 2018-07-19 14:53:43
     title: '[CVE-2019-16056] email.utils.parseaddr mistakenly parse an email'
-34623:
+bpo-34623:
     author: Christian Heimes
-    date: 2018-09-10.22:47:44.343
+    date: 2018-09-10 22:47:44
     title: _elementtree.c doesn't call XML_SetHashSalt()
-34656:
+bpo-34656:
     author: shuoz
-    date: 2018-09-13.04:38:46.491
+    date: 2018-09-13 04:38:46
     title: '[CVE-2018-20406] memory exhaustion in Modules/_pickle.c:1393'
-34791:
+bpo-34791:
     author: Christian Heimes
-    date: 2018-09-24.16:47:30.436
+    date: 2018-09-24 16:47:30
     title: xml package does not obey sys.flags.ignore_environment
-35647:
+bpo-35647:
     author: Karthikeyan Singaravelan
-    date: 2019-01-03.07:59:56.185
+    date: 2019-01-03 07:59:56
     title: Cookie path check returns incorrect results
-35746:
+bpo-35746:
     author: Cisco Talos
-    date: 2019-01-15.16:24:28.272
+    date: 2019-01-15 16:24:28
     title: '[ssl][CVE-2019-5010] TALOS-2018-0758 Denial of Service'
-35907:
+bpo-35907:
     author: Sihoon Lee
-    date: 2019-02-06.08:19:50.837
+    date: 2019-02-06 08:19:50
     title: '[security][CVE-2019-9948] Unnecessary URL scheme exists to allow local_file://
         reading file  in urllib'
-36216:
+bpo-36216:
     author: Steve Dower
-    date: 2019-03-06.17:37:20.064
+    date: 2019-03-06 17:37:20
     title: 'CVE-2019-9636: urlsplit does not handle NFKC normalization'
-36384:
-    author: Joel Croteau
-    date: 2019-03-20.23:40:09.274
-    title: '[security] CVE-2021-29921: ipaddress Should not reject IPv4 addresses
-        with leading zeroes as ambiguously octal'
-36742:
+bpo-36742:
     author: Chihiro Ito
-    date: 2019-04-27.12:30:16.745
+    date: 2019-04-27 12:30:16
     title: 'CVE-2019-10160: urlsplit NFKD normalization vulnerability in user:password@'
-37463:
+bpo-37463:
     author: Christian Heimes
-    date: 2019-07-01.06:47:03.811
+    date: 2019-07-01 06:47:03
     title: ssl.match_hostname() ignores extra string after whitespace in IPv4 address
-38243:
+bpo-38243:
     author: longwenzhang
-    date: 2019-09-21.02:17:29.833
+    date: 2019-09-21 02:17:29
     title: '[security][CVE-2019-16935] A reflected XSS in python/Lib/DocXMLRPCServer.py'
-38576:
+bpo-38576:
     author: Riccardo Schirone
-    date: 2019-10-24.07:51:17.766
+    date: 2019-10-24 07:51:17
     title: 'CVE-2019-18348: CRLF injection via the host part of the url passed to
         urlopen()'
-38804:
+bpo-38804:
     author: Ben Caller
-    date: 2019-11-14.23:37:59.309
+    date: 2019-11-14 23:37:59
     title: Regular Expression Denial of Service in http.cookiejar
-38826:
+bpo-38826:
     author: Ben Caller
-    date: 2019-11-17.01:45:42.314
+    date: 2019-11-17 01:45:42
     title: Regular Expression Denial of Service in urllib.request.AbstractBasicAuthHandler
-38945:
+bpo-38945:
     author: stealthcopter
-    date: 2019-11-30.17:06:01.247
+    date: 2019-11-30 17:06:01
     title: Remove newline characters from uu encoding methods
-39017:
+bpo-39017:
     author: jvoisin
-    date: 2019-12-10.16:19:56.442
+    date: 2019-12-10 16:19:56
     title: '[CVE-2019-20907] Infinite loop in the tarfile module'
-39073:
+bpo-39073:
     author: Jasper Spaans
-    date: 2019-12-17.12:46:42.840
+    date: 2019-12-17 12:46:42
     title: '[security] email module incorrect handling of CR and LF newline characters
         in Address objects.'
-39401:
+bpo-39401:
     author: Anthony Wee
-    date: 2020-01-21.01:02:14.204
+    date: 2020-01-21 01:02:14
     title: '[CVE-2020-8315] Unsafe dll loading in getpathp.c on Win7'
-39603:
+bpo-39603:
     author: Max
-    date: 2020-02-10.19:29:35.213
+    date: 2020-02-10 19:29:35
     title: '[security][ CVE-2020-26116] http.client: HTTP Header Injection in the
         HTTP method'
-41004:
+bpo-41004:
     author: martin wennberg
-    date: 2020-06-17.13:11:52.234
+    date: 2020-06-17 13:11:52
     title: '[CVE-2020-14422] Hash collisions in IPv4Interface and IPv6Interface'
-41944:
+bpo-41944:
     author: Serhiy Storchaka
-    date: 2020-10-05.14:40:52.209
+    date: 2020-10-05 14:40:52
     title: '[security][CVE-2020-27619] Python testsuite calls eval() on content received
         via HTTP'
-42938:
+bpo-42938:
     author: Jordy Zomer
-    date: 2021-01-16.08:03:26.704
+    date: 2021-01-16 08:03:26
     title: '[security][CVE-2021-3177] ctypes double representation BoF'
-42967:
+bpo-42967:
     author: Adam Goldschmidt
-    date: 2021-01-19.15:06:48.939
-    title: '[CVE-2021-23336] urllib.parse.parse_qsl(): Web cache poisoning - semicolon
+    date: 2021-01-19 15:06:48
+    title: '[CVE-2021-23336] urllib.parse.parse_qsl(): Web cache poisoning - `; `
         as a query args separator'
-42988:
+bpo-42988:
     author: "Miro Hron\u010Dok"
-    date: 2021-01-21.12:18:37.585
+    date: 2021-01-21 12:18:37
     title: '[security] CVE-2021-3426: Information disclosure via pydoc -p: /getfile?key=path
         allows to read arbitrary file on the filesystem'
-43075:
+bpo-43075:
     author: yeting li
-    date: 2021-01-30.08:11:46.331
+    date: 2021-01-30 08:11:46
     title: 'CVE-2021-3733: ReDoS in urllib.request'
-43285:
+bpo-43285:
     author: confd0
-    date: 2021-02-21.11:49:34.565
+    date: 2021-02-21 11:49:34
     title: ftplib should not use the host from the PASV response
-43882:
+bpo-43882:
     author: Senthil Kumaran
-    date: 2021-04-18.19:36:58.184
-    title: '[security] urllib.parse should sanitize urls containing ASCII newline
-        and tabs.'
-44022:
+    date: 2021-04-18 19:36:58
+    title: '[security] CVE-2022-0391: urllib.parse should sanitize urls containing
+        ASCII newline and tabs.'
+bpo-44022:
     author: guangli dong
-    date: 2021-05-03.17:13:03.819
+    date: 2021-05-03 17:13:03
     title: 'CVE-2021-3737: urllib http client possible infinite loop on a 100 Continue
         response'
-44394:
+bpo-44394:
     author: STINNER Victor
-    date: 2021-06-11.14:14:07.073
+    date: 2021-06-11 14:14:07
     title: '[security] CVE-2013-0340 "Billion Laughs" fixed in Expat >=2.4.0: Update
         vendored copy to expat 2.4.1'
+bpo-6706:
+    author: Giampaolo Rodola'
+    date: 2009-08-14 23:03:34
+    title: asyncore's accept() is broken
+bpo-6791:
+    author: sumar
+    date: 2009-08-28 08:32:32
+    title: httplib read status memory usage
+bpo-7673:
+    author: STINNER Victor
+    date: 2010-01-11 01:05:03
+    title: 'audioop: check that length is a multiple of the size'
+bpo-8674:
+    author: Tomas Hoger
+    date: 2010-05-10 13:43:22
+    title: 'audioop: incorrect integer overflow checks'
