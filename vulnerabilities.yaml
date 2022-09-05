@@ -1879,7 +1879,7 @@
     - '3.8'
     - '3.7'
   description: |
-    Bzip2 is a dependent software of python, and its 1.0.6 version
+    Bzip2 is a dependency of CPython, and its 1.0.6 version
     has the following two vulnerabilities.
 
     CVE-2016-3189: 
