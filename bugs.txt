@@ -327,6 +327,10 @@ bpo-44394:
     date: 2021-06-11 14:14:07
     title: '[security] CVE-2013-0340 "Billion Laughs" fixed in Expat >=2.4.0: Update
         vendored copy to expat 2.4.1'
+bpo-44549:
+    author: siddhartha shankar mahato
+    date: 2021-07-02 10:46:07
+    title: Update Windows installer to use bzip2 1.0.8
 bpo-6706:
     author: Giampaolo Rodola'
     date: 2009-08-14 23:03:34
