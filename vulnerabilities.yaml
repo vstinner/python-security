@@ -1855,3 +1855,46 @@
     * `3.8 <https://github.com/python/cpython/commit/634da2de88af06eb8c6ebdb90d8c00005847063d>`__
     * `3.7 <https://github.com/python/cpython/commit/c723d5191110f99849f7b0944820f6c3cd5f7747>`__
     * `3.6 <https://github.com/python/cpython/commit/6f743e7a4da904f61dfa84cc7d7385e4dcc79ac5>`__
+
+# Template:
+- name: "fix several bugs in bzip2 1.0.6"
+  slug: bzip2-heap-use-after-free
+  # CVE can be a single string or a list
+  cve:
+    - CVE-2016-3189
+    - CVE-2019-12900
+  # Bug number at bugs.python.org (bpo)
+  bpo: 44549
+  links:
+    - https://access.redhat.com/security/cve/cve-2016-3189
+    - https://access.redhat.com/security/cve/cve-2019-12900
+  fixed-in:
+    - '3.10': 58d576a43cb1800dd68f06a429d7d41f746a8c01
+    - '3.9':  e1639f361ee0dfbf08bb8538839d3d557c1a995c
+    - '3.8':  6649519e67841b1aa12672f1d9b5cb24494f6196
+    - '3.7':  4a3c610cd635f14747cf02c77908e80620aae6ea
+  affected-versions:
+    - '3.10'
+    - '3.9'
+    - '3.8'
+    - '3.7'
+  description: |
+    Bzip2 is a dependent software of python, and its 1.0.6 version
+    has the following two vulnerabilities.
+
+    CVE-2016-3189: 
+    A use-after-free flaw was found in bzip2recover, 
+    leading to a null pointer dereference, or a write to a closed file 
+    descriptor. An attacker could use this flaw by sending a specially 
+    crafted bzip2 file to recover and force the program to crash.
+
+    CVE-2019-12900: 
+    BZ2_decompress in decompress.c in bzip2 through 1.0.6 has an out-of-bounds 
+    write when there are many selectors.
+
+    These vulnerabilities are fixed by updating bzip2 to 1.0.8 in Windows builds.
+
+    On linux and macOs, you can fix them by specifying the dynamically link 
+    version of bzip2.
+
+    See: https://bugs.python.org/issue44549
