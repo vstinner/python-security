@@ -1856,14 +1856,11 @@
     * `3.7 <https://github.com/python/cpython/commit/c723d5191110f99849f7b0944820f6c3cd5f7747>`__
     * `3.6 <https://github.com/python/cpython/commit/6f743e7a4da904f61dfa84cc7d7385e4dcc79ac5>`__
 
-# Template:
 - name: "fix several bugs in bzip2 1.0.6"
-  slug: bzip2-heap-use-after-free
-  # CVE can be a single string or a list
+  slug: update-bzip2-1-0-6
   cve:
     - CVE-2016-3189
     - CVE-2019-12900
-  # Bug number at bugs.python.org (bpo)
   bpo: 44549
   links:
     - https://access.redhat.com/security/cve/cve-2016-3189
