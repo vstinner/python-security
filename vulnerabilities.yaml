@@ -1856,7 +1856,7 @@
     * `3.7 <https://github.com/python/cpython/commit/c723d5191110f99849f7b0944820f6c3cd5f7747>`__
     * `3.6 <https://github.com/python/cpython/commit/6f743e7a4da904f61dfa84cc7d7385e4dcc79ac5>`__
 
-- name: "fix several bugs in bzip2 1.0.6"
+- name: "Windows: vulnerable bzip2 1.0.6"
   slug: update-bzip2-1-0-6
   cve:
     - CVE-2016-3189
