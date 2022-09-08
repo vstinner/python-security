@@ -1861,7 +1861,7 @@
   cve:
     - CVE-2016-3189
     - CVE-2019-12900
-  bpo: 44549
+  gh: 88715
   links:
     - https://access.redhat.com/security/cve/cve-2016-3189
     - https://access.redhat.com/security/cve/cve-2019-12900
