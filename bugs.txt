@@ -347,3 +347,7 @@ bpo-8674:
     author: Tomas Hoger
     date: 2010-05-10 13:43:22
     title: 'audioop: incorrect integer overflow checks'
+gh-88715:
+    author: 7320040f-9856-4955-8493-c95773d76b91
+    date: 2021-07-02 10:46:08
+    title: Update Windows installer to use bzip2 1.0.8
