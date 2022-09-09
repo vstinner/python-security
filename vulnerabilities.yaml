@@ -1856,12 +1856,12 @@
     * `3.7 <https://github.com/python/cpython/commit/c723d5191110f99849f7b0944820f6c3cd5f7747>`__
     * `3.6 <https://github.com/python/cpython/commit/6f743e7a4da904f61dfa84cc7d7385e4dcc79ac5>`__
 
-- name: "fix several bugs in bzip2 1.0.6"
+- name: "Windows: vulnerable bzip2 1.0.6"
   slug: update-bzip2-1-0-6
   cve:
     - CVE-2016-3189
     - CVE-2019-12900
-  bpo: 44549
+  gh: 88715
   links:
     - https://access.redhat.com/security/cve/cve-2016-3189
     - https://access.redhat.com/security/cve/cve-2019-12900
@@ -1876,7 +1876,7 @@
     - '3.8'
     - '3.7'
   description: |
-    Bzip2 is a dependency of CPython, and its 1.0.6 version
+    bzip2 is a dependency of CPython, and its 1.0.6 version
     has the following two vulnerabilities.
 
     CVE-2016-3189: 
@@ -1891,7 +1891,7 @@
 
     These vulnerabilities are fixed by updating bzip2 to 1.0.8 in Windows builds.
 
-    On linux and macOs, you can fix them by specifying the dynamically link 
+    On Linux and macOS, you can fix them by specifying the dynamically link 
     version of bzip2.
 
     See: https://bugs.python.org/issue44549
