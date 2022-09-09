@@ -1893,5 +1893,3 @@
 
     On Linux and macOS, you can fix them by specifying the dynamically link 
     version of bzip2.
-
-    See: https://bugs.python.org/issue44549
