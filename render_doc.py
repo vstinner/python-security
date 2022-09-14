@@ -17,8 +17,9 @@ import github
 import yaml
 
 
-# Last update: 2020-10-06
-MAINTAINED_BRANCHES = ['3.6', '3.7', '3.8', '3.9']
+# Last update: 2022-09-14
+# https://devguide.python.org/versions/
+MAINTAINED_BRANCHES = ['3.7', '3.8', '3.9', '3.10']
 
 STATUS_BRANCHES = """
 `Status of Python branches

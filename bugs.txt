@@ -347,3 +347,7 @@ bpo-8674:
     author: Tomas Hoger
     date: 2010-05-10 13:43:22
     title: 'audioop: incorrect integer overflow checks'
+gh-95778:
+    author: gpshead
+    date: 2022-08-08 07:53:39
+    title: 'CVE-2020-10735: Prevent DoS by large int<->str conversions'

@@ -1879,17 +1879,85 @@
     bzip2 is a dependency of CPython, and its 1.0.6 version
     has the following two vulnerabilities.
 
-    CVE-2016-3189: 
-    A use-after-free flaw was found in bzip2recover, 
-    leading to a null pointer dereference, or a write to a closed file 
-    descriptor. An attacker could use this flaw by sending a specially 
+    CVE-2016-3189:
+    A use-after-free flaw was found in bzip2recover,
+    leading to a null pointer dereference, or a write to a closed file
+    descriptor. An attacker could use this flaw by sending a specially
     crafted bzip2 file to recover and force the program to crash.
 
-    CVE-2019-12900: 
-    BZ2_decompress in decompress.c in bzip2 through 1.0.6 has an out-of-bounds 
+    CVE-2019-12900:
+    BZ2_decompress in decompress.c in bzip2 through 1.0.6 has an out-of-bounds
     write when there are many selectors.
 
     These vulnerabilities are fixed by updating bzip2 to 1.0.8 in Windows builds.
 
-    On Linux and macOS, you can fix them by specifying the dynamically link 
+    On Linux and macOS, you can fix them by specifying the dynamically link
     version of bzip2.
+
+- name: "Prevent DoS by large str-int conversions"
+  slug: large-int-str-dos
+  cve: CVE-2020-10735
+  gh: 95778
+  links:
+    - "`pydantic potential DOS when loading malicious JSON <https://github.com/pydantic/pydantic/issues/1477>`_ by Samuel Colvin (May 5, 2020)"
+    - "`Red Hat: CVE-2020-10735 <https://access.redhat.com/security/cve/CVE-2020-10735>`_"
+    - "LWN: `A Python security fix breaks (some) bignums <https://lwn.net/Articles/907572/>`_ (September 14, 2022)"
+    - "`Python releases 3.10.7, 3.9.14, 3.8.14, and 3.7.14 are now available <https://pythoninsider.blogspot.com/2022/09/python-releases-3107-3914-3814-and-3714.html>`_ (September 7, 2022)"
+  reported-at: "2020-05-05 (PSRT email)"
+  reported-by: "Larry Yuan"
+  fixed-in:
+   - '3.7': 15ec1afd4fcd2da1e2d2b256c562fb42d8d886a2
+   - '3.8': b5e331fdb38684808ffc540d53e8595bdc408b89
+   - '3.9': cec1e9dfd769bd3a16142d0fdd1a36f19c77ed15
+   - '3.10': 8f0fa4bd10aba723aff988720cd26b93be99bc12
+   - '3.11': f8b71da9aac6ea74808dcdd0cc266e705431356b
+   - '3.12': 511ca9452033ef95bc7d7fc404b8161068226002
+  description: |
+    A Denial Of Service (DoS) issue was identified in CPython because we use
+    binary bignum's for our int implementation. A huge integer will always
+    consume a near-quadratic amount of CPU time in conversion to or from a base
+    10 (decimal) string with a large number of digits. No efficient algorithm
+    exists to do otherwise.
+
+    It is quite common for Python code implementing network protocols and data
+    serialization to do int(untrusted_string_or_bytes_value) on input to get a
+    numeric value, without having limited the input length or to do
+    ``log("processing thing id %s", unknowingly_huge_integer)`` or any similar
+    concept to convert an int to a string without first checking its magnitude.
+    (http, json, xmlrpc, logging, loading large values into integer via
+    linear-time conversions such as hexadecimal stored in yaml, or anything
+    computing larger values based on user controlled inputs… which then wind up
+    attempting to output as decimal later on). All of these can suffer a CPU
+    consuming DoS in the face of untrusted data.
+
+    Everyone auditing all existing code for this, adding length guards, and
+    maintaining that practice everywhere is not feasible nor is it what we deem
+    the vast majority of our users want to do.
+
+    This issue has been reported to the Python Security Response Team multiple
+    times by a few different people since early 2020, most recently a few weeks
+    ago while I was in the middle of polishing up the PR so it’d be ready
+    before 3.11.0rc2.
+
+    After discussion on the Python Security Response Team mailing list the
+    conclusion was that we needed to limit the size of integer to string
+    conversions for non-linear time conversions (anything not a power-of-2
+    base) by default. And offer the ability to configure or disable this limit.
+
+    The fix adds ``PYTHONINTMAXSTRDIGITS=digits`` environment variable, ``-X
+    int_max_str_digits=digits`` command line option and
+    ``sys.set_int_max_str_digits(digits)`` function to configure the new limit.
+    Use a limit of ``0`` digits to disable the limit. The fix also adds
+    ``sys.get_int_max_str_digits()`` function and
+    ``sys.int_info.default_max_str_digits`` (compiled-in default limit) and
+    ``sys.int_info.str_digits_check_threshold`` (lowest accepted value for the
+    limit) variables
+
+    The ``json.load()`` denial of service was first reported as a `public
+    pydantic issue <https://github.com/pydantic/pydantic/issues/1477>`_ in May
+    2020. Then it was reported to the Python Security Response Team by multiple
+    persons:
+
+    * Larry Yuan (May 5, 2020)
+    * Tom Christie (May 6, 2020) via Sebastián Ramírez
+    * Mike Gagnon (August 3, 2022)
