@@ -1961,3 +1961,20 @@
     * Larry Yuan (May 5, 2020)
     * Tom Christie (May 6, 2020) via Sebastián Ramírez
     * Mike Gagnon (August 3, 2022)
+
+- name: "mailcap shell command injection "
+  slug: mailcap-shell-injection
+  cve: CVE-2015-20107
+  bpo: 24778
+  fixed-in:
+   - '3.12': b9509ba7a9c668b984dab876c7926fe1dc5aa0ba
+   - '3.11': fae93ab16377db23ba6abc10480b04a58db62bdd
+  description: |
+    The ``mailcap`` module is vulnerable to shell code injection in filenames.
+    If the filename contains a shell command, it will be executed if it is
+    passed to ``os.system()`` as described in the documentation.
+
+    To prevent security issues with shell metacharacters (symbols that have
+    special effects in a shell command line), the ``mailcap.findmatch()``
+    function now refuses to inject ASCII characters other than alphanumerics
+    and ``@+=:,./-_`` into the returned command line.

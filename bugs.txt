@@ -111,6 +111,11 @@ bpo-22928:
     author: Guido Vranken
     date: 2014-11-24 02:50:23
     title: HTTP header injection in urrlib2/urllib/httplib/http.client (CVE-2016-5699)
+bpo-24778:
+    author: Bernd Dietzel
+    date: 2015-08-02 08:25:06
+    title: '[CVE-2015-20107] mailcap.findmatch: document shell command Injection danger
+        in filename parameter'
 bpo-26171:
     author: Insu Yun
     date: 2016-01-21 03:52:31
