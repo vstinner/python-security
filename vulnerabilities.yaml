@@ -1978,3 +1978,34 @@
     special effects in a shell command line), the ``mailcap.findmatch()``
     function now refuses to inject ASCII characters other than alphanumerics
     and ``@+=:,./-_`` into the returned command line.
+
+- name: "Windows: vulnerable zlib 1.2.11"
+  slug: update-zlib-1-2-11
+  cve:
+    - CVE-2018-25032
+  bpo: 47194
+  links:
+    - https://access.redhat.com/security/cve/cve-2018-25032
+  fixed-in:
+    - '3.10': 16a809ffb7af14898ce9ec8165960d96cbcd4ec3
+    - '3.9':  0f0f85e9d8088eb789cda35477900df32adff546
+    - '3.8':  7ccdec3d1d837b910cd4fc5525ecde71a1326202
+    - '3.7':  387f93c156288c170ff0016a75af06e109d48ee1
+  affected-versions:
+    - '3.10'
+    - '3.9'
+    - '3.8'
+    - '3.7'
+  description: |
+    zlib v1.2.11 is a dependency of CPython on Windows.
+
+    An out-of-bounds access flaw was found in zlib, which allows memory 
+    corruption when deflating (ex: when compressing) if the input has many 
+    distant matches. 
+    
+    This bug was introduced in zlib v1.2.2.2 through zlib v1.2.11 and fixed 
+    in v1.2.12. 
+
+    On Windows, you could fix this vulnerability by updating zlib to 
+    1.2.12 in Windows builds. On Linux and macOS, you can fix it by specifying 
+    the dynamically link version of zlib.
