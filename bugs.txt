@@ -336,6 +336,10 @@ bpo-44549:
     author: siddhartha shankar mahato
     date: 2021-07-02 10:46:07
     title: Update Windows installer to use bzip2 1.0.8
+bpo-47194:
+    author: Gregory P. Smith
+    date: 2022-04-01 19:25:42
+    title: Upgrade to zlib v1.2.12 in CPython binary releases
 bpo-6706:
     author: Giampaolo Rodola'
     date: 2009-08-14 23:03:34
