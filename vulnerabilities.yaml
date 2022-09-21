@@ -1870,11 +1870,6 @@
     - '3.9':  e1639f361ee0dfbf08bb8538839d3d557c1a995c
     - '3.8':  6649519e67841b1aa12672f1d9b5cb24494f6196
     - '3.7':  4a3c610cd635f14747cf02c77908e80620aae6ea
-  affected-versions:
-    - '3.10'
-    - '3.9'
-    - '3.8'
-    - '3.7'
   description: |
     bzip2 is a dependency of CPython, and its 1.0.6 version
     has the following two vulnerabilities.
@@ -1991,11 +1986,6 @@
     - '3.9':  0f0f85e9d8088eb789cda35477900df32adff546
     - '3.8':  7ccdec3d1d837b910cd4fc5525ecde71a1326202
     - '3.7':  387f93c156288c170ff0016a75af06e109d48ee1
-  affected-versions:
-    - '3.10'
-    - '3.9'
-    - '3.8'
-    - '3.7'
   description: |
     zlib v1.2.11 is a dependency of CPython on Windows.
 
@@ -2007,5 +1997,7 @@
     in v1.2.12. 
 
     On Windows, you could fix this vulnerability by updating zlib to 
-    1.2.12 in Windows builds. On Linux and macOS, you can fix it by specifying 
-    the dynamically link version of zlib.
+    1.2.12 in Windows builds. On Linux and macOS, Python uses the system zlib
+    library to build by default, you could update your system zlib version. 
+    You can also specify a bugfixed zlib different from the system zlib
+    by setting CPPFLAGS and LDFLAGS.
