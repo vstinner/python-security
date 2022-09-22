@@ -9,3 +9,4 @@ vuln/
 get-pip.py
 # configuration file
 config.ini
+.vscode/
