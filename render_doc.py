@@ -825,6 +825,9 @@ class Vulnerability:
 class PythonReleases:
     def __init__(self):
         self.dates = {}
+        self.github_api = None
+        self.all_tags = None
+
         with open("python_releases.txt", encoding="utf-8") as fp:
             for line in fp:
                 line = line.strip()
@@ -843,6 +846,40 @@ class PythonReleases:
             return self.dates[version]
         except KeyError:
             raise KeyError("missing release date of Python %s" % version)
+
+    @staticmethod
+    def is_release_tag(tag):
+        return all(v not in tag and 'v' in  tag for v in ['a', 'b', 'c', 'rc'])
+
+    @staticmethod
+    def format_version(version):
+        if version.count('.') == 1:
+            version += '.0'
+        return version[1:] if version.startswith('v') else version
+
+    def _get_all_tags(self):
+        if self.github_api is None:
+            self.github_api = github.Github(GITHUB_API_TOKEN, verify=False)
+        repo = self.github_api.get_repo(GITHUB_REPO)
+        all_tags = []
+        page = 0
+        while True:
+            tags = repo.get_tags().get_page(page)
+            if not tags:
+                break
+            all_tags.extend(tags)
+            page += 1
+        return all_tags
+
+    def update(self):
+        if self.all_tags == None:
+            self.all_tags = self._get_all_tags()
+        with open("python_releases.txt", mode='w+', encoding="utf-8") as fp:
+            for tag in self.all_tags[::-1]:
+                if PythonReleases.is_release_tag(tag.name):
+                    version = PythonReleases.format_version(tag.name)
+                    date = tag.commit.commit.author.date.strftime('%Y-%m-%d')
+                    fp.write('{}: {}\n'.format(version, date))
 
 
 def render_title(fp, title, line='='):
@@ -1229,6 +1266,10 @@ def main():
 
     if sys.argv[1:] == ['update']:
         OFFLINE = False
+    elif sys.argv[1:] == ['update_releases']:
+        python_releases = PythonReleases()
+        python_releases.update()
+        sys.exit(0)
     elif sys.argv[1:] != []:
         print("usage: %s %s [update]" % (sys.executable, sys.argv[0]))
         sys.exit(1)
