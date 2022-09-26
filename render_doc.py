@@ -823,10 +823,10 @@ class Vulnerability:
 
 
 class PythonReleases:
-    def __init__(self):
+    def __init__(self, python_path):
         self.dates = {}
         self.github_api = None
-        self.all_tags = None
+        self.python_path = python_path
 
         with open("python_releases.txt", encoding="utf-8") as fp:
             for line in fp:
@@ -849,7 +849,7 @@ class PythonReleases:
 
     @staticmethod
     def is_release_tag(tag):
-        return all(v not in tag and 'v' in  tag for v in ['a', 'b', 'c', 'rc'])
+        return all(v not in tag and 'v' in tag for v in ['a', 'b', 'c', 'rc'])
 
     @staticmethod
     def format_version(version):
@@ -857,29 +857,34 @@ class PythonReleases:
             version += '.0'
         return version[1:] if version.startswith('v') else version
 
-    def _get_all_tags(self):
-        if self.github_api is None:
-            self.github_api = github.Github(GITHUB_API_TOKEN, verify=False)
-        repo = self.github_api.get_repo(GITHUB_REPO)
-        all_tags = []
-        page = 0
-        while True:
-            tags = repo.get_tags().get_page(page)
-            if not tags:
-                break
-            all_tags.extend(tags)
-            page += 1
-        return all_tags
+    def _get_relaease_tags(self):
+        cmd = ["git", "tag", "-l"]
+        proc = run(cmd, self.python_path, text=False)
+        relaease_tags = []
+
+        for line in proc.stdout.splitlines():
+            tag = line.decode()
+            if PythonReleases.is_release_tag(tag):
+                relaease_tags.append(tag)
+        return relaease_tags
+
+    def _get_date_from_tag(self, tag):
+        cmd = ["git", "show", tag]
+        proc = run(cmd, self.python_path, text=False)
+
+        for line in proc.stdout.splitlines():
+            if not line.startswith(b'Date'):
+                continue
+            return parse_date(line[5:].decode().strip())
 
     def update(self):
-        if self.all_tags == None:
-            self.all_tags = self._get_all_tags()
+        tags = self._get_relaease_tags()
+        tags.sort(key=lambda tag:version_info(tag[1:]))
         with open("python_releases.txt", mode='w+', encoding="utf-8") as fp:
-            for tag in self.all_tags[::-1]:
-                if PythonReleases.is_release_tag(tag.name):
-                    version = PythonReleases.format_version(tag.name)
-                    date = tag.commit.commit.author.date.strftime('%Y-%m-%d')
-                    fp.write('{}: {}\n'.format(version, date))
+            for tag in tags:
+                version = PythonReleases.format_version(tag)
+                date = self._get_date_from_tag(tag)
+                fp.write('{}: {}\n'.format(version, date))
 
 
 def render_title(fp, title, line='='):
@@ -1101,7 +1106,7 @@ class RenderDoc:
         self.parse_config(config_filename)
 
         self.commit_dates = CommitDates(self.python_srcdir, date_filename)
-        self.python_releases = PythonReleases()
+        self.python_releases = PythonReleases(self.python_srcdir)
         self.commit_tags = CommitTags(self.python_releases, self.python_srcdir,
                                       tags_filename)
         self.bugs = PythonBugs(bugs_filename, self.bugs_api)
