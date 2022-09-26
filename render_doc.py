@@ -825,19 +825,8 @@ class Vulnerability:
 class PythonReleases:
     def __init__(self, python_path):
         self.dates = {}
-        self.github_api = None
         self.python_path = python_path
-
-        with open("python_releases.txt", encoding="utf-8") as fp:
-            for line in fp:
-                line = line.strip()
-                if not line:
-                    continue
-                parts = line.split(":", 1)
-                version = parts[0].strip()
-                date = parts[1].strip()
-                date = parse_date(date)
-                self.dates[version] = date
+        self.update()
 
     def get_date(self, version):
         if version.count('.') == 1:
@@ -884,6 +873,7 @@ class PythonReleases:
             for tag in tags:
                 version = PythonReleases.format_version(tag)
                 date = self._get_date_from_tag(tag)
+                self.dates[version] = date
                 fp.write('{}: {}\n'.format(version, date))
 
 
@@ -1271,10 +1261,6 @@ def main():
 
     if sys.argv[1:] == ['update']:
         OFFLINE = False
-    elif sys.argv[1:] == ['update_releases']:
-        python_releases = PythonReleases()
-        python_releases.update()
-        sys.exit(0)
     elif sys.argv[1:] != []:
         print("usage: %s %s [update]" % (sys.executable, sys.argv[0]))
         sys.exit(1)
