@@ -826,7 +826,10 @@ class PythonReleases:
     def __init__(self, python_path):
         self.dates = {}
         self.python_path = python_path
-        self.update()
+        if OFFLINE:
+            self.load()
+        else:
+            self.update()
 
     def get_date(self, version):
         if version.count('.') == 1:
@@ -846,35 +849,55 @@ class PythonReleases:
             version += '.0'
         return version[1:] if version.startswith('v') else version
 
-    def _get_relaease_tags(self):
+    def get_release_tags(self):
         cmd = ["git", "tag", "-l"]
         proc = run(cmd, self.python_path, text=False)
-        relaease_tags = []
+        tags = []
 
         for line in proc.stdout.splitlines():
             tag = line.decode()
-            if PythonReleases.is_release_tag(tag):
-                relaease_tags.append(tag)
-        return relaease_tags
+            if self.is_release_tag(tag):
+                tags.append(tag)
+        return tags
 
-    def _get_date_from_tag(self, tag):
+    def get_date_from_tag(self, tag):
         cmd = ["git", "show", tag]
         proc = run(cmd, self.python_path, text=False)
 
         for line in proc.stdout.splitlines():
-            if not line.startswith(b'Date'):
+            if not line.startswith(b'Date:'):
                 continue
-            return parse_date(line[5:].decode().strip())
+            line = line[5:].decode().strip()
+            return parse_date(line)
+
+    def load(self):
+        with open("python_releases.txt", encoding="utf-8") as fp:
+            for line in fp:
+                line = line.strip()
+                if not line:
+                    continue
+                parts = line.split(":", 1)
+                version = parts[0].strip()
+                date = parts[1].strip()
+                date = parse_date(date)
+                self.dates[version] = date
 
     def update(self):
-        tags = self._get_relaease_tags()
+        tags = self.get_release_tags()
         tags.sort(key=lambda tag:version_info(tag[1:]))
         with open("python_releases.txt", mode='w+', encoding="utf-8") as fp:
+            last_key = ''
             for tag in tags:
-                version = PythonReleases.format_version(tag)
-                date = self._get_date_from_tag(tag)
+                version = self.format_version(tag)
+                key = version.rsplit('.', 1)[0]
+                if key != last_key and last_key:
+                    # Group by major version X.Y
+                    print(file=fp)
+
+                date = self.get_date_from_tag(tag)
                 self.dates[version] = date
-                fp.write('{}: {}\n'.format(version, date))
+                print('{}: {}'.format(version, date), file=fp)
+                last_key = key
 
 
 def render_title(fp, title, line='='):
