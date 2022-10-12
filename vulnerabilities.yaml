@@ -1964,6 +1964,10 @@
   fixed-in:
    - '3.12': b9509ba7a9c668b984dab876c7926fe1dc5aa0ba
    - '3.11': fae93ab16377db23ba6abc10480b04a58db62bdd
+   - '3.10': 96739bccf220689a54ef33341f431eda19c287fa
+   - '3.9': c59a16e2c7495a90e6d23a48ec98623f3fb1e176
+   - '3.8': 0a4f650347fdcfd82d094ab2134ca89584f4e877
+   - '3.7': 6e8e9e7c030b6236ff220362944cba1b93c84bc4
   description: |
     The ``mailcap`` module is vulnerable to shell code injection in filenames.
     If the filename contains a shell command, it will be executed if it is
@@ -1989,15 +1993,15 @@
   description: |
     zlib v1.2.11 is a dependency of CPython on Windows.
 
-    An out-of-bounds access flaw was found in zlib, which allows memory 
-    corruption when deflating (ex: when compressing) if the input has many 
-    distant matches. 
-    
-    This bug was introduced in zlib v1.2.2.2 through zlib v1.2.11 and fixed 
-    in v1.2.12. 
+    An out-of-bounds access flaw was found in zlib, which allows memory
+    corruption when deflating (ex: when compressing) if the input has many
+    distant matches.
 
-    On Windows, you could fix this vulnerability by updating zlib to 
+    This bug was introduced in zlib v1.2.2.2 through zlib v1.2.11 and fixed
+    in v1.2.12.
+
+    On Windows, you could fix this vulnerability by updating zlib to
     1.2.12 in Windows builds. On Linux and macOS, Python uses the system zlib
-    library to build by default, you could update your system zlib version. 
+    library to build by default, you could update your system zlib version.
     You can also specify a bugfixed zlib different from the system zlib
     by setting CPPFLAGS and LDFLAGS.
