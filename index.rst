@@ -17,5 +17,5 @@ Pages
    security
 
 `Status of Python branches
-<https://docs.python.org/devguide/#status-of-python-branches>`_ lists Python
+<https://devguide.python.org/versions/>`_ lists Python
 branches which get security fixes.

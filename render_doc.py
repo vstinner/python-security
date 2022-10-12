@@ -23,7 +23,7 @@ MAINTAINED_BRANCHES = ['3.7', '3.8', '3.9', '3.10']
 
 STATUS_BRANCHES = """
 `Status of Python branches
-<https://docs.python.org/devguide/#status-of-python-branches>`_ lists Python
+<https://devguide.python.org/versions/>`_ lists Python
 branches which get security fixes.
 """.strip()
 
