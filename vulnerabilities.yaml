@@ -1,12 +1,30 @@
 # Vulnerabilities: http://www.itsecdb.com/oval/definitions/product-18230/0/Python-Python.html?class=5
 
-# Template:
+# Template to add a new vulnerability:
+# - name: "xxx"
+#   slug: xxx
+#   # CVE can be a single string or a list
+#   cve: xxx
+#   # GitHub issue number
+#   gh: xxx
+#   links:
+#     - xxx
+#   fixed-in:
+#    - '3.x': xxx
+#    - '3.y': xxx
+#   description: |
+#     xxx
+#     xxx
+#     xxx
+#
+# There are many optional fields:
+#
 # - name: ""
 #   slug:
 #   # CVE can be a single string or a list
 #   cve:
-#   # Bug number at bugs.python.org (bpo)
-#   bpo:
+#   # GitHub issue number
+#   gh:
 #   links:
 #     -
 #   disclosure: "" -- optional, use bpo if missing
@@ -18,6 +36,8 @@
 #   affected-versions:
 #    - "x.y"
 #   description: |
+#
+# For old issues, "bpo: xxx" is also supposed for links to bugs.python.org.
 #
 # Other tag: "ignore-python3: true", used for modules removed from Python 3
 
@@ -2005,3 +2025,23 @@
     library to build by default, you could update your system zlib version.
     You can also specify a bugfixed zlib different from the system zlib
     by setting CPPFLAGS and LDFLAGS.
+
+- name: "http.server: Open Redirection if the URL path starts with //"
+  slug: http-server-redirection
+  cve: CVE-2021-28861
+  gh: 87389
+  reported-at: "2021-02-14"
+  reported-by: "Hamza Avvan (email to PSRT)"
+  links:
+    - https://access.redhat.com/security/cve/CVE-2021-28861
+  fixed-in:
+   - '3.12': 4abab6b603dd38bec1168e9a37c40a48ec89508e
+   - '3.11': e2e8847bf52f4a81490653c6d13b7e3821b2c2be
+   - '3.10': 5715382d3a89ca118ce2e224d8c69550d21fe51b
+   - '3.9': defaa2b19a9a01c79c1d5641a8aa179bb10ead3f
+   - '3.8': 4dc2cae3abd75f386374d0635d00443b897d0672
+   - '3.7': 8a34afd55258c721e446d6de4a70353c39a24148
+  description: |
+    This security flaw causes an open redirection vulnerability in
+    ``Lib/http/server.py`` due to no protection against multiple (``/``) at the
+    beginning of the URI path.

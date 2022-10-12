@@ -356,6 +356,11 @@ bpo-8674:
     author: Tomas Hoger
     date: 2010-05-10 13:43:22
     title: 'audioop: incorrect integer overflow checks'
+gh-87389:
+    author: 6dc3883d-b305-4450-9890-e4ec0f4e72f4
+    date: 2021-02-14 11:42:37
+    title: '[security] CVE-2021-28861: http.server: Open Redirection if the URL path
+        starts with //'
 gh-95778:
     author: gpshead
     date: 2022-08-08 07:53:39

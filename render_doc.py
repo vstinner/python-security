@@ -972,7 +972,7 @@ def render_timeline(fp, vuln):
     for date, sort_order, show_days, text in dates:
         days = timedelta_days(date - day0)
         date = format_date(date)
-        if show_days:
+        if show_days and days:
             date = "%s (**%+i days**)" % (date, days)
         print("* %s: %s" % (date, text), file=fp)
     print(file=fp)
