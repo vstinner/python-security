@@ -365,3 +365,8 @@ gh-95778:
     author: gpshead
     date: 2022-08-08 07:53:39
     title: 'CVE-2020-10735: Prevent DoS by large int<->str conversions'
+gh-97514:
+    author: gpshead
+    date: 2022-09-23 19:24:04
+    title: Linux specific local privilege escalation via the multiprocessing forkserver
+        start method - CVE-2022-42919

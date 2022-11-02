@@ -2045,3 +2045,22 @@
     This security flaw causes an open redirection vulnerability in
     ``Lib/http/server.py`` due to no protection against multiple (``/``) at the
     beginning of the URI path.
+
+- name: "Linux specific local privilege escalation via the multiprocessing forkserver start method"
+  slug: xxx
+  cve: CVE-2022-42919
+  gh: 97514
+  fixed-in:
+   - '3.12': 49f61068f49747164988ffc5a442d2a63874fc17
+   - '3.11': 4c0c1e201a896ee5141df9a698e8a94aad2d5e6d
+   - '3.10': eae692eed18892309bcc25a2c0f8980038305ea2
+   - '3.9': b43496c01a554cf41ae654a0379efae18609ad39
+  affected-versions:
+   - '3.9'
+   - '3.10'
+   - '3.11'
+  description: |
+    Python 3.9, 3.10, and 3.11.0rc2 on Linux may allow for a local privilege
+    escalation attack in a non-default configuration when code uses the
+    multiprocessing module and configures multiprocessing to use the forkserver
+    start method.
