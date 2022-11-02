@@ -2047,7 +2047,7 @@
     beginning of the URI path.
 
 - name: "Linux specific local privilege escalation via the multiprocessing forkserver start method"
-  slug: xxx
+  slug: multiprocessing-abstract-socket
   cve: CVE-2022-42919
   gh: 97514
   fixed-in:
