@@ -2050,6 +2050,8 @@
   slug: multiprocessing-abstract-socket
   cve: CVE-2022-42919
   gh: 97514
+  reported-at: "2022-09-07 (email to PSRT)"
+  reported-by: "Devin Jeanpierre (Google)"
   fixed-in:
    - '3.12': 49f61068f49747164988ffc5a442d2a63874fc17
    - '3.11': 4c0c1e201a896ee5141df9a698e8a94aad2d5e6d
@@ -2064,3 +2066,5 @@
     escalation attack in a non-default configuration when code uses the
     multiprocessing module and configures multiprocessing to use the forkserver
     start method.
+
+    This issue was discovered by Devin Jeanpierre (@ssbr) of Google.
