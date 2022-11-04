@@ -2072,3 +2072,31 @@
     start method.
 
     This issue was discovered by Devin Jeanpierre (@ssbr) of Google.
+
+- name: "Buffer overflow in the _sha3 module in Python 3.10 and older"
+  slug: sha3-buffer-overflow
+  cve: CVE-2022-37454
+  gh: 98517
+  links:
+    - https://github.com/XKCP/XKCP/security/advisories/GHSA-6w4m-2xhg-2658
+  affected-versions:
+   - "3.7"
+   - "3.8"
+   - "3.9"
+   - "3.10"
+  fixed-in:
+   - '3.7': 8088c90044ba04cd5624b278340ebf934dbee4a5
+   - '3.8': 948c6794711458fd148a3fa62296cadeeb2ed631
+   - '3.9': 857efee6d2d43c5c12fc7e377ce437144c728ab8
+   - '3.10': 0e4e058602d93b88256ff90bbef501ba20be9dd3
+  description: |
+    CVE-2022-37454 affects Python versions prior to 3.11. The fix discussed in
+    `XKCP's advisory
+    <https://github.com/XKCP/XKCP/security/advisories/GHSA-6w4m-2xhg-2658>`_
+    can be adapted to these versions. The discoverer's writeup contains code
+    that might be turned into regression tests.
+
+    Python 3.11 is not affected: Python 3.11 switched to using tiny_sha3 in
+    `issue GH-91254 <https://github.com/python/cpython/issues/91254>`_.
+
+    The XKCP vulnerability has been found by Nicky Mouha.
