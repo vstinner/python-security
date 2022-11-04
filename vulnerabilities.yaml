@@ -2052,6 +2052,10 @@
   gh: 97514
   reported-at: "2022-09-07 (email to PSRT)"
   reported-by: "Devin Jeanpierre (Google)"
+  links:
+    - Ubuntu: https://ubuntu.com/security/notices/USN-5713-1
+    - Red Hat: https://bugzilla.redhat.com/show_bug.cgi?id=2138705
+    - openSUSE: https://bugzilla.suse.com/show_bug.cgi?id=1204886
   fixed-in:
    - '3.12': 49f61068f49747164988ffc5a442d2a63874fc17
    - '3.11': 4c0c1e201a896ee5141df9a698e8a94aad2d5e6d
