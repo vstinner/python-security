@@ -2079,6 +2079,8 @@
   gh: 98517
   links:
     - https://github.com/XKCP/XKCP/security/advisories/GHSA-6w4m-2xhg-2658
+    - openSUSE: https://bugzilla.suse.com/show_bug.cgi?id=CVE-2022-37454
+    - https://mouha.be/sha-3-buffer-overflow/
   affected-versions:
    - "3.7"
    - "3.8"
