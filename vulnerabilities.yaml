@@ -2102,3 +2102,31 @@
     `issue GH-91254 <https://github.com/python/cpython/issues/91254>`_.
 
     The XKCP vulnerability has been found by Nicky Mouha.
+
+- name: "Slow IDNA decoding with large strings"
+  slug: slow-idna-large-strings
+  cve: CVE-2022-45061
+  gh: 98433
+  reported-at: "2022-09-09 (email to PSRT)"
+  reported-by: "Guido Vranken"
+  fixed-in:
+   - '3.12': d315722564927c7202dd6e111dc79eaf14240b0d
+   - '3.11': a6f6c3a3d6f2b580f2d87885c9b8a9350ad7bf15
+   - '3.10': 9bb8e18ca46fe66fa6802602f8a7228a24dd785f
+   #- '3.9': https://github.com/python/cpython/pull/99230
+   #- '3.8': https://github.com/python/cpython/pull/99231
+   - '3.7': b0b590be9597fd5919228d251812dd54145f70a7
+  description: |
+    IDNA decoding execution time is not linear in relation to the input string
+    size, which can cause slowness with large inputs:
+
+    * 10 chars = 0.016 seconds
+    * 100 chars = 0.047 seconds
+    * 1000 chars = 2.883 seconds
+    * 2500 chars = 17.724 seconds
+    * 5000 chars = 1 min 10 seconds
+
+    According to `Unicode Technical Standard #46
+    <https://unicode.org/reports/tr46/>`_, an IDNA label must not be longer
+    than 63 characters. The Python ``idna`` module enforces the restriction,
+    but too late.
