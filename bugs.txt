@@ -379,3 +379,8 @@ gh-98517:
     date: 2022-10-21 12:51:55
     title: '[CVE-2022-37454] Buffer overflow in the _sha3 module in python versions
         <= 3.10'
+gh-99418:
+    author: kenballus
+    date: 2022-11-12 19:27:12
+    title: '[CVE-2023-24329] urlparse does not correctly handle schemes that begin
+        with ASCII digits, ''+'', ''-'', and ''.'' characters'

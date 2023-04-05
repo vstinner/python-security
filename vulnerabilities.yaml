@@ -2130,3 +2130,17 @@
     <https://unicode.org/reports/tr46/>`_, an IDNA label must not be longer
     than 63 characters. The Python ``idna`` module enforces the restriction,
     but too late.
+
+- name: "urlparse does not correctly handle schemes"
+  slug: urlparse-scheme
+  cve: CVE-2023-24329
+  gh: 99418
+  links:
+    - https://pointernull.com/security/python-url-parse-problem.html
+  fixed-in:
+   - '3.12': 439b9cfaf43080e91c4ad69f312f21fa098befc7
+   - '3.11': 72d356e3584ebfb8e813a8e9f2cd3dccf233c0d9
+   - '3.10': 0db4c5990c7b994e0272b7812e2692d110ab2aec
+  description: |
+    Fix bug in ``urlparse()`` of ``urllib.parse`` that causes URL schemes that
+    begin with a digit, a plus sign, or a minus sign to be parsed incorrectly.
