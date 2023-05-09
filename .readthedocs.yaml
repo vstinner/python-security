@@ -14,5 +14,6 @@ sphinx:
 # run "python setup.py" which runs render_doc.py
 python:
    install:
-   - method: setuptools
    - requirements: requirements.txt
+   - method: setuptools
+     path: .
