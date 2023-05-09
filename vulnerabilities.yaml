@@ -2143,3 +2143,15 @@
   description: |
     Fix bug in ``urlparse()`` of ``urllib.parse`` that causes URL schemes that
     begin with a digit, a plus sign, or a minus sign to be parsed incorrectly.
+
+- name: "Parsing errors in email/_parseaddr.py lead to incorrect value in email address part of tuple"
+  slug: email-parseaddr-realname
+  cve: CVE-2023-27043
+  gh: 102988
+  #fixed-in:
+  # - '3.x': xxx
+  # - '3.y': xxx
+  description: |
+    The e-mail module incorrectly parses e-mail addresses which contain a
+    special character. This vulnerability allows attackers to send messages
+    from e-ail addresses that would otherwise be rejected.

@@ -356,6 +356,11 @@ bpo-8674:
     author: Tomas Hoger
     date: 2010-05-10 13:43:22
     title: 'audioop: incorrect integer overflow checks'
+gh-102988:
+    author: tdwyer
+    date: 2023-03-24 03:30:35
+    title: '[CVE-2023-27043] Parsing errors in email/_parseaddr.py lead to incorrect
+        value in email address part of tuple'
 gh-87389:
     author: Hamza Avvan
     date: 2021-02-14 11:42:37
