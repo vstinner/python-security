@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""
+Fake setup.py only used by .readthedocs.yaml to run the render_doc.py script to
+build the documentation.
+"""
 import os
 import sys
 
