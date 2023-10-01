@@ -21,6 +21,24 @@ import yaml
 # https://devguide.python.org/versions/
 MAINTAINED_BRANCHES = ['3.7', '3.8', '3.9', '3.10']
 
+PSF_ADVISORY_DATABASE = """
+.. warning::
+    This resource is maintained for historical reference and **does not contain the latest vulnerability info for Python**.
+
+    The `canonical database for vulnerabilities affecting Python <https://github.com/psf/advisory-database>`_ is available on GitHub
+    in the Open Source Vulnerability (OSV) format. This database can be viewed online at the
+    `Open Source Vulnerability Database <https://osv.dev/list?ecosystem=&q=PSF>`_.
+""".strip()
+
+PSF_ADVISORY_DATABASE_WITH_CVE = """
+.. warning::
+    This resource is maintained for historical reference and **does not contain the latest vulnerability info for Python**.
+
+    The `canonical database for vulnerabilities affecting Python <https://github.com/psf/advisory-database>`_ is available on GitHub
+    in the Open Source Vulnerability (OSV) format. This vulnerability can be viewed online at the
+    `Open Source Vulnerability Database <https://osv.dev/list?ecosystem=&q={cve}>`_.
+""".strip()
+
 STATUS_BRANCHES = """
 `Status of Python branches
 <https://devguide.python.org/versions/>`_ lists Python
@@ -1086,6 +1104,12 @@ def render_vuln(filename, vuln):
 
         render_title(fp, vuln.name, '=')
 
+        if vuln.cve_list and len(vuln.cve_list) == 1:
+            print(PSF_ADVISORY_DATABASE_WITH_CVE.format(cve=vuln.cve_list[0].number), file=fp)
+        else:
+            print(PSF_ADVISORY_DATABASE, file=fp)
+        print(file=fp)
+
         print(vuln.description, file=fp)
         print(file=fp)
         render_info(fp, vuln)
@@ -1252,6 +1276,9 @@ class RenderDoc:
             print("+" * len(title), file=fp)
             print(title, file=fp)
             print("+" * len(title), file=fp)
+            print(file=fp)
+
+            print(PSF_ADVISORY_DATABASE, file=fp)
             print(file=fp)
 
             print(STATUS_BRANCHES, file=fp)
